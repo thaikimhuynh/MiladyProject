@@ -25,6 +25,13 @@ Button btnHadAccount, btnStarted;
                 startActivity(intent);
             }
         });
+        btnStarted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(WelcomeActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void addViews() {

@@ -4,27 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminProductManagementActivity">
+    tools:context=".admin.AdminProductManagementActivity">
 
     <View
         android:id="@+id/view"
-        android:layout_width="681dp"
-        android:layout_height="386dp"
-        android:layout_marginBottom="928dp"
+        android:layout_width="422dp"
+        android:layout_height="264dp"
+        android:layout_marginBottom="480dp"
         android:background="@drawable/round_rectangle_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.629"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="221dp"
-        android:layout_height="212dp"
+        android:layout_width="119dp"
+        android:layout_height="126dp"
         android:src="@tools:sample/avatars"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@mipmap/ic_admin_img"
-        tools:layout_editor_absoluteX="231dp"
-        tools:layout_editor_absoluteY="65dp" />
+        tools:layout_editor_absoluteY="55dp" />
 
     <TextView
         android:id="@+id/textView5"
@@ -35,26 +36,32 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
-        tools:layout_editor_absoluteX="186dp"
-        tools:layout_editor_absoluteY="305dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="188dp" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="48dp"
         android:text="Log Out"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="543dp"
-        tools:layout_editor_absoluteY="46dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="34dp"
-        android:layout_height="39dp"
+        android:layout_width="27dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
         android:src="@tools:sample/avatars"
-        app:srcCompat="@mipmap/ic_log_out"
-        tools:layout_editor_absoluteX="608dp"
-        tools:layout_editor_absoluteY="37dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_log_out" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_button"

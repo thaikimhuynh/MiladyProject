@@ -20,6 +20,6 @@ TextView txtForgotPassWord, txtSignUp;
         txtForgotPassWord.setPaintFlags(txtForgotPassWord.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         txtSignUp=findViewById(R.id.txtSignUp);
         txtSignUp.setPaintFlags(txtSignUp.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-
+//comment
     }
 }

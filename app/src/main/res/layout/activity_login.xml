@@ -109,7 +109,7 @@
         app:layout_constraintHorizontal_bias="0.944"
         app:layout_constraintStart_toStartOf="@+id/edtPassword"
         app:layout_constraintTop_toTopOf="@+id/edtPassword"
-        app:srcCompat="@mipmap/ic_show_password" />
+        app:srcCompat="@mipmap/ic_eye_off" />
 
     <TextView
         android:id="@+id/txtForgotPassWord"

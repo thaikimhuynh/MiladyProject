@@ -1,8 +1,10 @@
-package com.thaikimhuynh.miladyapp;
+package com.thaikimhuynh.miladyapp.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.thaikimhuynh.miladyapp.R;
 
 public class AdminProductManagementActivity extends AppCompatActivity {
 

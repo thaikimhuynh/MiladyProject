@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/pink_fourth"
     tools:context=".admin.AdminProductManagementActivity">
 
     <View
         android:id="@+id/view"
-        android:layout_width="422dp"
+        android:layout_width="413dp"
         android:layout_height="264dp"
         android:layout_marginBottom="480dp"
         android:background="@drawable/rounded_rectangle_background"

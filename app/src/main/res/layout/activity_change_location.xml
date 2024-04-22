@@ -6,4 +6,68 @@
     android:layout_height="match_parent"
     tools:context=".ChangeLocationActivity">
 
+    <fragment
+        android:id="@+id/map_location"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="413dp"
+        android:layout_height="435dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="Select Location"
+        android:layout_marginStart="30dp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/map_location" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
+        android:text="Edit Your Location"
+        android:textColor="#9D9D9D"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSubmitAddress"
+        android:layout_width="300dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/rounded_pink_button_background"
+        android:text="Save Address"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtChangeLocation"
+        app:layout_constraintVertical_bias="0.268" />
+
+    <EditText
+        android:id="@+id/txtChangeLocation"
+        android:layout_width="354dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="20dp"
+        android:text="669 National Highway 1A, Quarter 3, Thu Duc, Ho Chi Minh City"
+        android:textColor="#9D9D9D"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

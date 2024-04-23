@@ -18,6 +18,15 @@
         android:theme="@style/Theme.MiladyApp"
         tools:targetApi="31">
         <activity
+            android:name=".admin.AdminPrepareOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.AdminConfirmOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.AdminListOrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".admin.AdminAddProductActivity"
             android:exported="false" />
         <activity

@@ -17,16 +17,18 @@
         app:srcCompat="@mipmap/banner_sale" />
 
     <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="48dp"
-            app:layout_constraintEnd_toStartOf="@+id/textView11"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/ic_arrow_left" />
+        android:id="@+id/imageView9"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="84dp"
+        app:layout_constraintEnd_toStartOf="@+id/textView11"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_arrow_left" />
 
-        <TextView
+    <TextView
             android:id="@+id/textView11"
             android:textSize="20sp"
             android:textColor="@color/pink_primary"
@@ -41,14 +43,13 @@
 
     <TextView
         android:id="@+id/textView13"
-        android:layout_width="334dp"
-        android:layout_height="471dp"
+        android:layout_width="337dp"
+        android:layout_height="482dp"
         android:layout_marginTop="36dp"
         android:text="Calling all shoe lovers! It's time to fall head over heels for our latest shoe collection! \n\nThis week ONLY, new Miladay app members get exclusive access to a breathtaking selection of styles that are as comfortable as they are cute!\n\nSpoiler alert: Think bold platforms that won't leave your feet crying, sleek sneakers that'll take you from errands to brunch in style, and dazzling sandals that are perfect for summer nights out.\n\nDon't miss out on these must-have trends.\n\nDownload the Miladay app, register, and step into shoe heaven (without sacrificing comfort)! ☁️\n#MiladayShoes #NewCollection #NewMemberPerks #ComfortFirst"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView10"
         app:layout_constraintVertical_bias="1.0" />

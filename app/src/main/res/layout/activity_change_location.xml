@@ -9,8 +9,20 @@
     <fragment
         android:id="@+id/map_location"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="413dp"
-        android:layout_height="435dp"
+        android:layout_width="415dp"
+        android:layout_height="432dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shipping Address"
+        android:textSize="20sp"
+        android:layout_marginTop="48dp"
+        android:textColor="@color/pink_primary"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,7 +58,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSubmitAddress"
         android:layout_width="300dp"
-        android:layout_height="44dp"
+        android:layout_height="46dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/rounded_pink_button_background"
         android:text="Save Address"
@@ -59,9 +71,11 @@
 
     <EditText
         android:id="@+id/txtChangeLocation"
-        android:layout_width="354dp"
-        android:layout_height="54dp"
+        android:layout_width="355dp"
+        android:layout_height="58dp"
         android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_grey_radius_rec"
+        android:paddingStart="15dp"
         android:text="669 National Highway 1A, Quarter 3, Thu Duc, Ho Chi Minh City"
         android:textColor="#9D9D9D"
         android:textSize="14sp"
@@ -69,5 +83,17 @@
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="64dp"
+        app:layout_constraintEnd_toStartOf="@+id/textView36"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_arrow_left" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

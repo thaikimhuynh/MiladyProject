@@ -24,8 +24,9 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="48dp"
+        android:layout_marginEnd="84dp"
         app:layout_constraintEnd_toStartOf="@+id/textView15"
-        app:layout_constraintHorizontal_bias="0.401"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_arrow_left" />
@@ -78,6 +79,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/rounded_edittext_black_stroke"
                     android:ems="10"
+                    android:paddingStart="15dp"
                     android:hint="MILADAY_NEW"
                     android:inputType="text" />
 
@@ -87,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="36dp"
                     android:layout_weight="1"
-                    android:background="@drawable/rounded_pink_button_background"
+                    android:background="@drawable/rounded_pink_primary_radius_rec"
                     android:text="Apply"
                     android:textColor="@color/white" />
             </LinearLayout>
@@ -140,7 +142,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="36dp"
                         android:layout_marginTop="15dp"
-                        android:text="ANH LINH"
+                        android:text="Anh Linh"
                         android:textSize="20sp" />
 
                     <LinearLayout
@@ -255,7 +257,7 @@
                     android:layout_height="1dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="120dp"
-                    android:background="@android:color/black"
+                    android:background="@color/grey"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
@@ -291,15 +293,15 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnContinuePayment"
-                    android:layout_width="319dp"
-                    android:layout_height="44dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_width="337dp"
+                    android:layout_height="43dp"
+                    android:layout_marginBottom="4dp"
                     android:background="@drawable/rounded_pink_button_background"
                     android:text="Continue to Payment"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.417"
+                    app:layout_constraintHorizontal_bias="0.52"
                     app:layout_constraintStart_toStartOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

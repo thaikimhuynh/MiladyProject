@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
                 android:text="Product Detail"
-                android:textColor="@color/pink_primary"
+                android:textColor="#F9476B"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/imgProductDetail"
@@ -82,7 +82,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -113,7 +114,8 @@
                         android:layout_marginEnd="32dp"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="50$"
+                        android:text="$50"
+                        android:textColor="@color/black"
                         android:textSize="32sp"
                         android:textStyle="bold" />
 
@@ -125,7 +127,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="Classic Boost"
-                    android:textColor="@color/pink_primary"
+                    android:textColor="#F9476B"
                     android:textSize="36sp"
                     android:textStyle="bold" />
 
@@ -139,7 +141,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:text="Product Description"
+                    android:text="Product Details"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -148,15 +150,18 @@
                     android:layout_width="329dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
+                    android:layout_marginEnd="36dp"
                     android:text="Classic boots transcend trends. They seamlessly integrate into a variety of looks, from casual everyday wear to more dressed-up occasions. Pair them with jeans and a chunky knit for a cozy weekend vibe,or elevate your office attire with a knee-high boot and a tailored skirt."
-                    android:textAlignment="textStart" />
+                    android:textAlignment="textStart"
+                    android:textColor="@color/grey"
+                    app:layout_constraintHorizontal_bias="0.0" />
 
                 <View
                     android:layout_width="300dp"
                     android:layout_height="1dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:background="@android:color/black" />
+                    android:background="@color/grey" />
 
                 <TextView
                     android:id="@+id/textView14"
@@ -168,13 +173,90 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerSize"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="32dp">
 
-                </androidx.recyclerview.widget.RecyclerView>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="371dp"
+                    android:layout_height="51dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="5dp"
+                    >
+
+                    <androidx.appcompat.widget.AppCompatButton
+
+                        android:id="@+id/btnsize36"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/rounded_circle_size_button"
+                        android:text="36"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btnsize37"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.454" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+
+                        android:id="@+id/btnsize37"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/rounded_circle_size_button"
+                        android:text="37"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btnsize38"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.454" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+
+                        android:id="@+id/btnsize38"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/rounded_circle_size_button"
+                        android:text="38"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btnsize39"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+
+                        android:id="@+id/btnsize39"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/rounded_circle_size_button"
+                        android:text="39"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btnsize40"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+
+                        android:id="@+id/btnsize40"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="96dp"
+                        android:background="@drawable/rounded_circle_size_button"
+                        android:text="40"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.545" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <View
                     android:id="@+id/view4"
@@ -204,7 +286,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
-                        android:text="1"
+                        android:text="01"
                         android:textColor="@color/pink_primary"
                         android:textSize="30sp" />
 
@@ -222,7 +304,7 @@
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnAddtocart"
                         android:layout_width="198dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="46dp"
                         android:layout_marginStart="16dp"
                         android:background="@drawable/rounded_pink_button_background"
                         android:onClick="increaseQuantity"

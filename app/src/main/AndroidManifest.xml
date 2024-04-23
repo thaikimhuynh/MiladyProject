@@ -43,22 +43,16 @@
             android:exported="false" />
         <activity
             android:name=".CheckOutActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"/>
         <activity
             android:name=".ChangeLocationActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".HelpCenterActivity"
             android:exported="false" />
         <activity
             android:name=".NotificationActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
@@ -67,10 +61,16 @@
             android:exported="false" />
         <activity
             android:name=".admin.AdminProductManagementActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".ProductDetailActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".SignUpActivity"
             android:exported="false" />

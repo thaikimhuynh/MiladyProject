@@ -11,7 +11,6 @@
         android:layout_width="681dp"
         android:layout_height="386dp"
         android:layout_marginBottom="928dp"
-        android:background="@drawable/round_rectangle_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -21,8 +20,6 @@
         android:id="@+id/imageView7"
         android:layout_width="221dp"
         android:layout_height="212dp"
-        android:src="@tools:sample/avatars"
-        app:srcCompat="@mipmap/ic_admin_img"
         tools:layout_editor_absoluteX="231dp"
         tools:layout_editor_absoluteY="65dp" />
 
@@ -51,7 +48,6 @@
         android:id="@+id/imageView8"
         android:layout_width="34dp"
         android:layout_height="39dp"
-        android:src="@tools:sample/avatars"
         app:srcCompat="@mipmap/ic_log_out"
         tools:layout_editor_absoluteX="608dp"
         tools:layout_editor_absoluteY="37dp" />
@@ -62,7 +58,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:src="@mipmap/ic_edit_image"
-        android:background="@drawable/floating_action_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.617"

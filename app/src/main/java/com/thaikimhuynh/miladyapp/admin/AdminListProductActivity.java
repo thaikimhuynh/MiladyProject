@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.thaikimhuynh.miladyapp.R;
 
-public class AdminProductManagementActivity extends AppCompatActivity {
+public class AdminListProductActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_product_management);
+        setContentView(R.layout.activity_admin_list_product);
     }
 }

@@ -97,13 +97,13 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="488dp">
+                android:layout_height="504dp">
 
                 <LinearLayout
                     android:id="@+id/linearLayout"
                     android:layout_width="410dp"
                     android:layout_height="102dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="80dp"
                     android:background="#F4F4F4"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -276,7 +276,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/btn_cancle"
                     app:layout_constraintTop_toBottomOf="@+id/view2"
-                    app:layout_constraintVertical_bias="0.32999998" />
+                    app:layout_constraintVertical_bias="0.469" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_cancle"
@@ -289,6 +289,32 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btnConfirm" />
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shipping Adress"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.162"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.73" />
+
+                <TextView
+                    android:id="@+id/textView32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Voucher enter successful"
+                    android:textColor="@color/grey"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/textView28"
+                    app:layout_constraintTop_toTopOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

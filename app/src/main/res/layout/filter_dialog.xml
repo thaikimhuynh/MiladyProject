@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="450dp" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="84dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="44dp"
+                android:text="Filter"
+                android:textColor="@color/pink_primary"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="52dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.755"
+                app:layout_constraintStart_toEndOf="@+id/textView11"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/ic_close" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="Price range"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.176"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="156dp"
+                android:text="Size"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.176"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <com.google.android.material.slider.RangeSlider
+                android:layout_width="290dp"
+                android:layout_height="48dp"
+                android:layout_margin="16dp"
+                android:contentDescription="Range Slider"
+                android:theme="@style/CustomSliderStyle"
+                android:valueFrom="0.0"
+                android:valueTo="200.0"
+                app:values="@array/slider_values"
+                tools:layout_editor_absoluteX="63dp"
+                tools:layout_editor_absoluteY="178dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/btnAll"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="68dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/circle_button"
+                android:text="All"
+                android:textColor="@color/pink_primary"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/btn36"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/circle_button"
+                android:text="36"
+                android:textColor="@color/pink_primary"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/btnAll"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/btn37"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/circle_button"
+                android:text="37"
+                android:textColor="@color/pink_primary"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/btn36"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/btn38"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/circle_button"
+                android:text="38"
+                android:textColor="@color/pink_primary"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/btn37"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/btn39"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/circle_button"
+                android:text="39"
+                android:textColor="@color/pink_primary"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/btn38"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/btn40"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/circle_button"
+                android:text="40"
+                android:textColor="@color/pink_primary"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/btn39"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/btnClear"
+                android:layout_width="141dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/circle_button"
+                android:text="Clear"
+                android:textColor="@color/pink_primary"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/btnApply"
+                app:layout_constraintHorizontal_bias="0.8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnAll" />
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/btnApply"
+                android:layout_width="141dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="48dp"
+                android:background="@drawable/circle_button_pink"
+                android:text="Apply"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn39" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

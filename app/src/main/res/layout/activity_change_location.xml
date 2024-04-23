@@ -88,10 +88,8 @@
         android:id="@+id/imageView18"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_marginStart="31dp"
         android:layout_marginTop="48dp"
-        android:layout_marginEnd="64dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView36"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_arrow_left" />

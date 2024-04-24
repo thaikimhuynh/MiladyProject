@@ -31,13 +31,8 @@
             android:exported="false" />
         <activity
             android:name=".CheckOutActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".ChangeLocationActivity"
             android:exported="false" />
@@ -54,11 +49,20 @@
             android:name=".VerifyAccountActivity"
             android:exported="false" />
         <activity
+            android:name=".VerifyCodePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".admin.AdminProductManagementActivity"
             android:exported="false" />
         <activity
             android:name=".ProductDetailActivity"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".SignUpActivity"
             android:exported="false" />
@@ -66,8 +70,11 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
+            android:name=".NewPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".WelcomeActivity"
-            android:exported="true" />
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

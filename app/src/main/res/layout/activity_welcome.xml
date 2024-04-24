@@ -52,7 +52,7 @@
         app:srcCompat="@mipmap/ic_welcome_2" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView1"
         android:layout_width="260dp"
         android:layout_height="58dp"
         android:layout_marginTop="12dp"

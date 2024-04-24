@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".CheckOutActivity">
 
     <TextView
@@ -45,6 +46,7 @@
 
             <TextView
                 android:id="@+id/textView16"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
@@ -115,6 +117,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="36dp"
                     android:layout_marginTop="15dp"
+                    android:textColor="@color/black"
                     android:text="Shipping Address"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -140,6 +143,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="36dp"
                         android:layout_marginTop="15dp"
+                        android:textColor="@color/black"
                         android:text="Anh Linh"
                         android:textSize="20sp" />
 
@@ -267,6 +271,7 @@
                     android:layout_marginStart="36dp"
                     android:layout_marginTop="40dp"
                     android:text="Total"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.thaikimhuynh.miladyapp.admin.AdminConfirmOrderActivity;
+
 public class WelcomeActivity extends AppCompatActivity {
 Button btnHadAccount, btnStarted;
     @Override

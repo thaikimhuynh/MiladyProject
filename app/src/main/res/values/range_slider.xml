@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomSliderStyle" parent="@style/Widget.MaterialComponents.Slider">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Slider</item>
+    </style>
+
+    <style name="ThemeOverlay.Slider" parent="">
+        <item name="colorPrimary">@color/pink_second</item>  </style>
+</resources>
+
+

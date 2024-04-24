@@ -13,39 +13,6 @@
         android:theme="@style/Theme.MiladyApp"
         tools:targetApi="31">
         <activity
-            android:name=".profile.ChangeMyProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".profile.MyProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Payment.AddNewBankingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Payment.AddNewWalletActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Payment.SuccessfullyLinkBankingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Payment.ChangeATMActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Payment.BankingInformationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Payment.SuccessfullyChangeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Payment.ChangeEWalletActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Payment.WalletInformationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ViewPaymentMethodActivity"
-            android:exported="false" />
-        <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity

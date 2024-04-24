@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EarnPointActivity">
+    <ImageButton
+        android:id="@+id/leftArrowButton"
+        android:background="@null"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_arrow_left"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/screen_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Earn Points"
+        android:fontFamily="@font/noto_sans_font"
+        android:textColor="@color/pink_primary"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/leftArrowButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginTop="30dp"/>
+
+   <LinearLayout
+       android:id="@+id/tab_items"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:layout_constraintTop_toBottomOf="@id/screen_name"
+       android:orientation="horizontal"
+       android:weightSum="2"
+       android:background="@drawable/rounded_pink_forth_rectagle_radius"
+       android:layout_margin="20dp"
+       >
+       <TextView
+           android:id="@+id/tabItem1"
+           android:fontFamily="@font/noto_sans_font"
+           android:layout_width="0dp"
+           android:layout_height="50dp"
+           android:textStyle="bold"
+           android:layout_weight="1"
+           android:gravity="center"
+           android:textColor="@color/pink_second"
+           android:text="Redeem Points"
+           >
+
+       </TextView>
+       <TextView
+           android:id="@+id/tabItem2"
+           android:fontFamily="@font/noto_sans_font"
+
+           android:layout_width="0dp"
+           android:layout_height="50dp"
+           android:layout_weight="1"
+           android:textStyle="bold"
+           android:gravity="center"
+           android:textColor="@color/pink_second"
+           android:text="Coupon"
+           >
+
+       </TextView>
+
+
+   </LinearLayout>
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/FragmentContainer"
+        app:layout_constraintTop_toBottomOf="@id/tab_items"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

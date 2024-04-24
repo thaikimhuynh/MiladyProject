@@ -1,4 +1,4 @@
-package com.thaikimhuynh.miladyapp.Payment;
+package com.thaikimhuynh.miladyapp.payment;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -1,4 +1,4 @@
-package com.thaikimhuynh.miladyapp.Payment;
+package com.thaikimhuynh.miladyapp.payment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.thaikimhuynh.miladyapp.R;
 
-public class AddNewWalletActivity extends AppCompatActivity {
+public class WalletInformationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_new_wallet);
+        setContentView(R.layout.activity_wallet_information);
     }
 }

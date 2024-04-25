@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductDetailActivity">
+    android:background="@color/white"
+    tools:context=".product.ProductDetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,6 +40,7 @@
                 android:text="Product Detail"
                 android:textColor="#F9476B"
                 android:textSize="20sp"
+                android:fontFamily="@font/noto_sans_font"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/imgProductDetail"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +92,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -105,8 +108,8 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="35dp"
                         android:layout_weight="1"
-                        android:text="Boost"
                         android:fontFamily="@font/noto_sans_font"
+                        android:text="Boost"
                         android:textColor="@color/grey"
                         android:textSize="16sp" />
 
@@ -146,11 +149,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:text="Product Details"
-                    android:paddingBottom="7dp"
                     android:fontFamily="@font/noto_sans_font"
+                    android:paddingBottom="7dp"
+                    android:text="Product Details"
                     android:textSize="16sp"
                     android:textStyle="bold" />
+
 
                 <TextView
                     android:id="@+id/txtProductDetailDescription"
@@ -158,19 +162,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginEnd="36dp"
+                    android:fontFamily="@font/noto_sans_font"
+                    android:gravity="start"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
-                    android:fontFamily="@font/noto_sans_font"
                     android:text="Classic boots transcend trends. They seamlessly integrate into a variety of looks, from casual everyday wear to more dressed-up occasions. Pair them with jeans and a chunky knit for a cozy weekend vibe, or elevate your office attire with a knee-high boot and a tailored skirt."
                     android:textAlignment="viewStart"
-                    android:textColor="@color/grey"
-                    android:gravity="start" />
-
-
+                    android:textColor="@color/grey" />
 
                 <View
                     android:layout_width="350dp"
-                    android:layout_height="0.5dp"
+                    android:layout_height="0.8dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:background="@color/grey"
@@ -184,9 +186,9 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/noto_sans_font"
-                    android:text="Select Size"
                     android:paddingTop="15dp"
                     android:paddingBottom="10dp"
+                    android:text="Select Size"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 

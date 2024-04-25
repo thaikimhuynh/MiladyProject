@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/edtCode"
+        android:id="@+id/txtWalletName"
         android:layout_width="356dp"
         android:layout_height="49dp"
         android:layout_marginTop="8dp"
@@ -88,7 +88,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.091"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtCode" />
+        app:layout_constraintTop_toBottomOf="@+id/txtWalletName" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn"
@@ -105,7 +105,7 @@ android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtCode" />
+        app:layout_constraintTop_toBottomOf="@+id/txtWalletName" />
 
     <TextView
         android:id="@+id/textview8"

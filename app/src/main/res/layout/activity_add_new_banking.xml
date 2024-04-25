@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.97" />
 
     <EditText
-        android:id="@+id/edtCode"
+        android:id="@+id/txtWalletName"
         android:layout_width="356dp"
         android:layout_height="49dp"
         android:background="@drawable/rounded_edittext_black_stroke"
@@ -42,7 +42,7 @@
         app:layout_constraintVertical_bias="0.18" />
 
     <EditText
-        android:id="@+id/edtCode"
+        android:id="@+id/txtWalletName"
         android:layout_width="356dp"
         android:layout_height="49dp"
         android:background="@drawable/rounded_edittext_black_stroke"
@@ -60,7 +60,7 @@
         app:layout_constraintVertical_bias="0.59000003" />
 
     <EditText
-        android:id="@+id/edtCode"
+        android:id="@+id/txtWalletName"
         android:layout_width="356dp"
         android:layout_height="49dp"
         android:background="@drawable/rounded_edittext_black_stroke"
@@ -78,7 +78,7 @@
         app:layout_constraintVertical_bias="0.727" />
 
     <EditText
-        android:id="@+id/edtCode"
+        android:id="@+id/txtWalletName"
         android:layout_width="356dp"
         android:layout_height="49dp"
         android:background="@drawable/rounded_edittext_black_stroke"
@@ -96,7 +96,7 @@
         app:layout_constraintVertical_bias="0.32999998" />
 
     <EditText
-        android:id="@+id/edtCode"
+        android:id="@+id/txtWalletName"
         android:layout_width="356dp"
         android:layout_height="49dp"
         android:background="@drawable/rounded_edittext_black_stroke"
@@ -142,10 +142,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name ATM-Card"
-        app:layout_constraintBottom_toTopOf="@+id/edtCode"
-        app:layout_constraintEnd_toEndOf="@+id/edtCode"
+        app:layout_constraintBottom_toTopOf="@+id/txtWalletName"
+        app:layout_constraintEnd_toEndOf="@+id/txtWalletName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtCode"
+        app:layout_constraintStart_toStartOf="@+id/txtWalletName"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.33999997" />
 
@@ -155,9 +155,9 @@
         android:layout_height="wrap_content"
         android:text="Customer name"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/edtCode"
+        app:layout_constraintEnd_toEndOf="@+id/txtWalletName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtCode"
+        app:layout_constraintStart_toStartOf="@+id/txtWalletName"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.27999997" />
 
@@ -167,9 +167,9 @@
         android:layout_height="wrap_content"
         android:text="Account number"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/edtCode"
+        app:layout_constraintEnd_toEndOf="@+id/txtWalletName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtCode"
+        app:layout_constraintStart_toStartOf="@+id/txtWalletName"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.41000003" />
 
@@ -179,9 +179,9 @@
         android:layout_height="wrap_content"
         android:text="Expire date"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/edtCode"
+        app:layout_constraintEnd_toEndOf="@+id/txtWalletName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtCode"
+        app:layout_constraintStart_toStartOf="@+id/txtWalletName"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.53" />
 
@@ -203,9 +203,9 @@
         android:layout_height="wrap_content"
         android:text="Code"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/edtCode"
+        app:layout_constraintEnd_toEndOf="@+id/txtWalletName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtCode"
+        app:layout_constraintStart_toStartOf="@+id/txtWalletName"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.65999997" />
 

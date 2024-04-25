@@ -7,7 +7,7 @@
     tools:context=".payment.WalletInformationActivity">
 
     <EditText
-        android:id="@+id/edtCode"
+        android:id="@+id/edtWalletName"
         android:layout_width="356dp"
         android:layout_height="49dp"
         android:background="@drawable/rounded_edittext_black_stroke"
@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.19" />
 
     <EditText
-        android:id="@+id/edtCode"
+        android:id="@+id/edtPhoneNumber"
         android:layout_width="356dp"
         android:layout_height="49dp"
         android:background="@drawable/rounded_edittext_black_stroke"
@@ -89,12 +89,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name"
-        app:layout_constraintBottom_toTopOf="@+id/edtCode"
-        app:layout_constraintEnd_toEndOf="@+id/edtCode"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtCode"
+        app:layout_constraintBottom_toTopOf="@+id/edtWalletName"
+        app:layout_constraintEnd_toEndOf="@+id/edtWalletName"
+        app:layout_constraintHorizontal_bias="0.016"
+        app:layout_constraintStart_toStartOf="@+id/edtWalletName"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.36" />
+        app:layout_constraintVertical_bias="0.873" />
 
     <TextView
         android:id="@+id/textView14"
@@ -102,9 +102,9 @@
         android:layout_height="wrap_content"
         android:text="Phone Number"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/edtCode"
+        app:layout_constraintEnd_toEndOf="@+id/edtWalletName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtCode"
+        app:layout_constraintStart_toStartOf="@+id/edtWalletName"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.27999997" />
 
@@ -130,9 +130,9 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/edtCode"
+        app:layout_constraintEnd_toEndOf="@+id/edtWalletName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtCode"
+        app:layout_constraintStart_toStartOf="@+id/edtWalletName"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.41000003" />
 

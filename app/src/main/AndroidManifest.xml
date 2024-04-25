@@ -18,10 +18,56 @@
         android:theme="@style/Theme.MiladyApp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".profile.ChangeMyProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.MyProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".checkout.CheckOutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".checkout.ChangeLocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".product.ProductDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HelpCenterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".forgotpassword.VerifyCodePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".forgotpassword.NewPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".forgotpassword.ForgotPasswordActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity
+            android:name=".signup.VerifyAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".signup.SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.WelcomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
         <activity
             android:name=".WishListActivity"
             android:exported="false" />
@@ -33,19 +79,11 @@
             android:exported="false" />
         <activity
             android:name=".EarnPointActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".MyOrdersActivity"
-            android:exported="true">
+            android:exported="false" />
 
-
-        </activity>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCmeFyh12wHBmVagKr0InRDh1eqc_qeTN8" />

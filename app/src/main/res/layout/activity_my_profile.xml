@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".payment.BankingInformationActivity">
+    tools:context=".profile.MyProfileActivity">
     <EditText
-        android:id="@+id/edtBankName"
+        android:id="@+id/txtWalletName"
         android:layout_width="356dp"
         android:layout_height="49dp"
         android:background="@drawable/rounded_edittext_black_stroke"
@@ -24,12 +24,12 @@
         app:layout_constraintVertical_bias="0.19" />
 
     <EditText
-        android:id="@+id/edtCusName"
+        android:id="@+id/txtMail"
         android:layout_width="356dp"
         android:layout_height="49dp"
         android:background="@drawable/rounded_edittext_black_stroke"
         android:ems="10"
-        android:hint="Phan Gia Huy"
+        android:hint="huy@gmail.com"
         android:inputType="number"
         android:paddingLeft="16dp"
         android:text=""
@@ -42,7 +42,7 @@
         app:layout_constraintVertical_bias="0.32999998" />
 
     <EditText
-        android:id="@+id/edtAccName"
+        android:id="@+id/txtPhoneNumber"
         android:layout_width="356dp"
         android:layout_height="49dp"
         android:background="@drawable/rounded_edittext_black_stroke"
@@ -58,7 +58,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.45999998" />
-
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="30dp"
@@ -68,12 +67,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@mipmap/ic_back"
         tools:layout_editor_absoluteY="32dp" />
-
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Banking Information"
+        android:text="My Profile"
         android:textColor="#F9476B"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -82,16 +80,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.050000012" />
-
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bank name"
-        app:layout_constraintBottom_toTopOf="@+id/edtWalletName"
-        app:layout_constraintEnd_toEndOf="@+id/edtWalletName"
+        android:text="Name"
+
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtWalletName"
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.36" />
 
@@ -99,22 +95,22 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Customer name"
+        android:text="Gmail"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/edtWalletName"
+
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtWalletName"
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.27999997" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnChangeBanking"
+        android:id="@+id/btnHadAccount"
         android:layout_width="170dp"
         android:layout_height="30dp"
         android:layout_marginStart="36dp"
         android:layout_marginEnd="36dp"
         android:background="@drawable/rounded_white_button_background"
-        android:text="Change banking"
+        android:text="Change My profile"
         android:textColor="@color/pink_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -122,28 +118,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.56" />
-
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Account number"
+        android:text="Phone Number"
         app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintHorizontal_bias="0.0"
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.41000003" />
-
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.88"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19999999"
-        app:srcCompat="@mipmap/ic_vcb" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

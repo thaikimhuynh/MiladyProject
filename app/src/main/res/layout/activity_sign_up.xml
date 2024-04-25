@@ -157,6 +157,8 @@
         android:layout_marginEnd="36dp"
         android:background="@drawable/rounded_pink_button_background"
         android:text="SIGN UP"
+        android:fontFamily="@font/noto_sans_font"
+        android:textStyle="bold"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.529"

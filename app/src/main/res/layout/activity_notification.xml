@@ -4,68 +4,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".NotificationActivity">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="36dp"
-        android:background="@drawable/rounded_pink_button_background"
+    <LinearLayout
+        android:id="@+id/tab_custom_noti"
+        android:layout_width="355dp"
+        android:layout_height="53dp"
+        android:background="@drawable/rounded_pink_forth_rectagle_radius"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tabIndicator="@color/pink_primary"
-        app:tabIndicatorColor="@color/white"
-        app:tabIndicatorHeight="5dp"
-        app:tabSelectedTextColor="@color/white"
-        app:tabTextColor="#FFE6EA">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabPromotion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/pink_primary"
-            android:text="Promotions"
-            tools:layout_editor_absoluteX="-3dp"
-            tools:layout_editor_absoluteY="62dp" />
+        <TextView
+            android:id="@+id/tabItem_Promotion"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/noto_sans_font"
+            android:gravity="center"
+            android:text="Promotion"
+            android:textColor="@color/pink_second"
+            android:textStyle="bold">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabYours"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        </TextView>
+
+        <TextView
+            android:id="@+id/tabItem_Yours"
+            android:layout_width="0dp"
+
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/noto_sans_font"
+            android:gravity="center"
             android:text="Yours"
-            tools:layout_editor_absoluteX="199dp"
-            tools:layout_editor_absoluteY="47dp" />
+            android:textColor="@color/pink_second"
+            android:textStyle="bold">
 
-    </com.google.android.material.tabs.TabLayout>
+        </TextView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerNotification"
-        android:layout_width="321dp"
-        android:layout_height="487dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="323dp"
         android:layout_height="49dp"
         android:layout_marginStart="36dp"
         android:layout_marginEnd="36dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/rounded_white_button_background"
+        android:fontFamily="@font/noto_sans_font"
         android:text="Back to Home"
         android:textColor="@color/pink_primary"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/FragmentNotification"
+        android:layout_width="346dp"
+        android:layout_height="497dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.569"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerNotification" />
+        app:layout_constraintTop_toBottomOf="@+id/tab_custom_noti" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChangeLocationActivity">
+    android:background="@color/white"
+    tools:context=".checkout.ChangeLocationActivity">
 
     <fragment
         android:id="@+id/map_location"
@@ -21,6 +22,7 @@
         android:text="Shipping Address"
         android:textSize="20sp"
         android:layout_marginTop="48dp"
+        android:fontFamily="@font/noto_sans_font"
         android:textColor="@color/pink_primary"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,6 +36,7 @@
         android:layout_marginTop="35dp"
         android:text="Select Location"
         android:layout_marginStart="30dp"
+        android:fontFamily="@font/noto_sans_font"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +51,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="16dp"
         android:text="Edit Your Location"
+        android:fontFamily="@font/noto_sans_font"
         android:textColor="#9D9D9D"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,6 +67,7 @@
         android:background="@drawable/rounded_pink_button_background"
         android:text="Save Address"
         android:textColor="@color/white"
+        android:fontFamily="@font/noto_sans_font"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,6 +87,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/noto_sans_font"
         app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
     <ImageView

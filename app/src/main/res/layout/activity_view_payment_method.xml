@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".payment.ViewPaymentMethodActivity">
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintEnd_toStartOf="@+id/textView8"
+        app:layout_constraintHorizontal_bias="0.32"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/ic_back"
+        tools:layout_editor_absoluteY="32dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="My Wallet"
+        android:textColor="#F9476B"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView9" />
+
+    <Spinner
+        android:id="@+id/spinnerEWallet"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="70dp" />
+
+    <Spinner
+        android:id="@+id/spinnerBanking"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="274dp" />
+
+
+    <ListView
+        android:id="@+id/listView2"
+        android:layout_width="409dp"
+        android:layout_height="65dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="132dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAddEWallet"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:background="@drawable/rounded_pink_button_background"
+        android:text="Add"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView2" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAddBanking"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:background="@drawable/rounded_pink_button_background"
+        android:text="Add"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView4" />
+
+    <ListView
+        android:id="@+id/listView4"
+        android:layout_width="409dp"
+        android:layout_height="65dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="336dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

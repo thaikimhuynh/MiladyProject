@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductDetailActivity">
+    android:background="@color/white"
+    tools:context=".product.ProductDetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +25,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="31dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="39dp"
                 android:src="@mipmap/ic_arrow_left"
                 app:layout_constraintEnd_toStartOf="@+id/textView10"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -35,10 +36,11 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="39dp"
                 android:text="Product Detail"
                 android:textColor="#F9476B"
                 android:textSize="20sp"
+                android:fontFamily="@font/noto_sans_font"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/imgProductDetail"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -50,9 +52,10 @@
                 android:id="@+id/imgFavorite"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="39dp"
                 android:src="@mipmap/ic_heart_1"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.63"
                 app:layout_constraintStart_toEndOf="@+id/textView10"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -89,7 +92,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -104,6 +108,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="35dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/noto_sans_font"
                         android:text="Boost"
                         android:textColor="@color/grey"
                         android:textSize="16sp" />
@@ -116,6 +121,7 @@
                         android:layout_weight="1"
                         android:gravity="right"
                         android:text="$50"
+                        android:fontFamily="@font/noto_sans_font"
                         android:textColor="@color/black"
                         android:textSize="32sp"
                         android:textStyle="bold" />
@@ -128,6 +134,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="Classic Boost"
+                    android:fontFamily="@font/noto_sans_font"
                     android:textColor="#F9476B"
                     android:textSize="36sp"
                     android:textStyle="bold" />
@@ -135,34 +142,42 @@
                 <View
                     android:id="@+id/view3"
                     android:layout_width="match_parent"
-                    android:layout_height="10dp" />
+                    android:layout_height="14dp" />
 
                 <TextView
                     android:id="@+id/textView12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
+                    android:fontFamily="@font/noto_sans_font"
+                    android:paddingBottom="7dp"
                     android:text="Product Details"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
+
                 <TextView
                     android:id="@+id/txtProductDetailDescription"
-                    android:layout_width="329dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginEnd="36dp"
-                    android:text="Classic boots transcend trends. They seamlessly integrate into a variety of looks, from casual everyday wear to more dressed-up occasions. Pair them with jeans and a chunky knit for a cozy weekend vibe,or elevate your office attire with a knee-high boot and a tailored skirt."
-                    android:textAlignment="textStart"
-                    android:textColor="@color/grey"
-                    app:layout_constraintHorizontal_bias="0.0" />
+                    android:fontFamily="@font/noto_sans_font"
+                    android:gravity="start"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text="Classic boots transcend trends. They seamlessly integrate into a variety of looks, from casual everyday wear to more dressed-up occasions. Pair them with jeans and a chunky knit for a cozy weekend vibe, or elevate your office attire with a knee-high boot and a tailored skirt."
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/grey" />
 
                 <View
-                    android:layout_width="300dp"
-                    android:layout_height="1dp"
+                    android:layout_width="350dp"
+                    android:layout_height="0.8dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:background="@color/grey" />
+                    android:background="@color/grey"
+                 />
+
 
                 <TextView
                     android:id="@+id/textView14"
@@ -170,17 +185,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/noto_sans_font"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="10dp"
                     android:text="Select Size"
                     android:textSize="16sp"
                     android:textStyle="bold" />
-
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="371dp"
                     android:layout_height="51dp"
                     android:layout_marginStart="25dp"
-                    android:layout_marginTop="5dp"
-                    >
+                    android:layout_marginTop="5dp">
 
                     <androidx.appcompat.widget.AppCompatButton
 
@@ -189,6 +205,7 @@
                         android:layout_height="40dp"
                         android:layout_marginEnd="16dp"
                         android:background="@drawable/rounded_circle_size_button"
+                        android:fontFamily="@font/noto_sans_font"
                         android:text="36"
                         android:textColor="@color/black"
                         android:textSize="12sp"
@@ -197,7 +214,7 @@
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.454" />
+                        app:layout_constraintVertical_bias="0.545" />
 
                     <androidx.appcompat.widget.AppCompatButton
 
@@ -206,13 +223,14 @@
                         android:layout_height="40dp"
                         android:layout_marginEnd="16dp"
                         android:background="@drawable/rounded_circle_size_button"
+                        android:fontFamily="@font/noto_sans_font"
                         android:text="37"
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/btnsize38"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.454" />
+                        app:layout_constraintVertical_bias="0.545" />
 
                     <androidx.appcompat.widget.AppCompatButton
 
@@ -221,6 +239,7 @@
                         android:layout_height="40dp"
                         android:layout_marginEnd="16dp"
                         android:background="@drawable/rounded_circle_size_button"
+                        android:fontFamily="@font/noto_sans_font"
                         android:text="38"
                         android:textColor="@color/black"
                         android:textSize="12sp"
@@ -235,6 +254,7 @@
                         android:layout_height="40dp"
                         android:layout_marginEnd="16dp"
                         android:background="@drawable/rounded_circle_size_button"
+                        android:fontFamily="@font/noto_sans_font"
                         android:text="39"
                         android:textColor="@color/black"
                         android:textSize="12sp"
@@ -249,6 +269,7 @@
                         android:layout_height="40dp"
                         android:layout_marginEnd="96dp"
                         android:background="@drawable/rounded_circle_size_button"
+                        android:fontFamily="@font/noto_sans_font"
                         android:text="40"
                         android:textColor="@color/black"
                         android:textSize="12sp"
@@ -262,58 +283,76 @@
                 <View
                     android:id="@+id/view4"
                     android:layout_width="match_parent"
-                    android:layout_height="19dp" />
+                    android:layout_height="56dp" />
 
-                <LinearLayout
-                    android:layout_width="345dp"
-                    android:layout_height="57dp"
-                    android:layout_marginStart="32dp"
-                    android:orientation="horizontal">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnAddToCart"
+                        android:layout_width="180dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginEnd="28dp"
+                        android:background="@drawable/rounded_pink_button_background"
+                        android:text="Add To Cart"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/btnPlus"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnMinus"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="16dp"
                         android:background="@drawable/rounded_circle_size_button"
-                        android:gravity="center"
-                        android:onClick="decreaseQuantity"
                         android:text="-"
                         android:textColor="@color/pink_primary"
-                        android:textSize="30sp" />
-
-                    <TextView
-                        android:id="@+id/tvQuantity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:text="01"
-                        android:textColor="@color/pink_primary"
-                        android:textSize="30sp" />
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toStartOf="@+id/txtQuantity"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnPlus"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="24dp"
                         android:background="@drawable/rounded_circle_size_button"
-                        android:gravity="center"
-                        android:onClick="increaseQuantity"
+
                         android:text="+"
                         android:textColor="@color/pink_primary"
-                        android:textSize="30sp" />
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toStartOf="@+id/btnAddToCart"
+                        app:layout_constraintHorizontal_bias="0.725"
+                        app:layout_constraintStart_toEndOf="@+id/txtQuantity"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnAddtocart"
-                        android:layout_width="198dp"
-                        android:layout_height="46dp"
-                        android:layout_marginStart="16dp"
-                        android:background="@drawable/rounded_pink_button_background"
-                        android:onClick="increaseQuantity"
-                        android:text="Add to cart"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                    <TextView
+                        android:id="@+id/txtQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="01"
+                        android:textColor="@color/pink_primary"
+                        android:textSize="28sp"
+                        app:layout_constraintEnd_toStartOf="@+id/btnPlus"
+                        app:layout_constraintHorizontal_bias="0.375"
+                        app:layout_constraintStart_toEndOf="@+id/btnMinus"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp" />
             </LinearLayout>
         </ScrollView>
 

@@ -18,74 +18,69 @@
         android:theme="@style/Theme.MiladyApp"
         tools:targetApi="31">
         <activity
-            android:name=".AdminActivity"
+            android:name=".NotificationActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".profile.MyProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.NavigationAdminActivity"
+            android:name=".checkout.CheckOutActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".checkout.ChangeLocationActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".product.ProductDetailActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".HelpCenterActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.RefundOrderActivity"
+            android:name=".forgotpassword.VerifyCodePasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.AdminPrepareOrderActivity"
+            android:name=".forgotpassword.NewPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.AdminConfirmOrderActivity"
+            android:name=".forgotpassword.ForgotPasswordActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".signup.VerifyAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.AdminListOrderActivity"
+            android:name=".signup.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.AdminAddProductActivity"
+            android:name=".login.WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.AdminUpdateProductActivity"
+            android:name=".login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.AdminListProductActivity"
+            android:name=".MainActivity"
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity
+            android:name=".WishListActivity"
             android:exported="false" />
         <activity
             android:name=".admin.AdminOrderManagementActivity"
             android:exported="false" />
         <activity
-            android:name=".CheckOutActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ChangeLocationActivity"
-            android:exported="true" />
-        <activity
-            android:name=".HelpCenterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".NotificationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ForgotPasswordActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VerifyAccountActivity"
-            android:exported="false" />
-        <activity
             android:name=".admin.AdminProductManagementActivity"
             android:exported="false" />
         <activity
-            android:name=".ProductDetailActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".EarnPointActivity"
+            android:exported="false"/>
         <activity
-            android:name=".SignUpActivity"
+            android:name=".MyOrdersActivity"
             android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".WelcomeActivity"
-            android:exported="true" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

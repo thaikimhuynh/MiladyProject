@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="Product"
+        android:icon="@mipmap/ic_admin_product"
+        android:titleTextColor="@android:color/white"
+        />
+    <item
+        android:title="Order"
+        android:icon="@mipmap/ic_admin_order"
+        android:titleTextColor="@android:color/white"
+        />
+</menu>
+
+
+
+<!--<menu xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto">-->
+<!--    <item-->
+<!--        android:id="@+id/product"-->
+<!--        android:title="Product"-->
+<!--        app:actionLayout="@layout/custom_menu_item_product"/> &lt;!&ndash; Sử dụng layout custom cho mục Product &ndash;&gt;-->
+<!--    <item-->
+<!--        android:id="@+id/order"-->
+<!--        android:title="Order"-->
+<!--        app:actionLayout="@layout/custom_menu_item_order"/> &lt;!&ndash; Sử dụng layout custom cho mục Order &ndash;&gt;-->
+<!--</menu>-->
+

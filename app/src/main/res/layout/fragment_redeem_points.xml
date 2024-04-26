@@ -13,13 +13,16 @@
         <!-- TextView displaying total points -->
         <TextView
             android:id="@+id/textViewTotalPoints"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="100dp"
             android:layout_margin="16dp"
             android:height="50dp"
             android:background="@drawable/rounded_pink_boldstroke"
             android:gravity="center"
-            android:text="Your Total Points\n200" />
+            android:layout_gravity="center"
+            android:text="Your Total Points\n200"
+            android:textSize="22sp"
+            android:textColor="@color/pink_primary"/>
 
         <!-- RecyclerView displaying items -->
         <androidx.recyclerview.widget.RecyclerView

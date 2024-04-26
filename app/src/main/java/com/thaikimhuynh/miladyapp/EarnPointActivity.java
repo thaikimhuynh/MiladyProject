@@ -1,25 +1,17 @@
 package com.thaikimhuynh.miladyapp;
 
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.material.tabs.TabLayout;
-import com.thaikimhuynh.miladyapp.fragment.CategoryFragment;
 import com.thaikimhuynh.miladyapp.fragment.CouponFragment;
-import com.thaikimhuynh.miladyapp.fragment.HomeFragment;
 import com.thaikimhuynh.miladyapp.fragment.RedeemPointsFragment;
 
 public class EarnPointActivity extends AppCompatActivity {

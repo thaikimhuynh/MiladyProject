@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.admin.AdminConfirmOrderActivity;
+import com.thaikimhuynh.miladyapp.admin.AdminListProductActivity;
 import com.thaikimhuynh.miladyapp.signup.SignUpActivity;
 
 public class WelcomeActivity extends AppCompatActivity {

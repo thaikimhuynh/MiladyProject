@@ -104,11 +104,12 @@
 
 
     </LinearLayout>
+
     <androidx.fragment.app.FragmentContainerView
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/FragmentContainer_Order"
+        android:id="@+id/FragmentContainer_Product"
         app:layout_constraintTop_toBottomOf="@id/tab_items_myorders"
         />
 

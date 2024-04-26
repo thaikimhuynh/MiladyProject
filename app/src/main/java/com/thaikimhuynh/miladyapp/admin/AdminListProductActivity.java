@@ -31,7 +31,7 @@ public class AdminListProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_orders);
+        setContentView(R.layout.activity_admin_list_product);
         addViews();
         replaceFragment(new BootsFragment());
 

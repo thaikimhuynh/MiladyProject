@@ -13,22 +13,22 @@
         android:layout_above="@+id/bottomNavigationView"
         android:layout_height="match_parent"
         />
-    
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="358dp"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/rounded_pink_button_background"
-        android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="30dp"
         android:layout_marginTop="-20dp"
-        app:menu="@menu/menu_bottom_nav"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/rounded_pink_button_background"
         app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
-
         app:itemHorizontalTranslationEnabled="false"
+
         app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/menu_bottom_nav"
 
         />
 

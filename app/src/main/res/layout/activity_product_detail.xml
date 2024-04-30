@@ -63,6 +63,7 @@
                 android:id="@+id/imgProductDetail"
                 android:layout_width="242dp"
                 android:layout_height="195dp"
+                android:foreground="@mipmap/boo"
                 app:layout_constraintBottom_toTopOf="@+id/circle_slider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -25,7 +25,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="31dp"
-                android:layout_marginTop="39dp"
+                android:layout_marginTop="20dp"
                 android:src="@mipmap/ic_arrow_left"
                 app:layout_constraintEnd_toStartOf="@+id/textView10"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -36,13 +36,13 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="39dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/noto_sans_font"
                 android:text="Product Detail"
                 android:textColor="#F9476B"
                 android:textSize="20sp"
-                android:fontFamily="@font/noto_sans_font"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/imgProductDetail"
+                app:layout_constraintBottom_toTopOf="@+id/viewPagerProductImage"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -52,28 +52,27 @@
                 android:id="@+id/imgFavorite"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="39dp"
+                android:layout_marginTop="20dp"
                 android:src="@mipmap/ic_heart_1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.63"
                 app:layout_constraintStart_toEndOf="@+id/textView10"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/imgProductDetail"
-                android:layout_width="242dp"
-                android:layout_height="195dp"
-                android:foreground="@mipmap/boo"
-                app:layout_constraintBottom_toTopOf="@+id/circle_slider"
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPagerProductImage"
+                android:layout_width="225dp"
+                android:layout_height="225dp"
+                app:layout_constraintBottom_toTopOf="@+id/circleIndicator"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0">
 
-            </androidx.viewpager2.widget.ViewPager2>
+            </androidx.viewpager.widget.ViewPager>
 
-            <me.relex.circleindicator.CircleIndicator3
-                android:id="@+id/circle_slider"
+            <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/circleIndicator"
                 android:layout_width="38dp"
                 android:layout_height="42dp"
                 app:ci_drawable="@drawable/circle_slider"
@@ -82,7 +81,7 @@
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent">
 
-            </me.relex.circleindicator.CircleIndicator3>
+            </me.relex.circleindicator.CircleIndicator>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView

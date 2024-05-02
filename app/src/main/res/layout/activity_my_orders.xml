@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
-        android:id="@+id/order_tvTitle"
+        android:id="@+id/tt_pro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My Orders"
@@ -38,7 +38,7 @@
         android:id="@+id/tab_items_myorders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/order_tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tt_pro"
         android:orientation="horizontal"
         android:weightSum="4"
         android:layout_marginTop="30dp"
@@ -47,7 +47,7 @@
 
         >
         <TextView
-            android:id="@+id/tabItem1_order"
+            android:id="@+id/tabItem1"
 
             android:gravity="center"
             android:layout_width="0dp"
@@ -61,7 +61,7 @@
 
         </TextView>
         <TextView
-            android:id="@+id/tabItem2_order"
+            android:id="@+id/tabItem2"
             android:gravity="center"
             android:textSize="12sp"
             android:layout_width="0dp"
@@ -74,7 +74,7 @@
 
         </TextView>
         <TextView
-            android:id="@+id/tabItem3_order"
+            android:id="@+id/tabItem3"
             android:textSize="12sp"
 
             android:gravity="center"
@@ -88,7 +88,7 @@
 
         </TextView>
         <TextView
-            android:id="@+id/tabItem4_order"
+            android:id="@+id/tabItem4"
             android:textSize="12sp"
 
             android:gravity="center"

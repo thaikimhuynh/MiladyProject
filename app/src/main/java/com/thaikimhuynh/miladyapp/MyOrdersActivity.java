@@ -7,22 +7,14 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.thaikimhuynh.miladyapp.fragment.CanceledFragment;
 import com.thaikimhuynh.miladyapp.fragment.ConfirmingFragment;
-import com.thaikimhuynh.miladyapp.fragment.CouponFragment;
 import com.thaikimhuynh.miladyapp.fragment.OnDeliveryFragment;
 import com.thaikimhuynh.miladyapp.fragment.ReceivedFragment;
-import com.thaikimhuynh.miladyapp.fragment.RedeemPointsFragment;
-
-import java.util.ArrayList;
 
 public class MyOrdersActivity extends AppCompatActivity {
     private TextView tabItem1, tabItem2, tabItem3, tabItem4;
@@ -137,10 +129,10 @@ public class MyOrdersActivity extends AppCompatActivity {
     }
 
     private void addViews() {
-        tabItem1 = findViewById(R.id.tabItem1_order);
-        tabItem2 = findViewById(R.id.tabItem2_order);
-        tabItem3 = findViewById(R.id.tabItem3_order);
-        tabItem4 = findViewById(R.id.tabItem4_order);
+        tabItem1 = findViewById(R.id.tabItem1);
+        tabItem2 = findViewById(R.id.tabItem2);
+        tabItem3 = findViewById(R.id.tabItem3);
+        tabItem4 = findViewById(R.id.tabItem4);
     }
 
     private void replaceFragment(Fragment fragment) {

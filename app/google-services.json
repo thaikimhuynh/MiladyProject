@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "807024630856",
+    "firebase_url": "https://miladyproject-default-rtdb.firebaseio.com",
+    "project_id": "miladyproject",
+    "storage_bucket": "miladyproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807024630856:android:340296ce51c1de06b4cc7d",
+        "android_client_info": {
+          "package_name": "com.thaikimhuynh.miladyapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC26W42EciZNAEdrBVfz_r5NPhcCsaEUjI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

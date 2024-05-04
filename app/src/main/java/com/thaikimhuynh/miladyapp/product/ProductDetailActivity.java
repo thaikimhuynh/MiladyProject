@@ -38,9 +38,9 @@ List<ProductImage>listProductImage;
     }
     private List<ProductImage>getListImage(){
         List<ProductImage> list = new ArrayList<>();
-        list.add(new ProductImage(R.mipmap.ic_cross_border_sandals_3));
-        list.add(new ProductImage(R.mipmap.ic_remove_bgr));
-        list.add(new ProductImage(R.mipmap.ic_cross_border_sandals_1));
+//        list.add(new ProductImage(R.mipmap.ic_cross_border_sandals_3));
+//        list.add(new ProductImage(R.mipmap.ic_remove_bgr));
+//        list.add(new ProductImage(R.mipmap.ic_cross_border_sandals_1));
 
         return list;
     }

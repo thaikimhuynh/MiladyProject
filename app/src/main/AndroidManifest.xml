@@ -37,13 +37,8 @@
             android:exported="false" />
         <activity
             android:name=".product.ProductDetailActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".HelpCenterActivity"
             android:exported="false" />
@@ -52,10 +47,16 @@
             android:exported="false" />
         <activity
             android:name=".forgotpassword.NewPasswordActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".forgotpassword.ForgotPasswordActivity"
-            android:exported="false" />
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+       </activity>
         <activity
             android:name=".signup.VerifyAccountActivity"
             android:exported="false" />
@@ -73,13 +74,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"/>
         <activity
             android:name=".WishListActivity"
             android:exported="false" />
@@ -98,16 +93,7 @@
         </activity>
         <activity
             android:name=".admin.AdminListOrderActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
-
+            android:exported="false"/>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCmeFyh12wHBmVagKr0InRDh1eqc_qeTN8" />

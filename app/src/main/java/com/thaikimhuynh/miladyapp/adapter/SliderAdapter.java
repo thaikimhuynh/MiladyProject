@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.thaikimhuynh.miladyapp.R;
-import com.thaikimhuynh.miladyapp.domain.SliderItems;
+import com.thaikimhuynh.miladyapp.model.SliderItems;
 
 import java.util.ArrayList;
 

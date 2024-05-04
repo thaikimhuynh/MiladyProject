@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.adapter.SliderAdapter;
-import com.thaikimhuynh.miladyapp.domain.SliderItems;
+import com.thaikimhuynh.miladyapp.model.SliderItems;
 
 import java.util.ArrayList;
 

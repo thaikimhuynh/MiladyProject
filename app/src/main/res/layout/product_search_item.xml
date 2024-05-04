@@ -16,14 +16,14 @@
             app:cardCornerRadius="15dp">
 
             <ImageView
-                android:id="@+id/imageView29"
+                android:id="@+id/img_product"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 app:srcCompat="@mipmap/ic_testshoes" />
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/textView44"
+            android:id="@+id/name_product"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Laine Metallic Heels"
@@ -31,7 +31,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView45"
+            android:id="@+id/price_product"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="$ 50"

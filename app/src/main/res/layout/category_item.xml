@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#FF8196"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintWidth_default="wrap"
+        app:layout_constraintHeight_default="wrap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView_1"
+                android:layout_width="161dp"
+                android:layout_height="108dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/rounded_leftside_white" />
+
+
+            <ImageView
+                android:id="@+id/imageView_icon"
+
+
+                android:layout_width="64dp"
+                android:layout_height="68dp"
+                app:layout_constraintBottom_toBottomOf="@id/imageView_1"
+                app:layout_constraintEnd_toEndOf="@id/imageView_1"
+
+
+                app:layout_constraintHorizontal_bias="0.68"
+                app:layout_constraintStart_toStartOf="@id/imageView_1"
+                app:layout_constraintTop_toTopOf="@id/imageView_1"
+                app:srcCompat="@mipmap/ic_heels" />
+
+            <TextView
+                android:id="@+id/tv_category_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:fontFamily="@font/noto_sans_font"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+
+                android:text="Heels"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

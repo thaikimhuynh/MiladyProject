@@ -18,11 +18,15 @@
         android:theme="@style/Theme.MiladyApp"
         tools:targetApi="31">
         <activity
-            android:name=".ProductListActivity"
-            android:exported="false" />
+            android:name=".SearchActivity"
+            android:exported="false"/>
+
         <activity
             android:name=".fragment.CategoryFragment"
-            android:exported="true"></activity>
+            android:exported="false"/>
+        <activity
+            android:name=".ProductListActivity"
+            android:exported="false"/>
         <activity
             android:name=".search.ListCateActivity"
             android:exported="false" />
@@ -43,10 +47,7 @@
             android:exported="false" />
         <activity
             android:name=".product.ProductDetailActivity"
-            android:exported="true">
-
-        </activity>
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".HelpCenterActivity"
             android:exported="false" />
@@ -97,14 +98,10 @@
             android:exported="false" />
         <activity
             android:name=".MyOrdersActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".admin.AdminListOrderActivity"
-            android:exported="true"></activity>
-            android:exported="false">
-
-        </activity>
-
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

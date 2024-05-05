@@ -1,7 +1,9 @@
 package com.thaikimhuynh.miladyapp.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.thaikimhuynh.miladyapp.R;
+import com.thaikimhuynh.miladyapp.SearchActivity;
 import com.thaikimhuynh.miladyapp.adapter.CategoryAdapter;
 import com.thaikimhuynh.miladyapp.model.Category;
 
@@ -106,6 +109,18 @@ public class CategoryFragment extends Fragment {
         // recyclerview to inflate the items.
         recyclerView.setAdapter(itemAdapter);
         itemAdapter.startListening();
+        SearchView searchView = view.findViewById(R.id.category_searchView);
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // Nếu SearchView được nhấn, mở SearchActivity
+                    Intent intent = new Intent(getContext(), SearchActivity.class);
+                    startActivity(intent);
+                    searchView.clearFocus();
+                }
+            }
+        });
 
     }
 

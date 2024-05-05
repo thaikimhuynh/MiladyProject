@@ -1,5 +1,6 @@
 package com.thaikimhuynh.miladyapp.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.R;
+import com.thaikimhuynh.miladyapp.SearchActivity;
 import com.thaikimhuynh.miladyapp.adapter.ProductHomeAdapter;
 import com.thaikimhuynh.miladyapp.adapter.SliderAdapter;
 import com.thaikimhuynh.miladyapp.model.ProductHomeItems;
@@ -60,7 +63,18 @@ public class HomeFragment extends Fragment {
         recyclerViewProduct.setLayoutManager(new GridLayoutManager(getContext(), 2));
         productHomeAdapter = new ProductHomeAdapter(getContext(), productList);
         recyclerViewProduct.setAdapter(productHomeAdapter);
-
+        SearchView searchView = view.findViewById(R.id.searchView);
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // Nếu SearchView được nhấn, mở SearchActivity
+                    Intent intent = new Intent(getContext(), SearchActivity.class);
+                    startActivity(intent);
+                    searchView.clearFocus();
+                }
+            }
+        });
         return view;
     }
 

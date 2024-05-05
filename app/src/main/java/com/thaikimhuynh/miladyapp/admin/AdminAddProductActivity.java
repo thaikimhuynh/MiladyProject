@@ -67,16 +67,13 @@ public class AdminAddProductActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        // Xử lý khi thêm sản phẩm thành công
                         Toast.makeText(AdminAddProductActivity.this, "Product added successfully", Toast.LENGTH_SHORT).show();
-                        // Xóa nội dung các EditText sau khi thêm sản phẩm thành công
                         clearEditTexts();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        // Xử lý khi thêm sản phẩm thất bại
                         Toast.makeText(AdminAddProductActivity.this, "Failed to add product: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });

@@ -7,233 +7,296 @@
     android:background="@color/white"
     tools:context=".admin.AdminAddProductActivity">
 
-    <ImageView
-        android:id="@+id/imageView17"
-        android:layout_width="40dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
-        android:src="@mipmap/ic_arrow_left"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/noto_sans_font"
+                android:text="Product ID"
+
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/edtProductId"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.081"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.161" />
+
+            <EditText
+                android:id="@+id/edtProductId"
+                android:layout_width="356dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/rounded_edittext_black_stroke"
+                android:ems="10"
+                android:fontFamily="@font/noto_sans_font"
+                android:hint="Enter ID product"
+
+                android:inputType="text"
+                android:paddingLeft="16dp"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.491"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/noto_sans_font"
+                android:text="Name Product"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/textView18"
+                app:layout_constraintTop_toBottomOf="@+id/edtProductId" />
+
+            <EditText
+                android:id="@+id/edtProductName"
+                android:layout_width="356dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/rounded_edittext_black_stroke"
+                android:ems="10"
+                android:fontFamily="@font/noto_sans_font"
+                android:hint="Enter Name Product"
+                android:inputType="text"
+
+                android:paddingLeft="16dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.491"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
+
+            <TextView
+                android:id="@+id/eeeeee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/noto_sans_font"
+                android:text="Price"
+
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/edtPrice"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtProductName"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <EditText
+                android:id="@+id/edtPrice"
+                android:layout_width="169dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/rounded_edittext_black_stroke"
+                android:ems="10"
+                android:fontFamily="@font/noto_sans_font"
+                android:hint="Enter Price"
+                android:inputType="number"
+
+                android:paddingStart="15dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="148dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/noto_sans_font"
+                android:text="Stock"
+
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/eeeeee"
+                app:layout_constraintTop_toBottomOf="@+id/edtProductName" />
+
+            <EditText
+                android:id="@+id/edtStock"
+                android:layout_width="168dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/rounded_edittext_black_stroke"
+                android:ems="10"
+                android:fontFamily="@font/noto_sans_font"
+                android:hint="Enter Stock"
+                android:inputType="number"
+                android:paddingStart="15dp"
+
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/edtPrice"
+                app:layout_constraintStart_toEndOf="@+id/edtPrice"
+                app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+            <TextView
+                android:id="@+id/textView34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/noto_sans_font"
+                android:text="Description"
+
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/eeeeee"
+                app:layout_constraintTop_toBottomOf="@+id/edtPrice" />
+
+            <EditText
+                android:id="@+id/edt_des"
+                android:layout_width="356dp"
+                android:layout_height="94dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/rounded_edittext_black_stroke"
+                android:ems="10"
+                android:fontFamily="@font/noto_sans_font"
+                android:hint="Enter Description"
+                android:inputType="text"
+                android:paddingStart="15dp"
+                android:paddingTop="1dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.49"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView34" />
+
+            <TextView
+                android:id="@+id/textView35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/noto_sans_font"
+                android:text="Image Link"
+
+                app:layout_constraintStart_toStartOf="@+id/textView34"
+                app:layout_constraintTop_toBottomOf="@+id/edt_des" />
+
+            <EditText
+                android:id="@+id/edtImgLink"
+                android:layout_width="356dp"
+                android:layout_height="49dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/rounded_edittext_black_stroke"
+                android:ems="10"
+                android:fontFamily="@font/noto_sans_font"
+                android:hint="Enter Image Link"
+
+                android:inputType="text"
+                android:paddingStart="15dp"
+                android:paddingTop="1dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.435"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+            <TextView
+                android:id="@+id/textView36"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/noto_sans_font"
+
+                android:text="Category ID"
+                app:layout_constraintStart_toStartOf="@+id/textView34"
+                app:layout_constraintTop_toBottomOf="@+id/edtImgLink" />
+
+            <EditText
+                android:id="@+id/edtCateId"
+                android:layout_width="356dp"
+                android:layout_height="49dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/rounded_edittext_black_stroke"
+                android:ems="10"
+                android:fontFamily="@font/noto_sans_font"
+
+                android:hint="Enter Category ID"
+                android:inputType="text"
+                android:paddingStart="15dp"
+                android:paddingTop="1dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.468"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAddProduct"
+                android:layout_width="356dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="36dp"
+                android:background="@drawable/rounded_pink_button_background"
+                android:text="Add New Product"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintHorizontal_bias="0.533"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtCateId" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnAddProduct" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/textView24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/noto_sans_font"
         android:text="Add New Product"
         android:textColor="@color/pink_primary"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintStart_toEndOf="@+id/imageView17"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.142" />
 
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_font"
-        android:text="Product ID"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/edtidproduct"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView17"
-        app:layout_constraintVertical_bias="0.782" />
-
-    <EditText
-        android:id="@+id/edtidproduct"
-        android:layout_width="356dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="120dp"
-        android:background="@drawable/rounded_edittext_black_stroke"
-        android:ems="10"
-        android:hint="Enter ID product"
-        android:fontFamily="@font/noto_sans_font"
-
-        android:inputType="text"
-        android:paddingLeft="16dp"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView29"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Name Product"
-        android:fontFamily="@font/noto_sans_font"
-
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/editnameproduct"
-        app:layout_constraintStart_toStartOf="@+id/textView18"
-        app:layout_constraintTop_toBottomOf="@+id/edtidproduct"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/editnameproduct"
-        android:layout_width="356dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="156dp"
-        android:background="@drawable/rounded_edittext_black_stroke"
-        android:ems="10"
-        android:inputType="text"
-        android:paddingLeft="16dp"
-        android:hint="Enter Name Product"
-        android:fontFamily="@font/noto_sans_font"
-
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView17" />
-
-    <TextView
-        android:id="@+id/eeeeee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="12dp"
-        android:text="Price"
-        android:fontFamily="@font/noto_sans_font"
-
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/edtprice"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editnameproduct"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/edtprice"
-        android:layout_width="169dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/rounded_edittext_black_stroke"
-        android:ems="10"
-        android:inputType="text"
-        android:paddingStart="15dp"
-        android:hint="Enter Price"
-        android:fontFamily="@font/noto_sans_font"
-
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editnameproduct" />
-
-    <TextView
-        android:id="@+id/textView33"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="12dp"
-        android:text="Stock"
-        android:fontFamily="@font/noto_sans_font"
-
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/eeeeee"
-        app:layout_constraintTop_toBottomOf="@+id/editnameproduct" />
-
-    <EditText
-        android:id="@+id/edtstock"
-        android:layout_width="168dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:background="@drawable/rounded_edittext_black_stroke"
-        android:ems="10"
-        android:inputType="text"
-        android:paddingStart="15dp"
-        android:hint="Enter Stock"
-        android:textColor="@color/black"
-        android:fontFamily="@font/noto_sans_font"
-
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/edtprice"
-        app:layout_constraintStart_toEndOf="@+id/edtprice" />
-
-    <TextView
-        android:id="@+id/textView34"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Description"
-        android:fontFamily="@font/noto_sans_font"
-
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/eeeeee"
-        app:layout_constraintTop_toBottomOf="@+id/edtprice" />
-
-    <EditText
-        android:id="@+id/edt_des"
-        android:layout_width="356dp"
-        android:layout_height="94dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/rounded_edittext_black_stroke"
-        android:ems="10"
-        android:inputType="text"
-        android:paddingStart="15dp"
-        android:paddingTop="1dp"
-        android:hint="Enter Description"
-        android:fontFamily="@font/noto_sans_font"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView34" />
-
-    <TextView
-        android:id="@+id/textView35"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Image Link"
-        android:fontFamily="@font/noto_sans_font"
-
-        app:layout_constraintStart_toStartOf="@+id/textView34"
-        app:layout_constraintTop_toBottomOf="@+id/edt_des" />
-
-    <EditText
-        android:id="@+id/img_link"
-        android:layout_width="356dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/rounded_edittext_black_stroke"
-        android:ems="10"
-        android:hint="Enter Image Link"
-        android:fontFamily="@font/noto_sans_font"
-
-        android:inputType="text"
-        android:paddingStart="15dp"
-        android:paddingTop="1dp"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView35" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnupdate"
-        android:layout_width="356dp"
-        android:layout_height="48dp"
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="40dp"
+        android:layout_height="25dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="36dp"
-        android:background="@drawable/rounded_pink_button_background"
-        android:text="Add New Product"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.647"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_link" />
+        android:layout_marginBottom="17dp"
+        android:src="@mipmap/ic_arrow_left"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

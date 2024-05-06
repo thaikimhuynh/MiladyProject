@@ -1,14 +1,27 @@
 package com.thaikimhuynh.miladyapp.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.thaikimhuynh.miladyapp.R;
+import com.thaikimhuynh.miladyapp.SearchActivity;
+import com.thaikimhuynh.miladyapp.adapter.CategoryAdapter;
+import com.thaikimhuynh.miladyapp.model.Category;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,9 +35,16 @@ public class CategoryFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private RecyclerView recyclerView;
+
+    CategoryAdapter adapter; // Create Object of the Adapter class
+    DatabaseReference mbase; // Create object of the
+    // Firebase Realtime Database
+
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -61,6 +81,47 @@ public class CategoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_category, container, false);
+        View view = inflater.inflate(R.layout.fragment_category, container, false);
+        return view;
     }
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState)
+    {
+        super.onViewCreated(view, savedInstanceState);
+
+        mbase = FirebaseDatabase.getInstance().getReference();
+
+        FirebaseRecyclerOptions<Category> options
+                = new FirebaseRecyclerOptions.Builder<Category>()
+                .setQuery(mbase.child("Category"), Category.class)
+                .build();
+
+        CategoryAdapter itemAdapter = new CategoryAdapter(options);
+
+        // Set the LayoutManager that
+        // this RecyclerView will use.
+        recyclerView = view.findViewById(R.id.category_list);
+
+        recyclerView.setLayoutManager(
+                new LinearLayoutManager(getContext()));
+
+        // adapter instance is set to the
+        // recyclerview to inflate the items.
+        recyclerView.setAdapter(itemAdapter);
+        itemAdapter.startListening();
+        SearchView searchView = view.findViewById(R.id.category_searchView);
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // Nếu SearchView được nhấn, mở SearchActivity
+                    Intent intent = new Intent(getContext(), SearchActivity.class);
+                    startActivity(intent);
+                    searchView.clearFocus();
+                }
+            }
+        });
+
+    }
+
 }

@@ -56,13 +56,13 @@
             android:name=".signup.VerifyAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".signup.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".login.WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.AdminAddProductActivity"
+            android:name=".login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".payment.ViewPaymentMethodActivity"
@@ -96,7 +96,7 @@
             android:name=".admin.NavigationAdminActivity"
             android:exported="false"/>
         <activity
-            android:name=".signup.SignUpActivity"
+            android:name=".admin.AdminAddProductActivity"
             android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />

@@ -72,4 +72,8 @@ public class ProductHomeAdapter extends RecyclerView.Adapter<ProductHomeAdapter.
                 .apply(requestOptions)
                 .into(imageView);
     }
+    public void setProductList(List<ProductHomeItems> productList) {
+        this.productList = productList;
+        notifyDataSetChanged();
+    }
 }

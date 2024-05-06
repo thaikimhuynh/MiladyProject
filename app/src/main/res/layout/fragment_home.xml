@@ -30,34 +30,32 @@
             <LinearLayout
                 android:id="@+id/linearLayout3"
                 android:layout_width="379dp"
-                android:layout_height="56dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="32dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <android.widget.SearchView
+
+                <androidx.appcompat.widget.SearchView
                     android:id="@+id/searchView"
-                    android:layout_width="296dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="0dp"
+                    android:layout_width="294dp"
+                    android:layout_height="48dp"
                     android:background="@drawable/search_view"
                     android:iconifiedByDefault="false"
                     android:orientation="horizontal"
-                    android:queryHint="Search here" />
-
+                    app:iconifiedByDefault="false"
+                    app:queryHint="Search" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="56dp"
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/imageView28"
+                        android:id="@+id/imgBack"
                         android:layout_width="54dp"
-                        android:layout_height="51dp"
+                        android:layout_height="48dp"
                         android:layout_marginStart="2dp"
-                        android:layout_marginTop="2dp"
                         android:layout_marginEnd="24dp"
                         android:layout_marginBottom="22dp"
                         android:src="@mipmap/bg_alert"
@@ -74,9 +72,9 @@
                         android:layout_height="28dp"
                         android:src="@mipmap/ic_alert_1"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/imageView28"
+                        app:layout_constraintEnd_toEndOf="@+id/imgBack"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/imageView28" />
+                        app:layout_constraintTop_toTopOf="@+id/imgBack" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>

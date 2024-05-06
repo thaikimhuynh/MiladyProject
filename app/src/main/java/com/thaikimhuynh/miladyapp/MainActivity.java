@@ -91,14 +91,26 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
 
     }
-    private void openCartFragment(){
-        if (currentFragment != FRAGMENT_CART){
-            replaceFragment(new CartFragment());
+//    private void openCartFragment(){
+//        if (currentFragment != FRAGMENT_CART){
+//            replaceFragment(new CartFragment());
+//            currentFragment = FRAGMENT_CART;
+//        }
+//
+//
+//    }
+
+    private void openCartFragment() {
+        if (currentFragment != FRAGMENT_CART) {
+            CartFragment cartFragment = CartFragment.newInstance("param1", "param2");
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_fragment, cartFragment)
+                    .addToBackStack(null)
+                    .commit();
             currentFragment = FRAGMENT_CART;
         }
-
-
     }
+
     private void openProfileFragment(){
         if (currentFragment != FRAGMENT_PROFILE){
             replaceFragment(new ProfileFragment());

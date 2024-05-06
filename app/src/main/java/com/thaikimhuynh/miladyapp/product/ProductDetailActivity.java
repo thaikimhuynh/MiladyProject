@@ -1,102 +1,176 @@
-//package com.thaikimhuynh.miladyapp.product;
-//
-//import androidx.appcompat.app.AppCompatActivity;
-//import androidx.viewpager.widget.ViewPager;
-//
-//import android.content.Intent;
-//import android.os.Bundle;
-//
-//import com.google.firebase.database.DataSnapshot;
-//import com.google.firebase.database.DatabaseError;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
-//import com.google.firebase.database.ValueEventListener;
-//import com.thaikimhuynh.miladyapp.R;
-//import com.thaikimhuynh.miladyapp.adapter.ViewPagerAdapter;
-//import com.thaikimhuynh.miladyapp.databinding.ActivityProductDetailBinding;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.Map;
-//
-//import me.relex.circleindicator.CircleIndicator;
-//
-//
-//public class ProductDetailActivity extends AppCompatActivity {
-//    private ActivityProductDetailBinding activityProductDetailBinding;
-//
-//    Product product;
-//    ViewPager viewPager;
-//    CircleIndicator circleIndicator;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//        activityProductDetailBinding = ActivityProductDetailBinding.inflate(getLayoutInflater());
-//        setContentView(activityProductDetailBinding.getRoot());
-//
-//        // Khởi tạo viewPager và circleIndicator
-//        viewPager = findViewById(R.id.viewPagerProductImage);
-//        circleIndicator = findViewById(R.id.circleIndicator);
-//
-//
-//        Intent intent = getIntent();
-//        Product product = (Product) intent.getSerializableExtra("product");
-//
-//
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference reference = database.getReference("Items");
-//
-//        reference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // Lấy dữ liệu từ dataSnapshot và gán cho ViewPager và các view khác trong layout XML
-//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    product = snapshot.getValue(Product.class); // Gán dữ liệu vào product
-//
-//                    // Gán hình ảnh cho ViewPager
-//                    List<String> imageUrls = new ArrayList<>();
-//
-//                    if (product != null && product.getPicUrl() != null) {
-//                        for (Map.Entry<String, String> entry : product.getPicUrl().entrySet()) {
-//                            imageUrls.add(entry.getValue());
-//                        }
-//                    }
-//
-//                    ViewPagerAdapter adapter = new ViewPagerAdapter(imageUrls, this);
-//                    viewPager.setAdapter(adapter);
-//                    circleIndicator.setViewPager(viewPager);
-//
-//                    // Sau khi có dữ liệu, bạn có thể gán giá trị cho các view trong layout XML tại đây
-//                    // Ví dụ:
-//                    // txtProductDetailName.setText(product.getTitle());
-//                    // txtProductDetailPrice.setText("$" + product.getPrice());
-//                    // Và tương tự cho các view khác
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Xử lý khi có lỗi xảy ra
-//            }
-//        });
-//
-//
-//
-//
-//// Gán hình ảnh cho ViewPager
-//        List<String> imageUrls = new ArrayList<>();
-//
-//        for (Map.Entry<String, String> entry : product.getPicUrl().entrySet()) {
-//            imageUrls.add(entry.getValue());
-//        }
-//        ViewPagerAdapter adapter = new ViewPagerAdapter(imageUrls, this); // Thêm đối số context
-//        viewPager.setAdapter(adapter);
-//        circleIndicator.setViewPager(viewPager);
-//
-//    }
-//
-//
-//
-//}
+    package com.thaikimhuynh.miladyapp.product;
+
+    import android.os.Bundle;
+    import android.view.View;
+    import android.widget.ImageView;
+    import android.widget.TextView;
+
+    import androidx.annotation.NonNull;
+    import androidx.appcompat.app.AppCompatActivity;
+    import androidx.recyclerview.widget.LinearLayoutManager;
+
+    import com.bumptech.glide.Glide;
+    import com.google.firebase.database.DataSnapshot;
+    import com.google.firebase.database.DatabaseError;
+    import com.google.firebase.database.DatabaseReference;
+    import com.google.firebase.database.FirebaseDatabase;
+    import com.google.firebase.database.ValueEventListener;
+    import com.thaikimhuynh.miladyapp.R;
+    import com.thaikimhuynh.miladyapp.adapter.ProductDetailsSliderAdapter;
+    import com.thaikimhuynh.miladyapp.adapter.SizeAdapter;
+    import com.thaikimhuynh.miladyapp.databinding.ActivityProductDetailBinding;
+    import com.thaikimhuynh.miladyapp.fragment.CartFragment;
+    import com.thaikimhuynh.miladyapp.model.Cart;
+    import com.thaikimhuynh.miladyapp.model.Product;
+
+    import java.io.Serializable;
+    import java.util.ArrayList;
+    import java.util.List;
+
+    public class ProductDetailActivity extends AppCompatActivity {
+
+        private ActivityProductDetailBinding productDetailBinding;
+        private int quantity = 1;
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            productDetailBinding = ActivityProductDetailBinding.inflate(getLayoutInflater());
+            setContentView(productDetailBinding.getRoot());
+            loadProductDetail();
+            addEvents();
+            loadCateName();
+            initSize();
+            editQuantity();
+            addToCart();
+
+
+        }
+
+        private void addToCart() {
+            productDetailBinding.btnAddToCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Product product = (Product) getIntent().getSerializableExtra("product");
+
+                    String selectedSize = "Size";
+                    int selectedQuantity = Integer.parseInt(productDetailBinding.txtQuantity.getText().toString());
+
+                    Cart cart = new Cart();
+                    cart.setProductName(product.getTitle());
+                    cart.setProductPrice(product.getPrice());
+                    cart.setSize(selectedSize);
+                    cart.setQuantity(selectedQuantity);
+
+                    // Pass data to CartFragment
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("cartItem", cart);
+                    CartFragment cartFragment = new CartFragment();
+                    cartFragment.setArguments(bundle);
+
+                    // Replace the current fragment with CartFragment
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.content_fragment, cartFragment)
+                            .addToBackStack(null)
+                            .commit();
+                }
+            });
+        }
+
+        private void editQuantity() {
+            productDetailBinding.btnMinus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (quantity > 1) { // Đảm bảo số lượng không nhỏ hơn 1
+                        quantity--;
+                        productDetailBinding.txtQuantity.setText(String.valueOf(quantity));
+                    }
+                }
+            });
+
+            productDetailBinding.btnPlus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    quantity++;
+                    productDetailBinding.txtQuantity.setText(String.valueOf(quantity));
+                }
+            });
+        }
+
+        private void initSize() {
+            ArrayList<String> list = new ArrayList<>();
+            list.add("36");
+            list.add("37");
+            list.add("38");
+            list.add("39");
+            list.add("40");
+
+            productDetailBinding.listSize.setAdapter(new SizeAdapter(list));
+            productDetailBinding.listSize.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        }
+
+        private void loadCateName() {
+            Product product = (Product) getIntent().getSerializableExtra("product");
+            String categoryId = product.getCategoryId();
+
+            DatabaseReference categoryRef = FirebaseDatabase.getInstance().getReference("Category").child(categoryId);
+            categoryRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String categoryName = dataSnapshot.child("name").getValue(String.class);
+
+                        TextView productCategory = productDetailBinding.txtProductDetailCategory;
+                        productCategory.setText(categoryName);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+        }
+
+        private void addEvents() {
+            productDetailBinding.imgBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }
+
+        private void loadProductDetail() {
+            Product product = (Product) getIntent().getSerializableExtra("product");
+            
+            if (product != null) {
+                String title = product.getTitle();
+                String description = product.getDescription();
+                double price = product.getPrice();
+                List<String> picUrls = product.getPicUrls();
+
+                TextView productName = productDetailBinding.txtProductDetailName;
+                productName.setText(title);
+
+                TextView productDescription = productDetailBinding.txtProductDetailDescription;
+                productDescription.setText(description);
+
+                TextView productPrice = productDetailBinding.txtProductDetailPrice;
+                productPrice.setText("$" + price);
+
+
+            // Load ảnh từ picUrls vào ViewPager
+                List<ImageView> imageViewList = new ArrayList<>();
+                for (String picUrl : picUrls) {
+                    ImageView imageView = new ImageView(this);
+                    imageViewList.add(imageView);
+                }
+
+                ProductDetailsSliderAdapter adapter = new ProductDetailsSliderAdapter(this, picUrls);
+                productDetailBinding.viewPagerProductImage.setAdapter(adapter);
+                productDetailBinding.circleIndicator.setViewPager(productDetailBinding.viewPagerProductImage);
+            } else {
+            }
+        }
+
+    }

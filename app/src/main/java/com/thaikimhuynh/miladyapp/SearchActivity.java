@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.adapter.ProductHomeAdapter;
+import com.thaikimhuynh.miladyapp.databinding.ActivitySearchBinding;
 import com.thaikimhuynh.miladyapp.model.ProductHomeItems;
 
 import java.util.ArrayList;
@@ -28,49 +29,46 @@ public class SearchActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private List<ProductHomeItems> productList = new ArrayList<>();
     private ProductHomeAdapter productHomeAdapter;
-    private SearchView searchView;
-    private ImageView imgBack;
-    private TextView txtResult, txtFeatures;
+    private ActivitySearchBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
-        addViews();
-        addEvents();
-        // Khởi tạo Database
+        binding = ActivitySearchBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        addEvents();
+        setupRecyclerView();
+    }
+
+    private void setupRecyclerView() {
+        productHomeAdapter = new ProductHomeAdapter(this, productList);
+        binding.recyclerProductSearch.setAdapter(productHomeAdapter);
+        binding.recyclerProductSearch.setLayoutManager(new GridLayoutManager(this, 2));
     }
 
     private void addEvents() {
+        binding.imgBack.setOnClickListener(v -> onBackPressed());
 
-        imgBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-        // Ánh xạ SearchView và thiết lập listener để lọc danh sách khi người dùng nhập vào
-        searchView.requestFocus();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        binding.searchView.requestFocus();
+        binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 String searchResultText = getString(R.string.search_result_text, query);
-                txtResult.setText(searchResultText);
-                txtResult.setVisibility(View.VISIBLE);
-                txtFeatures.setVisibility(View.GONE);
-                // Filter danh sách sản phẩm dựa trên từ khóa tìm kiếm
+                binding.txtResult.setText(searchResultText);
+                binding.txtResult.setVisibility(View.VISIBLE);
+                binding.txtFetures.setVisibility(View.GONE);
                 filterList(query);
-
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
                 if (newText.isEmpty()) {
-                    txtFeatures.setVisibility(View.VISIBLE);
-                    txtResult.setVisibility(View.GONE);
+                    binding.txtFetures.setVisibility(View.VISIBLE);
+                    binding.txtResult.setVisibility(View.GONE);
                 }
                 filterList(newText);
                 return true;
@@ -78,21 +76,6 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-    private void addViews() {
-        // Ánh xạ ImageView và thiết lập onClickListener để quay lại màn hình trước đó
-        imgBack = findViewById(R.id.imgBack);
-        searchView = findViewById(R.id.searchView);
-        txtResult = findViewById(R.id.txtResult);
-        txtFeatures=findViewById(R.id.txtFetures);
-        // Ánh xạ RecyclerView và set LayoutManager
-        RecyclerView recyclerProductSearch = findViewById(R.id.recyclerProductSearch);
-        recyclerProductSearch.setLayoutManager(new GridLayoutManager(this, 2));
-        // Khởi tạo Adapter
-        productHomeAdapter = new ProductHomeAdapter(this, productList);
-        recyclerProductSearch.setAdapter(productHomeAdapter);
-    }
-
-    // Phương thức để lọc danh sách sản phẩm dựa trên từ khóa tìm kiếm
     private void filterList(String text) {
         List<ProductHomeItems> filteredList = new ArrayList<>();
         for (ProductHomeItems item : productList) {
@@ -106,8 +89,6 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        // Load dữ liệu cho RecyclerView
         mDatabase.child("Items").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -122,13 +103,11 @@ public class SearchActivity extends AppCompatActivity {
                         productList.add(product);
                     }
                 }
-                if (productHomeAdapter != null) {
-                    productHomeAdapter.notifyDataSetChanged();
-                }
+                productHomeAdapter.notifyDataSetChanged();
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Xử lý lỗi khi có sự cố xảy ra với database
                 Toast.makeText(SearchActivity.this, "Error loading", Toast.LENGTH_SHORT).show();
             }
         });

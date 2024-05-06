@@ -80,6 +80,7 @@ public class VerifyCodePasswordActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            txtMessageError.setVisibility(View.GONE);
                             // Nếu xác minh thành công, chuyển hướng người dùng đến NewPasswordActivity
                             // Truyền số điện thoại qua Intent
                             Intent intent = new Intent(VerifyCodePasswordActivity.this, NewPasswordActivity.class);
@@ -89,7 +90,7 @@ public class VerifyCodePasswordActivity extends AppCompatActivity {
                         } else {
                             // Xử lý khi xác minh không thành công
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                txtMessageError.setText("Invalid verification code");
+                                txtMessageError.setText("You have entered failed code. Please fill true code");
                             } else {
                                 Toast.makeText(VerifyCodePasswordActivity.this, "Verification failed", Toast.LENGTH_SHORT).show();
                             }

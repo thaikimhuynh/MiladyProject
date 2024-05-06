@@ -60,13 +60,15 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(phoneNumber)) {
                     txtMessageError.setText("Please enter a phone number");
                 } else if (!isValidPhoneNumber(phoneNumber)) {
-                    txtMessageError.setText("Please enter a valid phone number with 10 or 11 digits and recheck phone number");
+                    txtMessageError.setText("Please enter a valid phone number");
                 } else {
                     if (phoneNumber.startsWith("+84")) {
                         phoneNumber = "0" + phoneNumber.substring(3);
                     }
 
                     checkPhoneNumberExist(phoneNumber);
+                    txtMessageError.setVisibility(View.GONE);
+
                 }
             }
         });
@@ -74,7 +76,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     private boolean isValidPhoneNumber(String phoneNumber) {
         // Kiểm tra tính hợp lệ của số điện thoại
-        // Kiểm tra xem số điện thoại có đủ 10 hoặc 11 chữ số không
         return phoneNumber.matches("^(\\+84|0)\\d{9}$");
     }
 
@@ -117,7 +118,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                     @Override
                     public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                        // Auto-retrieval has been done.
+                        Log.d(TAG, "Sending intent to NewPasswordActivity with phoneNumber: " + phoneNumber);
                     }
 
                     @Override
@@ -127,7 +128,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                     @Override
                     public void onCodeSent(@NonNull String verificationId,
                                            @NonNull PhoneAuthProvider.ForceResendingToken token) {
-                        Log.d(TAG, "Sending intent to NewPasswordActivity with phoneNumber: " + phoneNumber);
+                        Toast.makeText(ForgotPasswordActivity.this, "An OTP has been sent to your phone."
+                                ,Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(ForgotPasswordActivity.this, VerifyCodePasswordActivity.class);
                         intent.putExtra("phoneNumber", phoneNumber); // Truyền số điện thoại qua Intent
 

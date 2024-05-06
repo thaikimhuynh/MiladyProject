@@ -94,12 +94,13 @@ public class NewPasswordActivity extends AppCompatActivity {
                 }
 
                 if (!newPassword.equals(confirmPassword)) {
-                    txtMessageError.setText("Passwords do not match");
+                    txtMessageError.setText("Your new password and confirm password weren’t not matched together");
                     return;
                 }
 
                 // Gọi phương thức để cập nhật mật khẩu mới
                 updatePassword(newPassword);
+                txtMessageError.setVisibility(View.GONE);
             }
         });
     }

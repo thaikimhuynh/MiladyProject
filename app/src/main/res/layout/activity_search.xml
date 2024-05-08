@@ -37,19 +37,18 @@
         android:id="@+id/searchView"
         android:layout_width="352dp"
         android:layout_height="47dp"
-        android:queryHint="Search here"
-        android:iconifiedByDefault="false"
-        android:orientation="horizontal"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/search_view"
+        android:iconifiedByDefault="false"
+        android:orientation="horizontal"
+        android:queryHint="Search here"
         app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView41"
-        app:queryHint="Enter keyword"
-       />
+        app:queryHint="Enter keyword" />
 
     <TextView
         android:id="@+id/txtFetures"
@@ -68,15 +67,15 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerProductSearch"
-        android:layout_width="366dp"
-        android:layout_height="580dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="15dp"
+        android:layout_width="342dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.576"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtFetures" />
+        app:layout_constraintTop_toBottomOf="@+id/txtFetures"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/txtResult"

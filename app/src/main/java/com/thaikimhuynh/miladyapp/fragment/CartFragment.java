@@ -3,20 +3,12 @@ package com.thaikimhuynh.miladyapp.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.thaikimhuynh.miladyapp.R;
-import com.thaikimhuynh.miladyapp.adapter.CartAdapter;
-import com.thaikimhuynh.miladyapp.model.Cart;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,9 +21,7 @@ public class CartFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private RecyclerView recyclerView;
-    private CartAdapter cartAdapter;
-    private List<Cart> cartList;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -49,45 +39,28 @@ public class CartFragment extends Fragment {
      * @return A new instance of fragment CartFragment.
      */
     // TODO: Rename and change types and number of parameters
-        public static CartFragment newInstance(String param1, String param2) {
-            CartFragment fragment = new CartFragment();
-            Bundle args = new Bundle();
-            args.putString(ARG_PARAM1, param1);
-            args.putString(ARG_PARAM2, param2);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
+    public static CartFragment newInstance(String param1, String param2) {
+        CartFragment fragment = new CartFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        cartList = new ArrayList<>();
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        // Nhận đối tượng Cart từ Bundle
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            Cart cartItem = (Cart) bundle.getSerializable("cartItem");
-            if (cartItem != null) {
-                cartList.add(cartItem);
-            }
-        }
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_cart, container, false);
-        recyclerView = view.findViewById(R.id.recyclerCart);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        cartAdapter = new CartAdapter(cartList);
-        recyclerView.setAdapter(cartAdapter);
-        return view;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_cart, container, false);
     }
-
-
 }

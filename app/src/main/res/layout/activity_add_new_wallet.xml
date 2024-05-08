@@ -39,7 +39,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edtCode"
+        android:id="@+id/edtPhoneNumber_Ewallet"
         android:layout_width="356dp"
         android:layout_height="49dp"
         android:layout_marginTop="45dp"
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edtEWalletName" />
 
     <EditText
-        android:id="@+id/edtPhoneNumber"
+        android:id="@+id/edtUserName"
         android:layout_width="356dp"
         android:layout_height="49dp"
         android:layout_marginTop="45dp"
@@ -87,21 +87,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtCode" />
+        app:layout_constraintTop_toBottomOf="@+id/edtPhoneNumber_Ewallet" />
 
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_ewallTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.13"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView8"
+        app:layout_constraintTop_toTopOf="@+id/tv_ewallTitle"
         app:srcCompat="@mipmap/ic_back" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/tv_ewallTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -138,14 +138,14 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/tv_phoneNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Phone number"
-        app:layout_constraintBottom_toTopOf="@+id/edtPhoneNumber"
-        app:layout_constraintEnd_toEndOf="@+id/edtPhoneNumber"
+        app:layout_constraintBottom_toTopOf="@+id/edtUserName"
+        app:layout_constraintEnd_toEndOf="@+id/edtUserName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtPhoneNumber"
+        app:layout_constraintStart_toStartOf="@+id/edtUserName"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
@@ -154,10 +154,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Code"
-        app:layout_constraintBottom_toTopOf="@+id/edtCode"
-        app:layout_constraintEnd_toEndOf="@+id/edtCode"
+        app:layout_constraintBottom_toTopOf="@+id/edtPhoneNumber_Ewallet"
+        app:layout_constraintEnd_toEndOf="@+id/edtPhoneNumber_Ewallet"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtCode"
+        app:layout_constraintStart_toStartOf="@+id/edtPhoneNumber_Ewallet"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 

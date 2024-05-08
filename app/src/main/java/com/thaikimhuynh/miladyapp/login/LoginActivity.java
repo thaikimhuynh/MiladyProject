@@ -24,4 +24,5 @@ public class LoginActivity extends AppCompatActivity {
         txtSignUp.setPaintFlags(txtSignUp.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
     }
+
 }

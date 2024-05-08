@@ -169,9 +169,9 @@
                         android:layout_marginEnd="36dp"
                         android:fontFamily="@font/noto_sans_font"
                         android:gravity="start"
+                        android:justificationMode="inter_word"
                         android:paddingEnd="2dp"
                         android:text="Classic boots transcend trends. They seamlessly integrate into a variety of looks, from casual everyday wear to more dressed-up occasions. Pair them with jeans and a chunky knit for a cozy weekend vibe, or elevate your office attire with a knee-high boot and a tailored skirt."
-                        android:textAlignment="viewStart"
                         android:textColor="@color/grey" />
 
                     <View

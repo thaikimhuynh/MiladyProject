@@ -1,13 +1,16 @@
     package com.thaikimhuynh.miladyapp.product;
 
+    import android.content.Intent;
     import android.os.Bundle;
     import android.view.View;
     import android.widget.ImageView;
     import android.widget.TextView;
+    import android.widget.Toast;
 
     import androidx.annotation.NonNull;
     import androidx.appcompat.app.AppCompatActivity;
     import androidx.recyclerview.widget.LinearLayoutManager;
+    import androidx.recyclerview.widget.RecyclerView;
 
     import com.bumptech.glide.Glide;
     import com.google.firebase.database.DataSnapshot;
@@ -20,7 +23,6 @@
     import com.thaikimhuynh.miladyapp.adapter.SizeAdapter;
     import com.thaikimhuynh.miladyapp.databinding.ActivityProductDetailBinding;
     import com.thaikimhuynh.miladyapp.fragment.CartFragment;
-    import com.thaikimhuynh.miladyapp.model.Cart;
     import com.thaikimhuynh.miladyapp.model.Product;
 
     import java.io.Serializable;
@@ -31,6 +33,7 @@
 
         private ActivityProductDetailBinding productDetailBinding;
         private int quantity = 1;
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -41,40 +44,12 @@
             loadCateName();
             initSize();
             editQuantity();
-            addToCart();
 
 
         }
 
-        private void addToCart() {
-            productDetailBinding.btnAddToCart.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Product product = (Product) getIntent().getSerializableExtra("product");
 
-                    String selectedSize = "Size";
-                    int selectedQuantity = Integer.parseInt(productDetailBinding.txtQuantity.getText().toString());
 
-                    Cart cart = new Cart();
-                    cart.setProductName(product.getTitle());
-                    cart.setProductPrice(product.getPrice());
-                    cart.setSize(selectedSize);
-                    cart.setQuantity(selectedQuantity);
-
-                    // Pass data to CartFragment
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelable("cartItem", cart);
-                    CartFragment cartFragment = new CartFragment();
-                    cartFragment.setArguments(bundle);
-
-                    // Replace the current fragment with CartFragment
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.content_fragment, cartFragment)
-                            .addToBackStack(null)
-                            .commit();
-                }
-            });
-        }
 
         private void editQuantity() {
             productDetailBinding.btnMinus.setOnClickListener(new View.OnClickListener() {

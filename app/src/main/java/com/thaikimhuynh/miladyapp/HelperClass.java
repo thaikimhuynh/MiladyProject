@@ -1,4 +1,4 @@
-package com.thaikimhuynh.miladyapp.model;
+package com.thaikimhuynh.miladyapp;
 
 public class HelperClass {
     String PhoneNumber, Email, Password;

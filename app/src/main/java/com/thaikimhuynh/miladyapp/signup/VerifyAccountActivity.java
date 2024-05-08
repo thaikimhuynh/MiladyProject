@@ -16,14 +16,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.login.LoginActivity;
-import com.thaikimhuynh.miladyapp.model.HelperClass;
+import com.thaikimhuynh.miladyapp.HelperClass;
 
 public class VerifyAccountActivity extends AppCompatActivity {
     private EditText edtCode;

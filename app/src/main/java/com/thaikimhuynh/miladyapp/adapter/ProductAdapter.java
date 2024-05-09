@@ -24,25 +24,35 @@ import com.thaikimhuynh.miladyapp.product.ProductDetailActivity;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     private Context mContext;
     private ArrayList<Product> productList;
+    private String categoryTitle;
+
+    public ProductAdapter(Context mContext, ArrayList<Product> productList, String categoryTitle) {
+        this.mContext = mContext;
+        this.productList = productList;
+        this.categoryTitle = categoryTitle;
+    }
 
     public ProductAdapter(Context mContext, ArrayList<Product> productList)
     {
         this.mContext = mContext;
         this.productList = productList;
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductAdapter.ProductViewHolder holder,
-                     int position)
+    public void onBindViewHolder(@NonNull ProductAdapter.ProductViewHolder holder, int position)
     {
         Product product = productList.get(position);
 
         holder.product_name.setText(product.getTitle());
-        holder.product_price.setText(String.valueOf(product.getPrice()));
+//        holder.product_price.setText(String.valueOf(product.getPrice()));
+        holder.product_price.setText(String.format(Locale.US, "$%.1f", product.getPrice()));
+
         String imageUrl = product.getPicUrls().get(0);
 
         Glide.with(holder.itemView.getContext())
@@ -53,11 +63,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Product product = productList.get(position);
                 Intent intent = new Intent(context, ProductDetailActivity.class);
-                intent.putExtra("Title", product.getTitle());
+                intent.putExtra("product", product);
+                intent.putExtra("categoryName", categoryTitle);
                 context.startActivity(intent);
             }
         });
+
+
 
 
     }

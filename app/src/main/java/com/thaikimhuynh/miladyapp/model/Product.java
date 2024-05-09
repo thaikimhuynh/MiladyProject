@@ -1,22 +1,47 @@
 package com.thaikimhuynh.miladyapp.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Product {
+public class Product implements Serializable {
 
     private String title;
     private double price;
     private String categoryId;
     private List<String> picUrls;
+private String productId;
+private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Product() {}
 
-    public Product(String title, double price, String categoryId, List<String> picUrls) {
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+
+    public Product(String title, double price, String categoryId, List<String> picUrls, String productId, String description) {
         this.title = title;
         this.price = price;
         this.categoryId = categoryId;
         this.picUrls = picUrls;
+        this.productId = productId;
+        this.description = description;
     }
+
+
+
 
     public String getTitle() {
         return title;

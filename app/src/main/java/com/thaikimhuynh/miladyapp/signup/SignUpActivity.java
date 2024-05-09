@@ -174,6 +174,10 @@ public class SignUpActivity extends AppCompatActivity {
         return phoneNumber.matches("^(\\+84|0)\\d{9}$");
     }
 
+    public void openLoginActivity(View view) {
+        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+        startActivity(intent);
+    }
 }
 
 

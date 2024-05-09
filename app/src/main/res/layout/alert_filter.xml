@@ -39,6 +39,20 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@mipmap/ic_close" />
 
+
+
+
+            <com.google.android.material.slider.RangeSlider
+                android:layout_width="290dp"
+                android:layout_height="48dp"
+                android:layout_margin="16dp"
+                android:contentDescription="Range Slider"
+                android:theme="@style/CustomSliderStyle"
+                android:valueFrom="0.0"
+                android:valueTo="200.0"
+                app:values="@array/slider_values"
+                tools:layout_editor_absoluteX="63dp"
+                tools:layout_editor_absoluteY="178dp" />
             <TextView
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
@@ -65,106 +79,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-            <com.google.android.material.slider.RangeSlider
-                android:layout_width="290dp"
-                android:layout_height="48dp"
-                android:layout_margin="16dp"
-                android:contentDescription="Range Slider"
-                android:theme="@style/CustomSliderStyle"
-                android:valueFrom="0.0"
-                android:valueTo="200.0"
-                app:values="@array/slider_values"
-                tools:layout_editor_absoluteX="63dp"
-                tools:layout_editor_absoluteY="178dp" />
-
-            <androidx.appcompat.widget.AppCompatButton
-
-                android:id="@+id/btnAll"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="68dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/circle_button"
-                android:text="All"
-                android:fontFamily="@font/noto_sans_font"
-                android:textColor="@color/pink_primary"
-                android:textSize="12sp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listSize"
+                android:layout_width="53dp"
+                android:layout_height="62dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.175"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-            <androidx.appcompat.widget.AppCompatButton
-
-                android:id="@+id/btn36"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="52dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/circle_button"
-                android:text="36"
-                android:fontFamily="@font/noto_sans_font"
-                android:textColor="@color/pink_primary"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@id/btnAll"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-            <androidx.appcompat.widget.AppCompatButton
-
-                android:id="@+id/btn37"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="52dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/circle_button"
-                android:text="37"
-                android:fontFamily="@font/noto_sans_font"
-                android:textColor="@color/pink_primary"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@id/btn36"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-            <androidx.appcompat.widget.AppCompatButton
-
-                android:id="@+id/btn38"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="52dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/circle_button"
-                android:text="38"
-                android:fontFamily="@font/noto_sans_font"
-                android:textColor="@color/pink_primary"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@id/btn37"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-            <androidx.appcompat.widget.AppCompatButton
-
-                android:id="@+id/btn39"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="52dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/circle_button"
-                android:text="39"
-                android:fontFamily="@font/noto_sans_font"
-                android:textColor="@color/pink_primary"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@id/btn38"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-            <androidx.appcompat.widget.AppCompatButton
-
-                android:id="@+id/btn40"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="52dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/circle_button"
-                android:text="40"
-                android:fontFamily="@font/noto_sans_font"
-                android:textColor="@color/pink_primary"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@id/btn39"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -172,7 +94,6 @@
                 android:id="@+id/btnClear"
                 android:layout_width="141dp"
                 android:layout_height="46dp"
-                android:layout_marginTop="28dp"
                 android:background="@drawable/circle_button"
                 android:text="Clear"
                 android:textColor="@color/pink_primary"
@@ -180,21 +101,20 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnApply"
                 app:layout_constraintHorizontal_bias="0.8"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnAll" />
+                tools:layout_editor_absoluteY="346dp" />
 
             <androidx.appcompat.widget.AppCompatButton
 
                 android:id="@+id/btnApply"
                 android:layout_width="141dp"
                 android:layout_height="46dp"
-                android:layout_marginTop="28dp"
                 android:layout_marginEnd="48dp"
                 android:background="@drawable/circle_button_pink"
                 android:text="Apply"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn39" />
+                tools:layout_editor_absoluteY="346dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

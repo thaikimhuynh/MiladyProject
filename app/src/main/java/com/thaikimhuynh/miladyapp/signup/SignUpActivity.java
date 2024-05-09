@@ -60,17 +60,6 @@ public class SignUpActivity extends AppCompatActivity {
         addView();
         database= FirebaseDatabase.getInstance();
         reference= database.getReference("User");
-//                HelperClass helperClass= new HelperClass(PhoneNumber, Email, Password);
-//                reference.child(PhoneNumber).setValue(helperClass);
-//                Toast.makeText(SignUpActivity.this,"Signup successfully",Toast.LENGTH_SHORT).show();
-
-//                edtPhoneNumber= findViewById(R.id.edtPhoneNumber);
-//                edtEmail=findViewById(R.id.edtEmail);
-//                edtPassword=findViewById(R.id.edtPassword);
-//                txtLogin= findViewById(R.id.txtLogin);
-//                btnSignUp=findViewById(R.id.btnSignUp);
-//                txtMessageError = findViewById(R.id.txtMessageError);
-
     }
 
     private void addView() {
@@ -174,10 +163,4 @@ public class SignUpActivity extends AppCompatActivity {
         return phoneNumber.matches("^(\\+84|0)\\d{9}$");
     }
 
-    public void openLoginActivity(View view) {
-        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-        startActivity(intent);
-    }
 }
-
-

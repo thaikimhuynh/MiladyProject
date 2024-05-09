@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.thaikimhuynh.miladyapp" />
+                  <option name="mobileSdkAppId" value="1:807024630856:android:340296ce51c1de06b4cc7d" />
+                  <option name="projectId" value="miladyproject" />
+                  <option name="projectNumber" value="807024630856" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

@@ -68,6 +68,8 @@ public class SignUpActivity extends AppCompatActivity {
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
         txtMessageError = findViewById(R.id.txtMessageError);
+        txtLogin=findViewById(R.id.txtLogin);
+        txtLogin.setPaintFlags(txtLogin.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,4 +165,9 @@ public class SignUpActivity extends AppCompatActivity {
         return phoneNumber.matches("^(\\+84|0)\\d{9}$");
     }
 
+
+    public void openLoginActivity(View view) {
+        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+        startActivity(intent);
+    }
 }

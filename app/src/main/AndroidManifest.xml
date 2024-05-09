@@ -47,7 +47,7 @@
             android:exported="false" />
         <activity
             android:name=".product.ProductDetailActivity"
-            android:exported="false"/>
+            android:exported="false"></activity>
         <activity
             android:name=".HelpCenterActivity"
             android:exported="false" />
@@ -70,13 +70,13 @@
             android:name=".login.WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".signup.SignUpActivity"
+            android:name=".login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".payment.ViewPaymentMethodActivity"
             android:exported="false" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".signup.SignUpActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -102,9 +102,7 @@
         <activity
             android:name=".admin.AdminListOrderActivity"
             android:exported="false" />
-        <activity
-            android:name=".admin.AdminLoginActivity"
-            android:exported="false"/>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCmeFyh12wHBmVagKr0InRDh1eqc_qeTN8" />

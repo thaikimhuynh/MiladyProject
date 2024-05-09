@@ -18,6 +18,9 @@
         android:theme="@style/Theme.MiladyApp"
         tools:targetApi="31">
         <activity
+            android:name=".admin.AdminLoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".search.ListCateActivity"
             android:exported="false" />
         <activity
@@ -38,8 +41,6 @@
         <activity
             android:name=".product.ProductDetailActivity"
             android:exported="false" />
-
-
         <activity
             android:name=".HelpCenterActivity"
             android:exported="false" />
@@ -62,16 +63,14 @@
             android:name=".login.WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".admin.AdminAddProductActivity"
             android:exported="false" />
         <activity
             android:name=".payment.ViewPaymentMethodActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"/>
-
-
+            android:exported="false" />
         <activity
             android:name=".WishListActivity"
             android:exported="false" />
@@ -86,25 +85,23 @@
             android:exported="false" />
         <activity
             android:name=".MyOrdersActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false"/>
         <activity
             android:name=".admin.AdminListOrderActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".admin.NavigationAdminActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
-            android:name=".admin.AdminAddProductActivity"
+            android:name=".login.LoginActivity"
             android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
-    </activity>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCmeFyh12wHBmVagKr0InRDh1eqc_qeTN8" />

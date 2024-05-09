@@ -19,6 +19,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.MainActivity;
 import com.thaikimhuynh.miladyapp.R;
+import com.thaikimhuynh.miladyapp.forgotpassword.ForgotPasswordActivity;
 import com.thaikimhuynh.miladyapp.signup.SignUpActivity;
 
 import java.util.Objects;
@@ -36,7 +37,11 @@ public class LoginActivity extends AppCompatActivity {
         edtPassword=findViewById(R.id.edtPassword);
         btnLogin=findViewById(R.id.btnLogin);
         txtForgotPassWord=findViewById(R.id.txtForgotPassWord);
+        txtForgotPassWord.setPaintFlags(txtForgotPassWord.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
         txtSignUp = findViewById(R.id.txtSignUp);
+        txtSignUp.setPaintFlags(txtSignUp.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,8 +94,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     edtPhoneNumber.setError(null);
-                    String PasswordFromDB= snapshot.child(UserPhoneNumber).child("Password").getValue(String.class);
-                    if (PasswordFromDB.equals(UserPassWord)){
+                    String PasswordFromDB= snapshot.child(UserPhoneNumber).child("password").getValue(String.class);
+                    if (!Objects.equals(PasswordFromDB, UserPassWord)){
                         edtPhoneNumber.setError(null);
                         Intent intent= new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
@@ -111,5 +116,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void openForgotPasswordActivity(View view) {
+        Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+        startActivity(intent);
     }
 }

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -37,7 +38,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     String phoneNumber;
     private DatabaseReference mDatabase;
     private EditText edtPhoneForgot;
-    private TextView txtMessageError;
+    private TextView txtMessageError, txtSignUp;
     private Button btnContinue;
     private static final String COUNTRY_CODE = "+84";
 
@@ -51,7 +52,17 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private void addViews() {
         edtPhoneForgot = findViewById(R.id.edtPhoneForgot);
         txtMessageError = findViewById(R.id.txtMessageError);
+        txtSignUp=findViewById(R.id.txtSignUp);
+        txtSignUp.setPaintFlags(txtSignUp.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         btnContinue = findViewById(R.id.btnContinue);
+
+        txtSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ForgotPasswordActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -64,7 +64,7 @@
             android:name=".signup.VerifyAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".signup.SignUpActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".login.WelcomeActivity"
@@ -76,7 +76,7 @@
             android:name=".payment.ViewPaymentMethodActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".signup.SignUpActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

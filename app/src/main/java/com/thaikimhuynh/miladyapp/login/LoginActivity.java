@@ -94,8 +94,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     edtPhoneNumber.setError(null);
-                    String PasswordFromDB= snapshot.child(UserPhoneNumber).child("password").getValue(String.class);
-                    if (!Objects.equals(PasswordFromDB, UserPassWord)){
+                    String PasswordFromDB= snapshot.child(UserPhoneNumber).child("Password").getValue(String.class);
+                    if (Objects.equals(PasswordFromDB, UserPassWord)){
                         edtPhoneNumber.setError(null);
                         Intent intent= new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);

@@ -1,9 +1,11 @@
 package com.thaikimhuynh.miladyapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -16,30 +18,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.model.PaymentGroup;
 import com.thaikimhuynh.miladyapp.model.PaymentItem;
+import com.thaikimhuynh.miladyapp.payment.AddNewWalletActivity;
+import com.thaikimhuynh.miladyapp.payment.WalletInformationActivity;
 
 import java.util.List;
 
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
-    private Context mContext;
+public class ItemWithButtonAdapter extends RecyclerView.Adapter<ItemWithButtonAdapter.ItemWithButtonViewHolder> {
     private List<PaymentGroup> mList;
     private List<PaymentItem> item_list;
-    public ItemAdapter(Context mContext, List<PaymentGroup> mList){
-        this.mContext = mContext;
+    public ItemWithButtonAdapter(Context mContext, List<PaymentGroup> mList){
         this.mList = mList;
 
 
     }
     @NonNull
     @Override
-    public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.paymentmethod_item, parent, false);
-        return new ItemViewHolder(view);
+    public ItemWithButtonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.paymentmethod_card_item, parent, false);
+        return new ItemWithButtonViewHolder(view);
     }
 
 
 
     @Override
-    public void onBindViewHolder(@NonNull ItemAdapter.ItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ItemWithButtonAdapter.ItemWithButtonViewHolder holder, int position) {
         PaymentGroup groupmodel = mList.get(position);
         holder.pm_name.setText(groupmodel.getItemText());
 
@@ -53,7 +55,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             holder.arrow_btn.setImageResource(R.mipmap.ic_arrow_down);
         }
 
-        NestedAdapter adapter = new NestedAdapter(item_list);
+        NestedAdapterWithButton adapter = new NestedAdapterWithButton(item_list);
         holder.nestedRecyclerView.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
         holder.nestedRecyclerView.setHasFixedSize(true);
         holder.nestedRecyclerView.setAdapter(adapter);
@@ -67,6 +69,20 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
             }
         });
+        Context context = holder.itemView.getContext();
+
+        holder.btn_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PaymentGroup groupmodel = mList.get(position);
+                String wallet_type = groupmodel.getItemText();
+                String layout = wallet_type.equals("E-wallet") ? "1" : "2";
+                Intent intent = new Intent(context, AddNewWalletActivity.class);
+                intent.putExtra("layout", layout);
+
+                context.startActivity(intent);
+            }
+        });
 
 
 
@@ -77,22 +93,24 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         return mList.size();
     }
 
-    public class ItemViewHolder extends RecyclerView.ViewHolder{
+    public class ItemWithButtonViewHolder extends RecyclerView.ViewHolder{
         private TextView pm_name;
         private ImageView arrow_btn;
 
         private LinearLayout linearLayout;
         private RelativeLayout nestedLayout;
         private RecyclerView nestedRecyclerView;
+        private Button btn_add;
 
-        public ItemViewHolder(@NonNull View itemView) {
+        public ItemWithButtonViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            pm_name = itemView.findViewById(R.id.tv_paymentmethod);
-            arrow_btn = itemView.findViewById(R.id.dropdown_btn);
-            nestedRecyclerView = itemView.findViewById(R.id.recyclerview_mywallet);
-            nestedLayout = itemView.findViewById(R.id.nested_layout);
-            linearLayout = itemView.findViewById(R.id.linear_layout);
+            pm_name = itemView.findViewById(R.id.tv_paymentmethod_cart);
+            arrow_btn = itemView.findViewById(R.id.dropdown_btn_cart);
+            nestedRecyclerView = itemView.findViewById(R.id.recyclerview_mywallet_cart);
+            nestedLayout = itemView.findViewById(R.id.nested_layout_cart);
+            linearLayout = itemView.findViewById(R.id.linear_layout_cart);
+            btn_add = itemView.findViewById(R.id.btn_add_wallet);
 
 
 

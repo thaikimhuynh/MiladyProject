@@ -3,10 +3,13 @@ package com.thaikimhuynh.miladyapp;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,23 +19,24 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.adapter.ItemAdapter;
+import com.thaikimhuynh.miladyapp.adapter.ItemWithButtonAdapter;
 import com.thaikimhuynh.miladyapp.model.PaymentGroup;
 import com.thaikimhuynh.miladyapp.model.PaymentItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyWalletActivity extends AppCompatActivity {
+public class CartPaymentMethodActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private List<PaymentGroup> mList;
-    private ItemAdapter itemAdapter;
+    private ItemWithButtonAdapter itemAdapter;
     DatabaseReference mbase_1, mbase_2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_wallet);
+        setContentView(R.layout.activity_cart_payment_method);
         addViews();
         String userId = getUserId();
 
@@ -67,7 +71,7 @@ public class MyWalletActivity extends AppCompatActivity {
 
                                 String userName = snapshot.child("name").getValue(String.class);
                                 String userAccountNumber = snapshot.child("accountNumber").getValue(String.class);
-                                String layout = eWalletName.equals("Momo") || eWalletName.equals("Zalo Pay")? "1" : "2";
+                                String layout = eWalletName.equals("Momo") ? "1" : "2";
 
                                 PaymentItem paymentItem = new PaymentItem(eWalletName, userName, userAccountNumber, imgLogo, layout);
                                 addItemToGroup(paymentItem);
@@ -114,7 +118,7 @@ public class MyWalletActivity extends AppCompatActivity {
 
         // Update the RecyclerView adapter
         if (itemAdapter == null) {
-            itemAdapter = new ItemAdapter(MyWalletActivity.this, mList);
+            itemAdapter = new ItemWithButtonAdapter(CartPaymentMethodActivity.this, mList);
             recyclerView.setAdapter(itemAdapter);
         } else {
             itemAdapter.notifyDataSetChanged();
@@ -129,7 +133,7 @@ public class MyWalletActivity extends AppCompatActivity {
     }
 
     private void addViews() {
-        recyclerView = findViewById(R.id.rcv_mywallet);
+        recyclerView = findViewById(R.id.rcv_mywallet_cart);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

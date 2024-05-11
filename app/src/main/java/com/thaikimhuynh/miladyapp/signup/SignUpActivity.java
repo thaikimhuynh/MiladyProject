@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -23,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.R;
+import com.thaikimhuynh.miladyapp.login.LoginActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -49,17 +51,6 @@ public class SignUpActivity extends AppCompatActivity {
         addView();
         database= FirebaseDatabase.getInstance();
         reference= database.getReference("User");
-//                HelperClass helperClass= new HelperClass(PhoneNumber, Email, Password);
-//                reference.child(PhoneNumber).setValue(helperClass);
-//                Toast.makeText(SignUpActivity.this,"Signup successfully",Toast.LENGTH_SHORT).show();
-
-//                edtPhoneNumber= findViewById(R.id.edtPhoneNumber);
-//                edtEmail=findViewById(R.id.edtEmail);
-//                edtPassword=findViewById(R.id.edtPassword);
-//                txtLogin= findViewById(R.id.txtLogin);
-//                btnSignUp=findViewById(R.id.btnSignUp);
-//                txtMessageError = findViewById(R.id.txtMessageError);
-
     }
 
     private void addView() {
@@ -68,6 +59,8 @@ public class SignUpActivity extends AppCompatActivity {
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
         txtMessageError = findViewById(R.id.txtMessageError);
+        txtLogin=findViewById(R.id.txtLogin);
+        txtLogin.setPaintFlags(txtLogin.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,6 +156,9 @@ public class SignUpActivity extends AppCompatActivity {
         return phoneNumber.matches("^(\\+84|0)\\d{9}$");
     }
 
+
+    public void openLoginActivity(View view) {
+        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+        startActivity(intent);
+    }
 }
-
-

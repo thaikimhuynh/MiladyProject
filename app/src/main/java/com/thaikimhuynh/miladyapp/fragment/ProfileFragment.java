@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.thaikimhuynh.miladyapp.EarnPointActivity;
 import com.thaikimhuynh.miladyapp.HelpCenterActivity;
 import com.thaikimhuynh.miladyapp.MyOrdersActivity;
+import com.thaikimhuynh.miladyapp.MyWalletActivity;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.SettingActivity;
 import com.thaikimhuynh.miladyapp.WishListActivity;
@@ -104,7 +105,7 @@ public class ProfileFragment extends Fragment {
         cardMyWallet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ViewPaymentMethodActivity.class);
+                Intent intent = new Intent(getContext(), MyWalletActivity.class);
                 startActivity(intent);            }
         });
         cardWishList.setOnClickListener(new View.OnClickListener() {

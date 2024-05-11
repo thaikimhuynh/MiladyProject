@@ -7,16 +7,16 @@ import java.io.Serializable;
 public class PaymentItem implements Serializable {
     private String wallet_name, user_name, phoneNumber, layout;
     private String img_logo;
-    private boolean hasButton;
+    private boolean isSelected;
 
 
-    public PaymentItem(String wallet_name, String user_name, String phoneNumber, String layout, String img_logo) {
+    public PaymentItem(String wallet_name, String user_name, String phoneNumber, String img_logo, String layout) {
         this.wallet_name = wallet_name;
         this.user_name = user_name;
         this.phoneNumber = phoneNumber;
         this.layout = layout;
         this.img_logo = img_logo;
-        hasButton = false;
+        isSelected = false;
     }
 
     public String getWallet_name() {
@@ -59,11 +59,11 @@ public class PaymentItem implements Serializable {
         this.img_logo = img_logo;
     }
 
-    public boolean isHasButton() {
-        return hasButton;
+    public boolean isSelected() {
+        return isSelected;
     }
 
-    public void setHasButton(boolean hasButton) {
-        this.hasButton = hasButton;
+    public void setSelected(boolean isSelected) {
+        this.isSelected = isSelected;
     }
 }

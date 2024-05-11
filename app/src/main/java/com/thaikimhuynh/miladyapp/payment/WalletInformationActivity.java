@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,12 +28,15 @@ public class WalletInformationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wallet_information);
         addViews();
-       String layout = getIntent().getStringExtra("layout");
-       if (layout.equals("2")){
-            resetText(layout);
+        PaymentItem paymentItem = (PaymentItem) getIntent().getSerializableExtra("payment_info");
+
+
+        String layout_set = paymentItem.getLayout();
+       if (layout_set.equals("2")){
+            resetText(layout_set);
 
         }
-        loadPaymentInfo();
+        loadPaymentInfo(paymentItem);
 
     }
 
@@ -43,24 +47,28 @@ public class WalletInformationActivity extends AppCompatActivity {
 
     }
 
-    private void loadPaymentInfo() {
-        PaymentItem paymentItem = (PaymentItem) getIntent().getSerializableExtra("paymentItem");
+    private void loadPaymentInfo(PaymentItem paymentItem) {
 
+        if (paymentItem != null) {
+            // Log the PaymentItem details
+            Log.d("PaymentItem", "Wallet: " + paymentItem.getWallet_name());
+            Log.d("PaymentItem", "User: " + paymentItem.getUser_name());
+            Log.d("PaymentItem", "Phone: " + paymentItem.getPhoneNumber());
 
-        ewallet_name.setText(paymentItem.getWallet_name());
-        user_name.setText(paymentItem.getUser_name());
-        phoneNumber.setText(paymentItem.getPhoneNumber());
-        String imageUrl = paymentItem.getImg_logo();
-        Glide.with(this)
-                .load(imageUrl)
-                .into(logoImageView);
-
-
-
-
-
-
+            // Access and display payment info
+            ewallet_name.setText(paymentItem.getWallet_name());
+            user_name.setText(paymentItem.getUser_name());
+            phoneNumber.setText(paymentItem.getPhoneNumber());
+            String imageUrl = paymentItem.getImg_logo();
+            Glide.with(this)
+                    .load(imageUrl)
+                    .into(logoImageView);
+        } else {
+            // Handle the case where paymentItem is null
+            Log.e("PaymentInfo", "PaymentItem is null");
+        }
     }
+
 
     private void addViews() {
         ewallet_name = findViewById(R.id.edtWalletInfo);

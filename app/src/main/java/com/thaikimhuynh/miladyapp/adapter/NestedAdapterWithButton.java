@@ -21,23 +21,23 @@ import com.thaikimhuynh.miladyapp.product.ProductDetailActivity;
 
 import java.util.List;
 
-public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.NestedViewHolder> {
+public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterWithButton.NestedViewHolder> {
     private List<PaymentItem> mList;
 
-    public NestedAdapter(List<PaymentItem> mList){
+    public NestedAdapterWithButton(List<PaymentItem> mList){
         this.mList = mList;
     }
 
     @NonNull
     @Override
-    public NestedAdapter.NestedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_payment_item, parent, false);
+    public NestedAdapterWithButton.NestedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_payment_item_card, parent, false);
         return new NestedViewHolder(view);
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NestedAdapter.NestedViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NestedAdapterWithButton.NestedViewHolder holder, int position) {
 
         PaymentItem paymentItem = mList.get(position);
         holder.phoneNumber.setText(paymentItem.getPhoneNumber());
@@ -45,17 +45,23 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.NestedView
         Glide.with(holder.itemView.getContext())
                 .load(imageUrl)
                 .into(holder.wallet_logo);
-        Context context = holder.itemView.getContext();
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        boolean isSelected = paymentItem.isSelected();
+        if (isSelected){
+            holder.selectButton.setImageResource(R.mipmap.selected_button);
+        }
+        else{
+            holder.selectButton.setImageResource(R.mipmap.select_button);
+        }
+        holder.selectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PaymentItem paymentItem = mList.get(position);
-                Intent intent = new Intent(context, WalletInformationActivity.class);
-                intent.putExtra("payment_info", paymentItem);
+                paymentItem.setSelected(!paymentItem.isSelected());
+                notifyItemChanged(holder.getAdapterPosition());
 
-                context.startActivity(intent);
+
             }
         });
+
 
     }
 
@@ -66,13 +72,16 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.NestedView
 
     public class NestedViewHolder extends  RecyclerView.ViewHolder{
         private TextView nameEwallet, name, phoneNumber;
-        private ImageView wallet_logo;
+        private ImageView wallet_logo, selectButton;
+
 
 
         public NestedViewHolder(@NonNull View itemView) {
             super(itemView);
-            phoneNumber = itemView.findViewById(R.id.tv_phonenumber);
-            wallet_logo = itemView.findViewById(R.id.img_ewallet);
+            phoneNumber = itemView.findViewById(R.id.tv_phonenumber_cart);
+            wallet_logo = itemView.findViewById(R.id.img_ewallet_cart);
+            selectButton = itemView.findViewById(R.id.select_button_cart);
+
         }
     }
 }

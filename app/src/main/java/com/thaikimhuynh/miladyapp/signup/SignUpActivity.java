@@ -30,12 +30,13 @@ import java.util.concurrent.TimeUnit;
 
 public class SignUpActivity extends AppCompatActivity {
     private static final String TAG = VerifyAccountActivity.class.getName();
-    EditText edtPhoneNumber, edtEmail, edtPassword;
+    EditText edtPhoneNumber, edtEmail, edtPassword,edtFullName;
     TextView txtLogin;
     Button btnSignUp;
     String phoneNumber;
     String Email;
     String Password;
+    String FullName;
     private DatabaseReference mDatabase;
     private static final String COUNTRY_CODE = "+84";
 
@@ -58,6 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUp=findViewById(R.id.btnSignUp);
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
+        edtFullName = findViewById(R.id.edtFullName);
         txtMessageError = findViewById(R.id.txtMessageError);
         txtLogin=findViewById(R.id.txtLogin);
         txtLogin.setPaintFlags(txtLogin.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -145,6 +147,7 @@ public class SignUpActivity extends AppCompatActivity {
                         intent.putExtra("phoneNumber", phoneNumber); // Truyền data qua Intent
                         intent.putExtra("email",Email);
                         intent.putExtra("password",Password);
+                        intent.putExtra("name",FullName);
 
                         intent.putExtra("verificationId", verificationId);
                         startActivity(intent);

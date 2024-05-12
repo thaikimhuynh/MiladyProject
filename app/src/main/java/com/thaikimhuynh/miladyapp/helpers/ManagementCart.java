@@ -4,7 +4,6 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -172,10 +171,7 @@ public class ManagementCart {
         userCartRef.child("totalAmount").setValue(item.getNumberInCart());
     }
     private String generateCartId() {
-        // Tạo một chuỗi ngẫu nhiên
-        String uuid = UUID.randomUUID().toString();
-        // Lấy timestamp hiện tại và thêm vào chuỗi ngẫu nhiên
-        String cartId = uuid + "_" + System.currentTimeMillis();
+        String cartId = UUID.randomUUID().toString();
         return cartId;
     }
 
@@ -221,65 +217,79 @@ public class ManagementCart {
         });
     }
 
-//    public void minusNumberItem(Product product, ChangeNumberItemListener changeNumberItemsListener) {
-//        int newQuantity = product.getNumberInCart() - 1;
-//        if (newQuantity <= 0) {
-//            // Xoá sản phẩm khỏi giỏ hàng nếu số lượng là 0 hoặc âm
-//            cartRef.child("items").child(product.getTitle()).removeValue()
-//                    .addOnSuccessListener(aVoid -> changeNumberItemsListener.change());
-//        } else {
-//            // Cập nhật số lượng sản phẩm trên Realtime Database cho sản phẩm cụ thể
-//            cartRef.child("items").child(product.getTitle()).child("quantity").setValue(newQuantity)
-//                    .addOnSuccessListener(aVoid -> changeNumberItemsListener.change());
-//        }
-//    }
-
-    public void plusNumberItem(String itemId, ChangeNumberItemListener changeNumberItemsListener) {
-        DatabaseReference cartItemRef = cartRef.child("items").child(itemId).child("quantity");
-        cartItemRef.addListenerForSingleValueEvent(new ValueEventListener() {
+    public void removeProductFromCart(String itemId, String userId, ChangeNumberItemListener changeNumberItemListener) {
+        cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Integer currentQuantity = dataSnapshot.getValue(Integer.class);
-                if (currentQuantity != null) {
-                    int newQuantity = currentQuantity + 1;
-                    cartItemRef.setValue(newQuantity).addOnSuccessListener(aVoid -> changeNumberItemsListener.change());
+                double priceOfRemovedItem = 0; // Giá của sản phẩm đã xóa
+                for (DataSnapshot cartSnapshot : dataSnapshot.getChildren()) {
+                    String cartUserId = cartSnapshot.child("userId").getValue(String.class);
+                    if (cartUserId != null && cartUserId.equals(userId)) {
+                        for (DataSnapshot productSnapshot : cartSnapshot.child("items").getChildren()) {
+                            String itemID = productSnapshot.child("itemId").getValue(String.class);
+                            double price = productSnapshot.child("price").getValue(Double.class);
+                            if (itemID != null && itemID.equals(itemId)) {
+                                priceOfRemovedItem = price;
+                                productSnapshot.getRef().removeValue()
+                                        .addOnSuccessListener(aVoid -> {
+                                            changeNumberItemListener.change();
+                                            // Kiểm tra và xóa cart nếu nó rỗng
+                                            checkAndDeleteEmptyCart(cartSnapshot.getRef());
+                                        });
+                            }
+                        }
+                        subtractPriceFromTotalAmount(cartSnapshot.getRef(), priceOfRemovedItem);
+                        break;
+                    }
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Xử lý sự kiện onCancelled nếu cần
+
             }
         });
     }
 
+    private void checkAndDeleteEmptyCart(DatabaseReference cartRef) {
+        cartRef.child("items").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                    cartRef.removeValue();
+                }
+            }
 
-//    public void removeProductFromCart(String itemId, ChangeNumberItemListener changeNumberItemsListener) {
-//        cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for (DataSnapshot cartSnapshot : dataSnapshot.getChildren()) {
-//                    for (DataSnapshot productSnapshot : cartSnapshot.child("items").getChildren()) {
-//                        String productId = productSnapshot.child("itemId").getValue(String.class);
-//                            productSnapshot.getRef().removeValue()
-//                                    .addOnSuccessListener(onSuccessListener)
-//                                    .addOnFailureListener(onFailureListener);
-//                            return;
-//                        }
-//                    }
-//                }
-//
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                // Xử lý sự kiện onCancelled
-//                onFailureListener.onFailure(databaseError.toException());
-//            }
-//        });
-//    }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+    }
 
+    private void subtractPriceFromTotalAmount(DatabaseReference cartRef, double price) {
+        cartRef.child("totalAmount").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                double totalAmount = dataSnapshot.getValue(Double.class);
+                if (totalAmount > 0) {
+                    totalAmount -= price; // Trừ giá của sản phẩm đã xóa khỏi totalAmount
+                    cartRef.child("totalAmount").setValue(totalAmount);
 
+                    // Nếu totalAmount âm
+                    if (totalAmount < 0) {
+                        totalAmount = 0;
+                        cartRef.child("totalAmount").setValue(totalAmount);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     public void getTotal(String userID, OnSuccessListener<Double> onSuccessListener) {
         cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -306,9 +316,5 @@ public class ManagementCart {
             }
         });
     }
-
-
-
-
 
 }

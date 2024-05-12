@@ -26,9 +26,8 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
     private int selectedPosition = -1;
     private List<NestedAdapterWithButton> nestedAdapters;
 
-    public NestedAdapterWithButton(List<PaymentItem> mList, List<NestedAdapterWithButton> nestedAdapters){
+    public NestedAdapterWithButton(List<PaymentItem> mList){
         this.mList = mList;
-        this.nestedAdapters = nestedAdapters;
     }
 
     @NonNull

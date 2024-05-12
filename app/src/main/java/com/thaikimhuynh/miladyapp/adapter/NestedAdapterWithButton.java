@@ -23,6 +23,7 @@ import java.util.List;
 
 public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterWithButton.NestedViewHolder> {
     private List<PaymentItem> mList;
+    private int selectedPosition = -1;
 
     public NestedAdapterWithButton(List<PaymentItem> mList){
         this.mList = mList;
@@ -45,24 +46,29 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
         Glide.with(holder.itemView.getContext())
                 .load(imageUrl)
                 .into(holder.wallet_logo);
-        boolean isSelected = paymentItem.isSelected();
-        if (isSelected){
+
+        // Check if this item is selected or not
+        if (selectedPosition == position) {
             holder.selectButton.setImageResource(R.mipmap.selected_button);
-        }
-        else{
+        } else {
             holder.selectButton.setImageResource(R.mipmap.select_button);
         }
+
         holder.selectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                paymentItem.setSelected(!paymentItem.isSelected());
-                notifyItemChanged(holder.getAdapterPosition());
-
-
+                if (selectedPosition != position) {
+                    // If another button is selected, deselect it
+                    int previouslySelectedPosition = selectedPosition;
+                    selectedPosition = position;
+                    notifyItemChanged(previouslySelectedPosition);
+                } else {
+                    // If the same button is clicked again, deselect it
+                    selectedPosition = -1;
+                }
+                notifyItemChanged(position);
             }
         });
-
-
     }
 
     @Override
@@ -74,14 +80,11 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
         private TextView nameEwallet, name, phoneNumber;
         private ImageView wallet_logo, selectButton;
 
-
-
         public NestedViewHolder(@NonNull View itemView) {
             super(itemView);
             phoneNumber = itemView.findViewById(R.id.tv_phonenumber_cart);
             wallet_logo = itemView.findViewById(R.id.img_ewallet_cart);
             selectButton = itemView.findViewById(R.id.select_button_cart);
-
         }
     }
 }

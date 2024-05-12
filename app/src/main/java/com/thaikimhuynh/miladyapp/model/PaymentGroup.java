@@ -7,11 +7,13 @@ public class PaymentGroup {
     private List<PaymentItem> itemList;
     private String itemText;
     private boolean isExpandable;
+    int selectedItemPosition;
 
     public PaymentGroup(List<PaymentItem> itemList, String itemText) {
         this.itemList = itemList;
         this.itemText = itemText;
         isExpandable = false;
+        selectedItemPosition = -1;
     }
 
     public List<PaymentItem> getItemList() {
@@ -36,5 +38,13 @@ public class PaymentGroup {
 
     public void setExpandable(boolean expandable) {
         isExpandable = expandable;
+    }
+
+    public int getSelectedItemPosition() {
+        return selectedItemPosition;
+    }
+
+    public void setSelectedItemPosition(int selectedItemPosition) {
+        this.selectedItemPosition = selectedItemPosition;
     }
 }

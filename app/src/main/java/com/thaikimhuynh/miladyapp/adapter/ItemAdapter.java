@@ -57,6 +57,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         holder.nestedRecyclerView.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
         holder.nestedRecyclerView.setHasFixedSize(true);
         holder.nestedRecyclerView.setAdapter(adapter);
+  
         holder.arrow_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

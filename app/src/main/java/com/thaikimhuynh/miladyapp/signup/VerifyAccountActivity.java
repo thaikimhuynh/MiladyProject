@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.login.LoginActivity;
+import com.thaikimhuynh.miladyapp.profile.MyProfileActivity;
 
 import java.util.Random;
 
@@ -112,7 +113,7 @@ public class VerifyAccountActivity extends AppCompatActivity {
 
         // Lưu thông tin người dùng vào cơ sở dữ liệu Firebase
         DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("User");
-        usersRef.child(id).setValue(helperClass);
+        usersRef.child(phoneNumber).setValue(helperClass);
     }
 
     private String generateRandomItemId() {

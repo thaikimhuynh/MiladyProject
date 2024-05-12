@@ -18,19 +18,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.model.PaymentGroup;
 import com.thaikimhuynh.miladyapp.model.PaymentItem;
+import com.thaikimhuynh.miladyapp.model.SharedViewModel;
 import com.thaikimhuynh.miladyapp.payment.AddNewWalletActivity;
 import com.thaikimhuynh.miladyapp.payment.WalletInformationActivity;
 
 import java.util.List;
-
-public class ItemWithButtonAdapter extends RecyclerView.Adapter<ItemWithButtonAdapter.ItemWithButtonViewHolder> {
+public class ItemWithButtonAdapter extends RecyclerView.Adapter<ItemWithButtonAdapter.ItemWithButtonViewHolder>  {
     private List<PaymentGroup> mList;
     private List<PaymentItem> item_list;
     public ItemWithButtonAdapter(Context mContext, List<PaymentGroup> mList){
         this.mList = mList;
-
-
     }
+
     @NonNull
     @Override
     public ItemWithButtonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -54,11 +53,36 @@ public class ItemWithButtonAdapter extends RecyclerView.Adapter<ItemWithButtonAd
         else{
             holder.arrow_btn.setImageResource(R.mipmap.ic_arrow_down);
         }
+        holder.itemView.setTag(position);
+
 
         NestedAdapterWithButton adapter = new NestedAdapterWithButton(item_list);
         holder.nestedRecyclerView.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
         holder.nestedRecyclerView.setHasFixedSize(true);
         holder.nestedRecyclerView.setAdapter(adapter);
+        adapter.setNestedAdapterListener(new NestedAdapterWithButton.NestedAdapterListener() {
+            @Override
+            public void onItemClicked(int position_v, int tag_v) {
+                // Handle the clicked item in the parent adapter
+                // You can use the position and tag values here
+                PaymentGroup group = mList.get(tag_v);
+                group.setSelectedItemPosition(position_v);
+                for (int i = 0; i < mList.size(); i++) {
+                    if (i != tag_v) {
+                        PaymentGroup currentItem = mList.get(i);
+                        if (currentItem.getSelectedItemPosition() != -1)
+                        {
+                            currentItem.setSelectedItemPosition(-1);
+                            currentItem.getItemList().get(i).setSelected(false);
+                        }
+                        }
+                    }
+
+
+
+                    }
+        });
+
         holder.arrow_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

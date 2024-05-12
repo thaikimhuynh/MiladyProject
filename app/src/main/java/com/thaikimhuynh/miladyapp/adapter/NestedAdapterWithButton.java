@@ -14,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.thaikimhuynh.miladyapp.R;
+import com.thaikimhuynh.miladyapp.model.PaymentGroup;
 import com.thaikimhuynh.miladyapp.model.PaymentItem;
 import com.thaikimhuynh.miladyapp.model.Product;
+import com.thaikimhuynh.miladyapp.model.SharedViewModel;
 import com.thaikimhuynh.miladyapp.payment.WalletInformationActivity;
 import com.thaikimhuynh.miladyapp.product.ProductDetailActivity;
 
@@ -23,23 +25,27 @@ import java.util.List;
 
 public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterWithButton.NestedViewHolder> {
     private List<PaymentItem> mList;
+    private NestedAdapterListener mListener;
+
     private int selectedPosition = -1;
-    private List<NestedAdapterWithButton> nestedAdapters;
 
-    public NestedAdapterWithButton(List<PaymentItem> mList, List<NestedAdapterWithButton> nestedAdapters){
+    public NestedAdapterWithButton(List<PaymentItem> mList){
         this.mList = mList;
-        this.nestedAdapters = nestedAdapters;
     }
-
+    public void setNestedAdapterListener(NestedAdapterListener listener) {
+        this.mListener = listener;
+    }
     @NonNull
     @Override
     public NestedAdapterWithButton.NestedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_payment_item_card, parent, false);
         return new NestedViewHolder(view);
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull NestedAdapterWithButton.NestedViewHolder holder, int position) {
+
         PaymentItem paymentItem = mList.get(position);
         holder.phoneNumber.setText(paymentItem.getPhoneNumber());
         String imageUrl = paymentItem.getImg_logo();
@@ -53,29 +59,39 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
         } else {
             holder.selectButton.setImageResource(R.mipmap.select_button);
         }
+        if (! paymentItem.isSelected())
+        {
+           holder.selectButton.setImageResource(R.mipmap.select_button);
+        }
 
         holder.selectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                deselectCurrentCategory();
+                int tag = (int) holder.itemView.getTag();
+                mListener.onItemClicked(position, tag);
+
+            }
+
+
+
+            private void deselectCurrentCategory() {
                 if (selectedPosition != position) {
                     // If another button is selected, deselect it
                     int previouslySelectedPosition = selectedPosition;
                     selectedPosition = position;
-                    notifyAllAdapters(previouslySelectedPosition);
+                    PaymentItem paymentItem1 = mList.get(position);
+                    paymentItem1.setSelected(true);
+                    notifyItemChanged(previouslySelectedPosition);
+
                 } else {
                     // If the same button is clicked again, deselect it
                     selectedPosition = -1;
-                    notifyAllAdapters(position);
                 }
+                notifyItemChanged(position);
+
             }
         });
-    }
-
-    private void notifyAllAdapters(int position) {
-        for (NestedAdapterWithButton adapter : nestedAdapters) {
-            adapter.setSelectedPosition(position);
-            adapter.notifyDataSetChanged();
-        }
     }
 
     @Override
@@ -83,8 +99,8 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
         return mList.size();
     }
 
-    public class NestedViewHolder extends RecyclerView.ViewHolder{
-        private TextView phoneNumber;
+    public class NestedViewHolder extends  RecyclerView.ViewHolder{
+        private TextView nameEwallet, name, phoneNumber;
         private ImageView wallet_logo, selectButton;
 
         public NestedViewHolder(@NonNull View itemView) {
@@ -92,10 +108,12 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
             phoneNumber = itemView.findViewById(R.id.tv_phonenumber_cart);
             wallet_logo = itemView.findViewById(R.id.img_ewallet_cart);
             selectButton = itemView.findViewById(R.id.select_button_cart);
-        }
-    }
 
-    public void setSelectedPosition(int position) {
-        selectedPosition = position;
+        }
+
+    }
+    // Interface for communication with the parent adapter
+    public interface NestedAdapterListener {
+        void onItemClicked(int position, int tag);
     }
 }

@@ -7,24 +7,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import androidx.activity.EdgeToEdge;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.thaikimhuynh.miladyapp.helpers.ChangeNumberItemListener;
 import com.thaikimhuynh.miladyapp.adapter.CartAdapter;
 import com.thaikimhuynh.miladyapp.checkout.CheckOutActivity;
 import com.thaikimhuynh.miladyapp.databinding.FragmentCartBinding;
-import com.thaikimhuynh.miladyapp.helpers.ChangeNumberItemListener;
 import com.thaikimhuynh.miladyapp.helpers.ManagementCart;
 import com.thaikimhuynh.miladyapp.model.Product;
 
 import java.util.ArrayList;
 
-public class CartFragment extends Fragment {
+public class CartFragment extends Fragment implements ChangeNumberItemListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -116,7 +112,7 @@ public class CartFragment extends Fragment {
         managementCart.getListCart(new OnSuccessListener<ArrayList<Product>>() {
             @Override
             public void onSuccess(ArrayList<Product> cartItems) {
-                Cartadapter = new CartAdapter(cartItems, requireContext(), new ChangeNumberItemListener() {
+                Cartadapter = new CartAdapter(cartItems, requireContext(), CartFragment.this, new ChangeNumberItemListener() {
                     @Override
                     public void change() {
 
@@ -140,12 +136,22 @@ public class CartFragment extends Fragment {
             public void onSuccess(Double total) {
                 binding.txtCartPrice.setText("$" + String.valueOf(total));
             }
+
         });
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void change() {
+        calculateCart();
+    }
+    public void updateCart() {
+        loadCartItem();
     }
 }

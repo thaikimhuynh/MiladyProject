@@ -104,11 +104,11 @@ public class VerifyAccountActivity extends AppCompatActivity {
         String phoneNumber = getIntent().getStringExtra("phoneNumber");
         String email = getIntent().getStringExtra("email");
         String password = getIntent().getStringExtra("password");
+        String name = getIntent().getStringExtra("name");
         String id  = generateRandomItemId();
+        HelperClass helperClass= new HelperClass(phoneNumber,email,password,id,name);
 
 
-        // Tạo một đối tượng User từ thông tin nhập vào
-        HelperClass helperClass= new HelperClass(phoneNumber,email,password,id);
 
         // Lưu thông tin người dùng vào cơ sở dữ liệu Firebase
         DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("User");

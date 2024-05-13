@@ -24,6 +24,7 @@ import java.util.List;
 public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterWithButton.NestedViewHolder> {
     private List<PaymentItem> mList;
     private int selectedPosition = -1;
+    private List<NestedAdapterWithButton> nestedAdapters;
 
     public NestedAdapterWithButton(List<PaymentItem> mList){
         this.mList = mList;
@@ -34,12 +35,10 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
     public NestedAdapterWithButton.NestedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_payment_item_card, parent, false);
         return new NestedViewHolder(view);
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull NestedAdapterWithButton.NestedViewHolder holder, int position) {
-
         PaymentItem paymentItem = mList.get(position);
         holder.phoneNumber.setText(paymentItem.getPhoneNumber());
         String imageUrl = paymentItem.getImg_logo();
@@ -61,14 +60,21 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
                     // If another button is selected, deselect it
                     int previouslySelectedPosition = selectedPosition;
                     selectedPosition = position;
-                    notifyItemChanged(previouslySelectedPosition);
+                    notifyAllAdapters(previouslySelectedPosition);
                 } else {
                     // If the same button is clicked again, deselect it
                     selectedPosition = -1;
+                    notifyAllAdapters(position);
                 }
-                notifyItemChanged(position);
             }
         });
+    }
+
+    private void notifyAllAdapters(int position) {
+        for (NestedAdapterWithButton adapter : nestedAdapters) {
+            adapter.setSelectedPosition(position);
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -76,8 +82,8 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
         return mList.size();
     }
 
-    public class NestedViewHolder extends  RecyclerView.ViewHolder{
-        private TextView nameEwallet, name, phoneNumber;
+    public class NestedViewHolder extends RecyclerView.ViewHolder{
+        private TextView phoneNumber;
         private ImageView wallet_logo, selectButton;
 
         public NestedViewHolder(@NonNull View itemView) {
@@ -86,5 +92,9 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
             wallet_logo = itemView.findViewById(R.id.img_ewallet_cart);
             selectButton = itemView.findViewById(R.id.select_button_cart);
         }
+    }
+
+    public void setSelectedPosition(int position) {
+        selectedPosition = position;
     }
 }

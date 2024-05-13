@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -11,6 +12,7 @@ import com.thaikimhuynh.miladyapp.R;
 
 public class AddNewWalletActivity extends AppCompatActivity {
     TextView page_title, ewallet_name, phoneNumber;
+    EditText edt_username, edt_phoneNumber;
     Spinner spinnerEWalletName;
 
     @Override
@@ -25,6 +27,11 @@ public class AddNewWalletActivity extends AppCompatActivity {
         } else {
             populateSpinnerForLayout1();
         }
+        getInfo();
+    }
+
+    private void getInfo() {
+
     }
 
     private void addViews() {
@@ -32,12 +39,16 @@ public class AddNewWalletActivity extends AppCompatActivity {
         ewallet_name = findViewById(R.id.tv_ewall);
         phoneNumber = findViewById(R.id.tv_phoneNumber_add);
         spinnerEWalletName = findViewById(R.id.spinnerEWalletName);
+        edt_username = findViewById(R.id.edtCusName);
+        edt_phoneNumber = findViewById(R.id.edtPhoneNumber_add)
+;
     }
 
     private void resetText() {
         page_title.setText("Add new Banking");
         ewallet_name.setText("Banking name");
         phoneNumber.setText("Account Number");
+
     }
 
     private void populateSpinnerForLayout1() {

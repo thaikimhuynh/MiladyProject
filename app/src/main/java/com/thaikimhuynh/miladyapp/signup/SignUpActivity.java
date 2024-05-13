@@ -80,6 +80,7 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 }
                 Email = edtEmail.getText().toString();
+                FullName=edtFullName.getText().toString();
                 Password = edtPassword.getText().toString();
                 checkPhoneNumberExist(phoneNumber);
 

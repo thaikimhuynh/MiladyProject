@@ -40,7 +40,7 @@ public class VerifyAccountActivity extends AppCompatActivity {
     }
 
     private void addView() {
-        edtCode = findViewById(R.id.edtCode);
+        edtCode = findViewById(R.id.edtPhoneNumber_Ewallet);
         btn = findViewById(R.id.btn);
         txtMessageError=findViewById(R.id.txtMessageError);
         // Nhận verificationId từ Intent

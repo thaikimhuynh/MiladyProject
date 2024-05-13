@@ -27,10 +27,10 @@
             android:exported="false" />
         <activity
             android:name=".MyWalletActivity"
-            android:exported="true"></activity>
+            android:exported="false"/>
         <activity
             android:name=".payment.WalletInformationActivity"
-            android:exported="true"></activity>
+            android:exported="false"/>
         <activity
             android:name=".ProductListActivity"
             android:exported="false" />
@@ -69,16 +69,16 @@
             android:exported="false" />
         <activity
             android:name=".forgotpassword.ForgotPasswordActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".signup.VerifyAccountActivity"
             android:exported="false" />
         <activity
             android:name=".signup.SignUpActivity"
-            android:exported="true"></activity>
+            android:exported="false"/>
         <activity
             android:name=".login.WelcomeActivity"
-            android:exported="true"></activity>
+            android:exported="false"/>
         <activity
             android:name=".login.LoginActivity"
             android:exported="true">
@@ -93,7 +93,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="false"/>
         <activity
             android:name=".WishListActivity"
             android:exported="false" />

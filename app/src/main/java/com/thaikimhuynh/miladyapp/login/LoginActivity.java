@@ -3,9 +3,12 @@ package com.thaikimhuynh.miladyapp.login;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.MainActivity;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.admin.AdminProductManagementActivity;
+import com.thaikimhuynh.miladyapp.product.ProductDetailActivity;
 import com.thaikimhuynh.miladyapp.signup.SignUpActivity;
 
 import java.util.Objects;
@@ -28,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText edtPhoneNumber, edtPassword;
     Button btnLogin;
     TextView txtForgotPassWord, txtSignUp;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin=findViewById(R.id.btnLogin);
         txtForgotPassWord=findViewById(R.id.txtForgotPassWord);
         txtSignUp = findViewById(R.id.txtSignUp);
+        sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,8 +116,13 @@ public class LoginActivity extends AppCompatActivity {
                                String PasswordFromDB= snapshot.child(UserPhoneNumber).child("password").getValue(String.class);
                                if (Objects.equals(PasswordFromDB,UserPassWord)){
                                    edtPhoneNumber.setError(null);
+                                   String UserId= snapshot.child(UserPhoneNumber).child("id").getValue(String.class);
                                    Intent intent= new Intent(LoginActivity.this, MainActivity.class);
-                                   startActivity(intent);
+                                   SharedPreferences.Editor editor = sharedPreferences.edit();
+                                   editor.putString("userID", UserId);
+                                   editor.putBoolean("isLoggedIn", true);
+                                   editor.apply();                                   startActivity(intent);
+
                                }else {
                                    edtPassword.setError("Wrong password or phone number!");
                                    edtPassword.requestFocus();

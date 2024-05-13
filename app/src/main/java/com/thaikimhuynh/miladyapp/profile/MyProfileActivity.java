@@ -60,9 +60,10 @@ public class MyProfileActivity extends AppCompatActivity {
                     String emailfromDB = snapshot.child(userPhoneNumber).child("email").getValue(String.class);
                     String phonenumberfromDB = snapshot.child(userPhoneNumber).child("phoneNumber").getValue(String.class);
                     Intent intent= new Intent(MyProfileActivity.this, ChangeMyProfileActivity.class);
+                    intent.putExtra("name",namefromDB);
+                    intent.putExtra("email",emailfromDB);
+                    intent.putExtra("phoneNumber",phonenumberfromDB);
                     startActivity(intent);
-
-
                 }
             }
 

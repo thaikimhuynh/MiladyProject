@@ -62,19 +62,19 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.txtSize.setText(cart.getProductSize());
         holder.txtItemId.setText(cart.getGetItemId());
         Glide.with(context).load(cart.getPicUrls().get(0)).transform(new CenterCrop()).into(holder.imvProduct);
-        holder.btnClear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String itemId = cart.getGetItemId();
-                ManagementCart managementCart = new ManagementCart(context);
-                managementCart.removeProductFromCart(itemId, new ChangeNumberItemListener() {
-                    @Override
-                    public void change() {
-                        notifyDataSetChanged();
-                    }
-                });
-            }
-        });
+//        holder.btnClear.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String itemId = cart.getGetItemId();
+//                ManagementCart managementCart = new ManagementCart(context);
+//                managementCart.removeProductFromCart(itemId, new ChangeNumberItemListener() {
+//                    @Override
+//                    public void change() {
+//                        notifyDataSetChanged();
+//                    }
+//                });
+//            }
+//        });
 
 
         holder.imgPlus.setOnClickListener(new View.OnClickListener() {

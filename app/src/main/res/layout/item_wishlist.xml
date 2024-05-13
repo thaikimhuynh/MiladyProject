@@ -8,14 +8,14 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="82dp"
-        android:layout_height="wrap_content"
+        android:layout_width="76dp"
+        android:layout_height="94dp"
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView15"
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:id="@+id/imgProduct"
+            android:layout_width="76dp"
+            android:layout_height="94dp"
             android:src="@mipmap/ic_imgshoes" />
 
     </LinearLayout>
@@ -24,59 +24,63 @@
         android:layout_width="326dp"
         android:layout_height="110dp">
 
-        <TextView
-            android:id="@+id/id_order"
-            android:layout_width="110dp"
-            android:layout_height="21dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="8dp"
-            android:text="P_01"
-            app:layout_constraintBottom_toTopOf="@+id/name_user_order"
-            app:layout_constraintStart_toStartOf="parent"
-            android:fontFamily="@font/noto_sans_font"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/name_user_order"
+            android:id="@+id/txtProductName"
             android:layout_width="109dp"
             android:layout_height="22dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="16dp"
-            android:text="Crystal Heels"
-            app:layout_constraintBottom_toTopOf="@+id/stock"
             android:fontFamily="@font/noto_sans_font"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:text="Crystal Heels"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/txtPrice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/stock"
+            android:id="@+id/txtPrice"
             android:layout_width="96dp"
             android:layout_height="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/noto_sans_font"
             android:gravity="bottom"
-            android:text="Stock"
-            android:fontFamily="@font/noto_sans_font"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:text="$40"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtProductName" />
 
-        <TextView
-
-            android:id="@+id/buttonPoints"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginEnd="16dp"
-            android:layout_gravity="bottom"
-            android:background="@drawable/rounded_pink_primary_radius_rec"
-            android:text="Add to Carts"
-            android:fontFamily="@font/noto_sans_font"
-
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAddToCart"
+            android:layout_width="81dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="36dp"
+            android:background="@drawable/rounded_pink_button_background"
+            android:text="Add To Cart"
+            android:textSize="10dp"
             android:textColor="@color/white"
-            android:layout_marginBottom="2dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.93"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="139dp"
+            android:layout_marginBottom="10dp"
+            android:src="@mipmap/ic_bin"
+            app:layout_constraintBottom_toTopOf="@+id/btnAddToCart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/txtProductName"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.196" />
 
-            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

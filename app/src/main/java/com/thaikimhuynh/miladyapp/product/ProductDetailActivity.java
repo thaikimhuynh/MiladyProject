@@ -156,18 +156,20 @@ public class ProductDetailActivity extends AppCompatActivity {
             }
         });
     }
+    private String getUserId() {
+        SharedPreferences sharedPreferences = getSharedPreferences("user_session", MODE_PRIVATE);
+        return sharedPreferences.getString("user_id", "");
+    }
 
     private void addTocart() {
-
-            SharedPreferences sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
-            String userID = sharedPreferences.getString("userID", "");
-            Product product = (Product) getIntent().getSerializableExtra("product");
+        String userId = getUserId();
+        Product product = (Product) getIntent().getSerializableExtra("product");
             if (product != null && product.getTitle() != null) {
                 product.setNumberInCart(quantity);
                 product.setProductSize(selectedSize);
                 product.setGetItemId(String.valueOf(itemId));
 
-                managementCart.insertProduct(product, userID,itemId);
+                managementCart.insertProduct(product, userId,itemId);
                 Toast.makeText(ProductDetailActivity.this, "Product added to cart", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(ProductDetailActivity.this, "Product not available", Toast.LENGTH_SHORT).show();

@@ -1,5 +1,7 @@
 package com.thaikimhuynh.miladyapp.adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
@@ -60,9 +62,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.txtItemId.setVisibility(View.GONE);
         Glide.with(context).load(cart.getPicUrls().get(0)).transform(new CenterCrop()).into(holder.imvProduct);
         holder.imgClear.setOnClickListener(v -> {
-            SharedPreferences sharedPreferences = context.getSharedPreferences("login", Context.MODE_PRIVATE);
-            String userID = sharedPreferences.getString("userID", "");
-            managementCart.removeProductFromCart(itemId, userID, () -> {
+            String userId = getUserId();
+            managementCart.removeProductFromCart(itemId, userId, () -> {
                 removeItem(itemId);
                 notifyDataSetChanged();
                 if (cartFragment != null) {
@@ -72,6 +73,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             });
         });
     }
+
+    private String getUserId() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("user_session", MODE_PRIVATE);
+        return sharedPreferences.getString("user_id", "");
+    }
+
 
     public void removeItem(String itemId) {
         for (int i = 0; i < carts.size(); i++) {

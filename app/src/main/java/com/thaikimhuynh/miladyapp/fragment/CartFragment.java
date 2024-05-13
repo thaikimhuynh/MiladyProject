@@ -106,8 +106,8 @@ public class CartFragment extends Fragment implements ChangeNumberItemListener {
         binding.recyclerCart.setLayoutManager(layoutManager);
 
 
-        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("login", Context.MODE_PRIVATE);
-        String userID = sharedPreferences.getString("userID", "");
+        String userId = getUserId();
+
 
         managementCart.getListCart(new OnSuccessListener<ArrayList<Product>>() {
             @Override
@@ -124,14 +124,17 @@ public class CartFragment extends Fragment implements ChangeNumberItemListener {
 
                 calculateCart();
             }
-        }, userID); // Pass userID to getListCart method
+        }, userId); // Pass userID to getListCart method
+    }
+    private String getUserId() {
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("user_session", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("user_id", "");
     }
 
     private void calculateCart() {
-        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("login", Context.MODE_PRIVATE);
-        String userID = sharedPreferences.getString("userID", "");
+        String userId = getUserId();
 
-        managementCart.getTotal(userID, new OnSuccessListener<Double>() {
+        managementCart.getTotal(userId, new OnSuccessListener<Double>() {
             @Override
             public void onSuccess(Double total) {
                 binding.txtCartPrice.setText("$" + String.valueOf(total));

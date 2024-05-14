@@ -39,7 +39,14 @@ public class MyWalletActivity extends AppCompatActivity {
         mbase_2 = FirebaseDatabase.getInstance().getReference("PaymentMethod");
         mbase_1 = FirebaseDatabase.getInstance().getReference("PaymentAccount");
 
+
         loadPaymentMethod(userId);
+        loadCategoryId();
+
+    }
+
+    private void loadCategoryId() {
+        DatabaseReference mbase_3 = FirebaseDatabase.getInstance().getReference("Items");
 
     }
 

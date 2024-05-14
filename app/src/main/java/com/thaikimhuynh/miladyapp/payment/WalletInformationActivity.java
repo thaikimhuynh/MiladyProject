@@ -23,6 +23,7 @@ public class WalletInformationActivity extends AppCompatActivity {
     TextView ewallet_name, user_name, phoneNumber, pageTitle, tvName, tvphoneNumber;
     ImageView logoImageView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

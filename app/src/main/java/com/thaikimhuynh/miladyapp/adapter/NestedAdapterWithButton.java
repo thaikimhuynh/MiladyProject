@@ -1,7 +1,5 @@
 package com.thaikimhuynh.miladyapp.adapter;
 
-import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.thaikimhuynh.miladyapp.R;
-import com.thaikimhuynh.miladyapp.model.PaymentGroup;
 import com.thaikimhuynh.miladyapp.model.PaymentItem;
-import com.thaikimhuynh.miladyapp.model.Product;
-import com.thaikimhuynh.miladyapp.model.SharedViewModel;
-import com.thaikimhuynh.miladyapp.payment.WalletInformationActivity;
-import com.thaikimhuynh.miladyapp.product.ProductDetailActivity;
 
 import java.util.List;
 
@@ -28,6 +21,7 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
     private NestedAdapterListener mListener;
 
     private int selectedPosition = -1;
+    private int tag;
 
     public NestedAdapterWithButton(List<PaymentItem> mList){
         this.mList = mList;
@@ -35,6 +29,15 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
     public void setNestedAdapterListener(NestedAdapterListener listener) {
         this.mListener = listener;
     }
+    public void setData(int tag) {
+        this.tag = tag;
+    }
+    public int getData() {
+        return tag;
+    }
+
+
+
     @NonNull
     @Override
     public NestedAdapterWithButton.NestedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -62,14 +65,20 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
         if (! paymentItem.isSelected())
         {
            holder.selectButton.setImageResource(R.mipmap.select_button);
+        } else
+        {
+            holder.selectButton.setImageResource(R.mipmap.selected_button);
         }
 
         holder.selectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 deselectCurrentCategory();
-                int tag = (int) holder.itemView.getTag();
-                mListener.onItemClicked(position, tag);
+                int tag = getData();
+                Log.d("Tag", tag + "");
+                Log.d("Adapter Position", holder.getAdapterPosition() + "");
+                mListener.onItemClicked(holder.getAdapterPosition(), tag);
+
 
             }
 
@@ -80,8 +89,18 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
                     // If another button is selected, deselect it
                     int previouslySelectedPosition = selectedPosition;
                     selectedPosition = position;
-                    PaymentItem paymentItem1 = mList.get(position);
+                    PaymentItem paymentItem1 = mList.get(selectedPosition);
                     paymentItem1.setSelected(true);
+                    for (int i = 0; i < mList.size(); i++) {
+                        if (i != selectedPosition) {
+                            PaymentItem currentItem = mList.get(i);
+                            if (currentItem.isSelected())
+                            {
+                                currentItem.setSelected(false);
+                            }
+                        }
+                    }
+                    notifyItemChanged(position);
                     notifyItemChanged(previouslySelectedPosition);
 
                 } else {

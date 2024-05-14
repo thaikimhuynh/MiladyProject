@@ -1,7 +1,9 @@
 package com.thaikimhuynh.miladyapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,27 +55,37 @@ public class ItemWithButtonAdapter extends RecyclerView.Adapter<ItemWithButtonAd
         else{
             holder.arrow_btn.setImageResource(R.mipmap.ic_arrow_down);
         }
-        holder.itemView.setTag(position);
+
+        List<PaymentItem> item_list = groupmodel.getItemList();
 
 
         NestedAdapterWithButton adapter = new NestedAdapterWithButton(item_list);
+
+        adapter.setData(position);
+
         holder.nestedRecyclerView.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
         holder.nestedRecyclerView.setHasFixedSize(true);
         holder.nestedRecyclerView.setAdapter(adapter);
         adapter.setNestedAdapterListener(new NestedAdapterWithButton.NestedAdapterListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onItemClicked(int position_v, int tag_v) {
                 // Handle the clicked item in the parent adapter
-                // You can use the position and tag values here
                 PaymentGroup group = mList.get(tag_v);
+
                 group.setSelectedItemPosition(position_v);
                 for (int i = 0; i < mList.size(); i++) {
                     if (i != tag_v) {
                         PaymentGroup currentItem = mList.get(i);
                         if (currentItem.getSelectedItemPosition() != -1)
                         {
+                            currentItem.getItemList().get(currentItem.getSelectedItemPosition()).setSelected(false);
                             currentItem.setSelectedItemPosition(-1);
-                            currentItem.getItemList().get(i).setSelected(false);
+                            // Notify the adapter of the change
+                            notifyItemChanged(i);
+
+
+
                         }
                         }
                     }
@@ -87,7 +99,6 @@ public class ItemWithButtonAdapter extends RecyclerView.Adapter<ItemWithButtonAd
             @Override
             public void onClick(View v) {
                 groupmodel.setExpandable(!groupmodel.isExpandable());
-                item_list = groupmodel.getItemList();
                 notifyItemChanged(holder.getAdapterPosition());
 
 
@@ -125,6 +136,7 @@ public class ItemWithButtonAdapter extends RecyclerView.Adapter<ItemWithButtonAd
         private RelativeLayout nestedLayout;
         private RecyclerView nestedRecyclerView;
         private Button btn_add;
+
 
         public ItemWithButtonViewHolder(@NonNull View itemView) {
             super(itemView);

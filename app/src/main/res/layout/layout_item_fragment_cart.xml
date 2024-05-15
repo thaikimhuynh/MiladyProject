@@ -9,6 +9,8 @@
         android:id="@+id/constraintLayout"
         android:layout_width="83dp"
         android:layout_height="101dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rounded_pink_forth_rectagle_radius"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,15 +27,15 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/txtProducttNameCart"
+        android:id="@+id/txtProductNameCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="16dp"
-        android:text="Title"
-        android:textSize="16sp"
-        android:textColor="@color/black"
         android:fontFamily="@font/noto_sans_font"
+        android:text="Title"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.01"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
@@ -44,68 +46,79 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:text="25"
-        android:textSize="16sp"
         android:fontFamily="@font/noto_sans_font"
+        android:text="25"
         android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/txtProducttNameCart" />
+        app:layout_constraintTop_toBottomOf="@+id/txtProductNameCart" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="220dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.783"
+        app:layout_constraintHorizontal_bias="0.744"
         app:layout_constraintStart_toEndOf="@+id/txtProductPriceCart"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnMinus"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="7dp"
-            android:background="@drawable/rounded_circle_size_button"
-            android:paddingEnd="0.5dp"
-            android:paddingBottom="10dp"
-            android:text="-"
-            android:textAlignment="center"
-            android:textColor="@color/pink_primary"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/txtQuantity"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnPlus"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/rounded_circle_size_button"
-            android:text="+"
-            android:textColor="@color/pink_primary"
-            android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/txtQuantity"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txtQuantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="01"
-            android:textColor="@color/pink_primary"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/btnPlus"
-            app:layout_constraintHorizontal_bias="0.375"
-            app:layout_constraintStart_toEndOf="@+id/btnMinus"
-            app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="305dp"
+        android:layout_height="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="121dp" />
+
+    <TextView
+        android:id="@+id/txtSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/noto_sans_font"
+        android:text="38"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/txtProductPriceCart"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txtitemID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/space"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/txtQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="64dp"
+        android:fontFamily="@font/noto_sans_font"
+        android:text="1"
+        android:textColor="@color/pink_primary"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.511" />
+
+    <ImageView
+        android:id="@+id/imgClear"
+        android:layout_width="26dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintStart_toEndOf="@+id/txtProductNameCart"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_delete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

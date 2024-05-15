@@ -9,8 +9,37 @@ public class Product implements Serializable {
     private double price;
     private String categoryId;
     private List<String> picUrls;
-private String productId;
-private String description;
+    private String productId;
+    private String userId;
+    private String getItemId;
+
+    private String description;
+    int numberInCart;
+    private String productSize;
+
+    public String getGetItemId() {
+        return getItemId;
+    }
+
+    public void setGetItemId(String getItemId) {
+        this.getItemId = getItemId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getProductSize() {
+        return productSize;
+    }
+
+    public void setProductSize(String productSize) {
+        this.productSize = productSize;
+    }
 
     public String getDescription() {
         return description;
@@ -30,6 +59,14 @@ private String description;
         this.productId = productId;
     }
 
+
+    public Product(int numberInCart) {
+        this.numberInCart = numberInCart;
+    }
+
+    public Product(String productSize) {
+        this.productSize = productSize;
+    }
 
     public Product(String title, double price, String categoryId, List<String> picUrls, String productId, String description) {
         this.title = title;
@@ -51,7 +88,13 @@ private String description;
         this.title = title;
     }
 
+    public int getNumberInCart() {
+        return numberInCart;
+    }
 
+    public void setNumberInCart(int numberInCart) {
+        this.numberInCart = numberInCart;
+    }
 
     public double getPrice() {
         return price;

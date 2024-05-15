@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edtAccNumber" />
 
     <EditText
-        android:id="@+id/edtCode"
+        android:id="@+id/edtPhoneNumber_Ewallet"
         android:layout_width="356dp"
         android:layout_height="49dp"
         android:layout_marginTop="45dp"
@@ -112,15 +112,15 @@
         android:id="@+id/imageView9"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_ewallTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.13"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView8"
+        app:layout_constraintTop_toTopOf="@+id/tv_ewallTitle"
         app:srcCompat="@mipmap/ic_back" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/tv_ewallTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -157,7 +157,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/tv_phoneNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Account number"
@@ -177,7 +177,7 @@
         app:layout_constraintEnd_toEndOf="@+id/edtExpireDate"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edtExpireDate"
-        app:layout_constraintTop_toBottomOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/tv_phoneNum"
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
@@ -196,10 +196,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Code"
-        app:layout_constraintBottom_toTopOf="@+id/edtCode"
-        app:layout_constraintEnd_toEndOf="@+id/edtCode"
+        app:layout_constraintBottom_toTopOf="@+id/edtPhoneNumber_Ewallet"
+        app:layout_constraintEnd_toEndOf="@+id/edtPhoneNumber_Ewallet"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtCode"
+        app:layout_constraintStart_toStartOf="@+id/edtPhoneNumber_Ewallet"
         app:layout_constraintTop_toBottomOf="@+id/textView10"
         app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

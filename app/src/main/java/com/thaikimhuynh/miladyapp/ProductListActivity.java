@@ -53,10 +53,6 @@ public class ProductListActivity extends AppCompatActivity {
 
 
 
-
-
-
-
     }
 
     private void loadProducts(String categoryID) {

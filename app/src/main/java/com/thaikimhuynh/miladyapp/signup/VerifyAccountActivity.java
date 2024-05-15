@@ -22,7 +22,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.login.LoginActivity;
-import com.thaikimhuynh.miladyapp.HelperClass;
+import com.thaikimhuynh.miladyapp.profile.MyProfileActivity;
+
+import java.util.Random;
 
 public class VerifyAccountActivity extends AppCompatActivity {
     private EditText edtCode;
@@ -31,7 +33,6 @@ public class VerifyAccountActivity extends AppCompatActivity {
     private TextView txtMessageError;
     private FirebaseAuth mAuth;
     private String phoneNumber;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +41,7 @@ public class VerifyAccountActivity extends AppCompatActivity {
     }
 
     private void addView() {
-        edtCode = findViewById(R.id.edtCode);
+        edtCode = findViewById(R.id.edtPhoneNumber_Ewallet);
         btn = findViewById(R.id.btn);
         txtMessageError=findViewById(R.id.txtMessageError);
         // Nhận verificationId từ Intent
@@ -104,12 +105,19 @@ public class VerifyAccountActivity extends AppCompatActivity {
         String phoneNumber = getIntent().getStringExtra("phoneNumber");
         String email = getIntent().getStringExtra("email");
         String password = getIntent().getStringExtra("password");
+        String name = getIntent().getStringExtra("name");
+        String id  = generateRandomItemId();
+        HelperClass helperClass= new HelperClass(phoneNumber,email,password,id,name);
 
-        // Tạo một đối tượng User từ thông tin nhập vào
-        HelperClass helperClass= new HelperClass(phoneNumber, email, password);
+
 
         // Lưu thông tin người dùng vào cơ sở dữ liệu Firebase
         DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("User");
         usersRef.child(phoneNumber).setValue(helperClass);
+    }
+
+    private String generateRandomItemId() {
+        int randomId = new Random().nextInt(Integer.MAX_VALUE) + 1;
+        return String.valueOf(randomId);
     }
 }

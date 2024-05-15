@@ -3,13 +3,16 @@ package com.thaikimhuynh.miladyapp.login;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText edtPhoneNumber, edtPassword;
     Button btnLogin;
     TextView txtForgotPassWord, txtSignUp;
+    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +114,10 @@ public class LoginActivity extends AppCompatActivity {
                                String PasswordFromDB= snapshot.child(UserPhoneNumber).child("password").getValue(String.class);
                                if (Objects.equals(PasswordFromDB,UserPassWord)){
                                    edtPhoneNumber.setError(null);
+                                   userId = snapshot.child(UserPhoneNumber).child("id").getValue(String.class);
+                                   Toast.makeText(LoginActivity.this, "User ID: " + userId, Toast.LENGTH_SHORT).show();
+
+                                   sharedPreferences();
                                    Intent intent= new Intent(LoginActivity.this, MainActivity.class);
                                    startActivity(intent);
                                }else {
@@ -137,5 +145,15 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+
     }
+
+    private void sharedPreferences() {
+        SharedPreferences sharedPreferences = getSharedPreferences("user_session", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("user_id", userId);
+        editor.apply();
+
+    }
+
 }

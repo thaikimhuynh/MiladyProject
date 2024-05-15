@@ -90,15 +90,15 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@mipmap/ic_back"
-        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_ewallTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.13"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView8"
+        app:layout_constraintTop_toTopOf="@+id/tv_ewallTitle"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/tv_ewallTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -136,7 +136,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/tv_phoneNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Phone number"
@@ -156,7 +156,7 @@
         app:layout_constraintEnd_toEndOf="@id/txtPhoneNumber"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/txtPhoneNumber"
-        app:layout_constraintTop_toBottomOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/tv_phoneNum"
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView

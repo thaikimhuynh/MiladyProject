@@ -3,6 +3,7 @@ package com.thaikimhuynh.miladyapp.payment;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.thaikimhuynh.miladyapp.MyWalletActivity;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.model.PaymentItem;
 
@@ -54,6 +56,7 @@ public class AddNewWalletActivity extends AppCompatActivity {
             public void onClick(View v) {
                 getInfo();
                 addNewPaymentAccount();
+
             }
         });
     }
@@ -66,12 +69,35 @@ public class AddNewWalletActivity extends AppCompatActivity {
     private void addNewPaymentAccount() {
         String userId = getUserId();
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("PaymentAccount");
-        String paymentAccountId = mDatabase.push().getKey();
-        mDatabase.child(paymentAccountId).child("accountNumber").setValue(account_number);
-        mDatabase.child(paymentAccountId).child("name").setValue(name);
-        mDatabase.child(paymentAccountId).child("paymentId").setValue(paymentAccountId);
-        mDatabase.child(paymentAccountId).child("paymentMethodId").setValue(paymentMethodId);
-        mDatabase.child(paymentAccountId).child("userId").setValue(userId);
+        mDatabase.orderByChild("paymentId").addListenerForSingleValueEvent(new ValueEventListener() {
+            String latestPaymentId = "0";
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dtsnapshot : snapshot.getChildren())
+                {
+                    String paymentId = dtsnapshot.child("paymentId").getValue(String.class);
+                    latestPaymentId = paymentId;
+
+                }
+
+                int incrementalPaymentId = Integer.parseInt(latestPaymentId) + 1;
+                String newPaymentId = String.valueOf(incrementalPaymentId);
+
+                mDatabase.child(newPaymentId).child("accountNumber").setValue(account_number);
+                mDatabase.child(newPaymentId).child("name").setValue(name);
+                mDatabase.child(newPaymentId).child("paymentId").setValue(newPaymentId);
+                mDatabase.child(newPaymentId).child("paymentMethodId").setValue(paymentMethodId);
+                mDatabase.child(newPaymentId).child("userId").setValue(userId);
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
     }
@@ -97,16 +123,16 @@ public class AddNewWalletActivity extends AppCompatActivity {
         }
         switch (ewallet_name) {
             case "Momo":
-                paymentMethodId = "1";
-                break;
-            case "Zalo Pay":
                 paymentMethodId = "2";
                 break;
-            case "Techcom Bank":
+            case "Zalo Pay":
                 paymentMethodId = "3";
                 break;
-            default:
+            case "Techcom Bank":
                 paymentMethodId = "4";
+                break;
+            default:
+                paymentMethodId = "5";
                 break;
         }
         if(ewallet_name.equals("Momo") || ewallet_name.equals("Zalo Pay")) {
@@ -124,7 +150,7 @@ public class AddNewWalletActivity extends AppCompatActivity {
         spinnerEWalletName = findViewById(R.id.spinnerEWalletName);
         edt_username = findViewById(R.id.edtCusName);
         edt_phoneNumber = findViewById(R.id.edtPhoneNumber_add);
-        btnAdd = findViewById(R.id.btnAdd);
+        btnAdd = findViewById(R.id.btnAddNewEwall);
 
 ;
     }
@@ -148,5 +174,10 @@ public class AddNewWalletActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, walletNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerEWalletName.setAdapter(adapter);
+    }
+
+    public void backtoMyWallet(View view) {
+        Intent intent = new Intent(AddNewWalletActivity.this, MyWalletActivity.class);
+        startActivity(intent);
     }
 }

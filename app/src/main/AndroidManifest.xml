@@ -115,6 +115,9 @@
         <activity
             android:name=".SearchActivity"
             android:exported="false" />
+        <activity
+            android:name=".payment.AddNewWalletActivity"
+            android:exported="false"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

@@ -41,14 +41,10 @@ public class MyWalletActivity extends AppCompatActivity {
 
 
         loadPaymentMethod(userId);
-        loadCategoryId();
 
     }
 
-    private void loadCategoryId() {
-        DatabaseReference mbase_3 = FirebaseDatabase.getInstance().getReference("Items");
 
-    }
 
     private String getUserId() {
         SharedPreferences sharedPreferences = getSharedPreferences("user_session", MODE_PRIVATE);
@@ -123,6 +119,8 @@ public class MyWalletActivity extends AppCompatActivity {
         if (itemAdapter == null) {
             itemAdapter = new ItemAdapter(MyWalletActivity.this, mList);
             recyclerView.setAdapter(itemAdapter);
+            itemAdapter.notifyDataSetChanged();
+
         } else {
             itemAdapter.notifyDataSetChanged();
         }

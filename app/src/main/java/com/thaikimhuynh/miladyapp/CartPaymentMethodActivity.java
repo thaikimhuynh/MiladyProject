@@ -42,8 +42,16 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
 
         mbase_2 = FirebaseDatabase.getInstance().getReference("PaymentMethod");
         mbase_1 = FirebaseDatabase.getInstance().getReference("PaymentAccount");
+        mList = new ArrayList<>();
+        itemAdapter = new ItemWithButtonAdapter(this, mList);
+        recyclerView.setAdapter(itemAdapter);
 
         loadPaymentMethod(userId);
+        checkAndAddMissingGroup();
+        Log.d("size m list", String.valueOf(itemAdapter.getItemCount()));
+
+
+
 
     }
 
@@ -53,37 +61,46 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
     }
 
     private void loadPaymentMethod(String userId) {
-        mList = new ArrayList<>();
 
         mbase_1.orderByChild("userId").equalTo(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String paymentMethodId = snapshot.child("paymentMethodId").getValue(String.class);
+                if (dataSnapshot.exists()) {
+                    Log.d("result", String.valueOf(dataSnapshot.exists()));
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        String paymentMethodId = snapshot.child("paymentMethodId").getValue(String.class);
 
-                    mbase_2.orderByChild("id").equalTo(paymentMethodId).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot paymentMethodSnapshot) {
-                            for (DataSnapshot methodSnapshot : paymentMethodSnapshot.getChildren()) {
-                                String eWalletName = methodSnapshot.child("type").getValue(String.class);
-                                String imgLogo = methodSnapshot.child("logo").getValue(String.class);
-                                Log.d("imgLogo", "imgLogo: " + imgLogo);
+                        mbase_2.orderByChild("id").equalTo(paymentMethodId).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot paymentMethodSnapshot) {
+                                for (DataSnapshot methodSnapshot : paymentMethodSnapshot.getChildren()) {
+                                    String paymentMethodId = snapshot.child("paymentId").toString();
+                                    String eWalletName = methodSnapshot.child("type").getValue(String.class);
+                                    String imgLogo = methodSnapshot.child("logo").getValue(String.class);
+                                    Log.d("imgLogo", "imgLogo: " + imgLogo);
 
-                                String userName = snapshot.child("name").getValue(String.class);
-                                String userAccountNumber = snapshot.child("accountNumber").getValue(String.class);
-                                String layout = eWalletName.equals("Momo") ? "1" : "2";
+                                    String userName = snapshot.child("name").getValue(String.class);
+                                    String userAccountNumber = snapshot.child("accountNumber").getValue(String.class);
+                                    String layout = eWalletName.equals("Momo") ? "1" : "2";
 
-                                PaymentItem paymentItem = new PaymentItem(eWalletName, userName, userAccountNumber, imgLogo, layout);
-                                addItemToGroup(paymentItem);
+                                    PaymentItem paymentItem = new PaymentItem(paymentMethodId, eWalletName, userName, userAccountNumber, imgLogo, layout);
+                                    Log.d("Payment Item tren", paymentItem.toString());
+
+                                    addItemToGroup(paymentItem);
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError paymentMethodError) {
-                            // Handle error
-                        }
-                    });
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError paymentMethodError) {
+                                // Handle error
+                            }
+                        });
+                    }
                 }
+
+
+
+
             }
 
             @Override
@@ -93,11 +110,66 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
         });
     }
 
+    private void checkAndAddMissingGroup() {
+        boolean foundEWalletGroup = false;
+
+        boolean foundBankingGroup = false;
+
+        for (PaymentGroup group : mList) {
+            if (group.getItemText().equalsIgnoreCase("E-wallet")) {
+                foundEWalletGroup = true;
+            } else if (group.getItemText().equalsIgnoreCase("Banking")) {
+                foundBankingGroup = true;
+            }
+        }
+
+        if (!foundEWalletGroup) {
+            Log.d("Khongofound", "ko found");
+            // Add a new group for E-wallet
+            mList.add(new PaymentGroup(new ArrayList<>(), "E-wallet"));
+            itemAdapter.notifyDataSetChanged();
+
+            Log.d("itclannay", String.valueOf(mList.size()));
+
+        }
+
+        if (!foundBankingGroup) {
+            // Add a new group for Banking
+            mList.add(new PaymentGroup(new ArrayList<>(), "Banking"));
+            itemAdapter.notifyDataSetChanged();
+            Log.d("itclannay", String.valueOf(itemAdapter.getItemCount()));
+
+
+
+        }
+        mList.add(new PaymentGroup(null, "COD"));
+
+
+
+
+
+        // Notify the adapter about the changes
+        if (itemAdapter != null) {
+            itemAdapter.notifyDataSetChanged();
+
+        }
+        else
+        {
+            itemAdapter = new ItemWithButtonAdapter(this, mList);
+            recyclerView.setAdapter(itemAdapter);
+            itemAdapter.notifyDataSetChanged();
+
+        }
+
+    }
+
 
     private void addItemToGroup(PaymentItem paymentItem) {
         boolean foundGroup = false;
 
         for (PaymentGroup group : mList) {
+            Log.d("Payment Item group", paymentItem.toString());
+
             // Check if the group name matches the payment method type
             if ((isEwallet(paymentItem) && group.getItemText().equalsIgnoreCase("E-wallet")) ||
                     (!isEwallet(paymentItem) && group.getItemText().equalsIgnoreCase("Banking"))) {
@@ -109,10 +181,14 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
 
         if (!foundGroup) {
             // Create a new group
+            Log.d("Payment Item", paymentItem.toString());
             List<PaymentItem> items = new ArrayList<>();
             items.add(paymentItem);
             String groupName = isEwallet(paymentItem) ? "E-wallet" : "Banking";
             mList.add(new PaymentGroup(items, groupName));
+
+
+
         }
         Log.d("mList", "Loaded items: " + mList);
 
@@ -120,7 +196,9 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
         if (itemAdapter == null) {
             itemAdapter = new ItemWithButtonAdapter(CartPaymentMethodActivity.this, mList);
             recyclerView.setAdapter(itemAdapter);
-        } else {
+        }
+        else
+        {
             itemAdapter.notifyDataSetChanged();
         }
     }
@@ -137,4 +215,5 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
 }

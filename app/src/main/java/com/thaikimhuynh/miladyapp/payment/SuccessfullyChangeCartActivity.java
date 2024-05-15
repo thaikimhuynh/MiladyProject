@@ -6,10 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.thaikimhuynh.miladyapp.CartPaymentMethodActivity;
 import com.thaikimhuynh.miladyapp.MyWalletActivity;
 import com.thaikimhuynh.miladyapp.R;
 
-public class SuccessfullyChangeActivity extends AppCompatActivity {
+public class SuccessfullyChangeCartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +20,8 @@ public class SuccessfullyChangeActivity extends AppCompatActivity {
 
     public void backtoMyWalletActivity(View view) {
 
-            Intent intent = new Intent(SuccessfullyChangeActivity.this, MyWalletActivity.class);
-            startActivity(intent);
+        Intent intent = new Intent(SuccessfullyChangeCartActivity.this, CartPaymentMethodActivity.class);
+        startActivity(intent);
 
     }
 }

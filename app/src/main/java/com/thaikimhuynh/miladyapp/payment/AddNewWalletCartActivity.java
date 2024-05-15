@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,11 +19,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.thaikimhuynh.miladyapp.CartPaymentMethodActivity;
 import com.thaikimhuynh.miladyapp.MyWalletActivity;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.model.PaymentItem;
 
-public class AddNewWalletActivity extends AppCompatActivity {
+public class AddNewWalletCartActivity extends AppCompatActivity {
     TextView page_title, ewallet_name, phoneNumber;
     EditText edt_username, edt_phoneNumber;
     Spinner spinnerEWalletName;
@@ -56,7 +58,7 @@ public class AddNewWalletActivity extends AppCompatActivity {
             public void onClick(View v) {
                 getInfo();
                 addNewPaymentAccount();
-                Intent intent = new Intent(AddNewWalletActivity.this, SuccessfullyChangeActivity.class);
+                Intent intent = new Intent(AddNewWalletCartActivity.this, SuccessfullyChangeCartActivity.class);
                 startActivity(intent);
 
             }
@@ -71,15 +73,22 @@ public class AddNewWalletActivity extends AppCompatActivity {
     private void addNewPaymentAccount() {
         String userId = getUserId();
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("PaymentAccount");
+        Log.d("mDatabase", mDatabase.toString());
         mDatabase.orderByChild("paymentId").addListenerForSingleValueEvent(new ValueEventListener() {
             String latestPaymentId = "0";
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.d("mDatabase", snapshot.toString() );
+
                 for (DataSnapshot dtsnapshot : snapshot.getChildren())
                 {
+                    Log.d("dtsnapshot", dtsnapshot.toString());
                     String paymentId = dtsnapshot.child("paymentId").getValue(String.class);
+                    Log.d("dtsnapshot", dtsnapshot.toString());
+
                     latestPaymentId = paymentId;
+                    Log.d("latestPaymentId", latestPaymentId.toString());
 
                 }
 
@@ -154,7 +163,7 @@ public class AddNewWalletActivity extends AppCompatActivity {
         edt_phoneNumber = findViewById(R.id.edtPhoneNumber_add);
         btnAdd = findViewById(R.id.btnAddNewEwall);
 
-;
+        ;
     }
 
     private void resetText() {
@@ -179,7 +188,7 @@ public class AddNewWalletActivity extends AppCompatActivity {
     }
 
     public void backtoMyWallet(View view) {
-        Intent intent = new Intent(AddNewWalletActivity.this, MyWalletActivity.class);
+        Intent intent = new Intent(AddNewWalletCartActivity.this, CartPaymentMethodActivity.class);
         startActivity(intent);
     }
 }

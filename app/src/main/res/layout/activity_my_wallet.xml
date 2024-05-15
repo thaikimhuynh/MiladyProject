@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="18dp"
         android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,8 +26,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My Wallet"
+        android:fontFamily="@font/noto_sans_font"
+        android:textStyle="bold"
+        android:textColor="@color/pink_primary"
+        android:textSize="18sp"
+        android:layout_marginTop="15dp"
         app:layout_constraintStart_toEndOf="@id/img_btn_back"
-        app:layout_constraintTop_toTopOf="@id/img_btn_back"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
 

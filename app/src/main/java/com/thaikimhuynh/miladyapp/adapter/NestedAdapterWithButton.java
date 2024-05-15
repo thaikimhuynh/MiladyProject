@@ -57,11 +57,7 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
                 .into(holder.wallet_logo);
 
         // Check if this item is selected or not
-        if (selectedPosition == position) {
-            holder.selectButton.setImageResource(R.mipmap.selected_button);
-        } else {
-            holder.selectButton.setImageResource(R.mipmap.select_button);
-        }
+
         if (! paymentItem.isSelected())
         {
            holder.selectButton.setImageResource(R.mipmap.select_button);
@@ -86,13 +82,13 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
 
             private void deselectCurrentCategory() {
                 if (selectedPosition != position) {
-                    // If another button is selected, deselect it
+
                     int previouslySelectedPosition = selectedPosition;
                     selectedPosition = position;
-                    PaymentItem paymentItem1 = mList.get(selectedPosition);
+                    PaymentItem paymentItem1 = mList.get(position);
                     paymentItem1.setSelected(true);
                     for (int i = 0; i < mList.size(); i++) {
-                        if (i != selectedPosition) {
+                        if (i != position) {
                             PaymentItem currentItem = mList.get(i);
                             if (currentItem.isSelected())
                             {
@@ -103,9 +99,6 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
                     notifyItemChanged(position);
                     notifyItemChanged(previouslySelectedPosition);
 
-                } else {
-                    // If the same button is clicked again, deselect it
-                    selectedPosition = -1;
                 }
                 notifyItemChanged(position);
 

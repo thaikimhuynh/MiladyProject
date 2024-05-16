@@ -124,7 +124,7 @@
         android:id="@+id/tv_phoneNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Phone number"
+        android:text="Password"
         app:layout_constraintBottom_toTopOf="@+id/edtProfilePhoneNumber"
         app:layout_constraintEnd_toEndOf="@+id/edtProfilePhoneNumber"
         app:layout_constraintHorizontal_bias="0.0"

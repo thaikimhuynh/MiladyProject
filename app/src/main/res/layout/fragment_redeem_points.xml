@@ -26,6 +26,7 @@
 
         <!-- RecyclerView displaying items -->
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/redeem_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

@@ -10,6 +10,7 @@
 
 
     <ImageButton
+        android:onClick="returnPreviousActivity"
         android:id="@+id/img_btn_back_cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,12 +27,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My Wallet"
+        android:fontFamily="@font/noto_sans_font"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/pink_primary"
         app:layout_constraintStart_toEndOf="@id/img_btn_back_cart"
         app:layout_constraintTop_toTopOf="@id/img_btn_back_cart"
         app:layout_constraintEnd_toEndOf="parent"
 
 
         />
+
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_mywallet_cart"
         android:layout_width="0dp"
@@ -39,7 +47,6 @@
         app:layout_constraintTop_toBottomOf="@id/txt_mywallet_cart"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="15dp"
 

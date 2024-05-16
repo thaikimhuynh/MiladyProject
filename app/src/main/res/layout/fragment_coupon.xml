@@ -12,7 +12,7 @@
 
         <!-- TextView displaying total points -->
         <TextView
-            android:id="@+id/textViewTotalPoints"
+            android:id="@+id/textViewTotalCoupon"
             android:layout_width="300dp"
             android:layout_height="100dp"
             android:layout_margin="16dp"
@@ -26,6 +26,7 @@
 
         <!-- RecyclerView displaying items -->
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/coupon_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

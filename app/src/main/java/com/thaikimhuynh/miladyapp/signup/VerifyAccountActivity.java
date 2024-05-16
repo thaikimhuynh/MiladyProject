@@ -86,6 +86,7 @@ public class VerifyAccountActivity extends AppCompatActivity {
                             // Truyền số điện thoại qua Intent
                             Intent intent = new Intent(VerifyAccountActivity.this, LoginActivity.class);
                             intent.putExtra("phoneNumber", phoneNumber);
+
                             startActivity(intent);
                             finish(); // Kết thúc hoạt động hiện tại
                         } else {
@@ -113,7 +114,7 @@ public class VerifyAccountActivity extends AppCompatActivity {
 
         // Lưu thông tin người dùng vào cơ sở dữ liệu Firebase
         DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("User");
-        usersRef.child(phoneNumber).setValue(helperClass);
+        usersRef.child(id).setValue(helperClass);
     }
 
     private String generateRandomItemId() {

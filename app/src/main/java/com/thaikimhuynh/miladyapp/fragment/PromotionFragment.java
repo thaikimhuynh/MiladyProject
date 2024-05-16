@@ -1,13 +1,25 @@
 package com.thaikimhuynh.miladyapp.fragment;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.thaikimhuynh.miladyapp.Notification;
 import com.thaikimhuynh.miladyapp.R;
+import com.thaikimhuynh.miladyapp.adapter.PromotionAdapter;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,6 +29,10 @@ import com.thaikimhuynh.miladyapp.R;
 public class PromotionFragment extends Fragment{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    RecyclerView recyclerView;
+    PromotionAdapter promotionAdapter;
+    ArrayList<Notification> list;
+    DatabaseReference databse;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -59,6 +75,30 @@ public class PromotionFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_promotion, container, false);
+        View view = inflater.inflate(R.layout.fragment_promotion, container, false);
+
+        recyclerView = view.findViewById(R.id.RecyclerPromotion);
+        databse = FirebaseDatabase.getInstance().getReference("Notification");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        list = new ArrayList<>();
+        promotionAdapter = new PromotionAdapter(getContext(), list);
+        recyclerView.setAdapter(promotionAdapter);
+        databse.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    Notification notification= dataSnapshot.getValue(Notification.class);
+                    list.add(notification);
+                }
+                promotionAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return view;
     }
 }

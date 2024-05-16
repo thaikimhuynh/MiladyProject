@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.helpers.ChangeNumberItemListener;
 import com.thaikimhuynh.miladyapp.adapter.CartAdapter;
 import com.thaikimhuynh.miladyapp.checkout.CheckOutActivity;
@@ -84,20 +87,24 @@ public class CartFragment extends Fragment implements ChangeNumberItemListener {
         binding.btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences sharedPreferences = requireContext().getSharedPreferences("login", Context.MODE_PRIVATE);
-                String userID = sharedPreferences.getString("userID", "");
+                if (Cartadapter == null || Cartadapter.getItemCount() == 0) {
+                    Toast.makeText(requireContext(), "Cart is empty. Add items before checking out.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                String userId = getUserId();
                 managementCart.getListCart(new OnSuccessListener<ArrayList<Product>>() {
                     @Override
                     public void onSuccess(ArrayList<Product> cartItems) {
                         Intent intent = new Intent(requireContext(), CheckOutActivity.class);
-                        // Send the list of cart items via Intent
                         intent.putExtra("cart_items", cartItems);
                         startActivity(intent);
                     }
-                }, userID); // Truyền giá trị userID vào phương thức getListCart()
+                }, userId);
             }
         });
     }
+
+
 
 
     private void loadCartItem() {

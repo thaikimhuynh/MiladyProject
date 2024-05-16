@@ -8,7 +8,7 @@
     tools:context=".checkout.AddressSelectionActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/Layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">

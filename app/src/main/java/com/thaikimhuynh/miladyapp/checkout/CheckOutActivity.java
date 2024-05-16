@@ -141,15 +141,14 @@ public class CheckOutActivity extends AppCompatActivity {
         checkoutBinding.btnContinuePayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              finish();
+Intent intent = new Intent(CheckOutActivity.this, CartPaymentMethodActivity.class);
+startActivity(intent);
             }
         });
         checkoutBinding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(CheckOutActivity.this, CartFragment.class);
-                startActivity(intent);
+finish();
             }
         });
         checkoutBinding.btnApplyVoucher.setOnClickListener(new View.OnClickListener() {

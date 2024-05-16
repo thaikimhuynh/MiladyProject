@@ -26,11 +26,12 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/txtProducttNameCheckout"
+        android:id="@+id/txtProductNameCheckout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="13dp"
+        android:textStyle="bold"
         android:fontFamily="@font/noto_sans_font"
         android:text="Title"
         android:textColor="@color/black"
@@ -44,15 +45,44 @@
         android:id="@+id/txtProductPriceCheckout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="3dp"
         android:fontFamily="@font/noto_sans_font"
-        android:text="25"
+        android:text="$25"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/txtProducttNameCheckout" />
+        app:layout_constraintTop_toBottomOf="@+id/txtProductNameCheckout" />
+
+    <TextView
+        android:id="@+id/Size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/noto_sans_font"
+        android:text="Size:"
+        android:textColor="@color/grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/txtProductNameCheckout" />
+
+    <TextView
+        android:id="@+id/txtSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-20dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/noto_sans_font"
+        android:text="38"
+        android:textColor="@color/grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.211"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/txtProductNameCheckout" />
 
     <TextView
         android:id="@+id/txtProductCheckoutQuantity"
@@ -66,6 +96,6 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.909"
-        app:layout_constraintStart_toEndOf="@+id/txtProducttNameCheckout"
+        app:layout_constraintStart_toEndOf="@+id/txtProductNameCheckout"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

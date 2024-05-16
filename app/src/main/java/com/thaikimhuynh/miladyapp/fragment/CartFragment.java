@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -16,6 +18,7 @@ import com.thaikimhuynh.miladyapp.adapter.CartAdapter;
 import com.thaikimhuynh.miladyapp.checkout.CheckOutActivity;
 import com.thaikimhuynh.miladyapp.databinding.FragmentCartBinding;
 import com.thaikimhuynh.miladyapp.helpers.ManagementCart;
+import com.thaikimhuynh.miladyapp.model.Checkout;
 import com.thaikimhuynh.miladyapp.model.Product;
 
 import java.util.ArrayList;
@@ -67,13 +70,9 @@ public class CartFragment extends Fragment implements ChangeNumberItemListener {
         binding = FragmentCartBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        // Initialize ManagementCart
         managementCart = new ManagementCart(requireContext());
-
-        // Load cart items
         loadCartItem();
 
-        // Set event listeners
         setEventListeners();
 
 
@@ -84,20 +83,18 @@ public class CartFragment extends Fragment implements ChangeNumberItemListener {
         binding.btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences sharedPreferences = requireContext().getSharedPreferences("login", Context.MODE_PRIVATE);
-                String userID = sharedPreferences.getString("userID", "");
-                managementCart.getListCart(new OnSuccessListener<ArrayList<Product>>() {
-                    @Override
-                    public void onSuccess(ArrayList<Product> cartItems) {
-                        Intent intent = new Intent(requireContext(), CheckOutActivity.class);
-                        // Send the list of cart items via Intent
-                        intent.putExtra("cart_items", cartItems);
-                        startActivity(intent);
-                    }
-                }, userID); // Truyền giá trị userID vào phương thức getListCart()
+//                if (cartProducts.isEmpty()) {
+//                    Toast.makeText(requireContext(), "Your cart is empty!", Toast.LENGTH_SHORT).show();
+//                } else {
+                Intent intent = new Intent(requireContext(), CheckOutActivity.class);
+                startActivity(intent);
             }
+//        }
         });
+
     }
+
+
 
 
     private void loadCartItem() {
@@ -115,13 +112,10 @@ public class CartFragment extends Fragment implements ChangeNumberItemListener {
                 Cartadapter = new CartAdapter(cartItems, requireContext(), CartFragment.this, new ChangeNumberItemListener() {
                     @Override
                     public void change() {
-
                         calculateCart();
                     }
                 });
                 binding.recyclerCart.setAdapter(Cartadapter);
-
-
                 calculateCart();
             }
         }, userId); // Pass userID to getListCart method
@@ -157,4 +151,7 @@ public class CartFragment extends Fragment implements ChangeNumberItemListener {
     public void updateCart() {
         loadCartItem();
     }
+
+
+
 }

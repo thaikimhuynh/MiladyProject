@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView11"
+        android:id="@+id/imgBack"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="31dp"
@@ -59,9 +59,9 @@
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerCheckout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:id="@+id/listCheckout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
                 android:layout_marginEnd="36dp">
 
@@ -104,14 +104,14 @@
                 android:layout_height="422dp">
 
                 <TextView
-                    android:id="@+id/textView19"
+                    android:id="@+id/txtMessageError"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="36dp"
                     android:fontFamily="@font/noto_sans_font"
                     android:layout_marginTop="7dp"
-                    android:text="Voucher enter successful"
-                    android:textColor="@color/grey"
+                    android:text=""
+                    android:textColor="@color/red"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.009"
                     app:layout_constraintStart_toStartOf="parent"
@@ -131,14 +131,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtMessageError" />
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/linearLayout"
-                    android:layout_width="410dp"
-                    android:layout_height="102dp"
+                    android:layout_width="412dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:background="#F4F4F4"
+                    android:onClick="openAddressSelectedActivity"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -146,43 +147,65 @@
 
                     <TextView
                         android:id="@+id/txtCusNameCheckout"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="36dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="16dp"
                         android:fontFamily="@font/noto_sans_font"
+                        android:text="Kim Huỳnh"
                         android:textColor="@color/black"
-                        android:text="Anh Linh"
-                        android:textSize="20sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@+id/txt"
+                        app:layout_constraintHorizontal_bias="0.816"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="58dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/txtPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text=""
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.104"
+                        app:layout_constraintStart_toEndOf="@+id/txtCusNameCheckout"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <TextView
-                            android:id="@+id/txtAddressCheckout"
-                            android:layout_width="306dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="36dp"
-                            android:layout_marginTop="7dp"
-                            android:fontFamily="@font/noto_sans_font"
-                            android:text="669 National Highway 1A, Quarter 3, Thu Duc, Ho Chi Minh City"
-                            android:textColor="@color/grey"
-                            android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="|"
+                        app:layout_constraintBottom_toTopOf="@+id/txtAddressCheckout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.326"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.761" />
 
-                        <ImageView
-                            android:id="@+id/imageView12"
-                            android:layout_width="48dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/ic_arrow_right" />
+                    <TextView
+                        android:id="@+id/txtAddressCheckout"
+                        android:layout_width="306dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:text=""
+                        android:textColor="@color/grey"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtCusNameCheckout" />
 
+                    <ImageView
+                        android:id="@+id/imageView28"
+                        android:layout_width="48dp"
+                        android:layout_height="wrap_content" />
 
-                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/imageView12"
+                        android:layout_width="48dp"
+                        android:layout_height="wrap_content" />
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:id="@+id/textView25"
@@ -261,7 +284,7 @@
                     android:fontFamily="@font/noto_sans_font"
                     android:layout_marginTop="7dp"
                     android:layout_marginEnd="36dp"
-                    android:text="-2"
+                    android:text=""
                     android:textColor="@color/pink_primary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.965"
@@ -299,7 +322,7 @@
                     android:id="@+id/txtTotalPriceCheckout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="118"
+                    android:text=""
                     android:fontFamily="@font/noto_sans_font"
                     android:textColor="#F9476B"
                     android:textSize="20sp"

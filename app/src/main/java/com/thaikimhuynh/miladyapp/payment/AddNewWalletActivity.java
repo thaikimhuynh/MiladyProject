@@ -154,7 +154,7 @@ public class AddNewWalletActivity extends AppCompatActivity {
         edt_phoneNumber = findViewById(R.id.edtPhoneNumber_add);
         btnAdd = findViewById(R.id.btnAddNewEwall);
 
-;
+        ;
     }
 
     private void resetText() {

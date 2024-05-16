@@ -60,7 +60,7 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
 
         if (! paymentItem.isSelected())
         {
-           holder.selectButton.setImageResource(R.mipmap.select_button);
+            holder.selectButton.setImageResource(R.mipmap.select_button);
         } else
         {
             holder.selectButton.setImageResource(R.mipmap.selected_button);

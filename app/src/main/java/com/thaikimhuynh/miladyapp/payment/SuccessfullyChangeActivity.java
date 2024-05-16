@@ -19,8 +19,8 @@ public class SuccessfullyChangeActivity extends AppCompatActivity {
 
     public void backtoMyWalletActivity(View view) {
 
-            Intent intent = new Intent(SuccessfullyChangeActivity.this, MyWalletActivity.class);
-            startActivity(intent);
+        Intent intent = new Intent(SuccessfullyChangeActivity.this, MyWalletActivity.class);
+        startActivity(intent);
 
     }
 }

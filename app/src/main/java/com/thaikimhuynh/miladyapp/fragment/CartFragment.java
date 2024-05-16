@@ -13,12 +13,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.helpers.ChangeNumberItemListener;
 import com.thaikimhuynh.miladyapp.adapter.CartAdapter;
 import com.thaikimhuynh.miladyapp.checkout.CheckOutActivity;
 import com.thaikimhuynh.miladyapp.databinding.FragmentCartBinding;
 import com.thaikimhuynh.miladyapp.helpers.ManagementCart;
-import com.thaikimhuynh.miladyapp.model.Checkout;
 import com.thaikimhuynh.miladyapp.model.Product;
 
 import java.util.ArrayList;
@@ -70,9 +70,13 @@ public class CartFragment extends Fragment implements ChangeNumberItemListener {
         binding = FragmentCartBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
+        // Initialize ManagementCart
         managementCart = new ManagementCart(requireContext());
+
+        // Load cart items
         loadCartItem();
 
+        // Set event listeners
         setEventListeners();
 
 
@@ -83,15 +87,21 @@ public class CartFragment extends Fragment implements ChangeNumberItemListener {
         binding.btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (cartProducts.isEmpty()) {
-//                    Toast.makeText(requireContext(), "Your cart is empty!", Toast.LENGTH_SHORT).show();
-//                } else {
-                Intent intent = new Intent(requireContext(), CheckOutActivity.class);
-                startActivity(intent);
+                if (Cartadapter == null || Cartadapter.getItemCount() == 0) {
+                    Toast.makeText(requireContext(), "Cart is empty. Add items before checking out.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                String userId = getUserId();
+                managementCart.getListCart(new OnSuccessListener<ArrayList<Product>>() {
+                    @Override
+                    public void onSuccess(ArrayList<Product> cartItems) {
+                        Intent intent = new Intent(requireContext(), CheckOutActivity.class);
+                        intent.putExtra("cart_items", cartItems);
+                        startActivity(intent);
+                    }
+                }, userId);
             }
-//        }
         });
-
     }
 
 
@@ -112,10 +122,13 @@ public class CartFragment extends Fragment implements ChangeNumberItemListener {
                 Cartadapter = new CartAdapter(cartItems, requireContext(), CartFragment.this, new ChangeNumberItemListener() {
                     @Override
                     public void change() {
+
                         calculateCart();
                     }
                 });
                 binding.recyclerCart.setAdapter(Cartadapter);
+
+
                 calculateCart();
             }
         }, userId); // Pass userID to getListCart method
@@ -151,7 +164,4 @@ public class CartFragment extends Fragment implements ChangeNumberItemListener {
     public void updateCart() {
         loadCartItem();
     }
-
-
-
 }

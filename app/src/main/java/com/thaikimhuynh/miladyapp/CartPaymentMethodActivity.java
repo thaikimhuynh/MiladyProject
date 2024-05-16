@@ -1,8 +1,11 @@
 package com.thaikimhuynh.miladyapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -20,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.adapter.ItemAdapter;
 import com.thaikimhuynh.miladyapp.adapter.ItemWithButtonAdapter;
+import com.thaikimhuynh.miladyapp.checkout.PlaceOrderSuccessfullyActivity;
 import com.thaikimhuynh.miladyapp.model.PaymentGroup;
 import com.thaikimhuynh.miladyapp.model.PaymentItem;
 
@@ -33,11 +37,14 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
     private ItemWithButtonAdapter itemAdapter;
     DatabaseReference mbase_1, mbase_2;
 
+    Button btnConfirmPayment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_payment_method);
         addViews();
+        addEvents();
         String userId = getUserId();
 
         mbase_2 = FirebaseDatabase.getInstance().getReference("PaymentMethod");
@@ -53,6 +60,16 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void addEvents() {
+        btnConfirmPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CartPaymentMethodActivity.this, PlaceOrderSuccessfullyActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private String getUserId() {
@@ -214,6 +231,9 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rcv_mywallet_cart);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        btnConfirmPayment = findViewById(R.id.btnConfirmPayment);
+
     }
 
 }

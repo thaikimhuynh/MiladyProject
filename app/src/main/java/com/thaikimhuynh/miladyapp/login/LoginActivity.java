@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -97,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(snapshot.exists()){
                     edtPhoneNumber.setError(null);
                     String PasswordFromDB= snapshot.child(UserPhoneNumber).child("password").getValue(String.class);
-                    if (!Objects.equals(PasswordFromDB,UserPassWord)){
+                    if (PasswordFromDB.equals(UserPassWord)){
                         edtPhoneNumber.setError(null);
                         Intent intent= new Intent(LoginActivity.this, AdminProductManagementActivity.class);
                         startActivity(intent);
@@ -110,8 +111,13 @@ public class LoginActivity extends AppCompatActivity {
                        @Override
                        public void onDataChange(@NonNull DataSnapshot snapshot) {
                            if(snapshot.exists()){
+                               Log.d("phonenumber", edtPhoneNumber.toString());
+                               Log.d("Userpassword", edtPassword.toString());
+
                                edtPhoneNumber.setError(null);
                                String PasswordFromDB= snapshot.child(UserPhoneNumber).child("password").getValue(String.class);
+                               Log.d("DBpassword", PasswordFromDB);
+
                                if (Objects.equals(PasswordFromDB,UserPassWord)){
                                    edtPhoneNumber.setError(null);
                                    userId = snapshot.child(UserPhoneNumber).child("id").getValue(String.class);

@@ -1,85 +1,116 @@
 package com.thaikimhuynh.miladyapp.profile;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.R;
 
 public class ChangeMyProfileActivity extends AppCompatActivity {
-    EditText edtProfileName,edtProfileEmail,edtProfilePhoneNumber;
+    EditText edtProfileName, edtProfileMail,edtProfilePhoneNumber;
     Button btnLogin;
-    String nameUser, emailUser, phoneNumber, phonenumberUser;
-    DatabaseReference reference;
-
+    DatabaseReference database;
+    String name, password,email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_my_profile);
-
-        reference= FirebaseDatabase.getInstance().getReference("User");
         edtProfileName=findViewById(R.id.edtProfileName);
-        edtProfileEmail= findViewById(R.id.edtProfileEmail);
+        edtProfileMail= findViewById(R.id.edtProfileEmail);
         edtProfilePhoneNumber=findViewById(R.id.edtProfilePhoneNumber);
         btnLogin =findViewById(R.id.btnLogin);
-        showData();
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isEmailChange() || isNameChange() || isPhoneNumberChange()){
-                    Toast.makeText(ChangeMyProfileActivity.this,"Saved",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(ChangeMyProfileActivity.this,"Save failed",Toast.LENGTH_SHORT).show();
-
+                name = edtProfileName.getText().toString().trim();
+                email = edtProfileMail.getText().toString().trim();
+                password = edtProfilePhoneNumber.getText().toString().trim();
+                if (!name.isEmpty()) {
+                    updateName();}
+                if(!email.isEmpty()) {
+                    updateEmail();
+                }
+                if (!password.isEmpty()){
+                    updatePassword();
                 }
             }
         });
     }
-    public boolean isEmailChange(){
-        if(!emailUser.equals(edtProfileEmail.getText().toString())){
-            reference.child(phonenumberUser).child("email").setValue(edtProfileEmail.getText().toString());
-            emailUser = edtProfileEmail.getText().toString();
-            return true;
-        }else {
-            return false;
-        }
-    }
-    public boolean isNameChange(){
-        if(!nameUser.equals(edtProfileName.getText().toString())){
-            reference.child(phonenumberUser).child("name").setValue(edtProfileName.getText().toString());
-            nameUser = edtProfileName.getText().toString();
-            return true;
-        }else {
-            return false;
-        }
-    }
-    public boolean isPhoneNumberChange(){
-        if(!phoneNumber.equals(edtProfilePhoneNumber.getText().toString())){
-            reference.child(phonenumberUser).child("email").setValue(edtProfilePhoneNumber.getText().toString());
-            phoneNumber = edtProfilePhoneNumber.getText().toString();
-            return true;
-        }else {
-            return false;
-        }
-    }
-    public void showData(){
-        Intent intent=getIntent();
-        nameUser= intent.getStringExtra("name");
-        emailUser= intent.getStringExtra("email");
-        phoneNumber=intent.getStringExtra("phoneNumber");
-        phonenumberUser=intent.getStringExtra("phoneNumber");
+    private void updateName() {
+        String userId = getUserId();
+        database = FirebaseDatabase.getInstance().getReference();
+        database.child("User").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                dataSnapshot.getRef().child("name").setValue(name);
+                Toast.makeText(ChangeMyProfileActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+                Intent intent= new Intent(ChangeMyProfileActivity.this, MyProfileActivity.class);
+                startActivity(intent);
 
-        edtProfileName.setText(nameUser);
-        edtProfileEmail.setText(emailUser);
-        edtProfilePhoneNumber.setText(phoneNumber);
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d("User", databaseError.getMessage());
+            }
+        });
+    }
+    private void updateEmail() {
+        String userId = getUserId();
+        database = FirebaseDatabase.getInstance().getReference();
+        database.child("User").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                dataSnapshot.getRef().child("email").setValue(email);
+                Toast.makeText(ChangeMyProfileActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+                Intent intent= new Intent(ChangeMyProfileActivity.this, MyProfileActivity.class);
+                startActivity(intent);
+
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d("User", databaseError.getMessage());
+            }
+        });
+    }
+    private void updatePassword() {
+        String userId = getUserId();
+        database = FirebaseDatabase.getInstance().getReference();
+        database.child("User").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                dataSnapshot.getRef().child("password").setValue(password);
+                Toast.makeText(ChangeMyProfileActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+                Intent intent= new Intent(ChangeMyProfileActivity.this, MyProfileActivity.class);
+                startActivity(intent);
+
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d("User", databaseError.getMessage());
+            }
+        });
     }
 
-}
+    private String getUserId() {
+            SharedPreferences sharedPreferences = getSharedPreferences("user_session", MODE_PRIVATE);
+            return sharedPreferences.getString("user_id", "");
+        }
+    }
+

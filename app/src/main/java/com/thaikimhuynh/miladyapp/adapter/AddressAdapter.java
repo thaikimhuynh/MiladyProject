@@ -1,5 +1,7 @@
 package com.thaikimhuynh.miladyapp.adapter;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,12 +21,16 @@ import java.util.List;
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressViewHolder> {
 
     private List<Address> addressList;
+    private Context context;
     private int selectedPosition = -1;
 
     public AddressAdapter(List<Address> addressList) {
         this.addressList = addressList;
     }
-
+    public AddressAdapter(List<Address> addressList, Context context) {
+        this.addressList = addressList;
+        this.context = context;
+    }
     @NonNull
     @Override
     public AddressViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -47,7 +53,11 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
         }
 
         holder.itemView.setOnClickListener(v -> {
-            setSelectedPosition(position); // Cập nhật màu nền của mục được nhấn
+            setSelectedPosition(position);
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("selectedAddress", (CharSequence) address);
+            ((Activity) context).setResult(Activity.RESULT_OK, resultIntent);
+            ((Activity) context).finish();
         });
 
         // Trong phương thức onBindViewHolder của AddressAdapter

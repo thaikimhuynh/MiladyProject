@@ -24,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.MainActivity;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.admin.AdminProductManagementActivity;
+import com.thaikimhuynh.miladyapp.checkout.CheckOutActivity;
 import com.thaikimhuynh.miladyapp.signup.SignUpActivity;
 
 import java.util.Objects;
@@ -124,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                                    Toast.makeText(LoginActivity.this, "User ID: " + userId, Toast.LENGTH_SHORT).show();
 
                                    sharedPreferences();
-                                   Intent intent= new Intent(LoginActivity.this, MainActivity.class);
+                                   Intent intent= new Intent(LoginActivity.this, CheckOutActivity.class);
                                    startActivity(intent);
                                }else {
                                    edtPassword.setError("Wrong password or phone number!");

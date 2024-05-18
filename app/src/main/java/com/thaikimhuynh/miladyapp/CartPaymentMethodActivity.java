@@ -1,15 +1,15 @@
 package com.thaikimhuynh.miladyapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,14 +17,21 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.thaikimhuynh.miladyapp.adapter.ItemAdapter;
 import com.thaikimhuynh.miladyapp.adapter.ItemWithButtonAdapter;
+import com.thaikimhuynh.miladyapp.checkout.PlaceOrderSuccessfullyActivity;
+import com.thaikimhuynh.miladyapp.model.Order;
 import com.thaikimhuynh.miladyapp.model.PaymentGroup;
 import com.thaikimhuynh.miladyapp.model.PaymentItem;
+import com.thaikimhuynh.miladyapp.model.Product;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class CartPaymentMethodActivity extends AppCompatActivity {
 
@@ -33,11 +40,25 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
     private ItemWithButtonAdapter itemAdapter;
     DatabaseReference mbase_1, mbase_2;
 
+    private String addressName;
+    private String addressAddress;
+    private String addressPhone;
+    Button btnConfirmPayment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_payment_method);
         addViews();
+
+
+        Intent intent = getIntent();
+        if (intent != null) {
+          addressName = intent.getStringExtra("address_name");
+           addressAddress = intent.getStringExtra("address_address");
+             addressPhone = intent.getStringExtra("address_phone");}
+
+        addEvents();
         String userId = getUserId();
 
         mbase_2 = FirebaseDatabase.getInstance().getReference("PaymentMethod");
@@ -49,10 +70,125 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
         loadPaymentMethod(userId);
         checkAndAddMissingGroup();
         Log.d("size m list", String.valueOf(itemAdapter.getItemCount()));
+    }
+
+    private void addEvents() {
+        btnConfirmPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transferCartToOrders();
+                Intent intent = new Intent(CartPaymentMethodActivity.this, PlaceOrderSuccessfullyActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
 
 
 
+
+
+    private void transferCartToOrders() {
+        String userId = getUserId();
+
+        Query cartQuery = FirebaseDatabase.getInstance().getReference("Cart").orderByChild("userId").equalTo(userId);
+        DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference("Orders");
+
+        cartQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot cartSnapshot : dataSnapshot.getChildren()) {
+                        Order order = new Order();
+                        order.setUserId(userId);
+
+                        // Retrieve and set totalAmount, finalAmount, and discountedAmount
+                        double totalAmount = cartSnapshot.child("totalAmount").getValue(Double.class);
+                        double finalAmount = cartSnapshot.child("finalAmount").getValue(Double.class);
+                        double discountedAmount = cartSnapshot.child("discountedAmount").getValue(Double.class);
+
+                        order.setTotalAmount(totalAmount);
+                        order.setFinalAmount(finalAmount);
+                        order.setDiscountedAmount(discountedAmount);
+
+                        List<Product> products = new ArrayList<>();
+                        for (DataSnapshot itemSnapshot : cartSnapshot.child("items").getChildren()) {
+                            Product product = new Product();
+                            product.setTitle(itemSnapshot.child("title").getValue(String.class));
+                            product.setPrice(itemSnapshot.child("price").getValue(Double.class));
+                            product.setNumberInCart(itemSnapshot.child("quantity").getValue(Integer.class));
+                            product.setProductSize(itemSnapshot.child("size").getValue(String.class));
+
+                            List<String> picUrls = new ArrayList<>();
+                            for (DataSnapshot picSnapshot : itemSnapshot.child("pic").getChildren()) {
+                                picUrls.add(picSnapshot.getValue(String.class));
+                            }
+                            product.setPicUrls(picUrls);
+                            products.add(product);
+                        }
+                        order.setProducts(products);
+
+                        order.setCustomerName(addressName);
+                        order.setAddress(addressAddress);
+                        order.setPhone(addressPhone);
+
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        String currentDate = dateFormat.format(new Date());
+                        order.setOrderDate(currentDate);
+
+                        // Generate and check for a unique 4-digit order ID
+                        generateUniqueOrderId(ordersRef, new OrderIdCallback() {
+                            @Override
+                            public void onOrderIdGenerated(int orderId) {
+                                order.setOrderId(orderId);
+                                ordersRef.child(String.valueOf(orderId)).setValue(order);
+
+                                // Clear the cart after order is placed
+                                cartSnapshot.getRef().removeValue();
+
+                                Toast.makeText(CartPaymentMethodActivity.this, "Order placed successfully", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(CartPaymentMethodActivity.this, PlaceOrderSuccessfullyActivity.class);
+                                startActivity(intent);
+//                                clearCart();
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("FirebaseError", "Error transferring cart to orders", databaseError.toException());
+                Toast.makeText(CartPaymentMethodActivity.this, "Error placing order", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void generateUniqueOrderId(DatabaseReference ordersRef, OrderIdCallback callback) {
+        Random random = new Random();
+        int orderId = 1000 + random.nextInt(9000); // Generate a 4-digit number
+
+        ordersRef.child(String.valueOf(orderId)).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // If order ID already exists, generate a new one
+                    generateUniqueOrderId(ordersRef, callback);
+                } else {
+                    // Order ID is unique, use it
+                    callback.onOrderIdGenerated(orderId);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("FirebaseError", "Error checking for unique order ID", databaseError.toException());
+            }
+        });
+    }
+
+    private interface OrderIdCallback {
+        void onOrderIdGenerated(int orderId);
     }
 
     private String getUserId() {
@@ -61,7 +197,6 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
     }
 
     private void loadPaymentMethod(String userId) {
-
         mbase_1.orderByChild("userId").equalTo(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -97,10 +232,6 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
                         });
                     }
                 }
-
-
-
-
             }
 
             @Override
@@ -112,7 +243,6 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
 
     private void checkAndAddMissingGroup() {
         boolean foundEWalletGroup = false;
-
         boolean foundBankingGroup = false;
 
         for (PaymentGroup group : mList) {
@@ -128,9 +258,7 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
             // Add a new group for E-wallet
             mList.add(new PaymentGroup(new ArrayList<>(), "E-wallet"));
             itemAdapter.notifyDataSetChanged();
-
             Log.d("itclannay", String.valueOf(mList.size()));
-
         }
 
         if (!foundBankingGroup) {
@@ -138,31 +266,18 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
             mList.add(new PaymentGroup(new ArrayList<>(), "Banking"));
             itemAdapter.notifyDataSetChanged();
             Log.d("itclannay", String.valueOf(itemAdapter.getItemCount()));
-
-
-
         }
         mList.add(new PaymentGroup(null, "COD"));
-
-
-
-
 
         // Notify the adapter about the changes
         if (itemAdapter != null) {
             itemAdapter.notifyDataSetChanged();
-
-        }
-        else
-        {
+        } else {
             itemAdapter = new ItemWithButtonAdapter(this, mList);
             recyclerView.setAdapter(itemAdapter);
             itemAdapter.notifyDataSetChanged();
-
         }
-
     }
-
 
     private void addItemToGroup(PaymentItem paymentItem) {
         boolean foundGroup = false;
@@ -186,9 +301,6 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
             items.add(paymentItem);
             String groupName = isEwallet(paymentItem) ? "E-wallet" : "Banking";
             mList.add(new PaymentGroup(items, groupName));
-
-
-
         }
         Log.d("mList", "Loaded items: " + mList);
 
@@ -196,14 +308,10 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
         if (itemAdapter == null) {
             itemAdapter = new ItemWithButtonAdapter(CartPaymentMethodActivity.this, mList);
             recyclerView.setAdapter(itemAdapter);
-        }
-        else
-        {
+        } else {
             itemAdapter.notifyDataSetChanged();
         }
     }
-
-
 
     private boolean isEwallet(PaymentItem paymentItem) {
         String paymentMethodName = paymentItem.getWallet_name().toLowerCase();
@@ -214,6 +322,7 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rcv_mywallet_cart);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
 
+        btnConfirmPayment = findViewById(R.id.btnConfirmPayment);
+    }
 }

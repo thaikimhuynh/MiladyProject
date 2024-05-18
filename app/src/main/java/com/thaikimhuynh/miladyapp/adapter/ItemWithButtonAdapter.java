@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.model.PaymentGroup;
 import com.thaikimhuynh.miladyapp.model.PaymentItem;
-import com.thaikimhuynh.miladyapp.model.SharedViewModel;
 import com.thaikimhuynh.miladyapp.payment.AddNewWalletActivity;
 import com.thaikimhuynh.miladyapp.payment.AddNewWalletCartActivity;
 import com.thaikimhuynh.miladyapp.payment.WalletInformationActivity;
@@ -86,6 +85,7 @@ public class ItemWithButtonAdapter extends RecyclerView.Adapter<ItemWithButtonAd
                             // set others -1, false
                             currentItem.getItemList().get(currentItem.getSelectedItemPosition()).setSelected(false);
                             currentItem.setSelectedItemPosition(-1);
+
 
                             // Notify the adapter of the change
                             notifyItemChanged(i);

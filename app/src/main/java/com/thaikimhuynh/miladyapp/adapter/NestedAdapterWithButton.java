@@ -1,5 +1,6 @@
 package com.thaikimhuynh.miladyapp.adapter;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,7 +74,12 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
                 int tag = getData();
                 Log.d("Tag", tag + "");
                 Log.d("Adapter Position", holder.getAdapterPosition() + "");
+
                 mListener.onItemClicked(holder.getAdapterPosition(), tag);
+
+                Intent intent = new Intent(holder.itemView.getContext(), );
+                holder.itemView.getContext().startActivity(intent);
+
 
 
             }

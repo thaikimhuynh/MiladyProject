@@ -149,19 +149,16 @@ public class CheckOutActivity extends AppCompatActivity {
                 String addressAddress = checkoutBinding.txtAddressCheckout.getText().toString();
                 String addressPhone = checkoutBinding.txtPhone.getText().toString();
 
+                if (addressName.isEmpty() || addressAddress.isEmpty() || addressPhone.isEmpty()) {
+                    Toast.makeText(CheckOutActivity.this, "Please select an address", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent(CheckOutActivity.this, CartPaymentMethodActivity.class);
 
                 intent.putExtra("address_name", addressName);
                 intent.putExtra("address_address", addressAddress);
                 intent.putExtra("address_phone", addressPhone);
-//                SharedPreferences sharedPreferences = getSharedPreferences("selected_address", MODE_PRIVATE);
-//                String name = sharedPreferences.getString("name", "");
-//                String address = sharedPreferences.getString("address", "");
-//                String phone = sharedPreferences.getString("phone", "");
-//
-//                intent.putExtra("customer_name", name);
-//                intent.putExtra("customer_address", address);
-//                intent.putExtra("customer_phone", phone);
+
 
                 Log.d("CheckOutActivity", "address name: " + addressName);
                 Log.d("CheckOutActivity", "address_address: " + addressAddress);

@@ -114,7 +114,7 @@ private String orderDate;
         this.products = products;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(int orderId) {this.orderId = orderId;
     }
 
     public void setDiscountedAmount(double discountedAmount) {

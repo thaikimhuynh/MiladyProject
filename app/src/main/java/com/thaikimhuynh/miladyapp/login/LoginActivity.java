@@ -125,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                                    Toast.makeText(LoginActivity.this, "User ID: " + userId, Toast.LENGTH_SHORT).show();
 
                                    sharedPreferences();
-                                   Intent intent= new Intent(LoginActivity.this, CheckOutActivity.class);
+                                   Intent intent= new Intent(LoginActivity.this, MainActivity.class);
                                    startActivity(intent);
                                }else {
                                    edtPassword.setError("Wrong password or phone number!");

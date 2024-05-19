@@ -1,9 +1,10 @@
 package com.thaikimhuynh.miladyapp.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Order {
+public class Order implements Serializable {
     private int orderId;
     private String userId;
     private double totalAmount;
@@ -116,9 +117,11 @@ private String orderDate;
     }
 
     public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public void setDiscountedAmount(double discountedAmount) {
+        this.discountedAmount = discountedAmount;
     }
 
     public void setOrderDate(String orderDate) {

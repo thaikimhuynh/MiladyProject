@@ -19,51 +19,38 @@ import com.thaikimhuynh.miladyapp.model.Order;
 public class PlaceOrderSuccessfullyActivity extends AppCompatActivity {
     TextView txtOrderNumber, txtDate, txtName, txtAddress, txtTotal, txtPaymentMethod;
     private DatabaseReference ordersRef;
-    private String orderId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_order_successfully);
 
         addViews();
-        orderId = getIntent().getStringExtra("orderId");
+       Order order = (Order) getIntent().getSerializableExtra("order");
 
-        if (orderId != null) {
-            loadOrderDetails(orderId);
+        if (order != null) {
+            loadOrderDetails(order);
         } else {
             Toast.makeText(this, "No Order ID found", Toast.LENGTH_SHORT).show();
         }
 
     }
 
-    private void loadOrderDetails(String orderId) {
-        DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference("Orders").child(orderId);
+    private void loadOrderDetails(Order order) {
 
-        ordersRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    // Assuming you have an Order class to map the data
-                    Order order = dataSnapshot.getValue(Order.class);
-                    if (order != null) {
-                        // Populate the UI with order details
-                        txtOrderNumber.setText(String.valueOf(order.getOrderId()));
-                        txtDate.setText(order.getOrderDate());
-                        txtName.setText(order.getCustomerName());
-                        txtAddress.setText(order.getAddress());
-                        txtTotal.setText(String.format("$%.2f", order.getFinalAmount()));
-//                       txtPaymentMethod
+        // Populate the UI with order details
+        txtOrderNumber.setText(String.valueOf(order.getOrderId()));
+        txtDate.setText(order.getOrderDate());
+        txtName.setText(order.getCustomerName());
+        txtAddress.setText(order.getAddress());
+        txtTotal.setText(String.format("$%.2f", order.getFinalAmount()));
+        txtPaymentMethod.setText(order.getPaymentMethod());
+    //                       txtPaymentMethod
                     }
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(PlaceOrderSuccessfullyActivity.this, "Failed to load order details", Toast.LENGTH_SHORT).show();
-            }
-        });
 
-    }
+
+
+
 
     private void addViews() {
         txtOrderNumber=findViewById(R.id.txtOrderNumber);

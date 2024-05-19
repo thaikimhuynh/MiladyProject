@@ -163,6 +163,7 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
                         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                         String currentDate = dateFormat.format(new Date());
                         order.setOrderDate(currentDate);
+                        order.setOrderStatus("To Confirm");
                         order.setPaymentMethod(paymentMethod);
                         Log.d("order.text", order.toString());
 

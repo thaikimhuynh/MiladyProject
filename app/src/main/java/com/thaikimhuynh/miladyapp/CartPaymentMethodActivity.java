@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +28,7 @@ import com.thaikimhuynh.miladyapp.model.Order;
 import com.thaikimhuynh.miladyapp.model.PaymentGroup;
 import com.thaikimhuynh.miladyapp.model.PaymentItem;
 import com.thaikimhuynh.miladyapp.model.Product;
+import com.thaikimhuynh.miladyapp.model.SharedViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,6 +47,7 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
     private String addressName;
     private String addressAddress;
     private String addressPhone;
+    String paymentMethod;
     Button btnConfirmPayment;
 
     @Override
@@ -69,7 +74,22 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
 
         loadPaymentMethod(userId);
         checkAndAddMissingGroup();
-        Log.d("size m list", String.valueOf(itemAdapter.getItemCount()));
+        getPaymentMethodSelection();
+    }
+
+    private void getPaymentMethodSelection() {
+        SharedViewModel sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
+         sharedViewModel.getSharedVariable().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                paymentMethod = s;
+
+
+
+            }
+        });
+
+
     }
 
     private void addEvents() {
@@ -135,6 +155,7 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
                         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                         String currentDate = dateFormat.format(new Date());
                         order.setOrderDate(currentDate);
+                        order.setPaymentMethod(paymentMethod);
 
                         // Generate and check for a unique 4-digit order ID
                         generateUniqueOrderId(ordersRef, new OrderIdCallback() {
@@ -147,8 +168,7 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
                                 cartSnapshot.getRef().removeValue();
 
                                 Toast.makeText(CartPaymentMethodActivity.this, "Order placed successfully", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(CartPaymentMethodActivity.this, PlaceOrderSuccessfullyActivity.class);
-                                startActivity(intent);
+
 //                                clearCart();
                             }
                         });

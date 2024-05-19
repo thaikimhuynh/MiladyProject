@@ -13,6 +13,7 @@ public class Order {
     private String customerName;
     private String phone;
     private List<Product> products;
+    private String paymentMethod;
 private String orderDate;
     public Order(String customerName, String address, String phone) {
     }
@@ -110,5 +111,13 @@ private String orderDate;
 
     public String getOrderDate() {
         return orderDate;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 }

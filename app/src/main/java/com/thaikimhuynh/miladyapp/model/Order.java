@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Order {
+    private int orderId;
     private String userId;
     private double totalAmount;
     private double shippingFee;
@@ -14,6 +15,21 @@ public class Order {
     private String phone;
     private List<Product> products;
 private String orderDate;
+    private String orderStatus;
+
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
     public Order(String customerName, String address, String phone) {
     }
 

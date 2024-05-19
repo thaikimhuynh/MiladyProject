@@ -77,16 +77,10 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 transferCartToOrders();
-                Intent intent = new Intent(CartPaymentMethodActivity.this, PlaceOrderSuccessfullyActivity.class);
-                startActivity(intent);
+
             }
         });
     }
-
-
-
-
-
 
     private void transferCartToOrders() {
         String userId = getUserId();
@@ -136,6 +130,7 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
                         String currentDate = dateFormat.format(new Date());
                         order.setOrderDate(currentDate);
 
+                        order.setOrderStatus("To Confirm");
                         // Generate and check for a unique 4-digit order ID
                         generateUniqueOrderId(ordersRef, new OrderIdCallback() {
                             @Override
@@ -148,8 +143,11 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
 
                                 Toast.makeText(CartPaymentMethodActivity.this, "Order placed successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(CartPaymentMethodActivity.this, PlaceOrderSuccessfullyActivity.class);
+                                intent.putExtra("orderId", String.valueOf(orderId)); // Pass the orderId here
                                 startActivity(intent);
-//                                clearCart();
+
+                                Log.d("OrderIdDebug", "Generated Order ID: " + orderId);
+
                             }
                         });
                     }

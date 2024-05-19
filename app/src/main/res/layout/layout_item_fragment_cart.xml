@@ -35,8 +35,7 @@
         android:fontFamily="@font/noto_sans_font"
         android:text="Title"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.01"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
@@ -48,9 +47,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
         android:fontFamily="@font/noto_sans_font"
-        android:text="$25"
+        android:text="25"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
@@ -76,33 +75,19 @@
         tools:layout_editor_absoluteY="121dp" />
 
     <TextView
-        android:id="@+id/size"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_font"
-        android:text="Size:"
-        android:textColor="@color/grey"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/txtSize"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/txtProductPriceCart"
-        app:layout_constraintVertical_bias="0.225"></TextView>
-
-    <TextView
         android:id="@+id/txtSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="3dp"
         android:fontFamily="@font/noto_sans_font"
         android:text="38"
-        android:textColor="@color/grey"
+        android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/txtProductPriceCart"
-        app:layout_constraintVertical_bias="0.142" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/txtitemID"
@@ -115,8 +100,7 @@
         android:id="@+id/txtQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="33dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="64dp"
         android:fontFamily="@font/noto_sans_font"
         android:text="1"
         android:textColor="@color/pink_primary"
@@ -124,7 +108,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.644" />
+        app:layout_constraintVertical_bias="0.511" />
 
     <ImageView
         android:id="@+id/imgClear"
@@ -135,6 +119,6 @@
         app:layout_constraintHorizontal_bias="0.893"
         app:layout_constraintStart_toEndOf="@+id/txtProductNameCart"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@mipmap/ic_delete"/>
+        app:srcCompat="@mipmap/ic_delete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

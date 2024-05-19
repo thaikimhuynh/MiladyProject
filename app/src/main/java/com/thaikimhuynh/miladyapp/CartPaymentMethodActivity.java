@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +27,7 @@ import com.thaikimhuynh.miladyapp.model.Order;
 import com.thaikimhuynh.miladyapp.model.PaymentGroup;
 import com.thaikimhuynh.miladyapp.model.PaymentItem;
 import com.thaikimhuynh.miladyapp.model.Product;
+import com.thaikimhuynh.miladyapp.model.SharedViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,6 +46,7 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
     private String addressName;
     private String addressAddress;
     private String addressPhone;
+    String paymentMethod;
     Button btnConfirmPayment;
 
     @Override
@@ -51,36 +55,61 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart_payment_method);
         addViews();
 
-
         Intent intent = getIntent();
         if (intent != null) {
           addressName = intent.getStringExtra("address_name");
            addressAddress = intent.getStringExtra("address_address");
-             addressPhone = intent.getStringExtra("address_phone");}
+           addressPhone = intent.getStringExtra("address_phone");}
 
-        addEvents();
         String userId = getUserId();
-
+        getUserPaymentMethod();
         mbase_2 = FirebaseDatabase.getInstance().getReference("PaymentMethod");
         mbase_1 = FirebaseDatabase.getInstance().getReference("PaymentAccount");
         mList = new ArrayList<>();
         itemAdapter = new ItemWithButtonAdapter(this, mList);
         recyclerView.setAdapter(itemAdapter);
-
         loadPaymentMethod(userId);
         checkAndAddMissingGroup();
+        addEvents();
+
         Log.d("size m list", String.valueOf(itemAdapter.getItemCount()));
+    }
+
+    private void getUserPaymentMethod() {
+        SharedViewModel sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
+        sharedViewModel.getSharedVariable().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String data) {
+
+                paymentMethod = data;
+
+
+            }
+        });
+
     }
 
     private void addEvents() {
         btnConfirmPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                transferCartToOrders();
+                if (paymentMethod != null){
+                    transferCartToOrders();
+                }
+                else
+                {
+                    Toast.makeText(CartPaymentMethodActivity.this, "Please choose a payment method", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });
     }
+
+
+
+
+
 
     private void transferCartToOrders() {
         String userId = getUserId();
@@ -88,12 +117,17 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
         Query cartQuery = FirebaseDatabase.getInstance().getReference("Cart").orderByChild("userId").equalTo(userId);
         DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference("Orders");
 
+
         cartQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
+                    Log.d("cartSnapshot", dataSnapshot.getChildren().toString());
+
                     for (DataSnapshot cartSnapshot : dataSnapshot.getChildren()) {
                         Order order = new Order();
+                        Log.d("order.text", "complete");
+
                         order.setUserId(userId);
 
                         // Retrieve and set totalAmount, finalAmount, and discountedAmount
@@ -129,13 +163,17 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
                         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                         String currentDate = dateFormat.format(new Date());
                         order.setOrderDate(currentDate);
-
                         order.setOrderStatus("To Confirm");
+                        order.setPaymentMethod(paymentMethod);
+                        Log.d("order.text", order.toString());
+
+
                         // Generate and check for a unique 4-digit order ID
                         generateUniqueOrderId(ordersRef, new OrderIdCallback() {
                             @Override
                             public void onOrderIdGenerated(int orderId) {
                                 order.setOrderId(orderId);
+                                Log.d("order.text", order.toString());
                                 ordersRef.child(String.valueOf(orderId)).setValue(order);
 
                                 // Clear the cart after order is placed
@@ -143,11 +181,10 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
 
                                 Toast.makeText(CartPaymentMethodActivity.this, "Order placed successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(CartPaymentMethodActivity.this, PlaceOrderSuccessfullyActivity.class);
-                                intent.putExtra("orderId", String.valueOf(orderId)); // Pass the orderId here
+                                intent.putExtra("order", order);
+
                                 startActivity(intent);
-
-                                Log.d("OrderIdDebug", "Generated Order ID: " + orderId);
-
+//                                clearCart();
                             }
                         });
                     }
@@ -175,6 +212,7 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
                 } else {
                     // Order ID is unique, use it
                     callback.onOrderIdGenerated(orderId);
+                    Log.d("orderid", String.valueOf(orderId));
                 }
             }
 

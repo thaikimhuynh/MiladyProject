@@ -5,13 +5,14 @@ import android.widget.ImageView;
 import java.io.Serializable;
 
 public class PaymentItem implements Serializable {
-    private String wallet_name, user_name, phoneNumber, layout;
+    private String wallet_name, user_name, phoneNumber, layout, paymentId;
     private String img_logo;
     private boolean isSelected;
 
 
-    public PaymentItem(String wallet_name, String user_name, String phoneNumber, String img_logo, String layout) {
+    public PaymentItem(String paymentId, String wallet_name, String user_name, String phoneNumber, String img_logo, String layout) {
         this.wallet_name = wallet_name;
+        this.paymentId = paymentId;
         this.user_name = user_name;
         this.phoneNumber = phoneNumber;
         this.layout = layout;
@@ -65,5 +66,13 @@ public class PaymentItem implements Serializable {
 
     public void setSelected(boolean isSelected) {
         this.isSelected = isSelected;
+    }
+
+    public String getPaymentId() {
+        return paymentId;
+    }
+
+    public void setPaymentId(String paymentId) {
+        this.paymentId = paymentId;
     }
 }

@@ -20,14 +20,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.model.PaymentGroup;
 import com.thaikimhuynh.miladyapp.model.PaymentItem;
-import com.thaikimhuynh.miladyapp.model.SharedViewModel;
 import com.thaikimhuynh.miladyapp.payment.AddNewWalletActivity;
+import com.thaikimhuynh.miladyapp.payment.AddNewWalletCartActivity;
 import com.thaikimhuynh.miladyapp.payment.WalletInformationActivity;
 
 import java.util.List;
 public class ItemWithButtonAdapter extends RecyclerView.Adapter<ItemWithButtonAdapter.ItemWithButtonViewHolder>  {
     private List<PaymentGroup> mList;
-    private List<PaymentItem> item_list;
     public ItemWithButtonAdapter(Context mContext, List<PaymentGroup> mList){
         this.mList = mList;
     }
@@ -44,22 +43,26 @@ public class ItemWithButtonAdapter extends RecyclerView.Adapter<ItemWithButtonAd
     @Override
     public void onBindViewHolder(@NonNull ItemWithButtonAdapter.ItemWithButtonViewHolder holder, int position) {
         PaymentGroup groupmodel = mList.get(position);
-        holder.pm_name.setText(groupmodel.getItemText());
-
-        boolean isExpandable = groupmodel.isExpandable();
-        holder.nestedLayout.setVisibility(isExpandable ? View.VISIBLE: View.GONE);
-
-        if (isExpandable){
-            holder.arrow_btn.setImageResource(R.mipmap.ic_arrow_up);
-        }
-        else{
-            holder.arrow_btn.setImageResource(R.mipmap.ic_arrow_down);
-        }
-
+        Log.d("groupmdodel", "groupmodel name la" + groupmodel.getItemText());
         List<PaymentItem> item_list = groupmodel.getItemList();
 
 
         NestedAdapterWithButton adapter = new NestedAdapterWithButton(item_list);
+        holder.pm_name.setText(groupmodel.getItemText());
+
+        boolean isExpandable = groupmodel.isExpandable();
+        if ((groupmodel.getItemText().equalsIgnoreCase("cod")) && !groupmodel.isCodSelected()) {
+            holder.arrow_btn.setImageResource(R.mipmap.select_button);
+            holder.nestedLayout.setVisibility(View.GONE);
+
+        } else {
+            holder.arrow_btn.setVisibility(View.VISIBLE);
+            holder.nestedLayout.setVisibility(isExpandable ? View.VISIBLE : View.GONE);
+            holder.arrow_btn.setImageResource(isExpandable ? R.mipmap.ic_arrow_up : R.mipmap.ic_arrow_down);
+        }
+
+
+
 
         adapter.setData(position);
 
@@ -67,25 +70,30 @@ public class ItemWithButtonAdapter extends RecyclerView.Adapter<ItemWithButtonAd
         holder.nestedRecyclerView.setHasFixedSize(true);
         holder.nestedRecyclerView.setAdapter(adapter);
         adapter.setNestedAdapterListener(new NestedAdapterWithButton.NestedAdapterListener() {
-            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onItemClicked(int position_v, int tag_v) {
                 // Handle the clicked item in the parent adapter
                 PaymentGroup group = mList.get(tag_v);
 
                 group.setSelectedItemPosition(position_v);
+
                 for (int i = 0; i < mList.size(); i++) {
                     if (i != tag_v) {
                         PaymentGroup currentItem = mList.get(i);
                         if (currentItem.getSelectedItemPosition() != -1)
                         {
+                            // set others -1, false
                             currentItem.getItemList().get(currentItem.getSelectedItemPosition()).setSelected(false);
                             currentItem.setSelectedItemPosition(-1);
+
                             // Notify the adapter of the change
                             notifyItemChanged(i);
 
-
-
+                        }
+                        if (currentItem.getItemText().equalsIgnoreCase("cod"))
+                        {
+                            currentItem.setCodSelected(false);
+                            notifyItemChanged(i);
                         }
                         }
                     }
@@ -98,9 +106,26 @@ public class ItemWithButtonAdapter extends RecyclerView.Adapter<ItemWithButtonAd
         holder.arrow_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                groupmodel.setExpandable(!groupmodel.isExpandable());
-                notifyItemChanged(holder.getAdapterPosition());
+                if (groupmodel.getItemText().equalsIgnoreCase("cod")) {
+                    holder.arrow_btn.setImageResource(R.mipmap.selected_button);
+                    for (int i = 0; i < mList.size(); i++) {
+                            PaymentGroup currentItem = mList.get(i);
+                            if (currentItem.getSelectedItemPosition() != -1)
+                            {
+                                currentItem.getItemList().get(currentItem.getSelectedItemPosition()).setSelected(false);
+                                currentItem.setSelectedItemPosition(-1);
+                                // Notify the adapter of the change
+                                notifyItemChanged(i);
+                            }
 
+                    }
+
+
+                } else {
+                    // For other groups, toggle expand/collapse logic
+                    groupmodel.setExpandable(!groupmodel.isExpandable());
+                    notifyItemChanged(holder.getAdapterPosition());
+                }
 
             }
         });
@@ -112,7 +137,7 @@ public class ItemWithButtonAdapter extends RecyclerView.Adapter<ItemWithButtonAd
                 PaymentGroup groupmodel = mList.get(position);
                 String wallet_type = groupmodel.getItemText();
                 String layout = wallet_type.equals("E-wallet") ? "1" : "2";
-                Intent intent = new Intent(context, AddNewWalletActivity.class);
+                Intent intent = new Intent(context, AddNewWalletCartActivity.class);
                 intent.putExtra("layout", layout);
 
                 context.startActivity(intent);
@@ -125,7 +150,8 @@ public class ItemWithButtonAdapter extends RecyclerView.Adapter<ItemWithButtonAd
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return  mList.size() ;
+
     }
 
     public class ItemWithButtonViewHolder extends RecyclerView.ViewHolder{
@@ -145,7 +171,6 @@ public class ItemWithButtonAdapter extends RecyclerView.Adapter<ItemWithButtonAd
             arrow_btn = itemView.findViewById(R.id.dropdown_btn_cart);
             nestedRecyclerView = itemView.findViewById(R.id.recyclerview_mywallet_cart);
             nestedLayout = itemView.findViewById(R.id.nested_layout_cart);
-            linearLayout = itemView.findViewById(R.id.linear_layout_cart);
             btn_add = itemView.findViewById(R.id.btn_add_wallet);
 
 

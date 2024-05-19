@@ -42,6 +42,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         this.cartFragment = cartFragment; // Initialize the reference to CartFragment
         this.changeNumberItemsListener = changeNumberItemsListener;
     }
+    public CartAdapter(ArrayList<Product> carts, Context context) {
+        this.carts = carts;
+        this.context = context;
+        this.managementCart = new ManagementCart(context);
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -56,7 +62,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         String itemId = cart.getGetItemId();
         holder.txtProductName.setText(cart.getTitle());
         holder.txtProductPrice.setText("$" + String.valueOf(Math.round(cart.getPrice())));
-        holder.txtItemQuantity.setText(String.valueOf(cart.getNumberInCart()));
+        holder.txtItemQuantity.setText("x" +String.valueOf(cart.getNumberInCart()));
         holder.txtSize.setText(cart.getProductSize());
         holder.txtItemId.setText(cart.getGetItemId());
         holder.txtItemId.setVisibility(View.GONE);

@@ -56,6 +56,8 @@ public class AddNewWalletActivity extends AppCompatActivity {
             public void onClick(View v) {
                 getInfo();
                 addNewPaymentAccount();
+                Intent intent = new Intent(AddNewWalletActivity.this, SuccessfullyChangeActivity.class);
+                startActivity(intent);
 
             }
         });
@@ -152,7 +154,7 @@ public class AddNewWalletActivity extends AppCompatActivity {
         edt_phoneNumber = findViewById(R.id.edtPhoneNumber_add);
         btnAdd = findViewById(R.id.btnAddNewEwall);
 
-;
+        ;
     }
 
     private void resetText() {

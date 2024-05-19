@@ -7,31 +7,6 @@
     tools:context=".payment.SuccessfullyChangeActivity">
 
     <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_ewallTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_ewallTitle"
-        app:srcCompat="@mipmap/ic_back" />
-
-    <TextView
-        android:id="@+id/tv_ewallTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Change E-Wallet"
-        android:textColor="#F9476B"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
         android:id="@+id/imageView6"
         android:layout_width="107dp"
         android:layout_height="107dp"
@@ -58,7 +33,7 @@
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="E-Wallet Successfully"
+        android:text="Payment Method Successfully"
         android:textAlignment="center"
         android:textColor="#F9476B"
         android:textSize="16sp"
@@ -69,6 +44,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"
+        android:onClick="backtoMyWalletActivity"
         android:layout_width="356dp"
         android:layout_height="48dp"
         android:layout_marginStart="36dp"

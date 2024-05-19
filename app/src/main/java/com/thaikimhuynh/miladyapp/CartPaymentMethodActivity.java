@@ -10,9 +10,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -74,22 +71,7 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
 
         loadPaymentMethod(userId);
         checkAndAddMissingGroup();
-        getPaymentMethodSelection();
-    }
-
-    private void getPaymentMethodSelection() {
-        SharedViewModel sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
-         sharedViewModel.getSharedVariable().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                paymentMethod = s;
-
-
-
-            }
-        });
-
-
+        Log.d("size m list", String.valueOf(itemAdapter.getItemCount()));
     }
 
     private void addEvents() {

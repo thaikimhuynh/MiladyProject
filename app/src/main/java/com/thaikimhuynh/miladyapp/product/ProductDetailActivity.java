@@ -25,7 +25,9 @@ import com.thaikimhuynh.miladyapp.helpers.ManagementCart;
 import com.thaikimhuynh.miladyapp.model.Product;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class ProductDetailActivity extends AppCompatActivity {
@@ -89,8 +91,8 @@ public class ProductDetailActivity extends AppCompatActivity {
         SizeAdapter sizeAdapter = new SizeAdapter(list);
         sizeAdapter.setOnItemClickListener(size -> selectedSize = size);
 
-        productDetailBinding.RecyclerSize.setAdapter(sizeAdapter);
-        productDetailBinding.RecyclerSize.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        productDetailBinding.listSize.setAdapter(sizeAdapter);
+        productDetailBinding.listSize.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     }
 
     private void loadCateName() {

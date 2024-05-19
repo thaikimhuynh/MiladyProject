@@ -222,6 +222,21 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
         });
     }
 
+//    private void generateUniqueOrderId(DatabaseReference ordersRef, OrderIdCallback callback) {
+//        Random random = new Random();
+//        int orderId = 1000 + random.nextInt(9000); // Generate a 4-digit number
+//
+//        // Tạo một node con mới trong cơ sở dữ liệu Firebase
+//        DatabaseReference newOrderRef = ordersRef.push();
+//
+//        // Lấy key của node con mới, đó chính là orderId
+//
+//        String orderIdKey = newOrderRef.getKey();
+//
+//        // Sử dụng orderId được tạo để gọi callback
+//        callback.onOrderIdGenerated(orderIdKey);
+//    }
+
     private interface OrderIdCallback {
         void onOrderIdGenerated(int orderId);
     }

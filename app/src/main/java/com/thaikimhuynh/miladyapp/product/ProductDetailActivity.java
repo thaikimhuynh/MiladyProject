@@ -25,7 +25,9 @@ import com.thaikimhuynh.miladyapp.helpers.ManagementCart;
 import com.thaikimhuynh.miladyapp.model.Product;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class ProductDetailActivity extends AppCompatActivity {
@@ -45,7 +47,6 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         managementCart = new ManagementCart(this);
 
-        // Load product detail and category name
         product = (Product) getIntent().getSerializableExtra("product");
         if (product != null) {
             loadProductDetail();
@@ -54,10 +55,15 @@ public class ProductDetailActivity extends AppCompatActivity {
             Toast.makeText(this, "Product not available", Toast.LENGTH_SHORT).show();
             finish();
         }
-
+        readWishlistStatus();
         initSize();
         editQuantity();
         setupListeners();
+    }
+
+    private String getUserId() {
+        SharedPreferences sharedPreferences = getSharedPreferences("user_session", MODE_PRIVATE);
+        return sharedPreferences.getString("user_id", "");
     }
 
     private void editQuantity() {
@@ -104,7 +110,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // Handle error if needed
+
             }
         });
     }
@@ -114,7 +120,6 @@ public class ProductDetailActivity extends AppCompatActivity {
         String description = product.getDescription();
         double price = product.getPrice();
         List<String> picUrls = product.getPicUrls();
-
         productDetailBinding.txtProductDetailName.setText(title);
         productDetailBinding.txtProductDetailDescription.setText(description);
         productDetailBinding.txtProductDetailPrice.setText("$" + price);
@@ -128,19 +133,106 @@ public class ProductDetailActivity extends AppCompatActivity {
         productDetailBinding.imgBack.setOnClickListener(v -> finish());
 
         productDetailBinding.btnAddToCart.setOnClickListener(v -> addToCart());
+        productDetailBinding.imgFavorite.setOnClickListener(v -> addToWishlist());
+
     }
 
-    private String getUserId() {
-        SharedPreferences sharedPreferences = getSharedPreferences("user_session", MODE_PRIVATE);
-        return sharedPreferences.getString("user_id", "");
+    //Wishlist
+
+    private int generateRandomWishlistId() {
+        return (int) (Math.random() * 90000) + 10000;
     }
+
+
+    private void readWishlistStatus() {
+        String userId = getUserId();
+        DatabaseReference userWishlistRef = FirebaseDatabase.getInstance().getReference().child("Wishlist").child(userId);
+        userWishlistRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean productInWishlist = false;
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    String storedProductID = dataSnapshot.child("productID").getValue(String.class);
+                    Boolean isAddedToWishlist = dataSnapshot.child("isAddedToWishlist").getValue(Boolean.class);
+
+                    if (storedProductID != null && storedProductID.equals(product.getProductId()) && isAddedToWishlist != null && isAddedToWishlist) {
+                        productInWishlist = true;
+                        break;
+                    }
+                }
+
+                if (productInWishlist) {
+                    productDetailBinding.imgFavorite.setImageResource(R.mipmap.ic_heart_2);
+                } else {
+                    productDetailBinding.imgFavorite.setImageResource(R.mipmap.ic_heart_1);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void addToWishlist() {
+        String userId = getUserId();
+        if (product != null && product.getProductId() != null) {
+            DatabaseReference userWishlistRef = FirebaseDatabase.getInstance().getReference().child("Wishlist").child(userId);
+            userWishlistRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    boolean productExists = false;
+                    String productKey = null;
+
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        String storedProductID = dataSnapshot.child("productID").getValue(String.class);
+                        if (storedProductID != null && storedProductID.equals(product.getProductId())) {
+                            productExists = true;
+                            productKey = dataSnapshot.getKey();
+                            break;
+                        }
+                    }
+
+                    if (!productExists) {
+                        int wishlistId = generateRandomWishlistId();
+                        Map<String, Object> wishlistItemMap = new HashMap<>();
+                        wishlistItemMap.put("productID", product.getProductId());
+                        wishlistItemMap.put("userID", userId);
+                        wishlistItemMap.put("isAddedToWishlist", true);
+                        wishlistItemMap.put("wishlistID", wishlistId);
+                        userWishlistRef.child(String.valueOf(wishlistId)).setValue(wishlistItemMap);
+
+                        Toast.makeText(ProductDetailActivity.this, "Product added to Wishlist", Toast.LENGTH_SHORT).show();
+                        productDetailBinding.imgFavorite.setImageResource(R.mipmap.ic_heart_2);
+                    } else {
+                        userWishlistRef.child(productKey).removeValue();
+
+                        Toast.makeText(ProductDetailActivity.this, "Product removed from Wishlist", Toast.LENGTH_SHORT).show();
+                        productDetailBinding.imgFavorite.setImageResource(R.mipmap.ic_heart_1);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(ProductDetailActivity.this, "Failed to add to Wishlist", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(this, "Product not available", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+//Add to cart
 
     private static final int DISPLAY_ERROR_DURATION = 1000;
     private Handler handler = new Handler();
 
     private void addToCart() {
         String userId = getUserId();
-        if (product != null && product.getTitle() != null) {
+        if (product != null && product.getProductId() != null) {
             if (selectedSize.isEmpty()) {
                 productDetailBinding.txtError.setText("Please select a size");
                 handler.postDelayed(() -> productDetailBinding.txtError.setText(""), DISPLAY_ERROR_DURATION);

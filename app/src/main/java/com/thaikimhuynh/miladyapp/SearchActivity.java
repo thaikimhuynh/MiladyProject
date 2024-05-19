@@ -1,16 +1,17 @@
 package com.thaikimhuynh.miladyapp;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.slider.RangeSlider;
@@ -19,18 +20,17 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.thaikimhuynh.miladyapp.adapter.FilterSizeAdapter;
 import com.thaikimhuynh.miladyapp.adapter.ProductAdapter;
-import com.thaikimhuynh.miladyapp.adapter.SizeAdapter;
 import com.thaikimhuynh.miladyapp.databinding.ActivitySearchBinding;
 import com.thaikimhuynh.miladyapp.model.Product;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
-    private String selectedSize = "";
     private ArrayList<Product> productList = new ArrayList<>();
     private ProductAdapter ProductAdapter;
     private ActivitySearchBinding binding;
@@ -39,8 +39,8 @@ public class SearchActivity extends AppCompatActivity {
     private float maxPrice = 500;
     DatabaseReference mbase;
     RecyclerView recyclerView;
-
-
+    private boolean isSortedAZ = false;
+    private boolean isSortedZA = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +67,18 @@ public class SearchActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String title = snapshot.child("title").getValue(String.class);
                     double price = snapshot.child("price").getValue(Double.class);
-                    String id = snapshot.child("category_id").getValue(String.class);
+                    String product_id = snapshot.child("id").getValue(String.class);
+                    String category_id = snapshot.child("category_id").getValue(String.class);
                     List<String> picUrls = (List<String>) snapshot.child("picUrl").getValue();
-                    String productId = snapshot.child("productId").getValue(String.class);
                     String description = snapshot.child("description").getValue(String.class);
+                    Product product = new Product();
+                    product.setTitle(title);
+                    product.setProductId(product_id);
+                    product.setCategoryId(category_id);
+                    product.setPrice(price);
+                    product.setDescription(description);
+                    product.setPicUrls(picUrls);
 
-                    Product product = new Product(title, price, id, picUrls, productId, description);
                     productList.add(product);
                 }
 
@@ -90,6 +96,7 @@ public class SearchActivity extends AppCompatActivity {
 
 
     private void addEvents() {
+
         binding.imgFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,31 +127,71 @@ public class SearchActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        binding.imgSortAZ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isSortedAZ) {
+                    sortProductsAZ();
+                    binding.imgSortAZ.setImageResource(R.mipmap.ic_sorted_az);
+                    binding.imgSortZA.setVisibility(View.INVISIBLE);
+                } else {
+                    binding.imgSortAZ.setImageResource(R.mipmap.ic_sort_az);
+                    binding.imgSortZA.setVisibility(View.VISIBLE);
+                    loadProducts();
+
+                }
+                isSortedAZ = !isSortedAZ;
+                isSortedZA = false;
+            }
+        });
+
+        binding.imgSortZA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isSortedZA) {
+                    sortProductsZA();
+                    binding.imgSortZA.setImageResource(R.mipmap.ic_sorted_za);
+                    binding.imgSortAZ.setVisibility(View.INVISIBLE);
+                } else {
+                    binding.imgSortZA.setImageResource(R.mipmap.ic_sort_za);
+                    binding.imgSortAZ.setVisibility(View.VISIBLE);
+                    loadProducts();
+                }
+                isSortedZA = !isSortedZA;
+                isSortedAZ = false;
+            }
+        });
     }
+
+    private void sortProductsAZ() {
+        Collections.sort(productList, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return o1.getTitle().compareToIgnoreCase(o2.getTitle());
+            }
+        });
+        ProductAdapter.notifyDataSetChanged();
+    }
+
+    private void sortProductsZA() {
+        Collections.sort(productList, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return o2.getTitle().compareToIgnoreCase(o1.getTitle());
+            }
+        });
+        ProductAdapter.notifyDataSetChanged();
+    }
+
 
     private void showFilterDialog() {
         bottomSheetDialog.setContentView(R.layout.alert_filter);
-        RecyclerView sizeRecyclerView = bottomSheetDialog.findViewById(R.id.RecyclerSize);
         RangeSlider priceRangeSlider = bottomSheetDialog.findViewById(R.id.sizeRangeSlider);
         Button applyFilterButton = bottomSheetDialog.findViewById(R.id.btnApply);
         Button clearFilterButton = bottomSheetDialog.findViewById(R.id.btnClear);
         ImageView closeDiaglogButon = bottomSheetDialog.findViewById(R.id.btnClose);
-        ArrayList<String> sizeList = new ArrayList<>();
-        sizeList.add("36");
-        sizeList.add("37");
-        sizeList.add("38");
-        sizeList.add("39");
-        sizeList.add("40");
 
-        FilterSizeAdapter sizeAdapter = new FilterSizeAdapter(sizeList);
-        sizeAdapter.setOnItemClickListener(new FilterSizeAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(String size) {
-                selectedSize = size;
-            }
-        });
-        sizeRecyclerView.setAdapter(sizeAdapter);
-        sizeRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         priceRangeSlider.setValueFrom(0);
         priceRangeSlider.setValueTo(500);
@@ -156,7 +203,7 @@ public class SearchActivity extends AppCompatActivity {
                 List<Float> priceRange = priceRangeSlider.getValues();
                 minPrice = priceRange.get(0);
                 maxPrice = priceRange.get(1);
-                applyFilters(selectedSize, minPrice, maxPrice);
+                applyFilters( minPrice, maxPrice);
                 bottomSheetDialog.dismiss();
             }
         });
@@ -164,7 +211,6 @@ public class SearchActivity extends AppCompatActivity {
         clearFilterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedSize = "";
                 priceRangeSlider.setValues(0f, 500f);
             }
         });
@@ -189,11 +235,11 @@ public class SearchActivity extends AppCompatActivity {
         bottomSheetDialog.show();
     }
 
-    private void applyFilters(String size, float minPrice, float maxPrice) {
+    private void applyFilters( float minPrice, float maxPrice) {
         List<Product> filteredList = new ArrayList<>();
         for (Product item : productList) {
             float itemPrice = (float) item.getPrice();
-            if ((size.isEmpty() || item.getTitle().contains(size)) && itemPrice >= minPrice && itemPrice <= maxPrice) {
+            if (( itemPrice >= minPrice && itemPrice <= maxPrice)) {
                 filteredList.add(item);
             }
         }
@@ -210,6 +256,14 @@ public class SearchActivity extends AppCompatActivity {
         ProductAdapter.setProductList((ArrayList<Product>) filteredList);
     }
 
-
 }
+
+
+
+
+
+
+
+
+
 

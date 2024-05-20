@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".payment.SuccessfullyChangeActivity">
 
     <ImageView
@@ -18,10 +19,11 @@
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="135dp"
+        android:layout_height="32dp"
         android:layout_marginTop="10dp"
-        android:text="@string/linking_new_payment"
+        android:fontFamily="@font/noto_sans_font"
+        android:text="Linking Your New "
         android:textAlignment="center"
         android:textColor="#F9476B"
         android:textSize="16sp"
@@ -33,8 +35,10 @@
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/payment_method_successfully"
+        android:text="Payment Method Successfully"
         android:textAlignment="center"
+        android:fontFamily="@font/noto_sans_font"
+
         android:textColor="#F9476B"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +55,7 @@
         android:layout_marginTop="650dp"
         android:layout_marginEnd="36dp"
         android:background="@drawable/rounded_pink_button_background"
-        android:text="@string/apply"
+        android:text="Apply"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.529"

@@ -15,14 +15,14 @@
             android:id="@+id/textViewTotalCoupon"
             android:layout_width="300dp"
             android:layout_height="100dp"
+            android:layout_gravity="center"
             android:layout_margin="16dp"
             android:height="50dp"
             android:background="@drawable/rounded_pink_boldstroke"
-            android:textSize="22sp"
-            android:textColor="@color/pink_primary"
             android:gravity="center"
-            android:layout_gravity="center"
-            android:text="Your Total Coupon\n4" />
+            android:text="Your Total Coupon\n4"
+            android:textColor="@color/pink_primary"
+            android:textSize="20sp" />
 
         <!-- RecyclerView displaying items -->
         <androidx.recyclerview.widget.RecyclerView

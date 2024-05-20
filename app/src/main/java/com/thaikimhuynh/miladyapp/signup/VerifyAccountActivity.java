@@ -83,10 +83,10 @@ public class VerifyAccountActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             saveUserDataToFirebase();
                             txtMessageError.setVisibility(View.GONE);
-                            // Nếu xác minh thành công, chuyển hướng người dùng đến NewPasswordActivity
                             // Truyền số điện thoại qua Intent
                             Intent intent = new Intent(VerifyAccountActivity.this, LoginActivity.class);
                             intent.putExtra("phoneNumber", phoneNumber);
+
 
                             startActivity(intent);
                             finish(); // Kết thúc hoạt động hiện tại

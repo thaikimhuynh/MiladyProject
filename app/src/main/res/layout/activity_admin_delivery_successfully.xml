@@ -11,7 +11,7 @@
         android:layout_width="174dp"
         android:layout_height="31dp"
         android:layout_marginTop="48dp"
-        android:text="@string/preor"
+        android:text="Order History"
         android:textAlignment="center"
         android:textColor="@color/pink_primary"
         android:textSize="20sp"
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="4dp"
-                android:text="@string/orli"
+                android:text="Order List"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -65,42 +65,12 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/edtVoucher"
-                    android:layout_width="195dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginEnd="7dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext_black_stroke"
-                    android:ems="10"
-                    android:hint="MILADAY_NEW"
-                    android:inputType="text"
-                    android:paddingStart="10dp" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnApplyVoucher"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="36dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_grey_button"
-                    android:text="Apply"
-                    android:textColor="@color/white" />
-            </LinearLayout>
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="454dp">
 
                 <LinearLayout
-                    android:id="@+id/Layout"
+                    android:id="@+id/linearLayout"
                     android:layout_width="410dp"
                     android:layout_height="102dp"
                     android:layout_marginTop="80dp"
@@ -153,12 +123,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="36dp"
                     android:layout_marginTop="25dp"
-                    android:text="@string/yocar"
+                    android:text="Your Cart"
                     android:textColor="@color/grey"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Layout" />
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
                 <TextView
                     android:id="@+id/textView26"
@@ -166,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="36dp"
                     android:layout_marginTop="7dp"
-                    android:text="@string/shipfe"
+                    android:text="Shipping Fee"
                     android:textColor="@color/grey"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -179,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="36dp"
                     android:layout_marginTop="7dp"
-                    android:text="@string/vou"
+                    android:text="Voucher"
                     android:textColor="@color/grey"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -197,7 +167,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.97"
                     app:layout_constraintStart_toEndOf="@+id/textView25"
-                    app:layout_constraintTop_toBottomOf="@+id/Layout" />
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
                 <TextView
                     android:id="@+id/txtShippingFee"
@@ -234,7 +204,7 @@
                     android:background="@android:color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Layout" />
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
                 <TextView
                     android:id="@+id/textView31"
@@ -242,7 +212,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="36dp"
                     android:layout_marginTop="40dp"
-                    android:text="@string/to"
+                    android:text="Total"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -265,44 +235,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtVoucherCheckout" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_prepare"
-                    android:layout_width="340dp"
-                    android:layout_height="54dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/rounded_pink_button_background"
-                    android:text="@string/preordo"
-                    android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view2"
-                    app:layout_constraintVertical_bias="0.691" />
-
                 <TextView
                     android:id="@+id/textView28"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/shipadd"
+                    android:text="Shipping Adress"
                     android:textSize="24sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/Layout"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.162"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.73" />
-
-                <TextView
-                    android:id="@+id/textView32"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/vouchesucess"
-                    android:textColor="@color/grey"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="@+id/textView28"
-                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

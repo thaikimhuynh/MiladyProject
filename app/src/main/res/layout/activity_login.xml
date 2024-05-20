@@ -60,15 +60,15 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/rounded_edittext_black_stroke"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="phone"
+        android:paddingLeft="16dp"
         android:text=""
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         android:hint="@string/enter_phone_number"
-        android:textSize="14sp"
-        android:paddingLeft="16dp"
         />
 
     <TextView

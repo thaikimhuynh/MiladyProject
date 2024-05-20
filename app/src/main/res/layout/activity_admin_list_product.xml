@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Heels"
+            android:text="@string/he"
             android:textColor="@color/black"
             android:textSize="12sp"
             android:textStyle="bold">
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Sandals"
+            android:text="@string/sa"
             android:textColor="@color/black"
             android:textSize="12sp"
             android:textStyle="bold">
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Boots"
+            android:text="@string/bo"
             android:textColor="@color/black"
             android:textSize="12sp"
             android:textStyle="bold">
@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Sneakers"
+            android:text="@string/sne"
             android:textColor="@color/black"
             android:textSize="12sp"
             android:textStyle="bold"

@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.thaikimhuynh.miladyapp.fragment.CanceledFragment;
-//import com.thaikimhuynh.miladyapp.fragment.ConfirmingFragment;
+import com.thaikimhuynh.miladyapp.fragment.ConfirmingFragment;
 import com.thaikimhuynh.miladyapp.fragment.OnDeliveryFragment;
 import com.thaikimhuynh.miladyapp.fragment.ReceivedFragment;
 
@@ -37,8 +37,7 @@ public class MyOrdersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_orders);
         addViews();
 
-//        Default fragment, default selected tab
-//        replaceFragment(new ConfirmingFragment());
+        replaceFragment(new ConfirmingFragment());
 
         tabItem1.setBackgroundResource(R.drawable.rounded_pink_button_background);
         tabItem1.setTextColor(Color.WHITE);
@@ -145,7 +144,7 @@ public class MyOrdersActivity extends AppCompatActivity {
 
     private void openConfirmFragment() {
         if (currentFragment != FRAGMENT_CONFIRMING) {
-//            replaceFragment(new ConfirmingFragment());
+            replaceFragment(new ConfirmingFragment());
         }
 
 

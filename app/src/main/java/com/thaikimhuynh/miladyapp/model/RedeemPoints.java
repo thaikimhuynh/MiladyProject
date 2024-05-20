@@ -7,6 +7,37 @@ public class RedeemPoints {
     String pointRequired;
     String description;
     String voucherCode;
+    String expiration;
+
+    public RedeemPoints(String title, String content, String programname, String pointRequired, String description, String voucherCode, String expiration, String discount) {
+        this.title = title;
+        this.content = content;
+        this.programname = programname;
+        this.pointRequired = pointRequired;
+        this.description = description;
+        this.voucherCode = voucherCode;
+        this.expiration = expiration;
+        this.discount = discount;
+    }
+
+    public String getExpiration() {
+        return expiration;
+    }
+
+    public void setExpiration(String expiration) {
+        this.expiration = expiration;
+    }
+
+    String discount;
+
+
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
 
     public String getDescription() {
         return description;
@@ -55,14 +86,7 @@ public class RedeemPoints {
     public void setPointRequired(String pointRequired) {
         this.pointRequired = pointRequired;
     }
-    public RedeemPoints(String title, String content, String programname, String pointRequired, String description, String voucherCode) {
-        this.title = title;
-        this.content = content;
-        this.programname = programname;
-        this.pointRequired = pointRequired;
-        this.description = description;
-        this.voucherCode = voucherCode;
-    }
+
 
 
 

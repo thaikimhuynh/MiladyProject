@@ -3,9 +3,11 @@ plugins {
     id("com.google.gms.google-services")
 }
 
+
 android {
     namespace = "com.thaikimhuynh.miladyapp"
     compileSdk = 34
+
 
     defaultConfig {
         applicationId = "com.thaikimhuynh.miladyapp"
@@ -14,8 +16,10 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
 
     buildTypes {
         release {
@@ -31,6 +35,7 @@ android {
         viewBinding = true
     }
 }
+
 
 dependencies {
     implementation("androidx.preference:preference-ktx:1.2.1")
@@ -61,3 +66,4 @@ dependencies {
 
 
 }
+

@@ -11,12 +11,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Add New E-Wallet"
+        android:text="@string/addnewe"
         android:textColor="#F9476B"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -45,11 +45,11 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Customer name"
-        app:layout_constraintTop_toBottomOf="@id/spinnerEWalletName"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:text="@string/cusname"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerEWalletName" />
 
     <EditText
         android:id="@+id/edtCusName"
@@ -73,11 +73,11 @@
         android:id="@+id/tv_phoneNumber_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Phone number"
-        app:layout_constraintTop_toBottomOf="@id/edtCusName"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:text="@string/phonenum"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtCusName" />
 
     <EditText
         android:id="@+id/edtPhoneNumber_add"

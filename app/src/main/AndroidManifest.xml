@@ -42,7 +42,9 @@
             android:exported="false" />
         <activity
             android:name=".SettingActivity"
-            android:exported="false" />
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".NotificationActivity"
             android:exported="false" />
@@ -60,7 +62,10 @@
             android:exported="false" />
         <activity
             android:name=".HelpCenterActivity"
-            android:exported="false" />
+            android:exported="false" >
+
+
+        </activity>
         <activity
             android:name=".forgotpassword.VerifyCodePasswordActivity"
             android:exported="false" />
@@ -87,6 +92,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
         </activity>
         <activity
             android:name=".payment.ViewPaymentMethodActivity"
@@ -116,10 +123,11 @@
             android:exported="false"/>
         <activity
             android:name=".admin.AdminListOrderActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SearchActivity"
-            android:exported="false" />
+            android:exported="false" >
+
+
+        </activity>
+
         <activity
             android:name=".checkout.AddressSelectionActivity"
             android:exported="false" />

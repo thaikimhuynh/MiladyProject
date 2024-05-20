@@ -331,6 +331,7 @@ resetVoucherDiscount();
                         for (DataSnapshot cartSnapshot : dataSnapshot.getChildren()) {
                             // Cập nhật finalAmount
                             cartSnapshot.getRef().child("finalAmount").setValue(finalAmount);
+//                            cartSnapshot.getRef().child("shippingFee").setValue(shippingFee);
                         }
                     }
 

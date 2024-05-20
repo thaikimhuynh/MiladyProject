@@ -9,7 +9,7 @@
     app:cardElevation="4dp"
     app:cardBackgroundColor="@android:color/white"
     app:cardUseCompatPadding="true"
-    android:background="@drawable/rounded_pink_stroke">
+    android:background="@drawable/card_border">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="369dp"
@@ -94,20 +94,5 @@
             app:layout_constraintHorizontal_bias="0.029"
             app:layout_constraintStart_toEndOf="@+id/textView49"
             app:layout_constraintTop_toBottomOf="@+id/txtOrderDate" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnAction"
-            android:layout_width="66dp"
-            android:layout_height="28dp"
-            android:background="@drawable/circle_button_pink"
-            android:text="Button"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/txtTotalAmount"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.947" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

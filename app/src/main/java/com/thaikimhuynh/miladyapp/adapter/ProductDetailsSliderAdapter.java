@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+
 import com.bumptech.glide.Glide;
 import com.thaikimhuynh.miladyapp.R;
 
@@ -28,7 +30,11 @@ public class ProductDetailsSliderAdapter extends PagerAdapter {
         View view = inflater.inflate(R.layout.item_productdetail_image, container, false);
 
         ImageView imageView = view.findViewById(R.id.imgProductDetail);
-        Glide.with(context).load(imageUrls.get(position)).into(imageView);
+
+        // Kiểm tra xem danh sách hình ảnh có null không trước khi load ảnh
+        if (imageUrls != null && position < imageUrls.size()) {
+            Glide.with(context).load(imageUrls.get(position)).into(imageView);
+        }
 
         container.addView(view);
         return view;
@@ -36,7 +42,10 @@ public class ProductDetailsSliderAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return imageUrls.size();
+        if (imageUrls != null) {
+            return imageUrls.size();
+        }
+        return 0;
     }
 
     @Override

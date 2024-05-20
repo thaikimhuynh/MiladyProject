@@ -138,12 +138,16 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
                         order.setTotalAmount(totalAmount);
                         order.setFinalAmount(finalAmount);
                         order.setDiscountedAmount(discountedAmount);
+                        double shippingFee = 20.0;
+                        order.setShippingFee(shippingFee);
 
                         List<Product> products = new ArrayList<>();
                         for (DataSnapshot itemSnapshot : cartSnapshot.child("items").getChildren()) {
                             Product product = new Product();
                             product.setTitle(itemSnapshot.child("title").getValue(String.class));
                             product.setProductId(itemSnapshot.child("productID").getValue(String.class));
+
+
                             product.setPrice(itemSnapshot.child("price").getValue(Double.class));
                             product.setNumberInCart(itemSnapshot.child("quantity").getValue(Integer.class));
                             product.setProductSize(itemSnapshot.child("size").getValue(String.class));
@@ -185,7 +189,6 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
                                 intent.putExtra("order", order);
 
                                 startActivity(intent);
-//                                clearCart();
                             }
                         });
                     }

@@ -1,15 +1,25 @@
 package com.thaikimhuynh.miladyapp.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.EarnPointActivity;
 import com.thaikimhuynh.miladyapp.HelpCenterActivity;
 import com.thaikimhuynh.miladyapp.MyOrdersActivity;
@@ -37,6 +47,7 @@ public class ProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     CardView cardMyProfile, cardMyOrders, cardMyWallet, cardEarnPoints, cardWishList, cardHelpCenter, cardSetting;
+    TextView txtProfileName;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -82,6 +93,27 @@ public class ProfileFragment extends Fragment {
         cardWishList = view.findViewById(R.id.cardWishList);
         cardHelpCenter = view.findViewById(R.id.cardHelpCenter);
         cardSetting = view.findViewById(R.id.cardSetting);
+        txtProfileName = view.findViewById(R.id.txtProfileName);
+
+        String userId = getUserId();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User");
+        reference.child(userId).child("name").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    String name = snapshot.getValue(String.class);
+                    txtProfileName.setText(name);
+                } else {
+                    txtProfileName.setText("Name not found");
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                txtProfileName.setText("Error loading name");
+            }
+        });
+
+
 
         cardMyProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,6 +159,11 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);            }
         });
         return view;
+    }
+
+    private String getUserId() {
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("user_session", MODE_PRIVATE);
+        return sharedPreferences.getString("user_id", "");
     }
 
 

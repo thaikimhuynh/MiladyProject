@@ -2,7 +2,6 @@ package com.thaikimhuynh.miladyapp.admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -24,26 +23,25 @@ import com.thaikimhuynh.miladyapp.model.Product;
 
 import java.util.List;
 
-public class AdminPrepareOrderActivity extends AppCompatActivity {
+public class AdminOnDeliveryActivity extends AppCompatActivity {
     TextView customerName,address,totalAmount,shippingFee,discountedAmount,finalAmount;
     Button btn_prepare;
     RecyclerView recycler;
     private String orderId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_prepare_order);
+        setContentView(R.layout.activity_admin_on_delivery);
         customerName = findViewById(R.id.txtCusNameCheckout);
         address = findViewById(R.id.txtAddressCheckout);
         totalAmount = findViewById(R.id.txtCheckoutPrice);
         shippingFee = findViewById(R.id.txtShippingFee);
         discountedAmount = findViewById(R.id.txtVoucherCheckout);
         finalAmount = findViewById(R.id.txtTotalPriceCheckout);
-        recycler = findViewById(R.id.recyclerCheckout);
-        recycler.setLayoutManager(new LinearLayoutManager(this));
-
-        orderId = getIntent().getStringExtra("orderId");
         btn_prepare = findViewById(R.id.btn_prepare);
+        recycler = findViewById(R.id.recyclerCheckout);
+        orderId = getIntent().getStringExtra("orderId");
         loadOrderDetails();
 
         btn_prepare.setOnClickListener(new View.OnClickListener() {
@@ -55,17 +53,17 @@ public class AdminPrepareOrderActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
-                            snapshot.getRef().child("orderStatus").setValue("On Delivery");
-                            Toast.makeText(AdminPrepareOrderActivity.this, "Order status updated to On Delivery", Toast.LENGTH_SHORT).show();
+                            snapshot.getRef().child("orderStatus").setValue("Delivery Successfully");
+                            Toast.makeText(AdminOnDeliveryActivity.this, "Order status updated to Delivery Successfully", Toast.LENGTH_SHORT).show();
                         } else {
                             Log.e("AdminConfirmOrder", "Failed to update order status: Order not found");
-                            Toast.makeText(AdminPrepareOrderActivity.this, "Failed to update order status: Order not found", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminOnDeliveryActivity.this, "Failed to update order status: Order not found", Toast.LENGTH_SHORT).show();
                         }
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         Log.e("AdminConfirmOrder", "Failed to update order status: " + error.getMessage());
-                        Toast.makeText(AdminPrepareOrderActivity.this, "Failed to update order status: " + error.getMessage(), Toast.LENGTH_SHORT).show();                    }
+                        Toast.makeText(AdminOnDeliveryActivity.this, "Failed to update order status: " + error.getMessage(), Toast.LENGTH_SHORT).show();                    }
                 });
             }
         });

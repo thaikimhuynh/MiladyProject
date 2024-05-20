@@ -28,7 +28,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity  {
 
     private DatabaseReference mDatabase;
     private ArrayList<Product> productList = new ArrayList<>();

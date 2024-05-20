@@ -89,25 +89,27 @@ public class RedeemPointsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_redeem_points, container, false);
+        View view = inflater.inflate(R.layout.fragment_redeem_points, container, false);
         recyclerView = view.findViewById(R.id.redeem_recyclerview);
         textViewTotalPoints = view.findViewById(R.id.textViewTotalPoints);
-        database= FirebaseDatabase.getInstance().getReference("Voucher");
+        database = FirebaseDatabase.getInstance().getReference("Voucher");
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PointWallet");
         String userId = getUserId();
-        Query query = reference.child(userId).child("TotalPoints");
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         list = new ArrayList<>();
-        redeemAdapter = new RedeemAdapter(getContext(),list);
+        redeemAdapter = new RedeemAdapter(getContext(), list);
         recyclerView.setAdapter(redeemAdapter);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+
+        // Add ValueEventListener to listen for changes in TotalPoints
+        reference.child(userId).child("TotalPoints").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     Long totalPoints = snapshot.getValue(Long.class);
-                    textViewTotalPoints.setText("Your total points \n"+ String.valueOf(totalPoints));
+                    textViewTotalPoints.setText("Your total points \n" + String.valueOf(totalPoints));
                 } else {
                     textViewTotalPoints.setText("0");
                 }
@@ -115,14 +117,16 @@ public class RedeemPointsFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Handle possible errors.
             }
         });
+
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    RedeemPoints redeemPoints= dataSnapshot.getValue(RedeemPoints.class);
+                list.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    RedeemPoints redeemPoints = dataSnapshot.getValue(RedeemPoints.class);
                     list.add(redeemPoints);
                 }
                 redeemAdapter.notifyDataSetChanged();
@@ -130,9 +134,10 @@ public class RedeemPointsFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Handle possible errors.
             }
         });
+
         return view;
     }
 

@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="30dp"
-        android:text="My Wallet"
+        android:text="@string/wallet"
         android:textColor="#F9476B"
         android:textSize="20sp"
         android:textStyle="bold"

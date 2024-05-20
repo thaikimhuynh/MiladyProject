@@ -24,6 +24,7 @@ import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.login.LoginActivity;
 import com.thaikimhuynh.miladyapp.profile.MyProfileActivity;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class VerifyAccountActivity extends AppCompatActivity {
@@ -82,10 +83,10 @@ public class VerifyAccountActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             saveUserDataToFirebase();
                             txtMessageError.setVisibility(View.GONE);
-                            // Nếu xác minh thành công, chuyển hướng người dùng đến NewPasswordActivity
                             // Truyền số điện thoại qua Intent
                             Intent intent = new Intent(VerifyAccountActivity.this, LoginActivity.class);
                             intent.putExtra("phoneNumber", phoneNumber);
+
 
                             startActivity(intent);
                             finish(); // Kết thúc hoạt động hiện tại
@@ -109,7 +110,12 @@ public class VerifyAccountActivity extends AppCompatActivity {
         String name = getIntent().getStringExtra("name");
         String id  = generateRandomItemId();
         HelperClass helperClass= new HelperClass(phoneNumber,email,password,id,name);
-
+        DatabaseReference pointWalletRef = FirebaseDatabase.getInstance().getReference("PointWallet");
+        pointWalletRef.child(id).child("TotalPoints").setValue(0);
+        DatabaseReference VoucherWalletRef = FirebaseDatabase.getInstance().getReference("VoucherWallet");
+        DatabaseReference userVoucherRef = VoucherWalletRef.child(id);
+        userVoucherRef.child("userID").setValue(id);
+        userVoucherRef.child("voucherItems").setValue("");
 
 
         // Lưu thông tin người dùng vào cơ sở dữ liệu Firebase

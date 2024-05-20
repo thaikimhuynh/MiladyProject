@@ -20,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.EarnPointActivity;
 import com.thaikimhuynh.miladyapp.HelpCenterActivity;
@@ -98,12 +99,16 @@ public class ProfileFragment extends Fragment {
 
         String userId = getUserId();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User");
-        reference.child(userId).child("name").addValueEventListener(new ValueEventListener() {
+        Query query = reference.orderByChild("id").equalTo(userId);
+
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
-                    String name = snapshot.getValue(String.class);
-                    txtProfileName.setText(name);
+                    for (DataSnapshot userSnapshot : snapshot.getChildren()){
+                        String name = userSnapshot.child("name").getValue(String.class);
+                        txtProfileName.setText(name);
+                    }
                 } else {
                     txtProfileName.setText("Name not found");
                 }

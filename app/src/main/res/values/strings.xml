@@ -231,5 +231,28 @@
     <string name="order_number">Order Number</string>
     <string name="order_date">Order date</string>
     <string name="add">Add</string>
+    <!-- confirm order user -->
+    <string name="confirm_order">Confirm Order</string>
+    <string name="your_name">Your Name</string>
+    <string name="your_address">Your Address</string>
+    <string name="cancel_order">Cancel Order</string>
+    <!--  coupon detail xml-->
+
+    <string name="voucher_infor">Voucher Information</string>
+    <!--   place order succesfully xml-->
+    <string name="payment_method">Payment Method</string>
+    <string name="back_to_home">Back to home</string>
+    <string name="order_succes">Order placed successfully</string>
+    <!--   refund order  xml-->
+    <string name="refund_order">Refund order</string>
+    <!--   receive order  xml-->
+    <string name="receive_order">Confirm received</string>
+    <string name="view_order">View order</string>
+    <!--    my order  xml-->
+    <string name="confirming">Confirming</string>
+    <string name="ondeli">On delivery</string>
+    <string name="to_receive">To received</string>
+    <string name="to_feedback">To feedback</string>
+
 
 </resources>

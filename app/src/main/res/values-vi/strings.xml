@@ -231,5 +231,28 @@
     <string name="order_number">Số thứ tự</string>
     <string name="order_date">Ngày đặt hàng</string>
     <string name="add">Thêm vào</string>
+    <!-- confirm order user -->
+    <string name="confirm_order">Xác nhận đơn hàng</string>
+    <string name="your_name">Tên của bạn</string>
+    <string name="your_address">Địa chỉ của bạn</string>
+    <string name="cancel_order">Hủy đơn hàng</string>
+    <!--  coupon detail xml-->
+
+    <string name="voucher_infor">Thông tin chứng từ</string>
+    <!--   place order succesfully xml-->
+    <string name="payment_method">Phương thức thanh toán</string>
+    <string name="back_to_home">Trở về nhà</string>
+    <string name="order_succes">Đơn hàng được đặt thành công</string>
+    <!--   refund order  xml-->
+    <string name="refund_order">Lệnh hoàn tiền</string>
+    <!--   receive order  xml-->
+    <string name="receive_order">Xác nhận đã nhận được</string>
+    <string name="view_order">Xem đơn hàng</string>
+    <!--    my order  xml-->
+    <string name="confirming">Xác nhận</string>
+    <string name="ondeli">Khi giao hàng</string>
+    <string name="to_receive">Để nhận được</string>
+    <string name="to_feedback">Để phản hồi</string>
+
 
 </resources>

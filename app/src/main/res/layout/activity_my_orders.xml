@@ -73,31 +73,32 @@
             >
 
         </TextView>
+
         <TextView
             android:id="@+id/tabItem3"
-            android:textSize="12sp"
-
-            android:gravity="center"
             android:layout_width="0dp"
+
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textStyle="bold"
+            android:gravity="center"
+            android:text="To receive"
             android:textColor="@color/black"
-            android:text="Received"
-            >
+            android:textSize="12sp"
+            android:textStyle="bold">
 
         </TextView>
+
         <TextView
             android:id="@+id/tabItem4"
-            android:textSize="12sp"
-
-            android:gravity="center"
             android:layout_width="0dp"
+
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textStyle="bold"
+            android:gravity="center"
+            android:text="To feedback"
             android:textColor="@color/black"
-            android:text="Canceled"
+            android:textSize="12sp"
+            android:textStyle="bold"
 
             >
 

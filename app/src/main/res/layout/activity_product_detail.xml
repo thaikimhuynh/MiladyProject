@@ -197,7 +197,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:fontFamily="@font/noto_sans_font"
-                            android:text="Feedback"
+                            android:text="@string/feedback"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:textColor="@color/pink_primary" />
@@ -207,7 +207,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/noto_sans_font"
-                            android:text="View All"
+                            android:text="@string/view_all"
                             android:textSize="14sp"
                             android:textColor="@color/grey"
                             android:gravity="end" />
@@ -239,15 +239,6 @@
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/txtError"
-                            android:layout_width="266dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/noto_sans_font"
-                            android:textColor="@color/red"
-                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -261,6 +252,17 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txtError"
+                        android:layout_width="266dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:textColor="@color/red"
+                        android:textSize="14sp" />
 
                     <View
                         android:id="@+id/view4"

@@ -298,23 +298,22 @@ public class ProductDetailActivity extends AppCompatActivity {
                         wishlistItemMap.put("wishlistID", wishlistId);
                         userWishlistRef.child(String.valueOf(wishlistId)).setValue(wishlistItemMap);
 
-                        Toast.makeText(ProductDetailActivity.this, "Product added to Wishlist", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProductDetailActivity.this, getString(R.string.added_wishlist), Toast.LENGTH_SHORT).show();
                         productDetailBinding.imgFavorite.setImageResource(R.mipmap.ic_heart_2);
                     } else {
                         userWishlistRef.child(productKey).removeValue();
 
-                        Toast.makeText(ProductDetailActivity.this, "Product removed from Wishlist", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProductDetailActivity.this, getString(R.string.removed_wishlist), Toast.LENGTH_SHORT).show();
                         productDetailBinding.imgFavorite.setImageResource(R.mipmap.ic_heart_1);
                     }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(ProductDetailActivity.this, "Failed to add to Wishlist", Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
-            Toast.makeText(this, "Product not available", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.not_avai_product), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -328,7 +327,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         String userId = getUserId();
         if (product != null && product.getProductId() != null) {
             if (selectedSize.isEmpty()) {
-                productDetailBinding.txtError.setText("Please select a size");
+                productDetailBinding.txtError.setText(R.string.please_select_a_size);
                 handler.postDelayed(() -> productDetailBinding.txtError.setText(""), DISPLAY_ERROR_DURATION);
                 return;
             }
@@ -338,9 +337,9 @@ public class ProductDetailActivity extends AppCompatActivity {
             product.setGetItemId(String.valueOf(itemId));
 
             managementCart.insertProduct(product, userId, itemId);
-            Toast.makeText(this, "Product added to cart", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.add_to_cart_product), Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Product not available", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,R.string.not_avai_product, Toast.LENGTH_SHORT).show();
         }
     }
 

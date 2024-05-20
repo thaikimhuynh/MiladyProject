@@ -1,69 +1,76 @@
 package com.thaikimhuynh.miladyapp.fragment;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.SearchView;
+
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.SearchActivity;
-import com.thaikimhuynh.miladyapp.adapter.ProductHomeAdapter;
+import com.thaikimhuynh.miladyapp.R;
+import com.thaikimhuynh.miladyapp.adapter.ProductAdapter;
 import com.thaikimhuynh.miladyapp.adapter.SliderAdapter;
-import com.thaikimhuynh.miladyapp.model.ProductHomeItems;
+import com.thaikimhuynh.miladyapp.databinding.FragmentHomeBinding;
+import com.thaikimhuynh.miladyapp.model.Product;
 import com.thaikimhuynh.miladyapp.model.SliderItems;
 
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
 
 public class HomeFragment extends Fragment {
 
+
     private DatabaseReference mDatabase;
+    private ArrayList<Product> productList = new ArrayList<>();
+    private ProductAdapter productAdapter;
+    private FragmentHomeBinding binding;
+    private DatabaseReference mbase;
+    private RecyclerView recyclerView;
     private RecyclerView recyclerViewSlider;
-    private RecyclerView recyclerViewProduct;
     private SliderAdapter sliderAdapter;
     private ArrayList<SliderItems> sliderItems = new ArrayList<>();
-    private List<ProductHomeItems> productList = new ArrayList<>();
-    private ProductHomeAdapter productHomeAdapter;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // Initialize Firebase Database
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
 
-        // Initialize RecyclerView for sliders
+
         recyclerViewSlider = view.findViewById(R.id.recyclerViewSlider);
         recyclerViewSlider.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         sliderAdapter = new SliderAdapter(sliderItems);
         recyclerViewSlider.setAdapter(sliderAdapter);
 
-        // Initialize RecyclerView for products
-        recyclerViewProduct = view.findViewById(R.id.recycleViewProduct);
-        recyclerViewProduct.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerViewProduct.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        productHomeAdapter = new ProductHomeAdapter(getContext(), productList);
-        recyclerViewProduct.setAdapter(productHomeAdapter);
+
+        recyclerView = binding.recyclerProduct;
+        mbase = FirebaseDatabase.getInstance().getReference("Items");
+
+
+        productAdapter = new ProductAdapter(requireContext(), productList);
+        recyclerView.setAdapter(productAdapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
         SearchView searchView = view.findViewById(R.id.searchView);
+        loadProducts();
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -78,10 +85,13 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+
+
+
     @Override
     public void onStart() {
         super.onStart();
-        // Add ValueEventListener to listen for changes in the database
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Banner").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -94,40 +104,9 @@ public class HomeFragment extends Fragment {
                         sliderItems.add(sliderItem);
                     }
                 }
-                // Notify the adapter if it's not null
-                if (sliderAdapter != null) {
-                    sliderAdapter.notifyDataSetChanged();
-                }
+                sliderAdapter.notifyDataSetChanged();
             }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle database error
-            }
-        });
-
-        // Load data for Product RecyclerView
-        mDatabase.child("Items").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                productList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String imageUrl = snapshot.child("picUrl").child("0").getValue(String.class);
-                    String title = snapshot.child("title").getValue(String.class);
-                    Long priceLong = snapshot.child("price").getValue(Long.class);
-                    // Kiểm tra null trước khi tạo đối tượng ProductHomeItems
-                    if (imageUrl != null && title != null && priceLong != null) {
-                        // Convert price from Long to String
-                        String price = String.valueOf(priceLong);
-                        ProductHomeItems product = new ProductHomeItems(imageUrl, title, price);
-                        productList.add(product);
-                    }
-                }
-                // Notify the adapter if it's not null
-                if (productHomeAdapter != null) {
-                    productHomeAdapter.notifyDataSetChanged();
-                }
-            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -135,4 +114,50 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
+
+    private void loadProducts() {
+        mbase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                productList.clear();
+
+
+                // Get all products as a list
+                List<Product> allProducts = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String title = snapshot.child("title").getValue(String.class);
+                    Double price = snapshot.child("price").getValue(Double.class);
+                    String id = snapshot.child("category_id").getValue(String.class);
+                    List<String> picUrls = (List<String>) snapshot.child("picUrl").getValue();
+                    String productId = snapshot.child("id").getValue(String.class);
+                    String description = snapshot.child("description").getValue(String.class);
+
+
+                    Product product = new Product(title, price, id, picUrls, productId, description);
+                    allProducts.add(product);
+                }
+
+
+                // Shuffle the list to randomize products
+                Collections.shuffle(allProducts);
+
+
+                // Select the first 16 products
+                int maxProducts = Math.min(allProducts.size(), 16);
+                productList.addAll(allProducts.subList(0, maxProducts));
+
+
+                productAdapter.setProductList(productList);
+                productAdapter.notifyDataSetChanged();
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(requireContext(), "Error loading products", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
+

@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 //import com.thaikimhuynh.miladyapp.SearchActivity;
 import com.thaikimhuynh.miladyapp.R;
+import com.thaikimhuynh.miladyapp.SearchActivity;
 import com.thaikimhuynh.miladyapp.adapter.ProductAdapter;
 import com.thaikimhuynh.miladyapp.adapter.SliderAdapter;
 import com.thaikimhuynh.miladyapp.databinding.FragmentHomeBinding;
@@ -71,17 +72,17 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
         SearchView searchView = view.findViewById(R.id.searchView);
         loadProducts();
-//        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if (hasFocus) {
-//                    // Nếu SearchView được nhấn, mở SearchActivity
-//                    Intent intent = new Intent(getContext(), SearchActivity.class);
-//                    startActivity(intent);
-//                    searchView.clearFocus();
-//                }
-//            }
-//        });
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // Nếu SearchView được nhấn, mở SearchActivity
+                    Intent intent = new Intent(getContext(), SearchActivity.class);
+                    startActivity(intent);
+                    searchView.clearFocus();
+                }
+            }
+        });
       return view;
     }
 
@@ -159,5 +160,6 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
 }
 

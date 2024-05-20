@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_pink_stroke"
-        app:layout_constraintTop_toTopOf="parent"
+    android:layout_height="match_parent">
 
-        >
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_grey_stroke"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,18 +35,27 @@
                         android:id="@+id/textView48"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Order Number"/>
+                        android:fontFamily="@font/noto_sans_font"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:text="Order Number" />
 
                     <TextView
                         android:id="@+id/textView47"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
                         android:text="Order date" />
 
                     <TextView
                         android:id="@+id/textView59"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
                         android:text="Total" />
                 </LinearLayout>
             </LinearLayout>
@@ -61,18 +73,24 @@
 
                     <TextView
                         android:id="@+id/txtOrderNumber"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:textColor="@color/grey"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="OD234" />
 
                     <TextView
                         android:id="@+id/txtOrderDate"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:textColor="@color/grey"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="20/04" />
 
                     <TextView
                         android:id="@+id/txtTotalAmount"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:textColor="@color/grey"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="200" />

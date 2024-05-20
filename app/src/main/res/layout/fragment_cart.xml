@@ -46,8 +46,8 @@
             android:id="@+id/textView37"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/noto_sans_font"
             android:text="Your Cart"
             android:textColor="@color/grey"
@@ -57,9 +57,9 @@
 
         <TextView
             android:id="@+id/txtCartPrice"
-            android:layout_width="24dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="40dp"
+            android:layout_width="61dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="52dp"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/noto_sans_font"
             android:text="$0"
@@ -71,7 +71,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCheckout"
-            android:layout_width="192dp"
+            android:layout_width="173dp"
             android:layout_height="47dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/rounded_pink_button_background"

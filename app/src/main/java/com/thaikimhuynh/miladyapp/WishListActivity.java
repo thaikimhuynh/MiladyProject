@@ -28,6 +28,7 @@ import java.util.List;
 public class WishListActivity extends AppCompatActivity implements WishlistAdapter.OnDeleteItemClickListener {
     RecyclerView recyclerView;
     ImageView imgBack;
+    ArrayList<Product> products = new ArrayList<>();
     DatabaseReference mbase;
 
     @Override
@@ -80,7 +81,6 @@ public class WishListActivity extends AppCompatActivity implements WishlistAdapt
 
     private void loadProductDetails(ArrayList<String> productIDs) {
         DatabaseReference itemRef = FirebaseDatabase.getInstance().getReference("Items");
-        ArrayList<Product> products = new ArrayList<>();
 
         for (String productID : productIDs) {
             itemRef.orderByChild("id").equalTo(productID).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -144,7 +144,12 @@ public class WishListActivity extends AppCompatActivity implements WishlistAdapt
                         break;
                     }
                 }
-                loadWishlist();
+                if (products.size() == 1) {
+                    products.clear();
+                    recyclerView.getAdapter().notifyDataSetChanged();
+                } else {
+                    loadWishlist();
+                }
             }
 
             @Override

@@ -70,13 +70,10 @@ public class CartFragment extends Fragment implements ChangeNumberItemListener {
         binding = FragmentCartBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        // Initialize ManagementCart
         managementCart = new ManagementCart(requireContext());
 
-        // Load cart items
         loadCartItem();
 
-        // Set event listeners
         setEventListeners();
 
 

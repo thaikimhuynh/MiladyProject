@@ -26,6 +26,22 @@ public class ManagementCart {
         this.context = context;
         this.cartRef = FirebaseDatabase.getInstance().getReference().child("Cart");
     }
+    private void getNextItemId(DatabaseReference itemsRef, OnSuccessListener<Long> onSuccessListener) {
+        itemsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                long nextItemId = dataSnapshot.getChildrenCount();
+                onSuccessListener.onSuccess(nextItemId);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle error
+                onSuccessListener.onSuccess(null);
+            }
+        });
+    }
+
     public void insertProduct(Product item, String userId, int itemId) {
         cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -47,40 +63,121 @@ public class ManagementCart {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle error
+            }
+        });
+    }
+    private void addProductToCart(DatabaseReference userCartRef, Product item) {
+        DatabaseReference itemsRef = userCartRef.child("items");
+        getNextItemId(itemsRef, new OnSuccessListener<Long>() {
+            @Override
+            public void onSuccess(Long itemId) {
+                if (itemId != null) {
+                    Map<String, Object> productDetails = new HashMap<>();
+                    productDetails.put("title", item.getTitle());
+                    productDetails.put("productID", item.getProductId());
+                    productDetails.put("quantity", item.getNumberInCart());
+                    productDetails.put("price", item.getPrice());
+                    productDetails.put("size", item.getProductSize());
+                    productDetails.put("pic", item.getPicUrls());
+                    productDetails.put("itemId", item.getGetItemId());
 
+                    itemsRef.child(String.valueOf(itemId)).setValue(productDetails);
+
+                    userCartRef.child("totalAmount").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            double totalAmount = dataSnapshot.getValue(Double.class);
+                            totalAmount += (item.getNumberInCart() * item.getPrice());
+                            userCartRef.child("totalAmount").setValue(totalAmount);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        }
+                    });
+                } else {
+                }
             }
         });
     }
 
+    private void createNewCartAndAddProduct(DatabaseReference userCartRef, Product item, String userId) {
+        String cartId = generateCartId();
+
+        Map<String, Object> cartDetails = new HashMap<>();
+        cartDetails.put("userId", userId);
+        userCartRef.setValue(cartDetails);
+
+        DatabaseReference itemsRef = userCartRef.child("items");
+        getNextItemId(itemsRef, new OnSuccessListener<Long>() {
+            @Override
+            public void onSuccess(Long itemId) {
+                if (itemId != null) {
+
+                    Map<String, Object> productDetails = new HashMap<>();
+                    productDetails.put("itemId", item.getGetItemId());
+                    productDetails.put("productID", item.getProductId());
+                    productDetails.put("title", item.getTitle());
+                    productDetails.put("quantity", item.getNumberInCart());
+                    productDetails.put("price", item.getPrice());
+                    productDetails.put("size", item.getProductSize());
+                    productDetails.put("pic", item.getPicUrls());
+
+                    itemsRef.child(String.valueOf(itemId)).setValue(productDetails);
+
+                    userCartRef.child("totalAmount").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            double totalAmount = 0; // Khởi tạo tổng giá trị là 0
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                Product product = snapshot.getValue(Product.class);
+                                totalAmount += (product.getNumberInCart() * product.getPrice());
+                            }
+                            totalAmount += (item.getNumberInCart() * item.getPrice());
+                            userCartRef.child("totalAmount").setValue(totalAmount);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        }
+                    });
+
+                    userCartRef.child("cartId").setValue(cartId);
+
+                    userCartRef.child("totalAmount").setValue(item.getNumberInCart());
+                } else {
+
+                }
+            }
+        });
+    }
     private void updateCart(DatabaseReference userCartRef, Product item) {
         userCartRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 boolean found = false;
                 for (DataSnapshot cartSnapshot : dataSnapshot.child("items").getChildren()) {
-                    String title = cartSnapshot.child("title").getValue(String.class);
+                    String id = cartSnapshot.child("productID").getValue(String.class);
                     String size = cartSnapshot.child("size").getValue(String.class);
-                    if (title != null && title.equals(item.getTitle()) && size != null && size.equals(item.getProductSize())) {
-                        // Tìm thấy sản phẩm cùng tiêu đề và kích thước, tăng số lượng của sản phẩm
+                    if (id != null && id.equals(item.getProductId()) && size != null && size.equals(item.getProductSize())) {
                         int quantity = cartSnapshot.child("quantity").getValue(Integer.class);
                         cartSnapshot.getRef().child("quantity").setValue(quantity + item.getNumberInCart());
                         found = true;
 
-                        // Cập nhật tổng giá trị của giỏ hàng
                         updateTotalAmount(userCartRef, item.getPrice() * item.getNumberInCart());
 
                         break;
                     }
                 }
                 if (!found) {
-                    // Không tìm thấy sản phẩm cùng tiêu đề và kích thước, thêm sản phẩm mới vào giỏ hàng
                     addProductToCart(userCartRef, item);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Xử lý sự kiện onCancelled
+
             }
         });
     }
@@ -101,75 +198,6 @@ public class ManagementCart {
         });
     }
 
-
-    private void addProductToCart(DatabaseReference userCartRef, Product item) {
-        // Gán itemId cho sản phẩm
-
-        // Tạo một HashMap để lưu thông tin sản phẩm
-        Map<String, Object> productDetails = new HashMap<>();
-        productDetails.put("title", item.getTitle());
-        productDetails.put("quantity", item.getNumberInCart());
-        productDetails.put("price", item.getPrice());
-        productDetails.put("size", item.getProductSize());
-        productDetails.put("pic", item.getPicUrls());
-        productDetails.put("itemId", item.getGetItemId()); // Sử dụng itemId đã tạo cho sản phẩm
-        userCartRef.child("items").push().setValue(productDetails);
-
-        userCartRef.child("totalAmount").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                double totalAmount = dataSnapshot.getValue(Double.class);
-                totalAmount += (item.getNumberInCart() * item.getPrice());
-                userCartRef.child("totalAmount").setValue(totalAmount);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-    }
-
-    private void createNewCartAndAddProduct(DatabaseReference userCartRef, Product item, String userId) {
-        String cartId = generateCartId();
-
-
-        // Tạo một HashMap để lưu thông tin giỏ hàng mới
-        Map<String, Object> cartDetails = new HashMap<>();
-        cartDetails.put("userId", userId);
-
-        // Tạo một HashMap để lưu thông tin sản phẩm
-        Map<String, Object> productDetails = new HashMap<>();
-        productDetails.put("itemId", item.getGetItemId());
-        productDetails.put("title", item.getTitle());
-        productDetails.put("quantity", item.getNumberInCart());
-        productDetails.put("price", item.getPrice());
-        productDetails.put("size", item.getProductSize());
-        productDetails.put("pic", item.getPicUrls());
-        userCartRef.child("userId").setValue(userId);
-        userCartRef.child("items").push().setValue(productDetails);
-
-        userCartRef.child("totalAmount").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                double totalAmount = 0; // Khởi tạo tổng giá trị là 0
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Product product = snapshot.getValue(Product.class);
-                    totalAmount += (product.getNumberInCart() * product.getPrice());
-                }
-                totalAmount += (item.getNumberInCart() * item.getPrice());
-                userCartRef.child("totalAmount").setValue(totalAmount);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        userCartRef.child("cartId").setValue(cartId);
-
-        // Thêm total amount vào giỏ hàng mới
-        userCartRef.child("totalAmount").setValue(item.getNumberInCart());
-    }
     private String generateCartId() {
         String cartId = UUID.randomUUID().toString();
         return cartId;
@@ -221,7 +249,7 @@ public class ManagementCart {
         cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                double priceOfRemovedItem = 0; // Giá của sản phẩm đã xóa
+                double priceOfRemovedItem = 0;
                 for (DataSnapshot cartSnapshot : dataSnapshot.getChildren()) {
                     String cartUserId = cartSnapshot.child("userId").getValue(String.class);
                     if (cartUserId != null && cartUserId.equals(userId)) {
@@ -233,7 +261,6 @@ public class ManagementCart {
                                 productSnapshot.getRef().removeValue()
                                         .addOnSuccessListener(aVoid -> {
                                             changeNumberItemListener.change();
-                                            // Kiểm tra và xóa cart nếu nó rỗng
                                             checkAndDeleteEmptyCart(cartSnapshot.getRef());
                                         });
                             }

@@ -71,7 +71,7 @@ public class ProductListActivity extends AppCompatActivity {
                     String id = snapshot.child("category_id").getValue(String.class);
 
                     List<String> picUrls = (List<String>) snapshot.child("picUrl").getValue();
-                    String productId = snapshot.child("productId").getValue(String.class);
+                    String productId = snapshot.child("id").getValue(String.class);
                     String description = snapshot.child("description").getValue(String.class);
 
 

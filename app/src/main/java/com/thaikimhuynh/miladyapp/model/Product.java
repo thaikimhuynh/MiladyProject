@@ -77,8 +77,13 @@ public class Product implements Serializable {
         this.description = description;
     }
 
+    public Product(String title, List<String> picUrls, double price) {
+        this.title = title;
+        this.picUrls = picUrls;
+        this.price = price;
 
 
+    }
 
     public String getTitle() {
         return title;

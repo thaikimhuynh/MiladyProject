@@ -111,7 +111,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView44" />
 
         <TextView
-            android:id="@+id/textView63"
+            android:id="@+id/txtDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -150,7 +150,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
         <TextView
-            android:id="@+id/textView65"
+            android:id="@+id/txtName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -172,7 +172,7 @@
             app:layout_constraintEnd_toEndOf="@+id/imageView31"
             app:layout_constraintHorizontal_bias="0.513"
             app:layout_constraintStart_toStartOf="@+id/imageView31"
-            app:layout_constraintTop_toBottomOf="@+id/textView65" />
+            app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
         <TextView
             android:id="@+id/textView66"
@@ -189,7 +189,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view3" />
 
         <TextView
-            android:id="@+id/textView67"
+            android:id="@+id/txtAddress"
             android:layout_width="251dp"
             android:layout_height="43dp"
             android:layout_marginTop="8dp"
@@ -211,7 +211,7 @@
             app:layout_constraintEnd_toEndOf="@+id/imageView31"
             app:layout_constraintHorizontal_bias="0.513"
             app:layout_constraintStart_toStartOf="@+id/imageView31"
-            app:layout_constraintTop_toBottomOf="@+id/textView67" />
+            app:layout_constraintTop_toBottomOf="@+id/txtAddress" />
 
         <TextView
             android:id="@+id/textView68"
@@ -242,7 +242,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view4" />
 
         <TextView
-            android:id="@+id/textView70"
+            android:id="@+id/txtPaymentMethod"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -251,11 +251,11 @@
             android:textColor="@color/grey"
             app:layout_constraintEnd_toEndOf="@+id/imageView31"
             app:layout_constraintHorizontal_bias="0.842"
-            app:layout_constraintStart_toEndOf="@+id/textView71"
+            app:layout_constraintStart_toEndOf="@+id/txtTotal"
             app:layout_constraintTop_toBottomOf="@+id/textView69" />
 
         <TextView
-            android:id="@+id/textView71"
+            android:id="@+id/txtTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"

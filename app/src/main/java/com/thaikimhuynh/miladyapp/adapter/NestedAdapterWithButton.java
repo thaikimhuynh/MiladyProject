@@ -1,5 +1,6 @@
 package com.thaikimhuynh.miladyapp.adapter;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,17 +9,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.thaikimhuynh.miladyapp.CartPaymentMethodActivity;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.model.PaymentItem;
+import com.thaikimhuynh.miladyapp.model.SharedViewModel;
 
 import java.util.List;
 
 public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterWithButton.NestedViewHolder> {
     private List<PaymentItem> mList;
     private NestedAdapterListener mListener;
+
 
     private int selectedPosition = -1;
     private int tag;
@@ -74,10 +79,20 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
                 Log.d("Tag", tag + "");
                 Log.d("Adapter Position", holder.getAdapterPosition() + "");
                 mListener.onItemClicked(holder.getAdapterPosition(), tag);
+                setViewModel();
+
+
+
 
 
             }
 
+            private void setViewModel() {
+                SharedViewModel sharedViewModel = new ViewModelProvider((CartPaymentMethodActivity)holder.itemView.getContext()).get(SharedViewModel.class);
+                sharedViewModel.setSharedVariable(mList.get(position).getWallet_name());
+
+
+            }
 
 
             private void deselectCurrentCategory() {

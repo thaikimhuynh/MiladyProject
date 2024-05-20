@@ -2,6 +2,7 @@ package com.thaikimhuynh.miladyapp.checkout;
 
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,6 +29,7 @@ import com.thaikimhuynh.miladyapp.adapter.CartAdapter;
 import com.thaikimhuynh.miladyapp.adapter.CheckoutAdapter;
 import com.thaikimhuynh.miladyapp.databinding.ActivityCheckOutBinding;
 import com.thaikimhuynh.miladyapp.fragment.CartFragment;
+import com.thaikimhuynh.miladyapp.model.Address;
 import com.thaikimhuynh.miladyapp.model.Checkout;
 import com.thaikimhuynh.miladyapp.model.Product;
 
@@ -44,6 +46,8 @@ public class CheckOutActivity extends AppCompatActivity {
     CheckoutAdapter checkOutAdapter;
     List<Product>cartProducts;
     double totalAmount;
+    double finalAmount;
+
     double shippingFee = 20.0;
     private ActivityCheckOutBinding checkoutBinding;
     
@@ -62,6 +66,8 @@ public class CheckOutActivity extends AppCompatActivity {
 
 
     }
+
+
     private void getDataFromAddressSelection() {
         Intent intent = getIntent();
         if (intent != null) {
@@ -89,13 +95,15 @@ public class CheckOutActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         cartProducts = new ArrayList<>();
-                        totalAmount = 0.0; // Initialize totalAmount
+                        totalAmount = 0.0;
 
                         for (DataSnapshot cartSnapshot : dataSnapshot.getChildren()) {
                             if (cartSnapshot.child("totalAmount").exists()) {
                                 totalAmount = cartSnapshot.child("totalAmount").getValue(Double.class);
                             }
-
+                            if (!cartSnapshot.child("discountedAmount").exists()) {
+                                cartSnapshot.getRef().child("discountedAmount").setValue(0.0);
+                            }
                             for (DataSnapshot itemSnapshot : cartSnapshot.child("items").getChildren()) {
                                 Product product = new Product();
                                 product.setTitle(itemSnapshot.child("title").getValue(String.class));
@@ -111,18 +119,17 @@ public class CheckOutActivity extends AppCompatActivity {
                             }
                         }
                         double finalAmount = totalAmount + shippingFee;
-                        checkoutBinding.txtCheckoutPrice.setText("$" + totalAmount); // Set totalAmount to txtCheckoutPrice
+                        checkoutBinding.txtCheckoutPrice.setText("$" + totalAmount);
                         checkoutBinding.txtShippingFee.setText("$" + shippingFee);
                         checkoutBinding.txtTotalPriceCheckout.setText("$" + finalAmount);
                         checkoutBinding.txtVoucherCheckout.setText("$0.00");
-
+                        updateFinalAmountInFirebase(finalAmount);
                         checkOutAdapter = new CheckoutAdapter(cartProducts, CheckOutActivity.this);
                         recyclerViewCheckout.setAdapter(checkOutAdapter);
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        // Handle possible errors.
                     }
                 });
     }
@@ -131,20 +138,37 @@ public class CheckOutActivity extends AppCompatActivity {
         recyclerViewCheckout=findViewById(R.id.listCheckout);
         recyclerViewCheckout.setLayoutManager(new LinearLayoutManager(this));
     }
-//    private String getUserId() {
-//        SharedPreferences sharedPreferences = getSharedPreferences("user_session", MODE_PRIVATE);
-//        return sharedPreferences.getString("user_id", "");
-//    }
+
 
 
     private void addEvents() {
         checkoutBinding.btnContinuePayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-Intent intent = new Intent(CheckOutActivity.this, CartPaymentMethodActivity.class);
-startActivity(intent);
+                String addressName = checkoutBinding.txtCusNameCheckout.getText().toString();
+                String addressAddress = checkoutBinding.txtAddressCheckout.getText().toString();
+                String addressPhone = checkoutBinding.txtPhone.getText().toString();
+
+                if (addressName.isEmpty() || addressAddress.isEmpty() || addressPhone.isEmpty()) {
+                    Toast.makeText(CheckOutActivity.this, "Please select an address", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Intent intent = new Intent(CheckOutActivity.this, CartPaymentMethodActivity.class);
+
+                intent.putExtra("address_name", addressName);
+                intent.putExtra("address_address", addressAddress);
+                intent.putExtra("address_phone", addressPhone);
+
+
+                Log.d("CheckOutActivity", "address name: " + addressName);
+                Log.d("CheckOutActivity", "address_address: " + addressAddress);
+                Log.d("CheckOutActivity", "address phone: " + addressPhone);
+
+                startActivity(intent);
             }
         });
+
+
         checkoutBinding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -174,6 +198,8 @@ finish();
                     updateTotalWithoutVoucher();
                 }
             }
+
+
         });
     }
 
@@ -183,6 +209,29 @@ finish();
         double finalAmount = totalAmount + shippingFee;
         checkoutBinding.txtVoucherCheckout.setText("$0.00");
         checkoutBinding.txtTotalPriceCheckout.setText("$" + finalAmount);
+        updateFinalAmountInFirebase(finalAmount);
+resetVoucherDiscount();
+    
+
+    }
+
+    private void resetVoucherDiscount() {
+        String userId = getUserId();
+        FirebaseDatabase.getInstance().getReference().child("Cart")
+                .orderByChild("userId").equalTo(userId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot cartSnapshot : dataSnapshot.getChildren()) {
+                            cartSnapshot.getRef().child("discountedAmount").setValue(0.0);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Handle possible errors.
+                    }
+                });
     }
 
     private void applyVoucher() {
@@ -211,7 +260,11 @@ finish();
                                     double discountedAmount = totalAmount * discount;
                                     checkoutBinding.txtVoucherCheckout.setText("$" + discountedAmount);
                                     discountAmount = discountedAmount; // Cập nhật giá trị giảm giá
+
                                     Toast.makeText(CheckOutActivity.this, "Discount applied successfully", Toast.LENGTH_SHORT).show();
+
+                                //Save voucherDiscount on firebase
+                                updateVoucherDiscount(discountedAmount);
                                     break; // Kết thúc khi tìm thấy voucher
                                 }
                             }
@@ -220,11 +273,12 @@ finish();
                         if (!voucherFound) {
                             checkoutBinding.edtVoucher.setBackground(getResources().getDrawable(R.drawable.rounded_edittext_red_stroke));
                             checkoutBinding.txtMessageError.setText("Invalid Voucher Code");
+                            discountAmount = 0.0;
+
                         }
 
                         // Tính tổng khi không áp dụng voucher
 //                        checkoutBinding.txtShippingFee.setText("$" + shippingFee);
-                        double finalAmount;
 
                         if (voucherFound) {
                             // Tính tổng khi áp dụng voucher
@@ -235,6 +289,8 @@ finish();
                         }
 
                         checkoutBinding.txtTotalPriceCheckout.setText("$" + finalAmount);
+
+                        updateFinalAmountInFirebase(finalAmount);
                     }
 
                     @Override
@@ -245,9 +301,45 @@ finish();
                 });
     }
 
+    private void updateVoucherDiscount(double discountedAmount) {
+        String userId = getUserId();
+        FirebaseDatabase.getInstance().getReference().child("Cart")
+                .orderByChild("userId").equalTo(userId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot cartSnapshot : dataSnapshot.getChildren()) {
+                            // Cập nhật finalAmount
+                            cartSnapshot.getRef().child("discountedAmount").setValue(discountedAmount);
+                        }
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Handle possible errors.
+                    }
+                });
+    }
 
+    private void updateFinalAmountInFirebase(double finalAmount) {
+        String userId = getUserId();
+        FirebaseDatabase.getInstance().getReference().child("Cart")
+                .orderByChild("userId").equalTo(userId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot cartSnapshot : dataSnapshot.getChildren()) {
+                            // Cập nhật finalAmount
+                            cartSnapshot.getRef().child("finalAmount").setValue(finalAmount);
+                        }
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Handle possible errors.
+                    }
+                });
+    }
 
 
     private String getUserId() {
@@ -272,7 +364,33 @@ finish();
     }
 
     public void openAddressSelectedActivity(View view) {
-        Intent intent = new Intent(CheckOutActivity.this, AddressSelectionActivity.class);
-        startActivity(intent);
+            Intent intent = new Intent(CheckOutActivity.this, AddressSelectionActivity.class);
+            startActivityForResult(intent, 1); // Use requestCode 1
+        }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+            Address selectedAddress = (Address) data.getSerializableExtra("selectedAddress");
+            if (selectedAddress != null) {
+                checkoutBinding.txtCusNameCheckout.setText(selectedAddress.getName());
+                checkoutBinding.txtAddressCheckout.setText(selectedAddress.getAddress());
+                checkoutBinding.txtPhone.setText(selectedAddress.getPhone());
+
+                // Save selected address to shared preferences or any persistent storage for later use
+                saveSelectedAddress(selectedAddress);
+            }
+        }
     }
+
+    private void saveSelectedAddress(Address address) {
+        SharedPreferences sharedPreferences = getSharedPreferences("selected_address", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("name", address.getName());
+        editor.putString("address", address.getAddress());
+        editor.putString("phone", address.getPhone());
+        editor.apply();
+    }
+
 }

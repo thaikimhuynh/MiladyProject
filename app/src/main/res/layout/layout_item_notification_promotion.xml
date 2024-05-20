@@ -46,6 +46,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/noto_sans_font"
                 android:text="Get ready to fall in love with our latest shoe collection! This week, we've unveiled a stunning selection of shoes for new member who register for Miladay shoes app. \nDon't miss out on these must-have styles! Shop our new arrivals now and enjoy!"
+                android:textColor="@color/black"
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

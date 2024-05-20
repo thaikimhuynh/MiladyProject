@@ -1,9 +1,11 @@
 package com.thaikimhuynh.miladyapp.fragment;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -21,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.thaikimhuynh.miladyapp.NotificationActivity;
 import com.thaikimhuynh.miladyapp.SearchActivity;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.adapter.ProductAdapter;
@@ -36,8 +39,7 @@ import java.util.List;
 
 
 public class HomeFragment extends Fragment {
-
-
+    ImageView imageView29;
     private DatabaseReference mDatabase;
     private ArrayList<Product> productList = new ArrayList<>();
     private ProductAdapter productAdapter;
@@ -54,12 +56,13 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-
-
+        imageView29 = view.findViewById(R.id.imageView29);
         recyclerViewSlider = view.findViewById(R.id.recyclerViewSlider);
         recyclerViewSlider.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         sliderAdapter = new SliderAdapter(sliderItems);
         recyclerViewSlider.setAdapter(sliderAdapter);
+
+
 
 
         recyclerView = binding.recyclerProduct;
@@ -71,6 +74,13 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
         SearchView searchView = view.findViewById(R.id.searchView);
         loadProducts();
+        imageView29.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), NotificationActivity.class);
+                startActivity(intent);
+            }
+        });
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

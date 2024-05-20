@@ -24,6 +24,7 @@ public class NestedAdapterWithButton extends RecyclerView.Adapter<NestedAdapterW
     private List<PaymentItem> mList;
     private NestedAdapterListener mListener;
 
+
     private int selectedPosition = -1;
     private int tag;
 

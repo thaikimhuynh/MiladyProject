@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.AdminConfirmOrderActivity">
+    tools:context=".admin.AdminPrepareOrderActivity">
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="174dp"
         android:layout_height="31dp"
         android:layout_marginTop="48dp"
-        android:text="Confirm Order"
+        android:text="Prepare Order"
         android:textAlignment="center"
         android:textColor="@color/pink_primary"
         android:textSize="20sp"
@@ -65,15 +65,9 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"/>
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="504dp">
+                android:layout_height="454dp">
 
                 <LinearLayout
                     android:id="@+id/linearLayout"
@@ -92,7 +86,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="36dp"
                         android:layout_marginTop="15dp"
-                        android:text="ANH LINH"
+                        android:text="Anh Linh"
                         android:textSize="20sp" />
 
                     <LinearLayout
@@ -110,6 +104,13 @@
                             android:text="669 National Highway 1A, Quarter 3, Thu Duc, Ho Chi Minh City"
                             android:textColor="@color/grey"
                             android:textSize="14sp" />
+
+                        <ImageView
+                            android:id="@+id/imageView12"
+                            android:layout_width="48dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@mipmap/ic_arrow_right" />
 
 
                     </LinearLayout>
@@ -234,19 +235,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtVoucherCheckout" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnConfirm"
-                    android:layout_width="340dp"
-                    android:layout_height="54dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/rounded_pink_button_background"
-                    android:text="Confirm Order"
-                    android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view2"
-                    app:layout_constraintVertical_bias="0.469"
-                    tools:layout_editor_absoluteX="35dp" />
-
                 <TextView
                     android:id="@+id/textView28"
                     android:layout_width="wrap_content"
@@ -265,6 +253,4 @@
 
         </LinearLayout>
     </ScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

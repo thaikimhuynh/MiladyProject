@@ -16,24 +16,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.R;
-import com.thaikimhuynh.miladyapp.model.AdminOrder;
 
-public class AdminConfirmOrderActivity extends AppCompatActivity {
+public class AdminOnDeliveryActivity extends AppCompatActivity {
     TextView customerName,address,totalAmount,shippingFee,discountedAmount,finalAmount;
-    Button btnConfirm;
+    Button btn_prepare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_confirm_order);
+        setContentView(R.layout.activity_admin_on_delivery);
         customerName = findViewById(R.id.txtCusNameCheckout);
         address = findViewById(R.id.txtAddressCheckout);
         totalAmount = findViewById(R.id.txtCheckoutPrice);
         shippingFee = findViewById(R.id.txtShippingFee);
         discountedAmount = findViewById(R.id.txtVoucherCheckout);
         finalAmount = findViewById(R.id.txtTotalPriceCheckout);
-        btnConfirm = findViewById(R.id.btnConfirm);
-        btnConfirm.setOnClickListener(new View.OnClickListener() {
+        btn_prepare = findViewById(R.id.btn_prepare);
+        btn_prepare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String orderIdText = getIntent().getStringExtra("orderId");
@@ -42,17 +41,17 @@ public class AdminConfirmOrderActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
-                            snapshot.getRef().child("orderStatus").setValue("Preparing");
-                            Toast.makeText(AdminConfirmOrderActivity.this, "Order status updated to Preparing", Toast.LENGTH_SHORT).show();
+                            snapshot.getRef().child("orderStatus").setValue("Delivery Successfully");
+                            Toast.makeText(AdminOnDeliveryActivity.this, "Order status updated to Delivery Successfully", Toast.LENGTH_SHORT).show();
                         } else {
                             Log.e("AdminConfirmOrder", "Failed to update order status: Order not found");
-                            Toast.makeText(AdminConfirmOrderActivity.this, "Failed to update order status: Order not found", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminOnDeliveryActivity.this, "Failed to update order status: Order not found", Toast.LENGTH_SHORT).show();
                         }
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         Log.e("AdminConfirmOrder", "Failed to update order status: " + error.getMessage());
-                        Toast.makeText(AdminConfirmOrderActivity.this, "Failed to update order status: " + error.getMessage(), Toast.LENGTH_SHORT).show();                    }
+                        Toast.makeText(AdminOnDeliveryActivity.this, "Failed to update order status: " + error.getMessage(), Toast.LENGTH_SHORT).show();                    }
                 });
             }
         });
@@ -71,5 +70,7 @@ public class AdminConfirmOrderActivity extends AppCompatActivity {
             shippingFee.setText(shippingFeeText);
             discountedAmount.setText(discountedAmountText);
             finalAmount.setText(finalAmountText);
+        }
     }
-}}
+
+}

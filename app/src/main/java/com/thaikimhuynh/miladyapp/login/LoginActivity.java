@@ -8,10 +8,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.MainActivity;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.admin.AdminProductManagementActivity;
+import com.thaikimhuynh.miladyapp.forgotpassword.ForgotPasswordActivity;
 import com.thaikimhuynh.miladyapp.signup.SignUpActivity;
 
 import java.util.Objects;
@@ -33,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     TextView txtForgotPassWord, txtSignUp;
     String userId;
+    ImageView imgShowPassword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,34 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin=findViewById(R.id.btnLogin);
         txtForgotPassWord=findViewById(R.id.txtForgotPassWord);
         txtSignUp = findViewById(R.id.txtSignUp);
+        imgShowPassword = findViewById(R.id.imgShowPassword);
+        txtForgotPassWord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+        imgShowPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (edtPassword.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
+                    // Nếu đang ẩn mật khẩu, chuyển sang hiển thị
+                    edtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    // Thay đổi hình ảnh của ImageView thành ảnh ẩn mật khẩu
+                    imgShowPassword.setImageResource(R.mipmap.ic_eye_on);
+                } else {
+                    // Nếu đang hiển thị mật khẩu, chuyển sang ẩn
+                    edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    // Thay đổi hình ảnh của ImageView thành ảnh hiển thị mật khẩu
+                    imgShowPassword.setImageResource(R.mipmap.ic_eye_off);
+                }
+
+                // Đặt vị trí con trỏ về cuối chuỗi
+                edtPassword.setSelection(edtPassword.getText().length());
+            }
+        });
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

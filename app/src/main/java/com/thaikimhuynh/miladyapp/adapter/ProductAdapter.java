@@ -95,6 +95,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
 
+
+    public void setProductList(ArrayList<Product> productList) {
+    }
+
+
     class ProductViewHolder extends RecyclerView.ViewHolder {
         TextView product_name, product_price;
         ImageView product_image;

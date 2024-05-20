@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.thaikimhuynh.miladyapp.fragment.CanceledFragment;
-import com.thaikimhuynh.miladyapp.fragment.ConfirmingFragment;
+//import com.thaikimhuynh.miladyapp.fragment.ConfirmingFragment;
 import com.thaikimhuynh.miladyapp.fragment.OnDeliveryFragment;
 import com.thaikimhuynh.miladyapp.fragment.ReceivedFragment;
 
@@ -38,7 +38,7 @@ public class MyOrdersActivity extends AppCompatActivity {
         addViews();
 
 //        Default fragment, default selected tab
-        replaceFragment(new ConfirmingFragment());
+        //replaceFragment(new ConfirmingFragment());
 
         tabItem1.setBackgroundResource(R.drawable.rounded_pink_button_background);
         tabItem1.setTextColor(Color.WHITE);
@@ -57,20 +57,20 @@ public class MyOrdersActivity extends AppCompatActivity {
 
     private void addEvents() {
 
-        tabItem1.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                openConfirmFragment();
-                selectedtextView = tabItem1;
-                TextView[] non_selectedtextViews = {tabItem2, tabItem3, tabItem4};
-                tabNumber = 1;
-                float slideTo = (tabNumber - currentFragment) * selectedtextView.getWidth();
-                translation(currentFragment, selectedtextView, non_selectedtextViews, slideTo);
-                currentFragment = tabNumber;
-
-            }
-        });
+//        tabItem1.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                openConfirmFragment();
+//                selectedtextView = tabItem1;
+//                TextView[] non_selectedtextViews = {tabItem2, tabItem3, tabItem4};
+//                tabNumber = 1;
+//                float slideTo = (tabNumber - currentFragment) * selectedtextView.getWidth();
+//                translation(currentFragment, selectedtextView, non_selectedtextViews, slideTo);
+//                currentFragment = tabNumber;
+//
+//            }
+//        });
         tabItem2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,13 +143,13 @@ public class MyOrdersActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    private void openConfirmFragment() {
-        if (currentFragment != FRAGMENT_CONFIRMING) {
-            replaceFragment(new ConfirmingFragment());
-        }
-
-
-    }
+//    private void openConfirmFragment() {
+//        if (currentFragment != FRAGMENT_CONFIRMING) {
+//            replaceFragment(new ConfirmingFragment());
+//        }
+//
+//
+//    }
 
     private void onDeliveryFragment() {
         if (currentFragment != FRAGMENT_ONDELIVERY) {

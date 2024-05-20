@@ -45,6 +45,7 @@
                     android:iconifiedByDefault="false"
                     android:orientation="horizontal"
                     app:iconifiedByDefault="false"
+
                     app:queryHint="Search" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout

@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/noto_sans_font"
-                android:text="Product ID"
+                android:text="@string/proid"
 
                 android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/edtProductId"
@@ -46,7 +46,7 @@
                 android:background="@drawable/rounded_edittext_black_stroke"
                 android:ems="10"
                 android:fontFamily="@font/noto_sans_font"
-                android:hint="Enter ID product"
+                android:hint="@string/enidpro"
 
                 android:inputType="text"
                 android:paddingLeft="16dp"
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/noto_sans_font"
-                android:text="Name Product"
+                android:text="@string/namepro"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/textView18"
                 app:layout_constraintTop_toBottomOf="@+id/edtProductId" />
@@ -75,7 +75,7 @@
                 android:background="@drawable/rounded_edittext_black_stroke"
                 android:ems="10"
                 android:fontFamily="@font/noto_sans_font"
-                android:hint="Enter Name Product"
+                android:hint="@string/ennampro"
                 android:inputType="text"
 
                 android:paddingLeft="16dp"
@@ -94,7 +94,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/noto_sans_font"
-                android:text="Price"
+                android:text="@string/pr"
 
                 android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/edtPrice"
@@ -111,7 +111,7 @@
                 android:background="@drawable/rounded_edittext_black_stroke"
                 android:ems="10"
                 android:fontFamily="@font/noto_sans_font"
-                android:hint="Enter Price"
+                android:hint="@string/enpr"
                 android:inputType="number"
 
                 android:paddingStart="15dp"
@@ -127,7 +127,7 @@
                 android:layout_marginStart="148dp"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/noto_sans_font"
-                android:text="Stock"
+                android:text="@string/st"
 
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/eeeeee"
@@ -142,7 +142,7 @@
                 android:background="@drawable/rounded_edittext_black_stroke"
                 android:ems="10"
                 android:fontFamily="@font/noto_sans_font"
-                android:hint="Enter Stock"
+                android:hint="@string/enst"
                 android:inputType="number"
                 android:paddingStart="15dp"
 
@@ -158,7 +158,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/noto_sans_font"
-                android:text="Description"
+                android:text="@string/des"
 
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/eeeeee"
@@ -172,7 +172,7 @@
                 android:background="@drawable/rounded_edittext_black_stroke"
                 android:ems="10"
                 android:fontFamily="@font/noto_sans_font"
-                android:hint="Enter Description"
+                android:hint="@string/endes"
                 android:inputType="text"
                 android:paddingStart="15dp"
                 android:paddingTop="1dp"
@@ -189,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/noto_sans_font"
-                android:text="Image Link"
+                android:text="@string/imglink"
 
                 app:layout_constraintStart_toStartOf="@+id/textView34"
                 app:layout_constraintTop_toBottomOf="@+id/edt_des" />
@@ -203,7 +203,7 @@
                 android:background="@drawable/rounded_edittext_black_stroke"
                 android:ems="10"
                 android:fontFamily="@font/noto_sans_font"
-                android:hint="Enter Image Link"
+                android:hint="@string/enimg"
 
                 android:inputType="text"
                 android:paddingStart="15dp"
@@ -222,7 +222,7 @@
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/noto_sans_font"
 
-                android:text="Category ID"
+                android:text="@string/cateid"
                 app:layout_constraintStart_toStartOf="@+id/textView34"
                 app:layout_constraintTop_toBottomOf="@+id/edtImgLink" />
 
@@ -236,7 +236,7 @@
                 android:ems="10"
                 android:fontFamily="@font/noto_sans_font"
 
-                android:hint="Enter Category ID"
+                android:hint="@string/encate"
                 android:inputType="text"
                 android:paddingStart="15dp"
                 android:paddingTop="1dp"
@@ -255,7 +255,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="36dp"
                 android:background="@drawable/rounded_pink_button_background"
-                android:text="Add New Product"
+                android:text="@string/addnewpro"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
 
@@ -281,7 +281,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/noto_sans_font"
-        android:text="Add New Product"
+        android:text="@string/addnewpro"
         android:textColor="@color/pink_primary"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"

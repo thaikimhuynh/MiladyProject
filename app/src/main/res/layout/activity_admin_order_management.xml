@@ -30,15 +30,15 @@
         android:id="@+id/textView5"
         android:layout_width="311dp"
         android:layout_height="49dp"
-        android:text="Admin Management"
+        android:text="@string/adma"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="188dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="188dp" />
 
     <TextView
         android:id="@+id/textView9"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="48dp"
-        android:text="Log Out"
+        android:text="@string/log"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -96,7 +96,7 @@
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total Order"
+        android:text="@string/toor"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -123,7 +123,7 @@
         android:id="@+id/textview12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Confirming"
+        android:text="@string/con"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/view2"
         app:layout_constraintHorizontal_bias="0.081"
@@ -147,13 +147,13 @@
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="Received"
+        android:layout_marginStart="92dp"
+        android:text="@string/recei"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.71" />
+        app:layout_constraintVertical_bias="0.701" />
 
     <TextView
         android:id="@+id/viewview"
@@ -161,7 +161,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
         android:layout_marginTop="121dp"
-        android:text="Prepared"
+        android:text="@string/pre"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintStart_toEndOf="@+id/textview12"
         app:layout_constraintTop_toTopOf="@+id/view2"
@@ -180,22 +180,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <TextView
-        android:id="@+id/viewviewes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Refunded"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
-        app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.71" />
-
-    <TextView
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="On Delivery"
+        android:text="@string/onde"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/view2"
         app:layout_constraintStart_toEndOf="@+id/viewview"
@@ -220,27 +208,13 @@
         android:id="@+id/viewna"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Canceled"
+        android:text="@string/can"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.887"
+        app:layout_constraintHorizontal_bias="0.665"
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.71" />
-
-    <TextView
-        android:id="@+id/boot_product"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="5"
-        android:textColor="@color/pink_primary"
-        android:textSize="26sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
-        app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.884" />
+        app:layout_constraintVertical_bias="0.701" />
 
     <TextView
         android:id="@+id/cancled_order"
@@ -251,10 +225,10 @@
         android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.82"
+        app:layout_constraintHorizontal_bias="0.629"
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.884" />
+        app:layout_constraintVertical_bias="0.891" />
 
     <TextView
         android:id="@+id/sneaker_product"
@@ -265,10 +239,10 @@
         android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintHorizontal_bias="0.332"
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.884" />
+        app:layout_constraintVertical_bias="0.887" />
 
     <View
         android:id="@+id/view5"
@@ -310,7 +284,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="152dp"
-        android:text="List Orders"
+        android:text="@string/lior"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintEnd_toEndOf="@+id/view5"

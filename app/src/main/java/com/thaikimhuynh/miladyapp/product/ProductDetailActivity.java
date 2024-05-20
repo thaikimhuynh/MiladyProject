@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,10 +21,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.R;
+import com.thaikimhuynh.miladyapp.ViewProductFeedbackActivity;
+import com.thaikimhuynh.miladyapp.adapter.FeedbackAdapter;
 import com.thaikimhuynh.miladyapp.adapter.ProductDetailsSliderAdapter;
 import com.thaikimhuynh.miladyapp.adapter.SizeAdapter;
 import com.thaikimhuynh.miladyapp.databinding.ActivityProductDetailBinding;
 import com.thaikimhuynh.miladyapp.helpers.ManagementCart;
+import com.thaikimhuynh.miladyapp.model.Feedback;
 import com.thaikimhuynh.miladyapp.model.Product;
 
 import java.util.ArrayList;
@@ -31,20 +37,26 @@ import java.util.Map;
 import java.util.Random;
 
 public class ProductDetailActivity extends AppCompatActivity {
+    private RecyclerView recyclerviewFeedback;
     private Product product;
     private String selectedSize = "";
     private ActivityProductDetailBinding productDetailBinding;
     private int quantity = 1;
     private int itemId = generateRandomItemId();
+    private TextView txtViewAll;
 
     private ManagementCart managementCart;
+    DatabaseReference mFeedback, mUser;
+    private List<Feedback> feedbackList;
+    private FeedbackAdapter feedbackAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         productDetailBinding = ActivityProductDetailBinding.inflate(getLayoutInflater());
         setContentView(productDetailBinding.getRoot());
-
+        addViews();
         managementCart = new ManagementCart(this);
 
         product = (Product) getIntent().getSerializableExtra("product");
@@ -59,6 +71,88 @@ public class ProductDetailActivity extends AppCompatActivity {
         initSize();
         editQuantity();
         setupListeners();
+        displayFeedBack();
+    }
+
+    private void displayFeedBack() {
+
+        feedbackList = new ArrayList<>();
+        feedbackAdapter = new FeedbackAdapter(feedbackList, false);
+        recyclerviewFeedback.setLayoutManager(new LinearLayoutManager(this));
+        recyclerviewFeedback.setAdapter(feedbackAdapter);
+
+        mFeedback = FirebaseDatabase.getInstance().getReference("Feedback");
+        mUser = FirebaseDatabase.getInstance().getReference("User");
+
+        mFeedback.orderByChild("productId").equalTo(product.getProductId()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot feedbackSnapshot : snapshot.getChildren()) {
+                    System.out.println(" a" + feedbackSnapshot.getValue());
+
+                    Feedback feedback = feedbackSnapshot.getValue(Feedback.class);
+                    if (feedback != null) {
+                        String user_id = feedback.getUserId();
+                        System.out.println(" userId" + user_id);
+                        mUser.orderByChild("id").equalTo(user_id).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                System.out.println("userserser" + dataSnapshot.getValue());
+                                if (dataSnapshot.exists()) {
+                                    System.out.println(dataSnapshot.getValue());
+                                    for (DataSnapshot snapshot1 : dataSnapshot.getChildren()){
+                                        String username = snapshot1.child("name").getValue(String.class);
+                                        Log.d("username", "username" + username);
+                                        // Update the feedback object with the username
+                                        feedback.setUserName(username);
+                                        feedbackList.add(feedback);
+                                        feedbackAdapter.notifyDataSetChanged();
+
+
+
+
+
+
+
+                                    }
+
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                Toast.makeText(ProductDetailActivity.this, "Failed to fetch username", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+                    System.out.println("feedbackCuaCaune" + feedback.getUserName());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ProductDetailActivity.this, "Failed to load feedback", Toast.LENGTH_SHORT).show();
+            }
+        });
+        txtViewAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProductDetailActivity.this, ViewProductFeedbackActivity.class);
+                intent.putExtra("product", product);
+                startActivity(intent);
+            }
+        });
+    }
+
+
+
+
+    private void addViews() {
+        recyclerviewFeedback = findViewById(R.id.recyclerViewFeedback);
+        txtViewAll = findViewById(R.id.txtViewAll);
+
     }
 
     private String getUserId() {

@@ -3,9 +3,11 @@ plugins {
     id("com.google.gms.google-services")
 }
 
+
 android {
     namespace = "com.thaikimhuynh.miladyapp"
     compileSdk = 34
+
 
     defaultConfig {
         applicationId = "com.thaikimhuynh.miladyapp"
@@ -14,8 +16,10 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
 
     buildTypes {
         release {
@@ -32,7 +36,9 @@ android {
     }
 }
 
+
 dependencies {
+    implementation("androidx.preference:preference-ktx:1.2.1")
     implementation("com.google.firebase:firebase-firestore:23.0.0")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation ("com.github.bumptech.glide:glide:4.12.0")

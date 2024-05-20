@@ -1,6 +1,9 @@
 package com.thaikimhuynh.miladyapp.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -43,6 +46,7 @@ public class CanceledFragment extends Fragment  {
     RecyclerView recyclerView;
     DatabaseReference mDatabase;
     ArrayList<Order> orders;
+    String userId;
 
     public CanceledFragment() {
         // Required empty public constructor
@@ -88,6 +92,7 @@ public class CanceledFragment extends Fragment  {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        userId = getUserId();
         recyclerView = view.findViewById(R.id.recyclerCanceled);
         loadReceivedOrder();
 
@@ -98,22 +103,27 @@ public class CanceledFragment extends Fragment  {
 
     }
 
+    private String getUserId() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user_session", MODE_PRIVATE);
+        return sharedPreferences.getString("user_id", "");
+    }
+
     private void loadReceivedOrder() {
         mDatabase = FirebaseDatabase.getInstance().getReference("Orders");
         orders = new ArrayList<>();
-        mDatabase.orderByChild("orderStatus").equalTo("To Confirm").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.orderByChild("userId").equalTo(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                System.out.println("Snapshot" + snapshot.getValue());
 
                 for (DataSnapshot orderSnapshot : snapshot.getChildren()) {
 
                     Order order = orderSnapshot.getValue(Order.class);
-                    orders.add(order);
-
-
+                    if (order != null && "Completed".equals(order.getOrderStatus())) {
+                        orders.add(order);
+                    }
                 }
-                Log.d("success", "sucessne");
-                OrderAdapter orderAdapter = new OrderAdapter(orders, "Canceled");
+                OrderAdapter orderAdapter = new OrderAdapter(orders, "Feedback");
                 orderAdapter.setOnItemClickListener(new OrderAdapter.OrderAdapterListener() {
                     @Override
                     public void onItemClicked(Order order) {

@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/noto_sans_font"
-            android:text="Wish List"
+            android:text="@string/wishlist"
             android:textColor="@color/pink_primary"
             android:textSize="20sp"
             android:textStyle="bold"

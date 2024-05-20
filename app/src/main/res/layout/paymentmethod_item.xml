@@ -61,7 +61,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="15dp"
-                android:text="Add"
+                android:text="add"
                 android:textColor="@color/white"
                 android:textSize="10sp" />
         </RelativeLayout>

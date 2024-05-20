@@ -25,7 +25,7 @@
         android:id="@+id/txt_mywallet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Wallet"
+        android:text="@string/my_wallet"
         android:fontFamily="@font/noto_sans_font"
         android:textStyle="bold"
         android:textColor="@color/pink_primary"

@@ -21,8 +21,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.thaikimhuynh.miladyapp.SearchActivity;
+//import com.thaikimhuynh.miladyapp.SearchActivity;
 import com.thaikimhuynh.miladyapp.R;
+import com.thaikimhuynh.miladyapp.SearchActivity;
 import com.thaikimhuynh.miladyapp.adapter.ProductAdapter;
 import com.thaikimhuynh.miladyapp.adapter.SliderAdapter;
 import com.thaikimhuynh.miladyapp.databinding.FragmentHomeBinding;
@@ -82,7 +83,7 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-        return view;
+      return view;
     }
 
 
@@ -159,5 +160,6 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
 }
 

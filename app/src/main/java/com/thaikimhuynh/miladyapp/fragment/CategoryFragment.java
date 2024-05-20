@@ -21,6 +21,7 @@ import com.google.firebase.database.Query;
 import com.thaikimhuynh.miladyapp.NotificationActivity;
 import com.thaikimhuynh.miladyapp.R;
 //import com.thaikimhuynh.miladyapp.SearchActivity;
+import com.thaikimhuynh.miladyapp.SearchActivity;
 import com.thaikimhuynh.miladyapp.adapter.CategoryAdapter;
 import com.thaikimhuynh.miladyapp.model.Category;
 
@@ -116,7 +117,7 @@ public class CategoryFragment extends Fragment {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
                     // Nếu SearchView được nhấn, mở SearchActivity
-                    Intent intent = new Intent(getContext(), NotificationActivity.class);
+                    Intent intent = new Intent(getContext(), SearchActivity.class);
                     startActivity(intent);
                     searchView.clearFocus();
                 }

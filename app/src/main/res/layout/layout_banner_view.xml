@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:text="Sale"
+            android:text="@string/sale"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             android:fontFamily="@font/noto_sans_font"

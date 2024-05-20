@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/noto_sans_font"
-                android:text="Product Detail"
+                android:text="@string/product_detail"
                 android:textColor="#F9476B"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -156,7 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:fontFamily="@font/noto_sans_font"
-                        android:text="Product Details"
+                        android:text="@string/product_details"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -235,7 +235,7 @@
                             android:fontFamily="@font/noto_sans_font"
                             android:paddingTop="15dp"
                             android:paddingBottom="10dp"
-                            android:text="Select Size"
+                            android:text="@string/select_size"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -278,7 +278,7 @@
                             android:layout_marginStart="14dp"
                             android:layout_marginEnd="28dp"
                             android:background="@drawable/rounded_pink_button_background"
-                            android:text="Add To Cart"
+                            android:text="@string/add_to_cart"
                             android:textColor="@color/white"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"

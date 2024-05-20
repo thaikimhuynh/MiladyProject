@@ -1,0 +1,235 @@
+<resources>
+    <string name="app_name">MiladyApp</string>
+    <string name="action_home">Trang chủ</string>
+    <string name="language_preference">Ngôn ngữ</string>
+    <string name="version_preference">Phiên bản</string>
+    <string name="action_category">Loại</string>
+    <string name="action_cart">Xe đẩy</string>
+    <string name="action_profile">Hồ sơ</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Xin chào mảnh trống</string>
+    <string name="search_result_text">Kết quả cho \\"%s\\"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="name_help">Thiết lập tài khoản</string>
+    <string name="hint_language">Ngôn ngữ</string>
+    <string name="About">Về</string>
+    <!-- Profile -->
+    <string name="profile">Thông tin của tôi</string>
+    <string name="wallet">Ví của tôi</string>
+    <string name="point">Kiếm điểm</string>
+    <string name="wish">Danh sách mong muốn</string>
+    <string name="help">Trung tâm trợ giúp</string>
+    <string name="order">Đơn hàng của tôi</string>
+    <string name="account">Tài khoản của tôi</string>
+    <!-- About us -->
+    <string name="uel">Đại học Kinh tế và Luật</string>
+    <string name="address">Địa chỉ của tôi</string>
+    <!-- AddNewAddressActivity -->
+    <string name="addshiping">Thêm địa chỉ giao hàng</string>
+    <string name="name">Tên</string>
+    <string name="enteryourname">Nhập tên của bạn</string>
+    <string name="phone">Số điện thoại</string>
+    <string name="eyfn">Nhập số điện thoại của bạn</string>
+    <string name="ad">Địa chỉ</string>
+    <string name="enyo">Nhập địa chỉ của bạn</string>
+    <string name="saveadress">LƯU ĐỊA CHỈ</string>
+    <!-- AddNewBanking -->
+    <string name="atmcard">Đổi thẻ ATM</string>
+    <string name="nameatm">Tên thẻ ATM</string>
+    <string name="cusname">Tên khách hàng</string>
+    <string name="accountnum">Số tài khoản</string>
+    <string name="exdate">Hạn sử dụng</string>
+    <!-- AddNewWallet -->
+    <string name="addnewe">Thêm ví điện tử mới</string>
+    <string name="nameew">Tên Ví điện tử</string>
+    <string name="phonenum">Số điện thoại</string>
+    <!-- AddAddressSelection -->
+    <string name="addse">Lựa chọn địa chỉ</string>
+    <string name="addne">Thêm địa chỉ mới</string>
+    <!-- Adminaddproduct -->
+    <string name="addnewpro">Thêm sản phẩm mới</string>
+    <string name="proid">ID sản phẩm</string>
+    <string name="enidpro">Nhập ID sản phẩm</string>
+    <string name="namepro">Tên sản phẩm</string>
+    <string name="ennampro">Nhập tên sản phẩm</string>
+    <string name="pr">Giá</string>
+    <string name="enpr">Nhập giá</string>
+    <string name="st">Cổ phần</string>
+    <string name="enst">Nhập kho</string>
+    <string name="des">Sự miêu tả</string>
+    <string name="endes">Nhập mô tả</string>
+    <string name="imglink">Đường kết nối tới hình ảnh</string>
+    <string name="enimg">Nhập liên kết hình ảnh</string>
+    <string name="cateid">Thể loại ID</string>
+    <string name="encate">Nhập ID danh mục</string>
+    <string name="addpro">Thêm sản phẩm mới</string>
+    <!-- Adminconfirmorder -->
+    <string name="conor">Xác nhận đơn hàng</string>
+    <string name="orli">Danh sách đặt hàng</string>
+    <string name="app">Áp dụng</string>
+    <string name="vouchesucess">Nhập voucher thành công</string>
+    <string name="shipadd">Địa chỉ giao hàng</string>
+    <string name="yocar">Giỏ hàng của bạn</string>
+    <string name="shipfe">Phí vận chuyển</string>
+    <string name="vou">Chứng từ</string>
+    <string name="to">Tổng cộng</string>
+    <string name="canor">Hủy đơn hàng</string>
+    <!-- Adminlistorder -->
+    <string name="lipro">Danh sách sản phẩm</string>
+    <string name="he">Giày cao gót</string>
+    <string name="sa">Dép xăng đan</string>
+    <string name="bo">Bốt</string>
+    <string name="sne">giày thể thao</string>
+    <!-- Adminordermanagement -->
+    <string name="log">Đăng xuất</string>
+    <string name="adma">Quản lý quản trị</string>
+    <string name="toor">Tổng số đơn hàng</string>
+    <string name="con">Xác nhận</string>
+    <string name="pre">Chuẩn bị</string>
+    <string name="onde">Khi giao hàng</string>
+    <string name="recei">Đã nhận</string>
+    <string name="can">Đã hủy</string>
+    <string name="lior">Liệt kê đơn hàng</string>
+    <!-- Adminprepareorder -->
+    <string name="preor">Chuẩn bị đơn hàng</string>
+    <string name="preordo">Chuẩn bị đơn hàng xong</string>
+    <!-- Adminproductmanagement -->
+    <string name="topro">Tổng sản phẩm</string>
+    <string name="addnepro">Thêm sản phẩm mới</string>
+    <!-- AdminUpdateProduct -->
+    <string name="uppro">Cập nhật sản phẩm</string>
+    <!-- Bankinginformation -->
+    <string name="banin">Thông tin ngân hàng</string>
+    <string name="banna">tên ngân hàng</string>
+    <string name="cusna">Tên khách hàng</string>
+    <string name="accnu">Số tài khoản</string>
+    <string name="chaba">Thay đổi ngân hàng</string>
+    <!-- CartPaymentmethod -->
+    <string name="mywa">Ví của tôi</string>
+    <string name="conpa">Xác nhận thanh toán</string>
+    <!-- ChangeATMCard -->
+    <string name="chatm">Đổi thẻ ATM</string>
+    <string name="enco">Nhập mã vào đây</string>
+    <!-- ChangeEwallet -->
+    <string name="chae">Thay đổi ví điện tử</string>
+    <string name="nae">Tên Ví điện tử</string>
+    <!-- search xml -->
+    <string name="search_title">Tìm kiếm</string>
+    <string name="search_hint">Tìm kiếm ở đây</string>
+    <string name="products_title">Các sản phẩm</string>
+    <!-- chang profile xml -->
+    <string name="save_information">Lưu thông tin</string>
+    <string name="profile_name_hint">Huy</string>
+    <string name="profile_email_hint">Huy\@gmail.com</string>
+    <string name="phone_number_hint">54353443</string>
+    <string name="change_profile_title">Thay đổi hồ sơ của tôi</string>
+    <string name="gmail">Gmail</string>
+    <string name="password">Mật khẩu</string>
+    <!-- ccheckout xml -->
+    <string name="check_out">Thủ tục thanh toán</string>
+    <string name="order_list">Danh sách đặt hàng</string>
+    <string name="voucher">Chứng từ</string>
+    <string name="apply">Áp dụng</string>
+    <string name="your_Cart">Giỏ hàng của bạn</string>
+    <string name="shipping_address">Địa chỉ giao hàng</string>
+    <string name="shipping_fee">Phí vận chuyển</string>
+    <string name="total">Tổng cộng</string>
+    <string name="continue_to_payment">Tiếp tục thanh toán</string>
+
+    <!-- delete fail xml -->
+    <string name="delete_your">Xóa của bạn</string>
+    <string name="payment_method_successfully">Phương thức thanh toán thành công</string>
+    <!--  forgot password xml -->
+    <string name="forgot_password">Quên mật khẩu</string>
+    <string name="please_write_phone">Vui lòng ghi số điện thoại của bạn để đặt lại mật khẩu</string>
+    <string name="phone_number">Số điện thoại</string>
+    <string name="enter_phone_number">Nhập số điện thoại</string>
+    <string name="con_tinue">Tiếp tục</string>
+
+    <!-- help center xml -->
+    <string name="help_center">Trung tâm trợ giúp</string>
+    <string name="how_can_we_help">Làm thế nào chúng tôi có thể giúp bạn\?</string>
+    <string name="about_us">Về chúng tôi</string>
+    <!--  login xml -->
+    <string name="log_in">Đăng nhập</string>
+    <string name="hi_welcome_back">CHÀO! Chào mừng trở lại cửa hàng giày của chúng tôi</string>
+    <string name="enter_password">Nhập mật khẩu</string>
+
+    <!--  my profile xml -->
+
+    <string name="my_profile">Thông tin của tôi</string>
+    <string name="email">E-mail</string>
+    <string name="pwd_hint">123</string>
+    <string name="change_my_profile">Thay đổi hồ sơ của tôi</string>
+    <!--  my wallet xml -->
+    <string name="my_wallet">Ví của tôi</string>
+    <!--  newpassword xml -->
+    <string name="new_password">mật khẩu mới</string>
+    <string name="please_fill_password">Vui lòng điền mật khẩu mới của bạn để đặt lại mật khẩu</string>
+    <string name="confirm_password">Xác nhận mật khẩu</string>
+    <string name="do_not_have_account">Không có tài khoản\?</string>
+    <string name="sign_up">Đăng ký</string>
+    <string name="enter_new_password">Nhập mật khẩu mới</string>
+    <string name="enter_password_again">Nhập lại mật khẩu</string>
+
+    <!--  product detail xml -->
+    <string name="product_detail">Chi tiết sản phẩm</string>
+    <string name="product_details">Thông tin chi tiết sản phẩm</string>
+    <string name="select_size">Chọn kích cỡ</string>
+    <string name="add_to_cart">Thêm vào giỏ hàng</string>
+
+    <!--  sign up  xml -->
+    <string name="create_account">Tạo tài khoản</string>
+    <string name="fill_information">Điền thông tin của bạn bên dưới để tạo tài khoản mới</string>
+    <string name="enter_email">Nhập email</string>
+    <string name="enter_full_name">Nhập tên đầy đủ</string>
+    <string name="already_have_account">Bạn đã có tài khoản\?</string>
+    <string name="full_name">Họ và tên</string>
+    <!--  successfully change   xml -->
+    <string name="linking_new_payment">Liên kết cái mới của bạn</string>
+    <!--  successfully link banking   xml -->
+    <string name="linking_new_banking">Liên kết cái mới của bạn</string>
+    <string name="banking_successfully">Ngân hàng thành công</string>
+
+    <!--  verify account xml -->
+    <string name="verify_account">Xác nhận tài khoản</string>
+    <string name="confirm">Xác nhận</string>
+    <!--  verify code password xml -->
+    <string name="verify_code">Xác minh mã</string>
+    <string name="code_sent_description">Chúng tôi đã gửi mã tới số điện thoại của bạn</string>
+    <string name="code">Mã số</string>
+    <string name="enter_code_hint">Nhập mã</string>
+    <string name="verify">Xác minh</string>
+
+    <!--  wallet information xml -->
+    <string name="ewallet_infor">Thông tin ví điện tử</string>
+    <string name="delete">Xóa bỏ</string>
+    <!--  welcome xml -->
+    <string name="welcome_to">Chào mừng bạn đến</string>
+    <string name="our_store">cửa hàng của chúng tôi</string>
+    <string name="lets_get_started">Bắt đầu nào</string>
+    <string name="already_have_account_welcome">Tôi đã có tài khoản</string>
+    <!--  wishlist activity xml -->
+    <string name="wishlist">Danh sách mong muốn</string>
+    <!--  alert filter xml -->
+    <string name="filter">Lọc</string>
+    <string name="clear">Thông thoáng</string>
+    <string name="price_range">Phạm vi giá</string>
+    <!--  expanded_item xml -->
+    <string name="contact_us">Liên hệ chúng tôi</string>
+    <!--  home fragment xml -->
+    <string name="feature_product">Sản phẩm đặc trưng</string>
+    <!--  item contact infor xml -->
+    <string name="shop">Cửa hàng</string>
+    <!-- item order confirmingxml -->
+    <string name="date">Ngày:</string>
+    <string name="total_amount">Tổng cộng:</string>
+    <string name="button_text">Cái nút</string>
+    <!-- layout banner view -->
+    <string name="sale">Doanh thu</string>
+    <!-- order item xml -->
+    <string name="order_number">Số thứ tự</string>
+    <string name="order_date">Ngày đặt hàng</string>
+    <string name="add">Thêm vào</string>
+
+</resources>

@@ -138,6 +138,8 @@ public class CartPaymentMethodActivity extends AppCompatActivity {
                         order.setTotalAmount(totalAmount);
                         order.setFinalAmount(finalAmount);
                         order.setDiscountedAmount(discountedAmount);
+                        double shippingFee = 20.0;
+                        order.setShippingFee(shippingFee);
 
                         List<Product> products = new ArrayList<>();
                         for (DataSnapshot itemSnapshot : cartSnapshot.child("items").getChildren()) {

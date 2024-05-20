@@ -37,7 +37,6 @@ public class MyOrdersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_orders);
         addViews();
 
-//        Default fragment, default selected tab
         replaceFragment(new ConfirmingFragment());
 
         tabItem1.setBackgroundResource(R.drawable.rounded_pink_button_background);

@@ -84,6 +84,7 @@ public class ViewProductFeedbackActivity extends AppCompatActivity {
     }
 
     // Method to show a dialog to select star rating filter
+    // Inside your showRatingFilterDialog() method
     private void showRatingFilterDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_filter_feedback, null);
@@ -116,8 +117,20 @@ public class ViewProductFeedbackActivity extends AppCompatActivity {
         });
 
         // Show dialog
-        builder.show();
+        AlertDialog dialog = builder.create(); // Create AlertDialog instance
+        dialog.show();
+
+        // Find and set click listener for the close button
+        ImageView closeButton = dialogView.findViewById(R.id.icClose);
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Dismiss the dialog when close button is clicked
+                dialog.dismiss(); // Dismiss the dialog using AlertDialog instance
+            }
+        });
     }
+
 
     // Method to filter feedback list based on selected rating
     private void filterFeedbackByRating(int selectedRating) {

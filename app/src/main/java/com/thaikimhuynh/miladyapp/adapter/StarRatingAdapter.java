@@ -3,7 +3,7 @@ package com.thaikimhuynh.miladyapp.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +15,7 @@ import java.util.List;
 public class StarRatingAdapter extends RecyclerView.Adapter<StarRatingAdapter.StarViewHolder> {
 
     private List<String> mStarList;
+    private int mSelectedPosition = RecyclerView.NO_POSITION; // Initially, no position is selected
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
@@ -35,10 +36,22 @@ public class StarRatingAdapter extends RecyclerView.Adapter<StarRatingAdapter.St
     @Override
     public void onBindViewHolder(@NonNull StarViewHolder holder, int position) {
         String starRating = mStarList.get(position);
-        holder.starTextView.setText(starRating);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.starButton.setText(starRating);
+
+        // Set colors based on selection state
+        if (position == mSelectedPosition) {
+            holder.starButton.setBackgroundResource(R.drawable.size_selected);
+        } else {
+            holder.starButton.setBackgroundResource(R.drawable.size_unselected);
+        }
+
+        holder.starButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int previousSelectedPosition = mSelectedPosition;
+                mSelectedPosition = position;
+                notifyItemChanged(previousSelectedPosition);
+                notifyItemChanged(mSelectedPosition);
                 if (mListener != null) {
                     mListener.onItemClick(position);
                 }
@@ -56,11 +69,11 @@ public class StarRatingAdapter extends RecyclerView.Adapter<StarRatingAdapter.St
     }
 
     public static class StarViewHolder extends RecyclerView.ViewHolder {
-        TextView starTextView;
+        Button starButton;
 
         public StarViewHolder(@NonNull View itemView) {
             super(itemView);
-            starTextView = itemView.findViewById(R.id.starTextView);
+            starButton = itemView.findViewById(R.id.starTextView);
         }
     }
 }

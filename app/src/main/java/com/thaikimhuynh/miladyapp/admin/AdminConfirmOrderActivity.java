@@ -2,6 +2,8 @@ package com.thaikimhuynh.miladyapp.admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -16,11 +18,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.R;
+import com.thaikimhuynh.miladyapp.adapter.ProductOrderAdapter;
 import com.thaikimhuynh.miladyapp.model.AdminOrder;
+import com.thaikimhuynh.miladyapp.model.Order;
+import com.thaikimhuynh.miladyapp.model.Product;
+
+import java.util.List;
 
 public class AdminConfirmOrderActivity extends AppCompatActivity {
     TextView customerName,address,totalAmount,shippingFee,discountedAmount,finalAmount;
     Button btnConfirm;
+    RecyclerView recycler;
+    private String orderId;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +44,11 @@ public class AdminConfirmOrderActivity extends AppCompatActivity {
         discountedAmount = findViewById(R.id.txtVoucherCheckout);
         finalAmount = findViewById(R.id.txtTotalPriceCheckout);
         btnConfirm = findViewById(R.id.btnConfirm);
+        recycler = findViewById(R.id.recyclerCheckout);
+        recycler.setLayoutManager(new LinearLayoutManager(this));
+        orderId = getIntent().getStringExtra("orderId");
+        loadOrderDetails();
+
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,4 +88,22 @@ public class AdminConfirmOrderActivity extends AppCompatActivity {
             discountedAmount.setText(discountedAmountText);
             finalAmount.setText(finalAmountText);
     }
+}
+
+    private void loadOrderDetails() {
+        DatabaseReference orderRef = FirebaseDatabase.getInstance().getReference("Orders").child(orderId);
+        orderRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Order order = dataSnapshot.getValue(Order.class);
+                    List<Product> productList = order.getProducts();
+                    ProductOrderAdapter adapter = new ProductOrderAdapter(productList);
+                    recycler.setAdapter(adapter);
+                }
+    }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 }}

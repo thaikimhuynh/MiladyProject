@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         bottomNavigationView.setOnItemSelectedListener(this);
 
 
+
     }
 
     private void addViews() {

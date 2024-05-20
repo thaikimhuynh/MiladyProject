@@ -18,8 +18,9 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.thaikimhuynh.miladyapp.NotificationActivity;
 import com.thaikimhuynh.miladyapp.R;
-import com.thaikimhuynh.miladyapp.SearchActivity;
+//import com.thaikimhuynh.miladyapp.SearchActivity;
 import com.thaikimhuynh.miladyapp.adapter.CategoryAdapter;
 import com.thaikimhuynh.miladyapp.model.Category;
 
@@ -115,7 +116,7 @@ public class CategoryFragment extends Fragment {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
                     // Nếu SearchView được nhấn, mở SearchActivity
-                    Intent intent = new Intent(getContext(), SearchActivity.class);
+                    Intent intent = new Intent(getContext(), NotificationActivity.class);
                     startActivity(intent);
                     searchView.clearFocus();
                 }

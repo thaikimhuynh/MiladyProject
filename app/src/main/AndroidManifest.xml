@@ -82,18 +82,20 @@
         <activity
             android:name=".login.LoginActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".payment.ViewPaymentMethodActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".WishListActivity"
             android:exported="false" />
@@ -108,7 +110,12 @@
             android:exported="false" />
         <activity
             android:name=".MyOrdersActivity"
-            android:exported="false" />
+            android:exported="true" >
+
+        </activity>
+        <activity
+            android:name=".FeedbackActivity"
+            android:exported="false"/>
         <activity
             android:name=".admin.AdminListOrderActivity"
             android:exported="false" />
@@ -142,6 +149,8 @@
         <activity
             android:name=".payment.DeleteFailActivity"
             android:exported="false" />
+        <activity android:name="AboutUsActivity"
+            android:exported="false"/>
 
 
         <meta-data

@@ -24,6 +24,7 @@ import com.thaikimhuynh.miladyapp.product.ProductDetailActivity;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
@@ -44,13 +45,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     }
 
+    public ProductAdapter(List<Product> products) {
+    }
+
     @Override
     public void onBindViewHolder(@NonNull ProductAdapter.ProductViewHolder holder, int position)
     {
         Product product = productList.get(position);
 
         holder.product_name.setText(product.getTitle());
-//        holder.product_price.setText(String.valueOf(product.getPrice()));
         holder.product_price.setText(String.format(Locale.US, "$%.1f", product.getPrice()));
 
         String imageUrl = product.getPicUrls().get(0);

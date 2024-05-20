@@ -8,10 +8,13 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +41,8 @@ public class SignUpActivity extends AppCompatActivity {
     String Password;
     String FullName;
     private DatabaseReference mDatabase;
+    ImageView imgShowPassword;
+
     private static final String COUNTRY_CODE = "+84";
 
 
@@ -63,6 +68,26 @@ public class SignUpActivity extends AppCompatActivity {
         txtMessageError = findViewById(R.id.txtMessageError);
         txtLogin=findViewById(R.id.txtLogin);
         txtLogin.setPaintFlags(txtLogin.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        imgShowPassword = findViewById(R.id.imgShowPassword);
+        imgShowPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (edtPassword.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
+                    // Nếu đang ẩn mật khẩu, chuyển sang hiển thị
+                    edtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    // Thay đổi hình ảnh của ImageView thành ảnh ẩn mật khẩu
+                    imgShowPassword.setImageResource(R.mipmap.ic_eye_on);
+                } else {
+                    // Nếu đang hiển thị mật khẩu, chuyển sang ẩn
+                    edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    // Thay đổi hình ảnh của ImageView thành ảnh hiển thị mật khẩu
+                    imgShowPassword.setImageResource(R.mipmap.ic_eye_off);
+                }
+                // Đặt vị trí con trỏ về cuối chuỗi
+                edtPassword.setSelection(edtPassword.getText().length());
+            }
+        });
+
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

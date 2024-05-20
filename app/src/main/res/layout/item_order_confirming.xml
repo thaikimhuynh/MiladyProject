@@ -95,12 +95,18 @@
             app:layout_constraintStart_toEndOf="@+id/textView49"
             app:layout_constraintTop_toBottomOf="@+id/txtOrderDate" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="66dp"
+            android:layout_height="28dp"
+            android:background="@drawable/circle_button_pink"
             android:text="Button"
-            tools:layout_editor_absoluteX="246dp"
-            tools:layout_editor_absoluteY="29dp" />
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/txtTotalAmount"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.947" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

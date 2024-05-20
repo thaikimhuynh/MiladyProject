@@ -1,23 +1,23 @@
 package com.thaikimhuynh.miladyapp.model;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import java.io.Closeable;
+
 public class SharedViewModel extends ViewModel {
-    private MutableLiveData<Integer> selectedParentPosition = new MutableLiveData<>();
-    private MutableLiveData<Integer> selectedChildPosition = new MutableLiveData<>();
 
-    public void setSelectedItem(int parentPosition, int childPosition) {
-        selectedParentPosition.setValue(parentPosition);
-        selectedChildPosition.setValue(childPosition);
+
+    private MutableLiveData<String> sharedVariable = new MutableLiveData<>();
+
+    public LiveData<String> getSharedVariable() {
+        return sharedVariable;
     }
 
-    public LiveData<Integer> getSelectedParentPosition() {
-        return selectedParentPosition;
+    public void setSharedVariable(String value) {
+        sharedVariable.setValue(value);
     }
 
-    public LiveData<Integer> getSelectedChildPosition() {
-        return selectedChildPosition;
-    }
 }

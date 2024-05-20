@@ -27,13 +27,13 @@
                 android:layout_marginStart="31dp"
                 android:layout_marginTop="20dp"
                 android:src="@mipmap/ic_arrow_left"
-                app:layout_constraintEnd_toStartOf="@+id/textView10"
+                app:layout_constraintEnd_toStartOf="@+id/tv_helpcenter"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/tv_helpcenter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -55,7 +55,7 @@
                 android:src="@mipmap/ic_heart_1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.63"
-                app:layout_constraintStart_toEndOf="@+id/textView10"
+                app:layout_constraintStart_toEndOf="@+id/tv_helpcenter"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -189,12 +189,12 @@
 
                         <TextView
                             android:id="@+id/textView14"
-                            android:layout_width="90dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="10dp"
                             android:fontFamily="@font/noto_sans_font"
-                            android:paddingTop="13dp"
+                            android:paddingTop="15dp"
                             android:paddingBottom="10dp"
                             android:text="Select Size"
                             android:textSize="16sp"
@@ -202,7 +202,7 @@
 
                         <TextView
                             android:id="@+id/txtError"
-                            android:layout_width="152dp"
+                            android:layout_width="266dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
                             android:layout_weight="1"
@@ -218,7 +218,7 @@
                         android:layout_marginTop="5dp" >
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/RecyclerSize"
+                            android:id="@+id/listSize"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </LinearLayout>

@@ -137,7 +137,7 @@
                     app:layout_constraintVertical_bias="0.071" />
 
                 <TextView
-                    android:id="@+id/total_product"
+                    android:id="@+id/total_order"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="220"
@@ -161,7 +161,7 @@
                     app:layout_constraintTop_toTopOf="@+id/viewview" />
 
                 <TextView
-                    android:id="@+id/edt_heels"
+                    android:id="@+id/heel_product"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="76dp"
@@ -170,7 +170,7 @@
                     android:textColor="@color/pink_primary"
                     android:textSize="26sp"
                     app:layout_constraintStart_toStartOf="@+id/view2"
-                    app:layout_constraintTop_toBottomOf="@+id/total_product" />
+                    app:layout_constraintTop_toBottomOf="@+id/total_order" />
 
                 <TextView
                     android:id="@+id/textView19"
@@ -197,7 +197,7 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
-                    android:id="@+id/edt_sandals"
+                    android:id="@+id/sandal_product"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5"
@@ -223,7 +223,7 @@
                     app:layout_constraintVertical_bias="0.734" />
 
                 <TextView
-                    android:id="@+id/edt_boots"
+                    android:id="@+id/boot_product"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5"
@@ -237,7 +237,7 @@
                     app:layout_constraintVertical_bias="0.887" />
 
                 <TextView
-                    android:id="@+id/edt_sneakers"
+                    android:id="@+id/sneaker_product"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="25"
@@ -307,9 +307,9 @@
                     app:layout_constraintVertical_bias="0.48" />
 
                 <ImageView
-                    android:id="@+id/ic_list"
-                    android:layout_width="41dp"
-                    android:layout_height="45dp"
+                    android:id="@+id/imageView13"
+                    android:layout_width="38dp"
+                    android:layout_height="37dp"
                     android:layout_marginStart="92dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="8dp"
@@ -366,7 +366,7 @@
                     app:layout_constraintTop_toTopOf="@+id/view6" />
 
                 <ImageView
-                    android:id="@+id/ic_add_new"
+                    android:id="@+id/imageView111"
                     android:layout_width="38dp"
                     android:layout_height="37dp"
                     android:layout_marginTop="20dp"
@@ -400,5 +400,26 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,7 +18,7 @@
         app:srcCompat="@mipmap/banner_sale" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/ic_faq"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="31dp"

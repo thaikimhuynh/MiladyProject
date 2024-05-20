@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtMail" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/ic_faq"
         android:layout_width="30dp"
         android:layout_height="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_ewallTitle"

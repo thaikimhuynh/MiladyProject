@@ -37,7 +37,7 @@ public class DeleteFailActivity extends AppCompatActivity {
     }
 
     private void addViews() {
-        btn_delete = findViewById(R.id.btnDelete);
+        btn_delete = findViewById(R.id.btn_Delete);
     }
 
 

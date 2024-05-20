@@ -28,6 +28,7 @@ import com.thaikimhuynh.miladyapp.MainActivity;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.admin.AdminProductManagementActivity;
 import com.thaikimhuynh.miladyapp.forgotpassword.ForgotPasswordActivity;
+import com.thaikimhuynh.miladyapp.forgotpassword.ForgotPasswordActivity;
 import com.thaikimhuynh.miladyapp.signup.SignUpActivity;
 
 import java.util.Objects;

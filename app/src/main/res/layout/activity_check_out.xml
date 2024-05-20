@@ -7,327 +7,369 @@
     android:background="@color/white"
     tools:context=".checkout.CheckOutActivity">
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="105dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="48dp"
-        android:fontFamily="@font/noto_sans_font"
-        android:text="Check Out"
-        android:textColor="@color/pink_primary"
-        android:textSize="20sp"
-        android:textStyle="bold"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <ImageView
-        android:id="@+id/imageView11"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_arrow_left" />
-
-    <ScrollView
-        android:layout_width="410dp"
-        android:layout_height="619dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/white"
-        app:layout_constraintHorizontal_bias="0.529"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15">
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/noto_sans_font"
+            android:text="Check Out"
+            android:textColor="@color/pink_primary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.411"
+            app:layout_constraintStart_toEndOf="@+id/imgBack"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView16"
-                android:textColor="@color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="4dp"
-                android:text="Order List"
-                android:fontFamily="@font/noto_sans_font"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.07"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/ic_arrow_left" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerCheckout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="36dp"
-                android:layout_marginEnd="36dp">
-
-            </androidx.recyclerview.widget.RecyclerView>
+        <ScrollView
+            android:layout_width="410dp"
+            android:layout_height="619dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView15">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/edtVoucher"
-                    android:layout_width="195dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="36dp"
-                    android:fontFamily="@font/noto_sans_font"
-                    android:layout_marginEnd="7dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext_black_stroke"
-                    android:ems="10"
-                    android:paddingStart="15dp"
-                    android:hint="MILADAY_NEW"
-                    android:inputType="text" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnApplyVoucher"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_sans_font"
-                    android:layout_marginEnd="36dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_pink_primary_radius_rec"
-                    android:text="Apply"
-                    android:textColor="@color/white" />
-            </LinearLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="422dp">
-
-                <TextView
-                    android:id="@+id/textView19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:fontFamily="@font/noto_sans_font"
-                    android:layout_marginTop="7dp"
-                    android:text="Voucher enter successful"
-                    android:textColor="@color/grey"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.009"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/noto_sans_font"
-                    android:textColor="@color/black"
-                    android:text="Shipping Address"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
-
-                <LinearLayout
-                    android:id="@+id/linearLayout"
-                    android:layout_width="410dp"
-                    android:layout_height="102dp"
-                    android:layout_marginTop="15dp"
-                    android:background="#F4F4F4"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView20">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/txtCusNameCheckout"
-                        android:layout_width="match_parent"
+                        android:id="@+id/textView16"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="36dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="30dp"
                         android:fontFamily="@font/noto_sans_font"
+                        android:text="Order List"
                         android:textColor="@color/black"
-                        android:text="Anh Linh"
-                        android:textSize="20sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.095"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="58dp"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/listCheckout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.127"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView16">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <TextView
+                        android:id="@+id/textView63"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:text="Voucher"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.091"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/listCheckout" />
+
+                    <EditText
+                        android:id="@+id/edtVoucher"
+                        android:layout_width="227dp"
+                        android:layout_height="42dp"
+                        android:layout_marginTop="12dp"
                         android:layout_weight="1"
-                        android:orientation="horizontal">
+                        android:background="@drawable/rounded_edittext_black_stroke"
+                        android:ems="10"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:hint="MILADAY_NEW"
+                        android:inputType="text"
+                        android:paddingStart="15dp"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.206"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView63" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnApplyVoucher"
+                        android:layout_width="95dp"
+                        android:layout_height="42dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_pink_primary_radius_rec"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:text="Apply"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.44"
+                        app:layout_constraintStart_toEndOf="@+id/edtVoucher"
+                        app:layout_constraintTop_toBottomOf="@+id/textView63" />
+
+                    <TextView
+                        android:id="@+id/txtMessageError"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:text=""
+                        android:textColor="@color/red"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.08"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edtVoucher" />
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:text="Shipping Address"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.122"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edtVoucher" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/Layout"
+                        android:layout_width="412dp"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#F4F4F4"
+                        android:onClick="openAddressSelectedActivity"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView20">
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="22dp"
+                            android:layout_height="29dp"
+                            android:src="@mipmap/ic_arrow_right"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.937"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/txtCusNameCheckout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/noto_sans_font"
+                            android:hint="Your Name"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/txtPhone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:hint="PhoneNumber"
+                            android:text=""
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.104"
+                            app:layout_constraintStart_toEndOf="@+id/txtCusNameCheckout"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/txtAddressCheckout"
                             android:layout_width="306dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="36dp"
-                            android:layout_marginTop="7dp"
+                            android:layout_marginStart="40dp"
                             android:fontFamily="@font/noto_sans_font"
-                            android:text="669 National Highway 1A, Quarter 3, Thu Duc, Ho Chi Minh City"
+                            android:hint="Your Address"
+                            android:text=""
                             android:textColor="@color/grey"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txtCusNameCheckout" />
+
+                        <ImageView
+                            android:id="@+id/imageView28"
+                            android:layout_width="48dp"
+                            android:layout_height="wrap_content" />
 
                         <ImageView
                             android:id="@+id/imageView12"
                             android:layout_width="48dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@mipmap/ic_arrow_right" />
+                            android:layout_height="wrap_content" />
 
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/textView26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:text="Shipping Fee"
+                        android:textColor="@color/grey"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
-                </LinearLayout>
+                    <TextView
+                        android:id="@+id/textView25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:text="Your Cart"
+                        android:textColor="@color/grey"
+                        app:layout_constraintEnd_toStartOf="@+id/txtCheckoutPrice"
+                        app:layout_constraintHorizontal_bias="0.129"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/Layout" />
 
-                <TextView
-                    android:id="@+id/textView25"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginTop="25dp"
-                    android:text="Your Cart"
-                    android:fontFamily="@font/noto_sans_font"
-                    android:textColor="@color/grey"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+                    <TextView
+                        android:id="@+id/textView27"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:text="Voucher"
+                        android:textColor="@color/grey"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
-                <TextView
-                    android:id="@+id/textView26"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginTop="7dp"
-                    android:text="Shipping Fee"
-                    android:fontFamily="@font/noto_sans_font"
-                    android:textColor="@color/grey"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView25" />
+                    <TextView
+                        android:id="@+id/txtCheckoutPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="28dp"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:text="100"
+                        android:textColor="@color/pink_primary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/Layout" />
 
-                <TextView
-                    android:id="@+id/textView27"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginTop="7dp"
-                    android:fontFamily="@font/noto_sans_font"
-                    android:text="Voucher"
-                    android:textColor="@color/grey"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView26" />
+                    <TextView
+                        android:id="@+id/txtShippingFee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:text="20"
+                        android:textColor="@color/pink_primary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.891"
+                        app:layout_constraintStart_toEndOf="@+id/textView26"
+                        app:layout_constraintTop_toBottomOf="@+id/txtCheckoutPrice" />
 
-                <TextView
-                    android:id="@+id/txtCheckoutPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginEnd="36dp"
-                    android:fontFamily="@font/noto_sans_font"
-                    android:text="100"
-                    android:textColor="@color/pink_primary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.97"
-                    app:layout_constraintStart_toEndOf="@+id/textView25"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+                    <TextView
+                        android:id="@+id/txtVoucherCheckout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:text=""
+                        android:textColor="@color/pink_primary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.879"
+                        app:layout_constraintStart_toEndOf="@+id/textView27"
+                        app:layout_constraintTop_toBottomOf="@+id/txtShippingFee" />
 
-                <TextView
-                    android:id="@+id/txtShippingFee"
-                    android:layout_width="wrap_content"
-                    android:fontFamily="@font/noto_sans_font"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginEnd="36dp"
-                    android:text="20"
-                    android:textColor="@color/pink_primary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.964"
-                    app:layout_constraintStart_toEndOf="@+id/textView26"
-                    app:layout_constraintTop_toBottomOf="@+id/txtCheckoutPrice" />
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="300dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/grey"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
-                <TextView
-                    android:id="@+id/txtVoucherCheckout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_sans_font"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginEnd="36dp"
-                    android:text="-2"
-                    android:textColor="@color/pink_primary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.965"
-                    app:layout_constraintStart_toEndOf="@+id/textView27"
-                    app:layout_constraintTop_toBottomOf="@+id/txtShippingFee" />
+                    <TextView
+                        android:id="@+id/textView31"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="36dp"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:text="Total"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view2"
+                        app:layout_constraintVertical_bias="0.316" />
 
-                <View
-                    android:id="@+id/view2"
-                    android:layout_width="300dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="120dp"
-                    android:background="@color/grey"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+                    <TextView
+                        android:id="@+id/txtTotalPriceCheckout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:text=""
+                        android:textColor="#F9476B"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.884"
+                        app:layout_constraintStart_toEndOf="@+id/textView31"
+                        app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-                <TextView
-                    android:id="@+id/textView31"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_sans_font"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginTop="40dp"
-                    android:text="Total"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.006"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView27" />
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnContinuePayment"
+                        android:layout_width="337dp"
+                        android:layout_height="43dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/rounded_pink_button_background"
+                        android:fontFamily="@font/noto_sans_font"
+                        android:text="Continue to Payment"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.479"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
-                <TextView
-                    android:id="@+id/txtTotalPriceCheckout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="118"
-                    android:fontFamily="@font/noto_sans_font"
-                    android:textColor="#F9476B"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginEnd="36dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.974"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtVoucherCheckout" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:onClick="openPaymentMethod"
-                    android:id="@+id/btnContinuePayment"
-                    android:layout_width="337dp"
-                    android:layout_height="43dp"
-                    android:fontFamily="@font/noto_sans_font"
-                    android:layout_marginBottom="4dp"
-                    android:background="@drawable/rounded_pink_button_background"
-                    android:text="Continue to Payment"
-                    android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.52"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </LinearLayout>
-    </ScrollView>
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

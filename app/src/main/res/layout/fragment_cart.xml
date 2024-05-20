@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,9 +8,17 @@
     tools:context=".fragment.CartFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="729dp">
+        android:layout_height="729dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView15"
@@ -38,8 +46,8 @@
             android:id="@+id/textView37"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/noto_sans_font"
             android:text="Your Cart"
             android:textColor="@color/grey"
@@ -49,21 +57,21 @@
 
         <TextView
             android:id="@+id/txtCartPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_width="61dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="52dp"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/noto_sans_font"
             android:text="$0"
             android:textColor="@color/pink_primary"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView37" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCheckout"
-            android:layout_width="192dp"
+            android:layout_width="173dp"
             android:layout_height="47dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/rounded_pink_button_background"
@@ -77,4 +85,4 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

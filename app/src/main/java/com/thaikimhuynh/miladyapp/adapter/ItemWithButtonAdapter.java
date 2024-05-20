@@ -14,9 +14,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.thaikimhuynh.miladyapp.CartPaymentMethodActivity;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.model.PaymentGroup;
 import com.thaikimhuynh.miladyapp.model.PaymentItem;
@@ -87,6 +89,7 @@ public class ItemWithButtonAdapter extends RecyclerView.Adapter<ItemWithButtonAd
                             currentItem.getItemList().get(currentItem.getSelectedItemPosition()).setSelected(false);
                             currentItem.setSelectedItemPosition(-1);
 
+
                             // Notify the adapter of the change
                             notifyItemChanged(i);
 
@@ -109,6 +112,10 @@ public class ItemWithButtonAdapter extends RecyclerView.Adapter<ItemWithButtonAd
             public void onClick(View v) {
                 if (groupmodel.getItemText().equalsIgnoreCase("cod")) {
                     holder.arrow_btn.setImageResource(R.mipmap.selected_button);
+
+                    SharedViewModel sharedViewModel = new ViewModelProvider((CartPaymentMethodActivity)holder.itemView.getContext()).get(SharedViewModel.class);
+                    sharedViewModel.setSharedVariable(groupmodel.getItemText());
+
                     for (int i = 0; i < mList.size(); i++) {
                             PaymentGroup currentItem = mList.get(i);
                             if (currentItem.getSelectedItemPosition() != -1)
@@ -127,6 +134,8 @@ public class ItemWithButtonAdapter extends RecyclerView.Adapter<ItemWithButtonAd
                     groupmodel.setExpandable(!groupmodel.isExpandable());
                     notifyItemChanged(holder.getAdapterPosition());
                 }
+
+
 
             }
         });

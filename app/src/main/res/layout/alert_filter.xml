@@ -3,12 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
-        app:cardCornerRadius="30dp"
         android:layout_width="match_parent"
-        android:layout_height="450dp" >
+        android:layout_height="400dp"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,7 +27,7 @@
                 android:fontFamily="@font/noto_sans_font"
                 android:text="Filter"
                 android:textColor="@color/pink_primary"
-                android:textSize="36sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -53,64 +57,42 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView12"
                 app:values="@array/slider_values" />
+
             <TextView
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
+                android:fontFamily="@font/noto_sans_font"
                 android:text="Price range"
-                android:fontFamily="@font/noto_sans_font"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.176"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="156dp"
-                android:text="Size"
-                android:fontFamily="@font/noto_sans_font"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.176"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/RecyclerSize"
-                android:layout_width="wrap_content"
-                android:layout_height="63dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.253"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
             <androidx.appcompat.widget.AppCompatButton
 
                 android:id="@+id/btnClear"
                 android:layout_width="141dp"
                 android:layout_height="46dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="44dp"
                 android:background="@drawable/circle_button"
                 android:text="Clear"
                 android:textColor="@color/pink_primary"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toStartOf="@+id/btnApply"
-                app:layout_constraintHorizontal_bias="0.802"
+                app:layout_constraintHorizontal_bias="0.884"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/RecyclerSize" />
+                app:layout_constraintTop_toBottomOf="@+id/sizeRangeSlider" />
 
             <androidx.appcompat.widget.AppCompatButton
 
                 android:id="@+id/btnApply"
                 android:layout_width="141dp"
                 android:layout_height="46dp"
-                android:layout_marginTop="138dp"
-                android:layout_marginEnd="52dp"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="60dp"
                 android:background="@drawable/circle_button_pink"
                 android:text="Apply"
                 android:textColor="@color/white"

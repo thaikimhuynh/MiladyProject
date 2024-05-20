@@ -32,7 +32,6 @@ public class WalletInformationActivity extends AppCompatActivity {
     String paymentItemId;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

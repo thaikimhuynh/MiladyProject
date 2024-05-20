@@ -107,7 +107,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edtCusName" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/ic_faq"
         android:layout_width="30dp"
         android:layout_height="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_ewallTitle"
@@ -167,7 +167,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/tv_helpcenter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Expire date"
@@ -198,7 +198,7 @@
         app:layout_constraintEnd_toEndOf="@+id/edtPhoneNumber_Ewallet"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edtPhoneNumber_Ewallet"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/tv_helpcenter"
         app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

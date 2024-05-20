@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/tv_helpcenter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -14,13 +14,13 @@
         android:text="Contact Us"
         android:textColor="@color/pink_primary"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="@+id/itemClicked"
         app:layout_constraintHorizontal_bias="0.282"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button" />
+        app:layout_constraintStart_toStartOf="@+id/itemClicked"
+        app:layout_constraintTop_toTopOf="@+id/itemClicked" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
+        android:id="@+id/itemClicked"
         android:layout_width="350dp"
         android:layout_height="67dp"
 
@@ -29,14 +29,14 @@
         tools:layout_editor_absoluteY="51dp" />
 
     <ImageView
-        android:id="@+id/imgArrowDown"
+        android:id="@+id/ic_arrow_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="@+id/itemClicked"
         app:layout_constraintHorizontal_bias="0.842"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toTopOf="@+id/button"
+        app:layout_constraintStart_toEndOf="@+id/tv_helpcenter"
+        app:layout_constraintTop_toTopOf="@+id/itemClicked"
         app:srcCompat="@mipmap/ic_arrow_down" />
 
     <ImageView
@@ -44,10 +44,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView10"
+        app:layout_constraintEnd_toStartOf="@+id/tv_helpcenter"
         app:layout_constraintHorizontal_bias="0.562"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button"
+        app:layout_constraintStart_toStartOf="@+id/itemClicked"
+        app:layout_constraintTop_toTopOf="@+id/itemClicked"
         app:srcCompat="@mipmap/ic_rectangle_helpcenter" />
 
     <ImageView

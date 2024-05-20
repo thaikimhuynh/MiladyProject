@@ -1,16 +1,17 @@
 package com.thaikimhuynh.miladyapp;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.slider.RangeSlider;
@@ -19,45 +20,83 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.thaikimhuynh.miladyapp.adapter.FilterSizeAdapter;
-import com.thaikimhuynh.miladyapp.adapter.ProductHomeAdapter;
-import com.thaikimhuynh.miladyapp.adapter.SizeAdapter;
+import com.thaikimhuynh.miladyapp.adapter.ProductAdapter;
 import com.thaikimhuynh.miladyapp.databinding.ActivitySearchBinding;
-import com.thaikimhuynh.miladyapp.model.ProductHomeItems;
+import com.thaikimhuynh.miladyapp.model.Product;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
-    private String selectedSize = "";
-    private List<ProductHomeItems> productList = new ArrayList<>();
-    private ProductHomeAdapter productHomeAdapter;
+    private ArrayList<Product> productList = new ArrayList<>();
+    private ProductAdapter ProductAdapter;
     private ActivitySearchBinding binding;
     private BottomSheetDialog bottomSheetDialog;
     private float minPrice = 0;
     private float maxPrice = 500;
+    DatabaseReference mbase;
+    RecyclerView recyclerView;
+    private boolean isSortedAZ = false;
+    private boolean isSortedZA = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySearchBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        recyclerView = binding.recyclerProductSearch;
+        mbase = FirebaseDatabase.getInstance().getReference("Items");
+        bottomSheetDialog = new BottomSheetDialog(this);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        bottomSheetDialog = new BottomSheetDialog(this); // Create the BottomSheetDialog here
+        ProductAdapter = new ProductAdapter(this, productList);
+        recyclerView.setAdapter(ProductAdapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
+        loadProducts();
         addEvents();
-        setupRecyclerView();
     }
 
-    private void setupRecyclerView() {
-        productHomeAdapter = new ProductHomeAdapter(this, productList);
-        binding.recyclerProductSearch.setAdapter(productHomeAdapter);
-        binding.recyclerProductSearch.setLayoutManager(new GridLayoutManager(this, 2));
+    private void loadProducts() {
+        mbase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                productList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String title = snapshot.child("title").getValue(String.class);
+                    double price = snapshot.child("price").getValue(Double.class);
+                    String product_id = snapshot.child("id").getValue(String.class);
+                    String category_id = snapshot.child("category_id").getValue(String.class);
+                    List<String> picUrls = (List<String>) snapshot.child("picUrl").getValue();
+                    String description = snapshot.child("description").getValue(String.class);
+                    Product product = new Product();
+                    product.setTitle(title);
+                    product.setProductId(product_id);
+                    product.setCategoryId(category_id);
+                    product.setPrice(price);
+                    product.setDescription(description);
+                    product.setPicUrls(picUrls);
+
+                    productList.add(product);
+                }
+
+                ProductAdapter.setProductList(productList);
+                ProductAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(SearchActivity.this, "Error loading products", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
+
 
     private void addEvents() {
+
         binding.imgFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,31 +127,71 @@ public class SearchActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        binding.imgSortAZ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isSortedAZ) {
+                    sortProductsAZ();
+                    binding.imgSortAZ.setImageResource(R.mipmap.ic_sorted_az);
+                    binding.imgSortZA.setVisibility(View.INVISIBLE);
+                } else {
+                    binding.imgSortAZ.setImageResource(R.mipmap.ic_sort_az);
+                    binding.imgSortZA.setVisibility(View.VISIBLE);
+                    loadProducts();
+
+                }
+                isSortedAZ = !isSortedAZ;
+                isSortedZA = false;
+            }
+        });
+
+        binding.imgSortZA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isSortedZA) {
+                    sortProductsZA();
+                    binding.imgSortZA.setImageResource(R.mipmap.ic_sorted_za);
+                    binding.imgSortAZ.setVisibility(View.INVISIBLE);
+                } else {
+                    binding.imgSortZA.setImageResource(R.mipmap.ic_sort_za);
+                    binding.imgSortAZ.setVisibility(View.VISIBLE);
+                    loadProducts();
+                }
+                isSortedZA = !isSortedZA;
+                isSortedAZ = false;
+            }
+        });
     }
+
+    private void sortProductsAZ() {
+        Collections.sort(productList, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return o1.getTitle().compareToIgnoreCase(o2.getTitle());
+            }
+        });
+        ProductAdapter.notifyDataSetChanged();
+    }
+
+    private void sortProductsZA() {
+        Collections.sort(productList, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return o2.getTitle().compareToIgnoreCase(o1.getTitle());
+            }
+        });
+        ProductAdapter.notifyDataSetChanged();
+    }
+
 
     private void showFilterDialog() {
         bottomSheetDialog.setContentView(R.layout.alert_filter);
-        RecyclerView sizeRecyclerView = bottomSheetDialog.findViewById(R.id.RecyclerSize);
         RangeSlider priceRangeSlider = bottomSheetDialog.findViewById(R.id.sizeRangeSlider);
         Button applyFilterButton = bottomSheetDialog.findViewById(R.id.btnApply);
         Button clearFilterButton = bottomSheetDialog.findViewById(R.id.btnClear);
         ImageView closeDiaglogButon = bottomSheetDialog.findViewById(R.id.btnClose);
-        ArrayList<String> sizeList = new ArrayList<>();
-        sizeList.add("36");
-        sizeList.add("37");
-        sizeList.add("38");
-        sizeList.add("39");
-        sizeList.add("40");
 
-        FilterSizeAdapter sizeAdapter = new FilterSizeAdapter(sizeList);
-        sizeAdapter.setOnItemClickListener(new FilterSizeAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(String size) {
-                selectedSize = size;
-            }
-        });
-        sizeRecyclerView.setAdapter(sizeAdapter);
-        sizeRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         priceRangeSlider.setValueFrom(0);
         priceRangeSlider.setValueTo(500);
@@ -124,7 +203,7 @@ public class SearchActivity extends AppCompatActivity {
                 List<Float> priceRange = priceRangeSlider.getValues();
                 minPrice = priceRange.get(0);
                 maxPrice = priceRange.get(1);
-                applyFilters(selectedSize, minPrice, maxPrice);
+                applyFilters( minPrice, maxPrice);
                 bottomSheetDialog.dismiss();
             }
         });
@@ -132,7 +211,6 @@ public class SearchActivity extends AppCompatActivity {
         clearFilterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedSize = "";
                 priceRangeSlider.setValues(0f, 500f);
             }
         });
@@ -157,51 +235,35 @@ public class SearchActivity extends AppCompatActivity {
         bottomSheetDialog.show();
     }
 
-    private void applyFilters(String size, float minPrice, float maxPrice) {
-        List<ProductHomeItems> filteredList = new ArrayList<>();
-        for (ProductHomeItems item : productList) {
-            float itemPrice = Float.parseFloat(item.getPrice());
-            if ((size.isEmpty() || item.getTitle().contains(size)) && itemPrice >= minPrice && itemPrice <= maxPrice) {
+    private void applyFilters( float minPrice, float maxPrice) {
+        List<Product> filteredList = new ArrayList<>();
+        for (Product item : productList) {
+            float itemPrice = (float) item.getPrice();
+            if (( itemPrice >= minPrice && itemPrice <= maxPrice)) {
                 filteredList.add(item);
             }
         }
-        productHomeAdapter.setProductList(filteredList);
+        ProductAdapter.setProductList((ArrayList<Product>) filteredList);
     }
 
     private void filterList(String text) {
-        List<ProductHomeItems> filteredList = new ArrayList<>();
-        for (ProductHomeItems item : productList) {
+        List<Product> filteredList = new ArrayList<>();
+        for (Product item : productList) {
             if (item.getTitle().toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(item);
             }
         }
-        productHomeAdapter.setProductList(filteredList);
+        ProductAdapter.setProductList((ArrayList<Product>) filteredList);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mDatabase.child("Items").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                productList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String imageUrl = snapshot.child("picUrl").child("0").getValue(String.class);
-                    String title = snapshot.child("title").getValue(String.class);
-                    Long priceLong = snapshot.child("price").getValue(Long.class);
-                    if (imageUrl != null && title != null && priceLong != null) {
-                        String price = String.valueOf(priceLong);
-                        ProductHomeItems product = new ProductHomeItems(imageUrl, title, price);
-                        productList.add(product);
-                    }
-                }
-                productHomeAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(SearchActivity.this, "Error loading", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 }
+
+
+
+
+
+
+
+
+
+

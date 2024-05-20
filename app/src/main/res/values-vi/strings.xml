@@ -8,15 +8,15 @@
     <string name="action_profile">Hồ sơ</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Xin chào mảnh trống</string>
-    <string name="search_result_text">Kết quả cho \\"%s\\"</string>
+    <string name="search_result_text">Kết quả cho \"%s\"</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="name_help">Thiết lập tài khoản</string>
     <string name="hint_language">Ngôn ngữ</string>
-    <string name="About">Về</string>
+    <string name="About">Phiên bản</string>
     <!-- Profile -->
     <string name="profile">Thông tin của tôi</string>
     <string name="wallet">Ví của tôi</string>
-    <string name="point">Kiếm điểm</string>
+    <string name="point">Tích điểm</string>
     <string name="wish">Danh sách mong muốn</string>
     <string name="help">Trung tâm trợ giúp</string>
     <string name="order">Đơn hàng của tôi</string>
@@ -115,6 +115,7 @@
     <string name="nae">Tên Ví điện tử</string>
     <!-- search xml -->
     <string name="search_title">Tìm kiếm</string>
+    <string name="enter_key">Nhập từ khóa</string>
     <string name="search_hint">Tìm kiếm ở đây</string>
     <string name="products_title">Các sản phẩm</string>
     <!-- chang profile xml -->
@@ -126,11 +127,11 @@
     <string name="gmail">Gmail</string>
     <string name="password">Mật khẩu</string>
     <!-- ccheckout xml -->
-    <string name="check_out">Thủ tục thanh toán</string>
+    <string name="check_out">Thanh toán</string>
     <string name="order_list">Danh sách đặt hàng</string>
     <string name="voucher">Voucher</string>
     <string name="apply">Áp dụng</string>
-    <string name="your_Cart">Giỏ hàng của bạn</string>
+    <string name="your_Cart">Giỏ hàng</string>
     <string name="shipping_address">Địa chỉ giao hàng</string>
     <string name="shipping_fee">Phí vận chuyển</string>
     <string name="total">Tổng cộng</string>
@@ -174,7 +175,10 @@
 
     <!--  product detail xml -->
     <string name="product_detail">Chi tiết sản phẩm</string>
-    <string name="feedback">Nhận xét</string>
+    <string name="add_to_cart_product">Sản phẩm đã được thêm vào giỏ hàng</string>
+    <string name="not_avai_product">PSản phẩm không có sẵn</string>
+    <string name="please_select_size">Vui lòng chọn một kích thước</string>
+    <string name="feedback">Đánh giá</string>
     <string name="view_all">Xem tất cả</string>
     <string name="please_select_a_size">Vui lòng chọn một kích thước</string>
     <string name="product_details">Thông tin chi tiết sản phẩm</string>
@@ -214,6 +218,8 @@
     <string name="already_have_account_welcome">Tôi đã có tài khoản</string>
     <!--  wishlist activity xml -->
     <string name="wishlist">Danh sách mong muốn</string>
+    <string name="added_wishlist">Sản phẩm đã được thêm vào danh sách yêu thích</string>
+    <string name="removed_wishlist">Sản phẩm đã bị xóa khỏi Danh sách yêu thích</string>
     <!--  alert filter xml -->
     <string name="filter">Bộ lọc</string>
     <string name="clear">Bỏ chọn</string>
@@ -244,7 +250,7 @@
     <string name="voucher_infor">Thông tin chứng từ</string>
     <!--   place order succesfully xml-->
     <string name="payment_method">Phương thức thanh toán</string>
-    <string name="back_to_home">Trở về nhà</string>
+    <string name="back_to_home">Về trang chủ</string>
     <string name="order_succes">Đơn hàng được đặt thành công</string>
     <!--   refund order  xml-->
     <string name="refund_order">Lệnh hoàn tiền</string>
@@ -256,6 +262,27 @@
     <string name="ondeli">Khi giao hàng</string>
     <string name="to_receive">Để nhận được</string>
     <string name="to_feedback">Để phản hồi</string>
+    <!--    restart setting  xml-->
+
+    <string name="restart_title">Yêu cầu khởi động lại</string>
+    <string name="restart_message">Ứng dụng cần phải được khởi động lại để những thay đổi có hiệu lực. Khởi động lại bây giờ\?</string>
+    <string name="restart_now">Khởi động lại ngay bây giờ</string>
+    <string name="later">Sau đó</string>
+    <!--    order item  xml-->
+    <string name="order_id">ID đơn hàng</string>
+    <string name="customer_name">tên khách hàng</string>
+    <string name="total_payment">Tổng tiền thanh toán</string>
+    <string name="view">Xem</string>
+
+    <!--    fragment order  xml-->
+    <string name="admin_manage">Quản lý quản trị</string>
+    <string name="prepare">Chuẩn bị</string>
+    <string name="total_order">Tổng số đơn hàng</string>
+    <string name="received">Đã nhận</string>
+    <string name="refunded">Đã hoàn tiền</string>
+    <string name="canceled">Đã hủy</string>
+    <string name="list_order">Liệt kê đơn hàng</string>
+    <string name="log_out">Đăng xuất</string>
 
 
 </resources>

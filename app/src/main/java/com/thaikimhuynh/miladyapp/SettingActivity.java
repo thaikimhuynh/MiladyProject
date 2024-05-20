@@ -1,6 +1,6 @@
-// SettingActivity.java
 package com.thaikimhuynh.miladyapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -10,8 +10,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
@@ -21,6 +24,7 @@ public class SettingActivity extends AppCompatActivity {
 
     private AutoCompleteTextView languageDropdown;
     private AutoCompleteTextView aboutDropdown;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +37,18 @@ public class SettingActivity extends AppCompatActivity {
         setupLanguageDropdown();
         setupAboutDropdown();
 
-        ImageView backButton = findViewById(R.id.imageView32);
+        ImageView backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
     }
+
+
+
 
     private void setupLanguageDropdown() {
         String[] languageOptions = getResources().getStringArray(R.array.language_options);
@@ -86,10 +94,34 @@ public class SettingActivity extends AppCompatActivity {
         editor.apply();
 
 
+        View dialogView = getLayoutInflater().inflate(R.layout.alert_dialog_restart, null);
 
-        recreate();    }
+        TextView titleTextView = dialogView.findViewById(R.id.dialog_title);
+        TextView messageTextView = dialogView.findViewById(R.id.dialog_message);
+        Button restartButton = dialogView.findViewById(R.id.btn_restart);
 
-    public void goBack(View view) {
-        finish();
+        titleTextView.setText(R.string.restart_title);
+        messageTextView.setText(R.string.restart_message);
+
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setView(dialogView)
+                .setCancelable(false)
+                .create();
+
+        restartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = getBaseContext().getPackageManager()
+                        .getLaunchIntentForPackage(getBaseContext().getPackageName());
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+                alertDialog.dismiss();
+            }
+        });
+
+
+        alertDialog.show();
     }
+
+
 }

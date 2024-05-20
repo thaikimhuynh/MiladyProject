@@ -115,6 +115,7 @@
     <string name="nae">Name E-wallet</string>
     <!-- search xml -->
     <string name="search_title">Search</string>
+    <string name="enter_key">Enter keyword</string>
     <string name="search_hint">Search here</string>
     <string name="products_title">Products</string>
     <!-- chang profile xml -->
@@ -174,6 +175,9 @@
 
     <!--  product detail xml -->
     <string name="product_detail">Product Detail</string>
+    <string name="add_to_cart_product">Product added to cart</string>
+    <string name="not_avai_product">PProduct not available</string>
+    <string name="please_select_size">Please select a size</string>
     <string name="feedback">Feedback</string>
     <string name="view_all">View all</string>
     <string name="please_select_a_size">Please select a size</string>
@@ -214,6 +218,8 @@
     <string name="already_have_account_welcome">I already have an account</string>
     <!--  wishlist activity xml -->
     <string name="wishlist">Wish List</string>
+    <string name="added_wishlist">Product added to Wishlist</string>
+    <string name="removed_wishlist">Product removed from Wishlist</string>
     <!--  alert filter xml -->
     <string name="filter">Filter</string>
     <string name="clear">Clear</string>
@@ -256,6 +262,27 @@
     <string name="ondeli">On delivery</string>
     <string name="to_receive">To received</string>
     <string name="to_feedback">To feedback</string>
+    <!--    restart setting  xml-->
+
+    <string name="restart_title">Restart Required</string>
+    <string name="restart_message">The app needs to be restarted for the changes to take effect. Restart now?</string>
+    <string name="restart_now">Restart Now</string>
+    <string name="later">Later</string>
+    <!--    order item  xml-->
+    <string name="order_id">Order ID</string>
+    <string name="customer_name">Customer Name</string>
+    <string name="total_payment">Total Payment</string>
+    <string name="view">View</string>
+
+    <!--    fragment order  xml-->
+    <string name="admin_manage">Admin Management</string>
+    <string name="prepare">Prepared</string>
+    <string name="total_order">Total Order</string>
+    <string name="received">Received</string>
+    <string name="refunded">Refunded</string>
+    <string name="canceled">Canceled</string>
+    <string name="list_order">List Orders</string>
+    <string name="log_out">Log Out</string>
 
 
 </resources>

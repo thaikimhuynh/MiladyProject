@@ -1,95 +1,113 @@
+// SettingActivity.java
 package com.thaikimhuynh.miladyapp;
 
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Toast;
+import android.widget.ImageView;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
+
 
 import java.util.Locale;
 
+
 public class SettingActivity extends AppCompatActivity {
-    String[] item = {"English", "Vietnamese"};
-    String[] versions = {"v2.2024.5.10"};
 
-    AutoCompleteTextView autoCompleteTextViewLan;
-    AutoCompleteTextView autoCompleteTextViewAbout;
 
-    ArrayAdapter<String> adapterLanguage;
+    private AutoCompleteTextView languageDropdown;
+    private AutoCompleteTextView aboutDropdown;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, versions);
-        autoCompleteTextViewAbout = findViewById(R.id.autocompleteAbout);
-        autoCompleteTextViewAbout.setAdapter(adapter);
 
-        autoCompleteTextViewLan = findViewById(R.id.autocompleteLan);
 
-        // Thiết lập adapter cho autoCompleteTextViewLan sử dụng đối tượng Language
-        adapterLanguage = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, item);
-        autoCompleteTextViewLan.setAdapter(adapterLanguage);
+        languageDropdown = findViewById(R.id.autocompleteLan);
+        aboutDropdown = findViewById(R.id.autocompleteAbout);
 
-        autoCompleteTextViewLan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        setupLanguageDropdown();
+        setupAboutDropdown();
+
+
+        ImageView backButton = findViewById(R.id.imageView32);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedLanguage = parent.getItemAtPosition(position).toString();
-
-                // Tạo một đối tượng Locale với ngôn ngữ được chọn
-                Locale locale;
-                if (selectedLanguage.equals("Vietnamese")) {
-                    locale = new Locale("vi"); // Mã ngôn ngữ cho tiếng Việt
-                } else {
-                    locale = new Locale("en"); // Mã ngôn ngữ cho tiếng Anh (mặc định)
-                }
-
-                // Đặt ngôn ngữ cho ứng dụng
-                Locale.setDefault(locale);
-                Configuration config = new Configuration();
-                config.locale = locale;
-                getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-
-                // Lưu ngôn ngữ được chọn vào SharedPreferences để giữ cho thiết lập
-                SharedPreferences preferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("My_Lang", locale.getLanguage());
-                editor.apply();
-
-                // Hiển thị thông báo khi chọn ngôn ngữ
-                Toast.makeText(SettingActivity.this, "You chose " + selectedLanguage, Toast.LENGTH_SHORT).show();
-                recreate();
+            public void onClick(View v) {
+                finish();
             }
         });
     }
 
-    // Quay về trang trước
+
+    private void setupLanguageDropdown() {
+        String[] languageOptions = getResources().getStringArray(R.array.language_options);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, languageOptions);
+        languageDropdown.setAdapter(adapter);
+
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String currentLanguage = sharedPreferences.getString("language_preference", "English");
+        languageDropdown.setText(currentLanguage, false);
+
+
+        languageDropdown.setOnItemClickListener((parent, view, position, id) -> {
+            String selectedLanguage = (String) parent.getItemAtPosition(position);
+            updateAppLanguage(selectedLanguage);
+        });
+    }
+
+
+    private void setupAboutDropdown() {
+        String[] aboutOptions = {"v2.2024.10.5"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, aboutOptions);
+        aboutDropdown.setAdapter(adapter);
+        aboutDropdown.setText(aboutOptions[0], false);
+    }
+
+
+    private void updateAppLanguage(String language) {
+        String languageCode = "en"; // default to English
+        if (language.equals("Vietnamese")) {
+            languageCode = "vi";
+        }
+
+
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            config.setLocale(locale);
+        } else {
+            config.locale = locale;
+        }
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+
+
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+        editor.putString("language_preference", language);
+        editor.apply();
+
+
+        recreate();
+    }
+
+
     public void goBack(View view) {
         finish();
     }
-
-    // Lớp để đại diện cho ngôn ngữ
-    private static class Language {
-        private String name;
-        private String code;
-
-        public Language(String name, String code) {
-            this.name = name;
-            this.code = code;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getCode() {
-            return code;
-        }
-    }
 }
+

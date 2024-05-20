@@ -98,18 +98,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:padding="10dp"
-                android:text="Refund"
-                android:textAlignment="center"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tabItem6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:padding="10dp"
                 android:text="Cancled"
+                android:textAlignment="center"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 

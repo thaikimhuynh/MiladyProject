@@ -26,14 +26,14 @@
         android:id="@+id/txt_mywallet_cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Wallet"
         android:fontFamily="@font/noto_sans_font"
+        android:text="@string/mywa"
+        android:textColor="@color/pink_primary"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/pink_primary"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/img_btn_back_cart"
         app:layout_constraintTop_toTopOf="@id/img_btn_back_cart"
-        app:layout_constraintEnd_toEndOf="parent"
 
 
         />
@@ -59,7 +59,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="60dp"
         android:background="@drawable/rounded_pink_button_background"
-        android:text="Confirm Payment"
+        android:text="@string/conpa"
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/rcv_mywallet_cart"
         tools:layout_editor_absoluteX="27dp" />

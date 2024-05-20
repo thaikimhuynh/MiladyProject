@@ -1,9 +1,6 @@
 package com.thaikimhuynh.miladyapp.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -23,8 +20,6 @@ import com.thaikimhuynh.miladyapp.WishListActivity;
 import com.thaikimhuynh.miladyapp.payment.ViewPaymentMethodActivity;
 import com.thaikimhuynh.miladyapp.payment.WalletInformationActivity;
 import com.thaikimhuynh.miladyapp.profile.MyProfileActivity;
-
-import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -131,18 +126,7 @@ public class ProfileFragment extends Fragment {
                 Intent intent = new Intent(getContext(), SettingActivity.class);
                 startActivity(intent);            }
         });
-        SharedPreferences preferences = getActivity().getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String languageCode = preferences.getString("My_Lang", ""); // Mặc định là ""
-        setLocale(languageCode);
         return view;
-    }
-
-    private void setLocale(String languageCode) {
-        Locale locale = new Locale(languageCode);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 
 

@@ -1,13 +1,19 @@
 <resources>
     <string name="app_name">MiladyApp</string>
     <string name="action_home">Home</string>
+    <string name="language_preference">Language</string>
+    <string name="version_preference">Version</string>
     <string name="action_category">Category</string>
     <string name="action_cart">Cart</string>
     <string name="action_profile">Profile</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_result_text">Results for \"%s\"</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="name_help">Account Setting</string>
     <string name="hint_language">Language</string>
     <string name="About">About</string>
+    <!-- Profile -->
     <string name="profile">My Profile</string>
     <string name="wallet">My Wallet</string>
     <string name="point">Earn Points</string>
@@ -15,7 +21,224 @@
     <string name="help">Help Center</string>
     <string name="order">My Order</string>
     <string name="account">My Account</string>
+    <!-- About us -->
+    <string name="uel">Economic and Laws University</string>
+    <string name="address">My Address</string>
+    <!-- AddNewAddressActivity -->
+    <string name="addshiping">Add Shipping Address</string>
+    <string name="name">Name</string>
+    <string name="enteryourname">Enter Your Name</string>
+    <string name="phone">Phone Number</string>
+    <string name="eyfn">Enter Your Phone Number</string>
+    <string name="ad">Address</string>
+    <string name="enyo">Enter Your Address</string>
+    <string name="saveadress">SAVE ADDRESS</string>
+    <!-- AddNewBanking -->
+    <string name="atmcard">Change ATM Card</string>
+    <string name="nameatm">Name ATM-Card</string>
+    <string name="cusname">Customer name</string>
+    <string name="accountnum">Account number</string>
+    <string name="exdate">Expire date</string>
+    <!-- AddNewWallet -->
+    <string name="addnewe">Add New E-Wallet</string>
+    <string name="nameew">Name E-wallet</string>
+    <string name="phonenum">Phone number</string>
+    <!-- AddAddressSelection -->
+    <string name="addse">Address Selection</string>
+    <string name="addne">Add New Address</string>
+    <!-- Adminaddproduct -->
+    <string name="addnewpro">Add New Product</string>
+    <string name="proid">Product ID</string>
+    <string name="enidpro">Enter ID product</string>
+    <string name="namepro">Name Product</string>
+    <string name="ennampro">Enter Name Product</string>
+    <string name="pr">Price</string>
+    <string name="enpr">Enter Price</string>
+    <string name="st">Stock</string>
+    <string name="enst">Enter Stock</string>
+    <string name="des">Description</string>
+    <string name="endes">Enter Description</string>
+    <string name="imglink">Image Link</string>
+    <string name="enimg">Enter Image Link</string>
+    <string name="cateid">Category ID</string>
+    <string name="encate">Enter Category ID</string>
+    <string name="addpro">Add New Product</string>
+    <!-- Adminconfirmorder -->
+    <string name="conor">Confirm Order</string>
+    <string name="orli">Order List</string>
+    <string name="app">Apply</string>
+    <string name="vouchesucess">Voucher enter successful</string>
+    <string name="shipadd">Shipping Adress</string>
+    <string name="yocar">Your Cart</string>
+    <string name="shipfe">Shipping Fee</string>
+    <string name="vou">Voucher</string>
+    <string name="to">Total</string>
+    <string name="canor">Cancle Order</string>
+    <!-- Adminlistorder -->
+    <string name="lipro">List Products</string>
+    <string name="he">Heels</string>
+    <string name="sa">Sandals</string>
+    <string name="bo">Boots</string>
+    <string name="sne">Sneakers</string>
+    <!-- Adminordermanagement -->
+    <string name="log">Log Out</string>
+    <string name="adma">Admin Management</string>
+    <string name="toor">Total Order</string>
+    <string name="con">Confirming</string>
+    <string name="pre">Prepared</string>
+    <string name="onde">On Delivery</string>
+    <string name="recei">Received</string>
+    <string name="can">Canceled</string>
+    <string name="lior">List Orders</string>
+    <!-- Adminprepareorder -->
+    <string name="preor">Prepare Order</string>
+    <string name="preordo">Prepare Order Done</string>
+    <!-- Adminproductmanagement -->
+    <string name="topro">Total Product</string>
+    <string name="addnepro">Add New Product</string>
+    <!-- AdminUpdateProduct -->
+    <string name="uppro">Update Product</string>
+    <!-- Bankinginformation -->
+    <string name="banin">Banking Information</string>
+    <string name="banna">Bank name</string>
+    <string name="cusna">Customer name</string>
+    <string name="accnu">Account number</string>
+    <string name="chaba">Change banking</string>
+    <!-- CartPaymentmethod -->
+    <string name="mywa">My Wallet</string>
+    <string name="conpa">Confirm Payment</string>
+    <!-- ChangeATMCard -->
+    <string name="chatm">Change ATM Card</string>
+    <string name="enco">Enter code here</string>
+    <!-- ChangeEwallet -->
+    <string name="chae">Change E-Wallet</string>
+    <string name="nae">Name E-wallet</string>
+    <!-- search xml -->
+    <string name="search_title">Search</string>
+    <string name="search_hint">Search here</string>
+    <string name="products_title">Products</string>
+    <!-- chang profile xml -->
+    <string name="save_information">Save information</string>
+    <string name="profile_name_hint">Huy</string>
+    <string name="profile_email_hint">Huy@gmail.com</string>
+    <string name="phone_number_hint">54353443</string>
+    <string name="change_profile_title">Change My Profile</string>
+    <string name="gmail">Gmail</string>
+    <string name="password">Password</string>
+    <!-- ccheckout xml -->
+    <string name="check_out">Check Out</string>
+    <string name="order_list">Order List</string>
+    <string name="voucher">Voucher</string>
+    <string name="apply">Apply</string>
+    <string name="your_Cart">Your Cart</string>
+    <string name="shipping_address">Shipping Address</string>
+    <string name="shipping_fee">Shipping Fee</string>
+    <string name="total">Total</string>
+    <string name="continue_to_payment">Continue to Payment</string>
 
+
+    <!-- delete fail xml -->
+    <string name="delete_your">Delete Your</string>
+    <string name="payment_method_successfully">Payment Method Successfully</string>
+    <!--  forgot password xml -->
+    <string name="forgot_password">Forgot Password</string>
+    <string name="please_write_phone">Please write your phone number to reset password</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="con_tinue">Continue</string>
+
+
+    <!-- help center xml -->
+    <string name="help_center">Help Center</string>
+    <string name="how_can_we_help">How can we help you?</string>
+    <string name="about_us">About Us</string>
+    <!--  login xml -->
+    <string name="log_in">Log In</string>
+    <string name="hi_welcome_back">Hi! Welcome back to our shoes store</string>
+    <string name="enter_password">Enter Password</string>
+
+
+    <!--  my profile xml -->
+
+
+    <string name="my_profile">My Profile</string>
+    <string name="email">Email</string>
+    <string name="pwd_hint">123</string>
+    <string name="change_my_profile">Change My profile</string>
+    <!--  my wallet xml -->
+    <string name="my_wallet">My Wallet</string>
+    <!--  newpassword xml -->
+    <string name="new_password">New Password</string>
+    <string name="please_fill_password">Please fill your new password to reset password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="do_not_have_account">Do not have an account?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="enter_new_password">Enter New Password</string>
+    <string name="enter_password_again">Enter Password Again</string>
+
+
+    <!--  product detail xml -->
+    <string name="product_detail">Product Detail</string>
+    <string name="product_details">Product Details</string>
+    <string name="select_size">Select Size</string>
+    <string name="add_to_cart">Add To Cart</string>
+
+
+    <!--  sign up  xml -->
+    <string name="create_account">Create Account</string>
+    <string name="fill_information">Fill your information below for creating new account</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_full_name">Enter Full Name</string>
+    <string name="already_have_account">You already have an account?</string>
+    <string name="full_name">Full Name</string>
+    <!--  successfully change   xml -->
+    <string name="linking_new_payment">Linking Your New</string>
+    <!--  successfully link banking   xml -->
+    <string name="linking_new_banking">Linking Your New</string>
+    <string name="banking_successfully">Banking Successfully</string>
+
+
+    <!--  verify account xml -->
+    <string name="verify_account">Verify Account</string>
+    <string name="confirm">Confirm</string>
+    <!--  verify code password xml -->
+    <string name="verify_code">Verify Code</string>
+    <string name="code_sent_description">We have sent code to your phone number</string>
+    <string name="code">Code</string>
+    <string name="enter_code_hint">Enter Code</string>
+    <string name="verify">Verify</string>
+
+
+    <!--  wallet information xml -->
+    <string name="ewallet_infor">E-wallet Information</string>
+    <string name="delete">Delete</string>
+    <!--  welcome xml -->
+    <string name="welcome_to">Welcome to</string>
+    <string name="our_store">our store</string>
+    <string name="lets_get_started">Lets get started</string>
+    <string name="already_have_account_welcome">I already have an account</string>
+    <!--  wishlist activity xml -->
+    <string name="wishlist">Wish List</string>
+    <!--  alert filter xml -->
+    <string name="filter">Filter</string>
+    <string name="clear">Clear</string>
+    <string name="price_range">Price range</string>
+    <!--  expanded_item xml -->
+    <string name="contact_us">Contact Us</string>
+    <!--  home fragment xml -->
+    <string name="feature_product">Feature Products</string>
+    <!--  item contact infor xml -->
+    <string name="shop">Shop</string>
+    <!-- item order confirmingxml -->
+    <string name="date">Date:</string>
+    <string name="total_amount">Total Amount:</string>
+    <string name="button_text">Button</string>
+    <!-- layout banner view -->
+    <string name="sale">Sale</string>
+    <!-- order item xml -->
+    <string name="order_number">Order Number</string>
+    <string name="order_date">Order date</string>
+    <string name="add">Add</string>
 
 
 </resources>

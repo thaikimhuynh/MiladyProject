@@ -128,7 +128,7 @@
     <!-- ccheckout xml -->
     <string name="check_out">Thủ tục thanh toán</string>
     <string name="order_list">Danh sách đặt hàng</string>
-    <string name="voucher">Chứng từ</string>
+    <string name="voucher">Voucher</string>
     <string name="apply">Áp dụng</string>
     <string name="your_Cart">Giỏ hàng của bạn</string>
     <string name="shipping_address">Địa chỉ giao hàng</string>
@@ -212,8 +212,8 @@
     <!--  wishlist activity xml -->
     <string name="wishlist">Danh sách mong muốn</string>
     <!--  alert filter xml -->
-    <string name="filter">Lọc</string>
-    <string name="clear">Thông thoáng</string>
+    <string name="filter">Bộ lọc</string>
+    <string name="clear">Bỏ chọn</string>
     <string name="price_range">Phạm vi giá</string>
     <!--  expanded_item xml -->
     <string name="contact_us">Liên hệ chúng tôi</string>

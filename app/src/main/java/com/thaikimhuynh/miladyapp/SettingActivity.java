@@ -85,8 +85,9 @@ public class SettingActivity extends AppCompatActivity {
         editor.putString("language_preference", language);
         editor.apply();
 
-        recreate();
-    }
+
+
+        recreate();    }
 
     public void goBack(View view) {
         finish();

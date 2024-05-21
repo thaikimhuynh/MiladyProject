@@ -97,7 +97,7 @@
                 android:layout_marginTop="32dp"
                 android:text="@string/feature_product"
                 android:textColor="@color/pink_primary"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recyclerViewSlider" />

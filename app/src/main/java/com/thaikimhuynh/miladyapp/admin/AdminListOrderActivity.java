@@ -35,7 +35,7 @@ public class AdminListOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_list_order);
-        addViews();
+        //addViews();
         replaceFragment(new ConfirmingFragment());
 
         tabItem1_admin.setBackgroundResource(R.drawable.rounded_pink_button_background);
@@ -118,13 +118,13 @@ public class AdminListOrderActivity extends AppCompatActivity {
         });
     }
 
-    private void addViews() {
-        tabItem1_admin = findViewById(R.id.tabItem1_admin);
-        tabItem2_admin = findViewById(R.id.tabItem2_admin);
-        tabItem3_admin = findViewById(R.id.tabItem3_admin);
-        tabItem4_admin = findViewById(R.id.tabItem4_admin);
-        tabItem5_admin = findViewById(R.id.tabItem5_admin);
-    }
+//    private void addViews() {
+//        tabItem1_admin = findViewById(R.id.tabItem1_admin);
+//        tabItem2_admin = findViewById(R.id.tabItem2_admin);
+//        tabItem3_admin = findViewById(R.id.tabItem3_admin);
+//        tabItem4_admin = findViewById(R.id.tabItem4_admin);
+//        tabItem5_admin = findViewById(R.id.tabItem5_admin);
+//    }
 
     private void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

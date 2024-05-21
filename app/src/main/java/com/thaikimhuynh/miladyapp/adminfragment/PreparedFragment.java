@@ -79,7 +79,7 @@ public class PreparedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_prepared, container, false);
-        recyclerView = view.findViewById(R.id.Preparing_RecyclerView);
+        //recyclerView = view.findViewById(R.id.Preparing_RecyclerView);
         database = FirebaseDatabase.getInstance().getReference("Orders");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

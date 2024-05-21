@@ -16,7 +16,6 @@ import com.thaikimhuynh.miladyapp.admin.AdminDeliverySuccessfullyActivity;
 import com.thaikimhuynh.miladyapp.admin.AdminOnDeliveryActivity;
 import com.thaikimhuynh.miladyapp.admin.AdminPrepareOrderActivity;
 import com.thaikimhuynh.miladyapp.model.AdminOrder;
-import com.thaikimhuynh.miladyapp.model.RedeemPoints;
 
 import java.util.ArrayList;
 
@@ -90,7 +89,7 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.My
             super(itemView);
             orderId=itemView.findViewById(R.id.id_order);
             customerName=itemView.findViewById(R.id.name_user_order);
-            finalAmount=itemView.findViewById(R.id.Price);
+            finalAmount=itemView.findViewById(R.id.price);
             btnView= itemView.findViewById(R.id.btnView);
 
         }

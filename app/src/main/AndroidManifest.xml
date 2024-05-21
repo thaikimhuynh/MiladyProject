@@ -85,11 +85,7 @@
         <activity
             android:name=".login.LoginActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".SubmitFeedBackActivity"
@@ -99,7 +95,9 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".WishListActivity"
             android:exported="false" />
@@ -108,13 +106,40 @@
             android:exported="false" />
         <activity
             android:name=".admin.AdminProductManagementActivity"
-            android:exported="false" />
+            android:exported="true" >
+        </activity>
         <activity
             android:name=".EarnPointActivity"
             android:exported="false" />
         <activity
             android:name=".MyOrdersActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+
+        </activity>
+        <activity android:name=".admin.AdminListProductActivity"
+            android:exported="true">
+        </activity>
+        <activity android:name=".adminfragment.ProductFragment"
+            android:exported="true">
+
+        </activity>
+        <activity android:name=".admin.NavigationAdminActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity android:name=".admin.AdminUpdateProductActivity"
+            android:exported="false">
+
+        </activity>
+        <activity android:name=".admin.AdminAddProductActivity"
+            android:exported="false">
+
+        </activity>
         <activity
             android:name=".FeedbackActivity"
             android:exported="false" />

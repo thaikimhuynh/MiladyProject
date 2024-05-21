@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AdminAddProductActivity extends AppCompatActivity {
-     private ActivityAdminAddProductBinding activityAddProductBinding;
+    private ActivityAdminAddProductBinding activityAddProductBinding;
     DatabaseReference mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

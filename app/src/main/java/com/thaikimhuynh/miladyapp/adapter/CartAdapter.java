@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,9 +30,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     private ManagementCart managementCart;
     private CartFragment cartFragment;
     private ChangeNumberItemListener changeNumberItemsListener;
-    public interface CartItemRemovedListener {
-        void onCartItemRemoved();
-    }
+
 
     public CartAdapter(ArrayList<Product> carts, Context context, CartFragment cartFragment, ChangeNumberItemListener changeNumberItemsListener) {
         this.carts = carts;
@@ -67,6 +64,41 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.txtItemId.setText(cart.getGetItemId());
         holder.txtItemId.setVisibility(View.GONE);
         Glide.with(context).load(cart.getPicUrls().get(0)).transform(new CenterCrop()).into(holder.imvProduct);
+        holder.imgPlus.setOnClickListener(v -> {
+            String userId = getUserId();
+            managementCart.incrementProductQuantity(itemId, userId, () -> {
+                cart.setNumberInCart(cart.getNumberInCart() + 1);
+                holder.txtItemQuantity.setText("x" + String.valueOf(cart.getNumberInCart()));
+                if (cartFragment != null) {
+                    cartFragment.updateCart();
+                }
+                Toast.makeText(context, "Quantity increased", Toast.LENGTH_SHORT).show();
+            });
+        });
+        holder.imgMinus.setOnClickListener(v -> {
+            String userId = getUserId();
+            managementCart.decrementProductQuantity(itemId, userId, () -> {
+                int currentQuantity = cart.getNumberInCart() - 1;
+                if (currentQuantity > 0) {
+                    cart.setNumberInCart(currentQuantity);
+                    holder.txtItemQuantity.setText("x" + currentQuantity);
+                    if (cartFragment != null) {
+                        cartFragment.updateCart();
+                    }
+                    Toast.makeText(context, "Quantity decreased", Toast.LENGTH_SHORT).show();
+                } else {
+                    managementCart.removeProductFromCart(itemId, userId, () -> {
+                        removeItem(itemId);
+                        notifyDataSetChanged();
+                        if (cartFragment != null) {
+                            cartFragment.updateCart();
+                        }
+                        Toast.makeText(context, "Item removed from cart", Toast.LENGTH_SHORT).show();
+                    });
+                }
+            });
+        });
+
         holder.imgClear.setOnClickListener(v -> {
             String userId = getUserId();
             managementCart.removeProductFromCart(itemId, userId, () -> {
@@ -76,9 +108,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                     cartFragment.updateCart();
                 }
                 Toast.makeText(context, "Item removed from cart", Toast.LENGTH_SHORT).show();
+
             });
         });
     }
+
+
 
     private String getUserId() {
         SharedPreferences sharedPreferences = context.getSharedPreferences("user_session", MODE_PRIVATE);
@@ -102,7 +137,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imvProduct,imgClear;
+        ImageView imvProduct,imgClear,imgPlus,imgMinus;
         TextView txtProductName, txtProductPrice, txtItemQuantity, txtSize, txtItemId;
 
         public ViewHolder(View view) {
@@ -114,7 +149,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             txtItemQuantity = view.findViewById(R.id.txtQuantity);
             imgClear = view.findViewById(R.id.imgClear);
             txtItemId = view.findViewById(R.id.txtitemID);
-
+            imgPlus = view.findViewById(R.id.btnMinus);
+            imgMinus = view.findViewById(R.id.btnPlus);
         }
     }
 }

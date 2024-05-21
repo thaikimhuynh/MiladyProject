@@ -2,15 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/tab1"
-        android:title="Product"
+        android:title="@string/pro"
         android:icon="@mipmap/ic_admin_product"
-        android:titleTextColor="@android:color/white"
         />
     <item
         android:id="@+id/tab2"
-        android:title="Order"
+        android:title="@string/or"
         android:icon="@mipmap/ic_admin_order"
-        android:titleTextColor="@android:color/white"
         />
 </menu>
 

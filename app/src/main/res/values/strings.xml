@@ -283,6 +283,10 @@
     <string name="canceled">Canceled</string>
     <string name="list_order">List Orders</string>
     <string name="log_out">Log Out</string>
+    <!--    Admin navigation-->
+    <string name="or">Order</string>
+    <string name="pro">Product</string>
+
 
 
 </resources>

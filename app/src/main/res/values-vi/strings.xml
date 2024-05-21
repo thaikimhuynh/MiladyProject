@@ -283,6 +283,9 @@
     <string name="canceled">Đã hủy</string>
     <string name="list_order">Liệt kê đơn hàng</string>
     <string name="log_out">Đăng xuất</string>
+    <!--    Admin navigation-->
+    <string name="or">Đơn hàng</string>
+    <string name="pro">Sản phẩm</string>
 
 
 </resources>

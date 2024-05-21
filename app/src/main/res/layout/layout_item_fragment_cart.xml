@@ -10,7 +10,7 @@
         android:layout_width="83dp"
         android:layout_height="101dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="68dp"
         android:background="@drawable/rounded_pink_forth_rectagle_radius"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -96,20 +96,6 @@
         app:layout_constraintBottom_toTopOf="@+id/space"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/txtQuantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
-        android:fontFamily="@font/noto_sans_font"
-        android:text="1"
-        android:textColor="@color/pink_primary"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.511" />
-
     <ImageView
         android:id="@+id/imgClear"
         android:layout_width="26dp"
@@ -120,5 +106,41 @@
         app:layout_constraintStart_toEndOf="@+id/txtProductNameCart"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_delete" />
+
+    <ImageView
+        android:id="@+id/btnPlus"
+        android:layout_width="36dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/txtQuantity"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_minus" />
+
+    <ImageView
+        android:id="@+id/btnMinus"
+        android:layout_width="36dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtQuantity"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_plus_cart" />
+
+    <TextView
+        android:id="@+id/txtQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="84dp"
+        android:fontFamily="@font/noto_sans_font"
+        android:text="1"
+        android:textColor="@color/pink_primary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.524" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

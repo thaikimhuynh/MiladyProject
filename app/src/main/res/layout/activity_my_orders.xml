@@ -9,7 +9,7 @@
     tools:context=".MyOrdersActivity">
 
     <ImageButton
-        android:id="@+id/leftArrowButton"
+        android:id="@+id/left_arrow_button"
         android:background="@null"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/leftArrowButton"
+        app:layout_constraintBottom_toBottomOf="@id/left_arrow_button"
         app:layout_constraintHorizontal_bias="0.5"
         android:layout_marginTop="30dp"/>
     <LinearLayout

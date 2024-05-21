@@ -182,21 +182,28 @@ public class ManagementCart {
         });
     }
 
-    private void updateTotalAmount(DatabaseReference userCartRef, double additionalAmount) {
-        userCartRef.child("totalAmount").addListenerForSingleValueEvent(new ValueEventListener() {
+    private void updateTotalAmount(DatabaseReference cartRef, double amountChange) {
+        cartRef.child("totalAmount").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                double totalAmount = dataSnapshot.getValue(Double.class);
-                totalAmount += additionalAmount;
-                userCartRef.child("totalAmount").setValue(totalAmount);
+                Double totalAmount = dataSnapshot.getValue(Double.class);
+                if (totalAmount == null) {
+                    totalAmount = 0.0;
+                }
+                totalAmount += amountChange;
+                if (totalAmount < 0) {
+                    totalAmount = 0.0;
+                }
+                cartRef.child("totalAmount").setValue(totalAmount);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Xử lý sự kiện onCancelled
+                // Handle error
             }
         });
     }
+
 
     private String generateCartId() {
         String cartId = UUID.randomUUID().toString();
@@ -278,45 +285,7 @@ public class ManagementCart {
         });
     }
 
-    private void checkAndDeleteEmptyCart(DatabaseReference cartRef) {
-        cartRef.child("items").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.exists()) {
-                    cartRef.removeValue();
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private void subtractPriceFromTotalAmount(DatabaseReference cartRef, double price) {
-        cartRef.child("totalAmount").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                double totalAmount = dataSnapshot.getValue(Double.class);
-                if (totalAmount > 0) {
-                    totalAmount -= price; // Trừ giá của sản phẩm đã xóa khỏi totalAmount
-                    cartRef.child("totalAmount").setValue(totalAmount);
-
-                    // Nếu totalAmount âm
-                    if (totalAmount < 0) {
-                        totalAmount = 0;
-                        cartRef.child("totalAmount").setValue(totalAmount);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
 
     public void getTotal(String userID, OnSuccessListener<Double> onSuccessListener) {
         cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -343,5 +312,117 @@ public class ManagementCart {
             }
         });
     }
+    private void subtractPriceFromTotalAmount(DatabaseReference cartRef, double price) {
+        cartRef.child("totalAmount").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Double totalAmount = dataSnapshot.getValue(Double.class);
+                if (totalAmount != null) { // Kiểm tra nếu totalAmount không null
+                    totalAmount -= price;
+                    if (totalAmount < 0) {
+                        totalAmount = 0.0;
+                    }
+                    cartRef.child("totalAmount").setValue(totalAmount);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle error
+            }
+        });
+    }
+
+    public void incrementProductQuantity(String itemId, String userId, ChangeNumberItemListener changeNumberItemListener) {
+        cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot cartSnapshot : dataSnapshot.getChildren()) {
+                    String cartUserId = cartSnapshot.child("userId").getValue(String.class);
+                    if (cartUserId != null && cartUserId.equals(userId)) {
+                        for (DataSnapshot productSnapshot : cartSnapshot.child("items").getChildren()) {
+                            String itemID = productSnapshot.child("itemId").getValue(String.class);
+                            if (itemID != null && itemID.equals(itemId)) {
+                                int quantity = productSnapshot.child("quantity").getValue(Integer.class);
+                                double price = productSnapshot.child("price").getValue(Double.class);
+                                // Tăng số lượng sản phẩm
+                                productSnapshot.getRef().child("quantity").setValue(quantity + 1)
+                                        .addOnSuccessListener(aVoid -> {
+                                            updateTotalAmount(cartSnapshot.getRef(), +price);
+                                            changeNumberItemListener.change();
+                                        });
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Xử lý lỗi nếu cần
+            }
+        });
+    }
+
+    public void decrementProductQuantity(String itemId, String userId, ChangeNumberItemListener changeNumberItemListener) {
+        cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot cartSnapshot : dataSnapshot.getChildren()) {
+                    String cartUserId = cartSnapshot.child("userId").getValue(String.class);
+                    if (cartUserId != null && cartUserId.equals(userId)) {
+                        for (DataSnapshot productSnapshot : cartSnapshot.child("items").getChildren()) {
+                            String itemID = productSnapshot.child("itemId").getValue(String.class);
+                            if (itemID != null && itemID.equals(itemId)) {
+                                int quantity = productSnapshot.child("quantity").getValue(Integer.class);
+                                double price = productSnapshot.child("price").getValue(Double.class);
+                                if (quantity > 0) {
+                                    // Giảm số lượng sản phẩm
+                                    productSnapshot.getRef().child("quantity").setValue(quantity - 1)
+                                            .addOnSuccessListener(aVoid -> {
+                                                updateTotalAmount(cartSnapshot.getRef(), -price);
+                                                changeNumberItemListener.change();
+                                            });
+                                } else {
+                                    productSnapshot.getRef().removeValue()
+                                            .addOnSuccessListener(aVoid -> {
+                                                updateTotalAmount(cartSnapshot.getRef(), -price);
+                                                changeNumberItemListener.change();
+                                                checkAndDeleteEmptyCart(cartSnapshot.getRef());
+                                            });
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void checkAndDeleteEmptyCart(DatabaseReference cartRef) {
+        cartRef.child("items").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                    cartRef.removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 
 }

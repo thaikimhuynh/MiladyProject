@@ -2,7 +2,6 @@ package com.thaikimhuynh.miladyapp.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.graphics.Color;
@@ -10,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.thaikimhuynh.miladyapp.R;
@@ -17,23 +17,25 @@ import com.thaikimhuynh.miladyapp.adminfragment.BootsFragment;
 import com.thaikimhuynh.miladyapp.adminfragment.HeelsFragment;
 import com.thaikimhuynh.miladyapp.adminfragment.SandalsFragment;
 import com.thaikimhuynh.miladyapp.adminfragment.SneakersFragment;
+
 public class AdminListProductActivity extends AppCompatActivity {
 
     private TextView tabItem1, tabItem2, tabItem3, tabItem4;
-    private static final int FRAGMENT_BOOTS = 1;
-    private static final int FRAGMENT_HEELS = 2;
-    private static final int FRAGMENT_SANDALS = 3;
+    private static final int FRAGMENT_HEELS = 1;
+    private static final int FRAGMENT_SANDALS = 2;
+    private static final int FRAGMENT_BOOTS = 3;
     private static final int FRAGMENT_SNEAKERS = 4;
-    private int currentFragment = FRAGMENT_BOOTS;
+    private int currentFragment = FRAGMENT_HEELS;
     TextView selectedtextView;
     int tabNumber;
+    private ImageView leftArrowButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_list_product);
         addViews();
-        replaceFragment(new BootsFragment());
+        replaceFragment(new HeelsFragment());
 
         tabItem1.setBackgroundResource(R.drawable.rounded_pink_button_background);
         tabItem1.setTextColor(Color.WHITE);
@@ -47,13 +49,19 @@ public class AdminListProductActivity extends AppCompatActivity {
     }
 
     private void addEvents() {
+        leftArrowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         tabItem1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openBootsFragment();
+                openHeelsFragment();
                 selectedtextView = tabItem1;
                 TextView[] non_selectedtextViews = {tabItem2, tabItem3, tabItem4};
-                tabNumber = 1;
+                tabNumber = FRAGMENT_HEELS;
                 float slideTo = (tabNumber - currentFragment) * selectedtextView.getWidth();
                 translation(currentFragment, selectedtextView, non_selectedtextViews, slideTo);
                 currentFragment = tabNumber;
@@ -62,10 +70,10 @@ public class AdminListProductActivity extends AppCompatActivity {
         tabItem2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openHeelsFragment();
+                openSandalsFragment();
                 selectedtextView = tabItem2;
                 TextView[] non_selectedtextViews = {tabItem1, tabItem3, tabItem4};
-                tabNumber = 2;
+                tabNumber = FRAGMENT_SANDALS;
                 float slideTo = (tabNumber - currentFragment) * selectedtextView.getWidth();
                 translation(currentFragment, selectedtextView, non_selectedtextViews, slideTo);
                 currentFragment = tabNumber;
@@ -74,10 +82,10 @@ public class AdminListProductActivity extends AppCompatActivity {
         tabItem3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openSandalsFragment();
+                openBootsFragment();
                 selectedtextView = tabItem3;
                 TextView[] non_selectedtextViews = {tabItem1, tabItem2, tabItem4};
-                tabNumber = 3;
+                tabNumber = FRAGMENT_BOOTS;
                 float slideTo = (tabNumber - currentFragment) * selectedtextView.getWidth();
                 translation(currentFragment, selectedtextView, non_selectedtextViews, slideTo);
                 currentFragment = tabNumber;
@@ -89,7 +97,7 @@ public class AdminListProductActivity extends AppCompatActivity {
                 openSneakersFragment();
                 selectedtextView = tabItem4;
                 TextView[] non_selectedtextViews = {tabItem1, tabItem2, tabItem3};
-                tabNumber = 4;
+                tabNumber = FRAGMENT_SNEAKERS;
                 float slideTo = (tabNumber - currentFragment) * selectedtextView.getWidth();
                 translation(currentFragment, selectedtextView, non_selectedtextViews, slideTo);
                 currentFragment = tabNumber;
@@ -102,11 +110,12 @@ public class AdminListProductActivity extends AppCompatActivity {
         tabItem2 = findViewById(R.id.tabItem2);
         tabItem3 = findViewById(R.id.tabItem3);
         tabItem4 = findViewById(R.id.tabItem4);
+        leftArrowButton = findViewById(R.id.left_arrow_button);
     }
 
     private void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.FragmentContainer_Order, fragment);
+        transaction.replace(R.id.FragmentContainer_Product, fragment);
         transaction.commit();
     }
 
@@ -137,11 +146,11 @@ public class AdminListProductActivity extends AppCompatActivity {
     private void translation(int selectedTabNumber, TextView selectedtextview, TextView[] nonSelectedTextViews, float slideTo) {
         TranslateAnimation translateAnimation = new TranslateAnimation(0, slideTo, 0, 0);
         translateAnimation.setDuration(100);
-        if (selectedTabNumber == FRAGMENT_BOOTS){
+        if (selectedTabNumber == FRAGMENT_HEELS){
             tabItem1.startAnimation(translateAnimation);
-        } else if (selectedTabNumber == FRAGMENT_HEELS) {
-            tabItem2.startAnimation(translateAnimation);
         } else if (selectedTabNumber == FRAGMENT_SANDALS) {
+            tabItem2.startAnimation(translateAnimation);
+        } else if (selectedTabNumber == FRAGMENT_BOOTS) {
             tabItem3.startAnimation(translateAnimation);
         } else if (selectedTabNumber == FRAGMENT_SNEAKERS) {
             tabItem4.startAnimation(translateAnimation);
@@ -166,5 +175,6 @@ public class AdminListProductActivity extends AppCompatActivity {
             public void onAnimationRepeat(Animation animation) {
             }
         });
+
     }
 }

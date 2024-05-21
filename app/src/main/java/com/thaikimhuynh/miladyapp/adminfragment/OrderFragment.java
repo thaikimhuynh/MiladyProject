@@ -1,5 +1,6 @@
 package com.thaikimhuynh.miladyapp.adminfragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,8 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.thaikimhuynh.miladyapp.R;
+//import com.thaikimhuynh.miladyapp.admin.AdminListOrderActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +19,7 @@ import com.thaikimhuynh.miladyapp.R;
  * create an instance of this fragment.
  */
 public class OrderFragment extends Fragment {
+    ImageView icListOrder;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,7 +42,6 @@ public class OrderFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment OrderFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static OrderFragment newInstance(String param1, String param2) {
         OrderFragment fragment = new OrderFragment();
         Bundle args = new Bundle();
@@ -61,6 +64,19 @@ public class OrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_order, container, false);
+        View view = inflater.inflate(R.layout.fragment_order, container, false);
+
+        // Initialize ImageView and set OnClickListener
+//        icListOrder = view.findViewById(R.id.icListOrder);
+//        icListOrder.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Start AdminListOrderActivity when the image is clicked
+//                Intent intent = new Intent(getActivity(), AdminListOrderActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
+        return view;
     }
 }

@@ -17,7 +17,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <ImageButton
-            android:id="@+id/leftArrowButton"
+            android:id="@+id/left_arrow_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"

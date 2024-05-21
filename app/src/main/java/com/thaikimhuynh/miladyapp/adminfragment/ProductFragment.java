@@ -1,66 +1,158 @@
 package com.thaikimhuynh.miladyapp.adminfragment;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.R;
+import com.thaikimhuynh.miladyapp.admin.AdminAddProductActivity;
+import com.thaikimhuynh.miladyapp.admin.AdminListProductActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProductFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProductFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    ImageView icListProduct;
+    ImageView icAddProduct;
+    TextView edtHeels, edtSandals, edtSneakers, edtBoots, totalProduct;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Items");
+    View view5;
 
     public ProductFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProductFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProductFragment newInstance(String param1, String param2) {
-        ProductFragment fragment = new ProductFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static ProductFragment newInstance() {
+        return new ProductFragment();
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_product, container, false);
+        View view = inflater.inflate(R.layout.fragment_product, container, false);
+
+        // Initialize ImageView and set OnClickListener for product list
+        icListProduct = view.findViewById(R.id.ic_list);
+        icListProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start AdminListProductActivity when the image is clicked
+                Intent intent = new Intent(getActivity(), AdminListProductActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Initialize ImageView and set OnClickListener for adding product
+        icAddProduct = view.findViewById(R.id.ic_add_new);
+        icAddProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start AdminAddProductActivity when the image is clicked
+                Intent intent = new Intent(getActivity(), AdminAddProductActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Initialize view5 and set OnClickListener for product list
+        view5 = view.findViewById(R.id.view5);
+        view5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start AdminListProductActivity when the view is clicked
+                Intent intent = new Intent(getActivity(), AdminListProductActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Initialize TextView fields for categories and total product count
+        edtHeels = view.findViewById(R.id.edt_heels);
+        edtSandals = view.findViewById(R.id.edt_sandals);
+        edtSneakers = view.findViewById(R.id.edt_sneakers);
+        edtBoots = view.findViewById(R.id.edt_boots);
+        totalProduct = view.findViewById(R.id.total_product);
+
+        // Count and display the number of products per category
+        countProductByCategory();
+
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // Listen for changes on the "Items" node
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // Call method to count and update the number of products
+                countAndSetProductCounts(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle errors if any
+            }
+        });
+    }
+
+    private void countProductByCategory() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                countAndSetProductCounts(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle errors if any
+            }
+        });
+    }
+
+    private void countAndSetProductCounts(DataSnapshot dataSnapshot) {
+        int countC1 = 0, countC2 = 0, countC3 = 0, countC4 = 0;
+
+        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+            String categoryId = snapshot.child("category_id").getValue(String.class);
+            if (categoryId != null) {
+                switch (categoryId) {
+                    case "C1":
+                        countC1++;
+                        break;
+                    case "C2":
+                        countC2++;
+                        break;
+                    case "C3":
+                        countC3++;
+                        break;
+                    case "C4":
+                        countC4++;
+                        break;
+                    default:
+                        // Handle other category IDs if needed
+                        break;
+                }
+            }
+        }
+
+        // Set counts to TextView fields
+        edtHeels.setText(String.valueOf(countC1));
+        edtSandals.setText(String.valueOf(countC2));
+        edtSneakers.setText(String.valueOf(countC3));
+        edtBoots.setText(String.valueOf(countC4));
+
+        // Calculate total and set to totalProduct TextView
+        int total = countC1 + countC2 + countC3 + countC4;
+        totalProduct.setText(String.valueOf(total));
     }
 }

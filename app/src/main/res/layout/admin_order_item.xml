@@ -34,13 +34,13 @@
             android:layout_marginBottom="16dp"
             android:text="Nguyen Anh Linh"
             android:textAlignment="viewEnd"
-            app:layout_constraintBottom_toTopOf="@+id/Price"
+            app:layout_constraintBottom_toTopOf="@+id/price"
             app:layout_constraintEnd_toEndOf="@+id/id_order"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/Price"
+            android:id="@+id/price"
             android:layout_width="92dp"
             android:layout_height="20dp"
             android:layout_marginEnd="4dp"
@@ -60,7 +60,7 @@
             android:layout_marginBottom="52dp"
             android:text="19/04"
             android:textColor="@color/grey"
-            app:layout_constraintBottom_toTopOf="@+id/Price"
+            app:layout_constraintBottom_toTopOf="@+id/price"
             app:layout_constraintStart_toEndOf="@+id/id_order" />
 
         <TextView
@@ -97,7 +97,7 @@
             android:textAlignment="viewStart"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/Price"
+            app:layout_constraintEnd_toStartOf="@+id/price"
             app:layout_constraintHorizontal_bias="0.31"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView17"

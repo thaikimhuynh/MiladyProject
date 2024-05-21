@@ -1,13 +1,8 @@
 package com.thaikimhuynh.miladyapp.adapter;
 
-import static android.content.Context.MODE_PRIVATE;
-
-import static java.security.AccessController.getContext;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,17 +36,17 @@ public class RedeemAdapter extends RecyclerView.Adapter<RedeemAdapter.MyViewHold
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(context).inflate(R.layout.item_coupon_recyclerview,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.item_coupon_recyclerview, parent, false);
         return new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        RedeemPoints redeemPoints=list.get(position);
+        RedeemPoints redeemPoints = list.get(position);
         holder.title.setText(redeemPoints.getTitle());
         holder.content.setText(redeemPoints.getContent());
         holder.programname.setText(redeemPoints.getProgramname());
-        holder.pointRequired.setText(redeemPoints.getPointRequired()+"P");
+        holder.pointRequired.setText(redeemPoints.getPointRequired() + "P");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,44 +65,46 @@ public class RedeemAdapter extends RecyclerView.Adapter<RedeemAdapter.MyViewHold
                 DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("VoucherWallet");
 
                 String userId = getUserId();
-                Log.d("UserID:",userId);
-                Query query = reference.child(userId).child("TotalPoints");
+                Query query = reference.orderByChild("userId").equalTo(userId);
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Long totalPoints = snapshot.getValue(Long.class);
-                        if (totalPoints != null){
-                            Log.d("totalpoints:",totalPoints.toString());
-                            Long pointRequired = Long.parseLong(redeemPoints.getPointRequired());
-                            Log.d("redeempoints:",pointRequired.toString());
-                            if (totalPoints >= pointRequired) {
-                                DatabaseReference voucherWalletRef = reference2.child(userId).child("voucherItems");
-                                String voucherId = voucherWalletRef.push().getKey();
-                                if (voucherId != null) {
-                                    DatabaseReference voucherItemRef = voucherWalletRef.child(voucherId);
-                                    voucherItemRef.setValue(redeemPoints);
-                                    Long newTotalPoints = totalPoints - pointRequired;
-                                    reference.child(userId).child("TotalPoints").setValue(newTotalPoints);
-                                    Toast.makeText(context, "Voucher redeemed successfully!", Toast.LENGTH_SHORT).show();
+                        for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                            Integer totalPoints = userSnapshot.child("totalPoint").getValue(Integer.class);
+                            if (totalPoints != null) {
+                                Long pointRequired = Long.parseLong(redeemPoints.getPointRequired());
+                                if (totalPoints >= pointRequired) {
+                                    DatabaseReference voucherWalletRef = reference2.child(userId).child("voucherItems");
+                                    String voucherId = voucherWalletRef.push().getKey();
+                                    if (voucherId != null) {
+                                        DatabaseReference voucherItemRef = voucherWalletRef.child(voucherId);
+                                        voucherItemRef.setValue(redeemPoints);
+                                        Long newTotalPoints = totalPoints - pointRequired;
+                                        userSnapshot.child("totalPoint").getRef().setValue(newTotalPoints);
+                                        Toast.makeText(context, "Voucher redeemed successfully!", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+                                } else {
+                                    Toast.makeText(context, "You don't have enough points to redeem this voucher", Toast.LENGTH_SHORT).show();
+                                    return;
                                 }
                             } else {
                                 Toast.makeText(context, "You don't have enough points to redeem this voucher", Toast.LENGTH_SHORT).show();
+                                return;
                             }
-                        }else {
-                            Toast.makeText(context, "You don't have enough points to redeem this voucher", Toast.LENGTH_SHORT).show();
                         }
-
+                        Toast.makeText(context, "You don't have enough points to redeem this voucher", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
+                        // Handle possible errors.
                     }
                 });
             }
 
             private String getUserId() {
-                SharedPreferences sharedPreferences = context.getSharedPreferences("user_session", MODE_PRIVATE);
+                SharedPreferences sharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE);
                 return sharedPreferences.getString("user_id", "");
             }
         });
@@ -118,17 +115,15 @@ public class RedeemAdapter extends RecyclerView.Adapter<RedeemAdapter.MyViewHold
         return list.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView title, content, programname,pointRequired;
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView title, content, programname, pointRequired;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            title= itemView.findViewById(R.id.textViewName);
-            content= itemView.findViewById(R.id.textViewDescription);
-            programname= itemView.findViewById(R.id.textViewProgramName);
-            pointRequired= itemView.findViewById(R.id.txtPoints);
-
-
+            title = itemView.findViewById(R.id.textViewName);
+            content = itemView.findViewById(R.id.textViewDescription);
+            programname = itemView.findViewById(R.id.textViewProgramName);
+            pointRequired = itemView.findViewById(R.id.txtPoints);
         }
     }
 }

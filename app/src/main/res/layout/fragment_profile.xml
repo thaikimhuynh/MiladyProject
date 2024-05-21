@@ -539,7 +539,7 @@
                         android:id="@+id/textView56"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="8dp"
                         android:fontFamily="@font/noto_sans_font"
                         android:text="@string/name_help"
                         android:textColor="@color/black"

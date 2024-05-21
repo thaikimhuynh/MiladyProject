@@ -2,46 +2,48 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/rounded_pink_forth_rectagle_radius"
     android:orientation="vertical"
-    android:background="@color/white"
     android:padding="16dp">
 
     <TextView
         android:id="@+id/dialog_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/pink_primary"
-        android:text="Restart Required"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/noto_sans_font"
         android:gravity="center"
-        android:textStyle="bold"
-        android:layout_marginBottom="12dp"/>
+        android:text="@string/restart_title"
+        android:textColor="@color/pink_primary"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/dialog_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="@android:color/black"
-        android:text="The app needs to be restarted for the changes to take effect. Restart now?"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/noto_sans_font"
         android:gravity="center"
-        android:layout_marginBottom="24dp"/>
+        android:text="@string/restart_message"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_restart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Restart Now"
-            android:textColor="@android:color/white"
+            android:layout_marginEnd="12dp"
             android:backgroundTint="@color/pink_primary"
-            android:layout_marginEnd="12dp"/>
-
+            android:fontFamily="@font/noto_sans_font"
+            android:text="@string/restart_now"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 

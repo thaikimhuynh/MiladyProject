@@ -87,16 +87,48 @@ public class ProductDetailActivity extends AppCompatActivity {
         mFeedback.orderByChild("productId").equalTo(product.getProductId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                feedbackList.clear();
                 for (DataSnapshot feedbackSnapshot : snapshot.getChildren()) {
+                    System.out.println(" a" + feedbackSnapshot.getValue());
+
                     Feedback feedback = feedbackSnapshot.getValue(Feedback.class);
                     if (feedback != null) {
-                        feedbackList.add(feedback);
                         String user_id = feedback.getUserId();
-                        fetchUsernameForFeedback(user_id);
+                        System.out.println(" userId" + user_id);
+                        mUser.orderByChild("id").equalTo(user_id).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                System.out.println("userserser" + dataSnapshot.getValue());
+                                if (dataSnapshot.exists()) {
+                                    System.out.println(dataSnapshot.getValue());
+                                    for (DataSnapshot snapshot1 : dataSnapshot.getChildren()){
+                                        String username = snapshot1.child("name").getValue(String.class);
+                                        Log.d("username", "username" + username);
+                                        // Update the feedback object with the username
+                                        feedback.setUserName(username);
+                                        feedbackList.add(feedback);
+                                        feedbackAdapter.notifyDataSetChanged();
+
+
+
+
+
+
+
+                                    }
+
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                Toast.makeText(ProductDetailActivity.this, "Failed to fetch username", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
                     }
+                    System.out.println("feedbackCuaCaune" + feedback.getUserName());
                 }
-                feedbackAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -114,36 +146,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void fetchUsernameForFeedback(String userId) {
-        mUser.orderByChild("id").equalTo(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    System.out.println(dataSnapshot.getValue());
-                    for (DataSnapshot snapshot1 : dataSnapshot.getChildren()){
-                        String username = snapshot1.child("name").getValue(String.class);
-                        Log.d("username", "username" + username);
-                        // Update the feedback object with the username
-                        for (Feedback feedback : feedbackList) {
-                            if (feedback.getUserId().equals(userId)) {
-                                feedback.setUserName(username);
-                                // Notify adapter of data change
-                                feedbackAdapter.notifyDataSetChanged();
-                                break;
-                            }
-                        }
-                    }
 
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(ProductDetailActivity.this, "Failed to fetch username", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
 
 
     private void addViews() {
@@ -295,23 +298,22 @@ public class ProductDetailActivity extends AppCompatActivity {
                         wishlistItemMap.put("wishlistID", wishlistId);
                         userWishlistRef.child(String.valueOf(wishlistId)).setValue(wishlistItemMap);
 
-                        Toast.makeText(ProductDetailActivity.this, "Product added to Wishlist", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProductDetailActivity.this, getString(R.string.added_wishlist), Toast.LENGTH_SHORT).show();
                         productDetailBinding.imgFavorite.setImageResource(R.mipmap.ic_heart_2);
                     } else {
                         userWishlistRef.child(productKey).removeValue();
 
-                        Toast.makeText(ProductDetailActivity.this, "Product removed from Wishlist", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProductDetailActivity.this, getString(R.string.removed_wishlist), Toast.LENGTH_SHORT).show();
                         productDetailBinding.imgFavorite.setImageResource(R.mipmap.ic_heart_1);
                     }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(ProductDetailActivity.this, "Failed to add to Wishlist", Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
-            Toast.makeText(this, "Product not available", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.not_avai_product), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -325,7 +327,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         String userId = getUserId();
         if (product != null && product.getProductId() != null) {
             if (selectedSize.isEmpty()) {
-                productDetailBinding.txtError.setText("Please select a size");
+                productDetailBinding.txtError.setText(R.string.please_select_a_size);
                 handler.postDelayed(() -> productDetailBinding.txtError.setText(""), DISPLAY_ERROR_DURATION);
                 return;
             }
@@ -335,9 +337,9 @@ public class ProductDetailActivity extends AppCompatActivity {
             product.setGetItemId(String.valueOf(itemId));
 
             managementCart.insertProduct(product, userId, itemId);
-            Toast.makeText(this, "Product added to cart", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.add_to_cart_product), Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Product not available", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,R.string.not_avai_product, Toast.LENGTH_SHORT).show();
         }
     }
 

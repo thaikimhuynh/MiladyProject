@@ -127,16 +127,17 @@ public class LoginActivity extends AppCompatActivity {
         checkAdminDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    edtPhoneNumber.setError(null);
-                    String PasswordFromDB= snapshot.child(UserPhoneNumber).child("password").getValue(String.class);
-                    if (PasswordFromDB.equals(UserPassWord)){
-                        edtPhoneNumber.setError(null);
-                        Intent intent= new Intent(LoginActivity.this, NavigationAdminActivity.class);
-                        startActivity(intent);
-                    } else {
-                        edtPassword.setError("Wrong password or phone number!");
-                        edtPassword.requestFocus();
+                if (snapshot.exists()) {
+                    for (DataSnapshot adminSnapshot : snapshot.getChildren()) {
+                        String passwordFromDB = adminSnapshot.child("password").getValue(String.class);
+                        if (passwordFromDB.equals(UserPassWord)) {
+                            edtPhoneNumber.setError(null);
+                            Intent intent = new Intent(LoginActivity.this, NavigationAdminActivity.class);
+                            startActivity(intent);
+                        } else {
+                            edtPassword.setError("Wrong password or phone number!");
+                            edtPassword.requestFocus();
+                        }
                     }
                 }else {
                    checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {

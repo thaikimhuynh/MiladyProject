@@ -69,15 +69,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="58dp"
                     android:layout_marginEnd="112dp"
-                    android:text="Log Out"
+                    android:text="@string/log"
                     android:textColor="#FFFFFF"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/imageView8"
-                    android:layout_width="38dp"
-                    android:layout_height="39dp"
+                    android:layout_width="36dp"
+                    android:layout_height="38dp"
                     android:layout_marginTop="48dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.836"
@@ -220,12 +220,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/bo"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/view2"
                     app:layout_constraintEnd_toEndOf="@+id/view2"
-                    app:layout_constraintHorizontal_bias="0.758"
+                    app:layout_constraintHorizontal_bias="0.763"
                     app:layout_constraintStart_toStartOf="@+id/view2"
                     app:layout_constraintTop_toTopOf="@+id/view2"
-                    app:layout_constraintVertical_bias="0.734" />
+                    app:layout_constraintVertical_bias="0.735" />
 
                 <TextView
                     android:id="@+id/edt_boots"
@@ -268,7 +269,7 @@
                     android:id="@+id/view5"
                     android:layout_width="348dp"
                     android:layout_height="62dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/rounded_white_button_background"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.444"
@@ -315,13 +316,11 @@
                     android:id="@+id/ic_list"
                     android:layout_width="41dp"
                     android:layout_height="45dp"
-                    android:layout_marginStart="92dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
                     app:layout_constraintBottom_toBottomOf="@+id/view5"
                     app:layout_constraintEnd_toEndOf="@+id/view5"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/textView30"
                     app:layout_constraintTop_toTopOf="@+id/view5"
                     app:layout_constraintVertical_bias="1.0"
                     app:srcCompat="@mipmap/ic_arrow_right" />
@@ -378,32 +377,14 @@
                     android:id="@+id/ic_add_new"
                     android:layout_width="38dp"
                     android:layout_height="37dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="10dp"
                     app:layout_constraintBottom_toBottomOf="@+id/view6"
                     app:layout_constraintEnd_toEndOf="@+id/view6"
-                    app:layout_constraintHorizontal_bias="0.734"
-                    app:layout_constraintStart_toEndOf="@+id/tv"
                     app:layout_constraintTop_toTopOf="@+id/view6"
                     app:layout_constraintVertical_bias="1.0"
                     app:srcCompat="@mipmap/ic_arrow_right" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/imageView27"
-                    android:layout_width="413dp"
-                    android:layout_height="107dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@mipmap/rec" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

@@ -88,6 +88,11 @@
         <activity
             android:name=".login.LoginActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity
@@ -102,6 +107,23 @@
 
 
         </activity>
+        <activity android:name=".admin.AdminListOrderActivity"
+            android:exported="false">
+
+        </activity>
+        <activity android:name=".admin.AdminConfirmOrderActivity"
+            android:exported="false">
+
+        </activity>
+        <activity android:name=".admin.AdminPrepareOrderActivity"
+            android:exported="false"/>
+        <activity android:name=".admin.AdminOnDeliveryActivity"
+            android:exported="false"/>
+        <activity android:name=".admin.AdminDeliverySuccessfullyActivity"
+            android:exported="false"/>
+        <activity android:name=".CouponDetailsActivity"
+            android:exported="false"/>
+
         <activity
             android:name=".WishListActivity"
             android:exported="false" />
@@ -122,13 +144,7 @@
 
         </activity>
         <activity android:name=".admin.NavigationAdminActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
+            android:exported="false">
 
         </activity>
         <activity android:name=".admin.AdminUpdateProductActivity"

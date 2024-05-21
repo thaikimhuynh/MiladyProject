@@ -60,7 +60,7 @@
         android:background="@drawable/rounded_edittext_black_stroke"
         android:ems="10"
         android:hint="Enter Phone Number "
-        android:inputType="text"
+        android:inputType="phone"
         android:paddingLeft="16dp"
         android:text=""
         android:textSize="14sp"

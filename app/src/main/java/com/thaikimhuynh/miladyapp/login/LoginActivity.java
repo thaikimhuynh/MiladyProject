@@ -3,10 +3,8 @@ package com.thaikimhuynh.miladyapp.login;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -26,8 +24,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.MainActivity;
 import com.thaikimhuynh.miladyapp.R;
-import com.thaikimhuynh.miladyapp.admin.AdminProductManagementActivity;
-import com.thaikimhuynh.miladyapp.forgotpassword.ForgotPasswordActivity;
+import com.thaikimhuynh.miladyapp.admin.NavigationAdminActivity;
 import com.thaikimhuynh.miladyapp.forgotpassword.ForgotPasswordActivity;
 import com.thaikimhuynh.miladyapp.signup.SignUpActivity;
 
@@ -130,16 +127,17 @@ public class LoginActivity extends AppCompatActivity {
         checkAdminDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    edtPhoneNumber.setError(null);
-                    String PasswordFromDB= snapshot.child(UserPhoneNumber).child("password").getValue(String.class);
-                    if (PasswordFromDB.equals(UserPassWord)){
-                        edtPhoneNumber.setError(null);
-                        Intent intent= new Intent(LoginActivity.this, AdminProductManagementActivity.class);
-                        startActivity(intent);
-                    } else {
-                        edtPassword.setError("Wrong password or phone number!");
-                        edtPassword.requestFocus();
+                if (snapshot.exists()) {
+                    for (DataSnapshot adminSnapshot : snapshot.getChildren()) {
+                        String passwordFromDB = adminSnapshot.child("password").getValue(String.class);
+                        if (passwordFromDB.equals(UserPassWord)) {
+                            edtPhoneNumber.setError(null);
+                            Intent intent = new Intent(LoginActivity.this, NavigationAdminActivity.class);
+                            startActivity(intent);
+                        } else {
+                            edtPassword.setError("Wrong password or phone number!");
+                            edtPassword.requestFocus();
+                        }
                     }
                 }else {
                    checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {

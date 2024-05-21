@@ -26,24 +26,21 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.411"
-            app:layout_constraintStart_toEndOf="@+id/imgBack"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imgBack"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.07"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/ic_arrow_left" />
 
         <ScrollView
-            android:layout_width="410dp"
-            android:layout_height="619dp"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
             android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,11 +53,13 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/textView16"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30dp"
                         android:fontFamily="@font/noto_sans_font"
@@ -68,18 +67,14 @@
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.095"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:layout_marginTop="15dp"
                         android:id="@+id/listCheckout"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.127"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView16">
 
@@ -95,43 +90,37 @@
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.091"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/listCheckout" />
 
                     <EditText
                         android:id="@+id/edtVoucher"
-                        android:layout_width="227dp"
+                        android:layout_width="200dp"
                         android:layout_height="42dp"
                         android:layout_marginTop="12dp"
-                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
                         android:background="@drawable/rounded_edittext_black_stroke"
-                        android:ems="10"
                         android:fontFamily="@font/noto_sans_font"
                         android:hint="MILADAY_NEW"
+                        android:paddingStart="10dp"
                         android:inputType="text"
-                        android:paddingStart="15dp"
                         android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.206"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView63" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnApplyVoucher"
-                        android:layout_width="95dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="42dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_weight="1"
+                        android:layout_marginEnd="15dp"
                         android:background="@drawable/rounded_pink_primary_radius_rec"
                         android:fontFamily="@font/noto_sans_font"
                         android:text="@string/apply"
                         android:textColor="@color/white"
+                        app:layout_constraintTop_toTopOf="@id/edtVoucher"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.44"
-                        app:layout_constraintStart_toEndOf="@+id/edtVoucher"
-                        app:layout_constraintTop_toBottomOf="@+id/textView63" />
+                        />
+
 
                     <TextView
                         android:id="@+id/txtMessageError"
@@ -156,15 +145,13 @@
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.122"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/edtVoucher" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/Layout"
-                        android:layout_width="412dp"
-                        android:layout_height="70dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:background="#F4F4F4"
                         android:onClick="openAddressSelectedActivity"
@@ -188,7 +175,7 @@
                             android:id="@+id/txtCusNameCheckout"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="40dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginTop="10dp"
                             android:fontFamily="@font/noto_sans_font"
                             android:hint="@string/your_name"
@@ -205,6 +192,7 @@
                             android:layout_marginTop="10dp"
                             android:hint="@string/phone_number"
                             android:text=""
+                            android:fontFamily="@font/noto_sans_font"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.104"
                             app:layout_constraintStart_toEndOf="@+id/txtCusNameCheckout"
@@ -214,7 +202,7 @@
                             android:id="@+id/txtAddressCheckout"
                             android:layout_width="306dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="40dp"
+                            android:layout_marginStart="20dp"
                             android:fontFamily="@font/noto_sans_font"
                             android:hint="@string/your_address"
                             android:text=""
@@ -239,7 +227,6 @@
                         android:id="@+id/textView26"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="36dp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/noto_sans_font"
                         android:text="@string/shipping_fee"
@@ -256,8 +243,6 @@
                         android:fontFamily="@font/noto_sans_font"
                         android:text="@string/your_Cart"
                         android:textColor="@color/grey"
-                        app:layout_constraintEnd_toStartOf="@+id/txtCheckoutPrice"
-                        app:layout_constraintHorizontal_bias="0.129"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Layout" />
 
@@ -265,7 +250,6 @@
                         android:id="@+id/textView27"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="36dp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/noto_sans_font"
                         android:text="@string/voucher"
@@ -278,7 +262,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:layout_marginEnd="28dp"
                         android:fontFamily="@font/noto_sans_font"
                         android:text="100"
                         android:textColor="@color/pink_primary"
@@ -295,7 +278,6 @@
                         android:textColor="@color/pink_primary"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.891"
-                        app:layout_constraintStart_toEndOf="@+id/textView26"
                         app:layout_constraintTop_toBottomOf="@+id/txtCheckoutPrice" />
 
                     <TextView
@@ -304,11 +286,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/noto_sans_font"
-                        android:text=""
+                        android:text="20"
                         android:textColor="@color/pink_primary"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.879"
-                        app:layout_constraintStart_toEndOf="@+id/textView27"
                         app:layout_constraintTop_toBottomOf="@+id/txtShippingFee" />
 
                     <View
@@ -326,16 +306,14 @@
                         android:id="@+id/textView31"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="36dp"
                         android:fontFamily="@font/noto_sans_font"
                         android:text="@string/total"
+                        android:layout_marginTop="15dp"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/view2"
-                        app:layout_constraintVertical_bias="0.316" />
+                        app:layout_constraintTop_toBottomOf="@+id/view2" />
 
                     <TextView
                         android:id="@+id/txtTotalPriceCheckout"
@@ -343,28 +321,26 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:fontFamily="@font/noto_sans_font"
-                        android:text=""
+                        android:text="20"
                         android:textColor="#F9476B"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.884"
-                        app:layout_constraintStart_toEndOf="@+id/textView31"
-                        app:layout_constraintTop_toBottomOf="@+id/view2" />
+                        app:layout_constraintTop_toTopOf="@id/textView31"
+                        app:layout_constraintBottom_toBottomOf="@id/textView31"/>
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnContinuePayment"
-                        android:layout_width="337dp"
-                        android:layout_height="43dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/rounded_pink_button_background"
                         android:fontFamily="@font/noto_sans_font"
                         android:text="@string/continue_to_payment"
                         android:textColor="@color/white"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.479"
+                        app:layout_constraintTop_toBottomOf="@id/textView31"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView31" />
+                        app:layout_constraintEnd_toEndOf="parent"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

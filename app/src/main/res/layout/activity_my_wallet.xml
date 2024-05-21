@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MyWalletActivity">
@@ -31,7 +32,7 @@
         android:textColor="@color/pink_primary"
         android:textSize="18sp"
         android:layout_marginTop="15dp"
-        app:layout_constraintStart_toEndOf="@id/img_btn_back_mywallet"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 

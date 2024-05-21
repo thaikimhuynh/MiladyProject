@@ -21,6 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="Kim Huỳnh"
+                android:fontFamily="@font/noto_sans_font"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/textView17"
@@ -30,6 +31,7 @@
             <TextView
                 android:id="@+id/textView17"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/noto_sans_font"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:text="|"
@@ -39,6 +41,7 @@
 
             <TextView
                 android:id="@+id/txtPhone"
+                android:fontFamily="@font/noto_sans_font"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -48,6 +51,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:fontFamily="@font/noto_sans_font"
                 android:id="@+id/txtAddress"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

@@ -7,10 +7,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="83dp"
+        android:layout_width="wrap_content"
         android:layout_height="101dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/rounded_pink_forth_rectagle_radius"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -31,29 +31,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/noto_sans_font"
         android:text="Title"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.01"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintStart_toEndOf="@id/constraintLayout"
+
+
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtProductPriceCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginStart="12dp"
         android:fontFamily="@font/noto_sans_font"
         android:text="25"
         android:textColor="@color/black"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintTop_toBottomOf="@id/txtProductNameCart"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/txtProductNameCart" />
+       />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -84,9 +87,8 @@
         android:text="38"
         android:textColor="@color/black"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/constraintLayout"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/txtProductPriceCart"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView

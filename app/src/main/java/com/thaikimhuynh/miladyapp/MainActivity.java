@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                 openHomeFragment();
             }
         } else {
-            openHomeFragment();
+            openFragment("HomeFragment");
         }
 
         Log.d("MainActivity", "Current fragment: " + currentFragment);

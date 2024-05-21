@@ -2,10 +2,13 @@ package com.thaikimhuynh.miladyapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +18,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.model.Feedback;
 import com.thaikimhuynh.miladyapp.model.Order;
 import com.thaikimhuynh.miladyapp.model.PointWallet;
@@ -43,26 +45,67 @@ public class FeedbackActivity extends AppCompatActivity {
         mWalletPoint = FirebaseDatabase.getInstance().getReference("PointWallet");
         getOrderInfo();
 
+        // Disable the submit button initially
+        submitButtonFeedBack.setEnabled(false);
+
+        // Add text and rating change listeners
+        edt_feedback.addTextChangedListener(textWatcher);
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                checkInput();
+            }
+        });
+
         submitButtonFeedBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 rating = (int) ratingBar.getRating();
-                feedBackContent = edt_feedback.getText().toString();
-                updateUserPoints(200);
+                feedBackContent = edt_feedback.getText().toString().trim();
+                if (rating > 0 && !feedBackContent.isEmpty()) {
+                    updateUserPoints(200);
 
-
-                // Ensure feedback is created and stored only when ID is unique
-                generateUniqueId(new UniqueIdCallback() {
-                    @Override
-                    public void onUniqueIdFound(int uniqueId) {
-                        saveFeedback(uniqueId);
+                    // Ensure feedback is created and stored only when ID is unique
+                    generateUniqueId(new UniqueIdCallback() {
+                        @Override
+                        public void onUniqueIdFound(int uniqueId) {
+                            saveFeedback(uniqueId);
+                            Intent intent = new Intent(FeedbackActivity.this, SubmitFeedBackActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                } else {
+                    if (rating == 0) {
+                        Toast.makeText(FeedbackActivity.this, "Please provide a rating.", Toast.LENGTH_SHORT).show();
                     }
-                });
-                Intent intent = new Intent(FeedbackActivity.this, SubmitFeedBackActivity.class);
-                startActivity(intent);
+                    if (feedBackContent.isEmpty()) {
+                        Toast.makeText(FeedbackActivity.this, "Please provide feedback.", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
     }
+
+    private void checkInput() {
+        String feedbackText = edt_feedback.getText().toString().trim();
+        int ratingValue = (int) ratingBar.getRating();
+        submitButtonFeedBack.setEnabled(!feedbackText.isEmpty() && ratingValue > 0);
+    }
+
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            checkInput();
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
+    };
 
     private void updateUserPoints(int points) {
         mWalletPoint.orderByChild("userId").equalTo(userId).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -117,8 +160,6 @@ public class FeedbackActivity extends AppCompatActivity {
             }
         });
     }
-
-
 
     private void getOrderInfo() {
         Order order = (Order) getIntent().getSerializableExtra("order");

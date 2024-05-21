@@ -25,6 +25,9 @@
 
 
             <LinearLayout
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -34,10 +37,10 @@
                     android:id="@+id/cardView"
                     android:layout_width="match_parent"
                     android:layout_height="215dp"
-
+                    android:layout_marginTop="20dp"
 
                     android:backgroundTint="@color/pink_second"
-                    app:cardCornerRadius="30dp">
+                    app:cardCornerRadius="10dp">
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
@@ -48,11 +51,12 @@
                             android:layout_width="155dp"
                             android:layout_height="155dp"
                             android:layout_gravity="center_horizontal"
-                            android:paddingTop="20dp"
                             android:src="@mipmap/ic_admin_img"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            />
 
 
                         <ImageView
@@ -77,24 +81,21 @@
                             app:layout_constraintHorizontal_bias="0.526"
                             app:layout_constraintStart_toStartOf="@+id/imageView19"
                             app:layout_constraintTop_toTopOf="@+id/imgAVTProfile" />
+
+                        <TextView
+                            android:id="@+id/txtProfileName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_sans_font"
+                            android:text="Nguyen Anh Linh"
+                            app:layout_constraintTop_toBottomOf="@id/imgAVTProfile"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:textColor="@color/white"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                             />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                    <TextView
-                        android:id="@+id/txtProfileName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:fontFamily="@font/noto_sans_font"
-                        android:paddingTop="160dp"
-                        android:text="Nguyen Anh Linh"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textSize="22sp" />
-
-
-
-
 
 
                 </androidx.cardview.widget.CardView>
@@ -110,9 +111,10 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardMyProfile"
-                android:layout_width="356dp"
+                android:layout_width="match_parent"
                 android:layout_height="76dp"
-                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:background="@color/white"
                 app:cardCornerRadius="16dp">
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -177,9 +179,10 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardMyOrders"
-                android:layout_width="356dp"
+                android:layout_width="match_parent"
                 android:layout_height="76dp"
-                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:background="@color/white"
                 app:cardCornerRadius="16dp">
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -199,8 +202,7 @@
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.4" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
                         android:id="@+id/imageView21"
@@ -246,9 +248,10 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardMyWallet"
-                android:layout_width="356dp"
+                android:layout_width="match_parent"
                 android:layout_height="76dp"
-                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:background="@color/white"
                 app:cardCornerRadius="16dp">
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -262,12 +265,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:layout_marginStart="76dp"
                         android:fontFamily="@font/noto_sans_font"
                         android:text="@string/wallet"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.296"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -314,9 +316,10 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardEarnPoints"
-                android:layout_width="356dp"
+                android:layout_width="match_parent"
                 android:layout_height="76dp"
-                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:background="@color/white"
                 app:cardCornerRadius="16dp">
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -330,12 +333,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:layout_marginStart="76dp"
                         android:fontFamily="@font/noto_sans_font"
                         android:text="@string/point"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.284"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -384,9 +386,10 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardWishList"
-                android:layout_width="356dp"
+                android:layout_width="match_parent"
                 android:layout_height="76dp"
-                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:background="@color/white"
                 app:cardCornerRadius="16dp">
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -399,15 +402,14 @@
                         android:id="@+id/textView54"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="68dp"
+                        android:layout_marginStart="76dp"
                         android:fontFamily="@font/noto_sans_font"
                         android:text="@string/wish"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.55" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
                         android:id="@+id/imageView24"
@@ -454,9 +456,10 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardHelpCenter"
-                android:layout_width="356dp"
+                android:layout_width="match_parent"
                 android:layout_height="76dp"
-                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:background="@color/white"
                 app:cardCornerRadius="16dp">
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -469,15 +472,14 @@
                         android:id="@+id/textView55"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="68dp"
+                        android:layout_marginStart="76dp"
                         android:fontFamily="@font/noto_sans_font"
                         android:text="@string/help"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.4" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
                         android:id="@+id/imageView25"
@@ -524,9 +526,10 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardSetting"
-                android:layout_width="356dp"
+                android:layout_width="match_parent"
                 android:layout_height="76dp"
-                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:background="@color/white"
                 app:cardCornerRadius="16dp">
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -544,8 +547,7 @@
                         android:text="@string/name_help"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.334"
+                        android:layout_marginStart="76dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 

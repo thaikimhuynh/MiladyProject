@@ -28,6 +28,13 @@ public class HelpCenterActivity extends AppCompatActivity {
         listView = findViewById(R.id.listview);
         MyAdapter myAdapter = new MyAdapter();
         listView.setAdapter(myAdapter);
+        ImageView backButton = findViewById(R.id.btnButtonHelpCenter);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private class MyAdapter extends BaseAdapter {

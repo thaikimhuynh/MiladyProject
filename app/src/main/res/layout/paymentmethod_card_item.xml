@@ -28,11 +28,12 @@
                 android:layout_marginStart="15dp"
                 android:layout_weight="1"
                 android:text="Ewallet"
+                android:textColor="@color/black"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
 
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/dropdown_btn_cart"

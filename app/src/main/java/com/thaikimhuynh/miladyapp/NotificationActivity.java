@@ -1,11 +1,13 @@
 package com.thaikimhuynh.miladyapp;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,12 +25,21 @@ public class NotificationActivity extends AppCompatActivity {
     TextView selectedtextView;
     TextView non_selectedtextView;
     int tabNumber;
+    Button btn_backhome;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
         addViews();
+        btn_backhome= findViewById(R.id.btn_backhome);
+        btn_backhome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         // Default fragment, default selected tab
         replaceFragment(new PromotionFragment());

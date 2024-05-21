@@ -71,7 +71,7 @@
     <string name="shipadd">Địa chỉ giao hàng</string>
     <string name="yocar">Giỏ hàng của bạn</string>
     <string name="shipfe">Phí vận chuyển</string>
-    <string name="vou">Chứng từ</string>
+    <string name="vou">Voucher</string>
     <string name="to">Tổng cộng</string>
     <string name="canor">Hủy đơn hàng</string>
     <!-- Adminlistorder -->
@@ -233,7 +233,7 @@
     <!-- item order confirmingxml -->
     <string name="date">Ngày:</string>
     <string name="total_amount">Tổng cộng:</string>
-    <string name="button_text">Cái nút</string>
+    <string name="button_text">Nút</string>
     <!-- layout banner view -->
     <string name="sale">Doanh thu</string>
     <!-- order item xml -->
@@ -247,13 +247,13 @@
     <string name="cancel_order">Hủy đơn hàng</string>
     <!--  coupon detail xml-->
 
-    <string name="voucher_infor">Thông tin chứng từ</string>
+    <string name="voucher_infor">Thông tin </string>
     <!--   place order succesfully xml-->
     <string name="payment_method">Phương thức thanh toán</string>
     <string name="back_to_home">Về trang chủ</string>
     <string name="order_succes">Đơn hàng được đặt thành công</string>
     <!--   refund order  xml-->
-    <string name="refund_order">Lệnh hoàn tiền</string>
+    <string name="refund_order">Hoàn tiền</string>
     <!--   receive order  xml-->
     <string name="receive_order">Xác nhận đã nhận được</string>
     <string name="view_order">Xem đơn hàng</string>
@@ -286,6 +286,13 @@
     <!--    Admin navigation-->
     <string name="or">Đơn hàng</string>
     <string name="pro">Sản phẩm</string>
+    <!--    Notification-->
+    <string name="promo">Sự kiện</string>
+    <string name="yos">Thông báo</string>
+    <string name="batoho">Trở về trang </string>
+    <!--    Earnpoint-->
+    <string name="rede">Quy Điểm</string>
+    <string name="cou">Phiếu mua </string>
 
 
 </resources>

@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 public class HelpCenterActivity extends AppCompatActivity {
     ListView listView;
+    ImageView backImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,6 +155,14 @@ public class HelpCenterActivity extends AppCompatActivity {
                     // Khởi tạo Intent để chuyển sang màn hình About Us
                     Intent aboutUsIntent = new Intent(HelpCenterActivity.this, AboutUsActivity.class);
                     startActivity(aboutUsIntent);
+                }
+            });
+            ImageView backImageView = findViewById(R.id.back);
+            backImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Khởi tạo Intent để chuyển sang màn hình Help Center
+                    finish(); // Kết thúc màn hình About Us hiện tại
                 }
             });
 

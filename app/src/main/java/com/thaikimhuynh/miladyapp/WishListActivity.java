@@ -20,7 +20,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.adapter.WishlistAdapter;
 import com.thaikimhuynh.miladyapp.model.Product;
-import com.thaikimhuynh.miladyapp.product.ProductDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +29,7 @@ public class WishListActivity extends AppCompatActivity implements WishlistAdapt
     ImageView imgBack;
     ArrayList<Product> products = new ArrayList<>();
     DatabaseReference mbase;
+    private WishlistAdapter itemWishlistAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,6 @@ public class WishListActivity extends AppCompatActivity implements WishlistAdapt
                 finish();
             }
         });
-
     }
 
     private String getUserId() {
@@ -66,7 +65,6 @@ public class WishListActivity extends AppCompatActivity implements WishlistAdapt
                     String productID = snapshot.child("productID").getValue(String.class);
                     Log.d("WishlistActivity", "Product ID: " + productID);
                     productIDs.add(productID);
-
                 }
 
                 loadProductDetails(productIDs);
@@ -106,11 +104,15 @@ public class WishListActivity extends AppCompatActivity implements WishlistAdapt
                         products.add(product);
                     }
 
-                    WishlistAdapter itemWishlistAdapter = new WishlistAdapter(WishListActivity.this, products);
-                    itemWishlistAdapter.setOnDeleteItemClickListener(WishListActivity.this);
-                    recyclerView.setAdapter(itemWishlistAdapter);
-                    LinearLayoutManager layoutManager = new LinearLayoutManager(WishListActivity.this, LinearLayoutManager.VERTICAL, false);
-                    recyclerView.setLayoutManager(layoutManager);
+                    if (itemWishlistAdapter == null) {
+                        itemWishlistAdapter = new WishlistAdapter(WishListActivity.this, products);
+                        itemWishlistAdapter.setOnDeleteItemClickListener(WishListActivity.this);
+                        recyclerView.setAdapter(itemWishlistAdapter);
+                        LinearLayoutManager layoutManager = new LinearLayoutManager(WishListActivity.this, LinearLayoutManager.VERTICAL, false);
+                        recyclerView.setLayoutManager(layoutManager);
+                    } else {
+                        itemWishlistAdapter.notifyDataSetChanged();
+                    }
                 }
 
                 @Override
@@ -121,10 +123,9 @@ public class WishListActivity extends AppCompatActivity implements WishlistAdapt
         }
     }
 
-
     private void addViews() {
         recyclerView = findViewById(R.id.rc_wishlist);
-        imgBack=findViewById(R.id.btnBacktoProfile);
+        imgBack = findViewById(R.id.btnBacktoProfile);
     }
 
     @Override
@@ -144,12 +145,7 @@ public class WishListActivity extends AppCompatActivity implements WishlistAdapt
                         break;
                     }
                 }
-                if (products.size() == 1) {
-                    products.clear();
-                    recyclerView.getAdapter().notifyDataSetChanged();
-                } else {
-                    loadWishlist();
-                }
+                itemWishlistAdapter.removeProduct(product);
             }
 
             @Override

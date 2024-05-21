@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.databinding.ActivityAdminAddProductBinding;
 import com.thaikimhuynh.miladyapp.model.AdminAddProduct;
 
@@ -20,6 +22,7 @@ import java.util.Map;
 public class AdminAddProductActivity extends AppCompatActivity {
     private ActivityAdminAddProductBinding activityAddProductBinding;
     DatabaseReference mDatabase;
+    ImageView back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,13 @@ public class AdminAddProductActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         addEvents();
+        back=findViewById(R.id.left_arrow_button);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void addEvents() {

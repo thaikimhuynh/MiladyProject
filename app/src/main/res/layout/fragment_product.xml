@@ -16,7 +16,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,15 +27,16 @@
 
                 <View
                     android:id="@+id/view"
-                    android:layout_width="374dp"
+                    android:layout_width="match_parent"
                     android:layout_height="281dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
                     android:background="@drawable/rounded_rectangle_background"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.533"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                     />
 
                 <ImageView
                     android:id="@+id/imageView7"
@@ -67,22 +68,20 @@
                     android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="58dp"
-                    android:layout_marginEnd="112dp"
-                    android:text="Log Out"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="@string/log"
                     android:textColor="#FFFFFF"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/imageView8"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/imageView8"
-                    android:layout_width="38dp"
-                    android:layout_height="39dp"
-                    android:layout_marginTop="48dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.836"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginEnd="35dp"
+                    app:layout_constraintTop_toTopOf="@id/textView9"
                     app:srcCompat="@mipmap/ic_log_out" />
 
                 <Button
@@ -120,17 +119,17 @@
                     android:background="@drawable/rounded_white_button_background"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.49"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.598" />
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <TextView
                     android:id="@+id/textView15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_font"
                     android:text="@string/topro"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/view2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
@@ -158,6 +157,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="@string/he"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@+id/viewview"
                     app:layout_constraintHorizontal_bias="0.301"
@@ -183,6 +183,7 @@
                     android:layout_marginStart="56dp"
                     android:text="@string/sne"
                     android:textAlignment="center"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/view2"
                     app:layout_constraintStart_toStartOf="@+id/view2"
@@ -195,7 +196,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="64dp"
                     android:layout_marginEnd="64dp"
+                    android:fontFamily="@font/noto_sans_font"
                     android:text="@string/sa"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="@+id/view2"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -219,13 +222,16 @@
                     android:id="@+id/viewviewes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_font"
                     android:text="@string/bo"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/view2"
                     app:layout_constraintEnd_toEndOf="@+id/view2"
-                    app:layout_constraintHorizontal_bias="0.758"
+                    app:layout_constraintHorizontal_bias="0.763"
                     app:layout_constraintStart_toStartOf="@+id/view2"
                     app:layout_constraintTop_toTopOf="@+id/view2"
-                    app:layout_constraintVertical_bias="0.734" />
+                    app:layout_constraintVertical_bias="0.735" />
 
                 <TextView
                     android:id="@+id/edt_boots"
@@ -266,12 +272,13 @@
 
                 <View
                     android:id="@+id/view5"
-                    android:layout_width="348dp"
+                    android:layout_width="match_parent"
                     android:layout_height="62dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/rounded_white_button_background"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.444"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -304,8 +311,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
+                    android:fontFamily="@font/noto_sans_font"
                     android:text="@string/lipro"
-                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/view5"
                     app:layout_constraintStart_toEndOf="@+id/button2"
                     app:layout_constraintTop_toTopOf="@+id/view5"
@@ -315,25 +324,24 @@
                     android:id="@+id/ic_list"
                     android:layout_width="41dp"
                     android:layout_height="45dp"
-                    android:layout_marginStart="92dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
                     app:layout_constraintBottom_toBottomOf="@+id/view5"
                     app:layout_constraintEnd_toEndOf="@+id/view5"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/textView30"
                     app:layout_constraintTop_toTopOf="@+id/view5"
                     app:layout_constraintVertical_bias="1.0"
                     app:srcCompat="@mipmap/ic_arrow_right" />
 
                 <View
                     android:id="@+id/view6"
-                    android:layout_width="348dp"
+                    android:layout_width="match_parent"
                     android:layout_height="62dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginEnd="35dp"
                     android:background="@drawable/rounded_white_button_background"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.444"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view5" />
 
@@ -369,8 +377,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="76dp"
                     android:layout_marginTop="16dp"
+                    android:fontFamily="@font/noto_sans_font"
                     android:text="@string/addnepro"
-                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/view6"
                     app:layout_constraintTop_toTopOf="@+id/view6" />
 
@@ -378,32 +388,14 @@
                     android:id="@+id/ic_add_new"
                     android:layout_width="38dp"
                     android:layout_height="37dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="10dp"
                     app:layout_constraintBottom_toBottomOf="@+id/view6"
                     app:layout_constraintEnd_toEndOf="@+id/view6"
-                    app:layout_constraintHorizontal_bias="0.734"
-                    app:layout_constraintStart_toEndOf="@+id/tv"
                     app:layout_constraintTop_toTopOf="@+id/view6"
                     app:layout_constraintVertical_bias="1.0"
                     app:srcCompat="@mipmap/ic_arrow_right" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/imageView27"
-                    android:layout_width="413dp"
-                    android:layout_height="107dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@mipmap/rec" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

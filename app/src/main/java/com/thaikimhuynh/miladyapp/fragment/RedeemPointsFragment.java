@@ -108,7 +108,6 @@ public class RedeemPointsFragment extends Fragment {
                     textViewTotalPoints.setText("Your total points \n 0");
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Handle possible errors.

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.thaikimhuynh.miladyapp.R;
-import com.thaikimhuynh.miladyapp.admin.AdminListOrderActivity;
+//import com.thaikimhuynh.miladyapp.admin.AdminListOrderActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,15 +67,15 @@ public class OrderFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_order, container, false);
 
         // Initialize ImageView and set OnClickListener
-        icListOrder = view.findViewById(R.id.icListOrder);
-        icListOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start AdminListOrderActivity when the image is clicked
-                Intent intent = new Intent(getActivity(), AdminListOrderActivity.class);
-                startActivity(intent);
-            }
-        });
+//        icListOrder = view.findViewById(R.id.icListOrder);
+//        icListOrder.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Start AdminListOrderActivity when the image is clicked
+//                Intent intent = new Intent(getActivity(), AdminListOrderActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         return view;
     }

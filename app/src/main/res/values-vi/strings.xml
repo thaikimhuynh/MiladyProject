@@ -12,7 +12,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="name_help">Thiết lập tài khoản</string>
     <string name="hint_language">Ngôn ngữ</string>
-    <string name="About">Phiên bản</string>
+    <string name="About">Về chúng tôi</string>
     <!-- Profile -->
     <string name="profile">Thông tin của tôi</string>
     <string name="wallet">Ví của tôi</string>
@@ -78,8 +78,8 @@
     <string name="lipro">Danh sách sản phẩm</string>
     <string name="he">Giày cao gót</string>
     <string name="sa">Dép xăng đan</string>
-    <string name="bo">Bốt</string>
-    <string name="sne">giày thể thao</string>
+    <string name="bo">Giày Bốt</string>
+    <string name="sne">Giày thể thao</string>
     <!-- Adminordermanagement -->
     <string name="log">Đăng xuất</string>
     <string name="adma">Quản lý quản trị</string>
@@ -100,7 +100,7 @@
     <string name="uppro">Cập nhật sản phẩm</string>
     <!-- Bankinginformation -->
     <string name="banin">Thông tin ngân hàng</string>
-    <string name="banna">tên ngân hàng</string>
+    <string name="banna">Tên ngân hàng</string>
     <string name="cusna">Tên khách hàng</string>
     <string name="accnu">Số tài khoản</string>
     <string name="chaba">Thay đổi ngân hàng</string>
@@ -165,7 +165,7 @@
     <!--  my wallet xml -->
     <string name="my_wallet">Ví của tôi</string>
     <!--  newpassword xml -->
-    <string name="new_password">mật khẩu mới</string>
+    <string name="new_password">Mật khẩu mới</string>
     <string name="please_fill_password">Vui lòng điền mật khẩu mới của bạn để đặt lại mật khẩu</string>
     <string name="confirm_password">Xác nhận mật khẩu</string>
     <string name="do_not_have_account">Không có tài khoản\?</string>
@@ -176,7 +176,7 @@
     <!--  product detail xml -->
     <string name="product_detail">Chi tiết sản phẩm</string>
     <string name="add_to_cart_product">Sản phẩm đã được thêm vào giỏ hàng</string>
-    <string name="not_avai_product">PSản phẩm không có sẵn</string>
+    <string name="not_avai_product">Sản phẩm không có sẵn</string>
     <string name="please_select_size">Vui lòng chọn một kích thước</string>
     <string name="feedback">Đánh giá</string>
     <string name="view_all">Xem tất cả</string>

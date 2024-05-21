@@ -43,7 +43,7 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.Wishli
     public void onBindViewHolder(@NonNull WishlistViewHolder holder, int position) {
         Product product = wishlist.get(position);
 
-        if (product != null)  {
+        if (product != null) {
             holder.wishlist_name.setText(product.getTitle());
             holder.wishlist_price.setText(String.format(Locale.US, "$%.1f", product.getPrice()));
             if (product.getPicUrls() != null && !product.getPicUrls().isEmpty()) {
@@ -57,10 +57,8 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.Wishli
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Product product = wishlist.get(position);
                     Intent intent = new Intent(context, ProductDetailActivity.class);
                     intent.putExtra("product", product);
-
                     context.startActivity(intent);
                 }
             });
@@ -74,8 +72,6 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.Wishli
             });
         }
     }
-
-
 
     @NonNull
     @Override
@@ -110,5 +106,12 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.Wishli
 
     public void setOnDeleteItemClickListener(OnDeleteItemClickListener listener) {
         this.onDeleteItemClickListener = listener;
+    }
+    public void removeProduct(Product product) {
+        int position = wishlist.indexOf(product);
+        if (position != -1) {
+            wishlist.remove(position);
+            notifyItemRemoved(position);
+        }
     }
 }

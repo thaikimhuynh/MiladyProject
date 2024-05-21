@@ -32,15 +32,13 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-
+        btnLogout = findViewById(R.id.btnLogout);
         languageDropdown = findViewById(R.id.autocompleteLan);
         aboutDropdown = findViewById(R.id.autocompleteAbout);
-
         setupLanguageDropdown();
         setupAboutDropdown();
         addEvents();
         ImageView backButton = findViewById(R.id.back_button);
-        btnLogout = findViewById(R.id.btnLogout);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,13 +52,13 @@ public class SettingActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(SettingActivity.this, WelcomeActivity.class);
+                Intent intent = new Intent(SettingActivity.this, WelcomeActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
-
     }
+
 
 
     private void setupLanguageDropdown() {

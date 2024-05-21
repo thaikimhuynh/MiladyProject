@@ -1,7 +1,5 @@
 package com.thaikimhuynh.miladyapp.checkout;
 
-import static com.google.firebase.appcheck.internal.util.Logger.TAG;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,7 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.adapter.AddressAdapter;
-import com.thaikimhuynh.miladyapp.databinding.ActivityAddressSelectionBinding;
 import com.thaikimhuynh.miladyapp.databinding.ActivityCheckOutBinding;
 import com.thaikimhuynh.miladyapp.model.Address;
 

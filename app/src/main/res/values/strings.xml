@@ -286,7 +286,13 @@
     <!--    Admin navigation-->
     <string name="or">Order</string>
     <string name="pro">Product</string>
+    <!--    Notification-->
+    <string name="promo">Promotion</string>
+    <string name="yos">Yours</string>
+    <string name="batoho">Back to Home</string>
 
-
+    <!--    Earnpoint-->
+    <string name="rede">Redeem Points</string>
+    <string name="cou">Coupon</string>
 
 </resources>

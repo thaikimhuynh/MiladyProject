@@ -33,6 +33,7 @@ public class AdminListOrderActivity extends AppCompatActivity {
     private int currentFragment = FRAGMENT_CONFIRMING;
     TextView selectedTextView;
     int tabNumber;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,13 @@ public class AdminListOrderActivity extends AppCompatActivity {
         tabItem5_admin.setBackground(null);
         tabItem5_admin.setTextColor(getResources().getColor(R.color.black));
         addEvents();
+        back=findViewById(R.id.left_arrow_button);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void addEvents() {

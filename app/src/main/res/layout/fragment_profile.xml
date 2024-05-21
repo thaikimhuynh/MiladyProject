@@ -125,13 +125,12 @@
                         android:id="@+id/textView50"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="76dp"
                         android:fontFamily="@font/noto_sans_font"
                         android:text="@string/profile"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.269"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -193,15 +192,15 @@
                         android:id="@+id/textView51"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="76dp"
                         android:fontFamily="@font/noto_sans_font"
                         android:text="@string/order"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.28"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.4" />
 
                     <ImageView
                         android:id="@+id/imageView21"
@@ -228,6 +227,7 @@
 
 
                     <ImageView
+                        android:id="@+id/imageView9"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_marginTop="12dp"
@@ -399,15 +399,15 @@
                         android:id="@+id/textView54"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="68dp"
                         android:fontFamily="@font/noto_sans_font"
                         android:text="@string/wish"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.264"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.55" />
 
                     <ImageView
                         android:id="@+id/imageView24"
@@ -469,16 +469,15 @@
                         android:id="@+id/textView55"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="116dp"
+                        android:layout_marginStart="68dp"
                         android:fontFamily="@font/noto_sans_font"
                         android:text="@string/help"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.584"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.4" />
 
                     <ImageView
                         android:id="@+id/imageView25"
@@ -540,13 +539,13 @@
                         android:id="@+id/textView56"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         android:fontFamily="@font/noto_sans_font"
                         android:text="@string/name_help"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.303"
+                        app:layout_constraintHorizontal_bias="0.334"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 

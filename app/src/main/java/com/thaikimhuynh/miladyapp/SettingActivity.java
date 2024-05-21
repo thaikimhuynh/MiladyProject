@@ -18,6 +18,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
+import com.thaikimhuynh.miladyapp.login.WelcomeActivity;
+
 import java.util.Locale;
 
 public class SettingActivity extends AppCompatActivity {
@@ -25,7 +27,7 @@ public class SettingActivity extends AppCompatActivity {
     private AutoCompleteTextView languageDropdown;
     private AutoCompleteTextView aboutDropdown;
     
-
+    Button btnLogout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +38,9 @@ public class SettingActivity extends AppCompatActivity {
 
         setupLanguageDropdown();
         setupAboutDropdown();
-
+        addEvents();
         ImageView backButton = findViewById(R.id.back_button);
+        btnLogout = findViewById(R.id.btnLogout);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +50,17 @@ public class SettingActivity extends AppCompatActivity {
 
     }
 
+    private void addEvents() {
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(SettingActivity.this, WelcomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
+    }
 
 
     private void setupLanguageDropdown() {
@@ -119,9 +132,6 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-
         alertDialog.show();
     }
-
-
 }

@@ -42,7 +42,7 @@ public class AdminLoginActivity extends AppCompatActivity {
         txtForgotPassWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(AdminLoginActivity.this, AdminProductManagementActivity.class);
+                Intent intent= new Intent(AdminLoginActivity.this, NavigationAdminActivity.class);
                 startActivity(intent);
             }
         });
@@ -74,7 +74,7 @@ public class AdminLoginActivity extends AppCompatActivity {
                     String PasswordFromDB= snapshot.child(AdminPhoneNumber).child("password").getValue(String.class);
                     if (!Objects.equals(PasswordFromDB,AdminPassWord)){
                         edtPhoneNumber.setError(null);
-                        Intent intent= new Intent(AdminLoginActivity.this, AdminProductManagementActivity.class);
+                        Intent intent= new Intent(AdminLoginActivity.this, NavigationAdminActivity.class);
                         startActivity(intent);
                     } else {
                         edtPassword.setError("Wrong password or phonenumber!");

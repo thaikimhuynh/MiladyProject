@@ -1,5 +1,6 @@
 package com.thaikimhuynh.miladyapp;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -106,6 +107,7 @@ public class SearchActivity extends AppCompatActivity  {
         binding.imgBack.setOnClickListener(v -> onBackPressed());
 
         binding.searchView.requestFocus();
+
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

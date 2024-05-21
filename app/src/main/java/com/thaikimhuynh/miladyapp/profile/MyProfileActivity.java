@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +23,7 @@ import com.thaikimhuynh.miladyapp.R;
 public class MyProfileActivity extends AppCompatActivity {
     EditText txtWalletName, txtMail,txtPhoneNumber;
     Button btnHadAccount;
+    ImageView btnBack;
 
 
     @Override
@@ -30,6 +32,7 @@ public class MyProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_profile);
         txtWalletName= findViewById(R.id.txtWalletName);
         txtMail=findViewById(R.id.txtMail);
+        btnBack = findViewById(R.id.ic_faq);
         txtPhoneNumber=findViewById(R.id.txtPhoneNumber);
         btnHadAccount=findViewById(R.id.btnHadAccount);
         String userId = getUserId();
@@ -41,6 +44,12 @@ public class MyProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                     Intent intent= new Intent(MyProfileActivity.this, ChangeMyProfileActivity.class);
                 startActivity(intent);
+            }
+        });
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

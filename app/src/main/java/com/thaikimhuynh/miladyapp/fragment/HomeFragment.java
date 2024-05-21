@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -22,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.thaikimhuynh.miladyapp.NotificationActivity;
 import com.thaikimhuynh.miladyapp.SearchActivity;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.adapter.ProductAdapter;
@@ -40,6 +42,8 @@ public class HomeFragment extends Fragment {
 
 
     private DatabaseReference mDatabase;
+    private ImageView imgBack;
+
     private ArrayList<Product> productList = new ArrayList<>();
     private ProductAdapter productAdapter;
     private FragmentHomeBinding binding;
@@ -71,6 +75,14 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(productAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
         SearchView searchView = view.findViewById(R.id.searchView);
+        imgBack = view.findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), NotificationActivity.class);
+                startActivity(intent);
+            }
+        });
         View searchPlate = searchView.findViewById(androidx.appcompat.R.id.search_plate);
         searchPlate.setBackgroundColor(Color.TRANSPARENT);
         loadProducts();

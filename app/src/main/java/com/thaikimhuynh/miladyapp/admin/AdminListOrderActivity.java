@@ -2,6 +2,7 @@ package com.thaikimhuynh.miladyapp.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.thaikimhuynh.miladyapp.R;
@@ -18,6 +20,7 @@ import com.thaikimhuynh.miladyapp.adminfragment.ConfirmingFragment;
 import com.thaikimhuynh.miladyapp.adminfragment.ReceivedFragment;
 import com.thaikimhuynh.miladyapp.adminfragment.OnDeliveryFragment;
 import com.thaikimhuynh.miladyapp.adminfragment.PreparedFragment;
+import com.thaikimhuynh.miladyapp.login.WelcomeActivity;
 
 public class AdminListOrderActivity extends AppCompatActivity {
     private TextView tabItem1_admin, tabItem2_admin, tabItem3_admin, tabItem4_admin, tabItem5_admin;
@@ -30,6 +33,7 @@ public class AdminListOrderActivity extends AppCompatActivity {
     private int currentFragment = FRAGMENT_CONFIRMING;
     TextView selectedTextView;
     int tabNumber;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +53,17 @@ public class AdminListOrderActivity extends AppCompatActivity {
         tabItem5_admin.setBackground(null);
         tabItem5_admin.setTextColor(getResources().getColor(R.color.black));
         addEvents();
+        back=findViewById(R.id.left_arrow_button);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void addEvents() {
+
         tabItem1_admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,11 +131,11 @@ public class AdminListOrderActivity extends AppCompatActivity {
     }
 
     private void addViews() {
-//        tabItem1_admin = findViewById(R.id.tabItem1_admin);
-//        tabItem2_admin = findViewById(R.id.tabItem2_admin);
-//        tabItem3_admin = findViewById(R.id.tabItem3_admin);
-//        tabItem4_admin = findViewById(R.id.tabItem4_admin);
-//        tabItem5_admin = findViewById(R.id.tabItem5_admin);
+        tabItem1_admin = findViewById(R.id.tabItem1_admin);
+        tabItem2_admin = findViewById(R.id.tabItem2_admin);
+        tabItem3_admin = findViewById(R.id.tabItem3_admin);
+        tabItem4_admin = findViewById(R.id.tabItem4_admin);
+        tabItem5_admin = findViewById(R.id.tabItem5_admin);
     }
 
     private void replaceFragment(Fragment fragment) {

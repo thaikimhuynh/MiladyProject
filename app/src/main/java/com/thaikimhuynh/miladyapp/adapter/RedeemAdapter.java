@@ -3,7 +3,6 @@ package com.thaikimhuynh.miladyapp.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,58 +48,66 @@ public class RedeemAdapter extends RecyclerView.Adapter<RedeemAdapter.MyViewHold
         holder.programname.setText(redeemPoints.getProgramname());
         holder.pointRequired.setText(redeemPoints.getPointRequired() + "P");
 
-        holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, CouponDetailsActivity.class);
-            intent.putExtra("title", redeemPoints.getTitle());
-            intent.putExtra("description", redeemPoints.getDescription());
-            intent.putExtra("voucherCode", redeemPoints.getVoucherCode());
-            context.startActivity(intent);
-        });
-
-        holder.pointRequired.setOnClickListener(v -> redeemVoucher(redeemPoints));
-    }
-
-    private void redeemVoucher(RedeemPoints redeemPoints) {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PointWallet");
-        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("VoucherWallet");
-
-        String userId = getUserId();
-
-        Query query = reference.child(userId).child("totalPoint");
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Long totalPoints = snapshot.getValue(Long.class);
-                if (totalPoints != null) {
-                    Long pointRequired = Long.parseLong(redeemPoints.getPointRequired());
-                    if (totalPoints >= pointRequired) {
-                        DatabaseReference voucherWalletRef = reference2.child(userId).child("voucherItems");
-                        String voucherId = voucherWalletRef.push().getKey();
-                        if (voucherId != null) {
-                            DatabaseReference voucherItemRef = voucherWalletRef.child(voucherId);
-                            voucherItemRef.setValue(redeemPoints);
-                            Long newTotalPoints = totalPoints - pointRequired;
-                            reference.child(userId).child("totalPoint").setValue(newTotalPoints);
-                            Toast.makeText(context, "Voucher redeemed successfully!", Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CouponDetailsActivity.class);
+                intent.putExtra("title", redeemPoints.getTitle());
+                intent.putExtra("description", redeemPoints.getDescription());
+                intent.putExtra("voucherCode", redeemPoints.getVoucherCode());
+                context.startActivity(intent);
+            }
+        });
+        holder.pointRequired.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PointWallet");
+                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("VoucherWallet");
+
+                String userId = getUserId();
+                Query query = reference.orderByChild("userId").equalTo(userId);
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                            Integer totalPoints = userSnapshot.child("totalPoint").getValue(Integer.class);
+                            if (totalPoints != null) {
+                                Long pointRequired = Long.parseLong(redeemPoints.getPointRequired());
+                                if (totalPoints >= pointRequired) {
+                                    DatabaseReference voucherWalletRef = reference2.child(userId).child("voucherItems");
+                                    String voucherId = voucherWalletRef.push().getKey();
+                                    if (voucherId != null) {
+                                        DatabaseReference voucherItemRef = voucherWalletRef.child(voucherId);
+                                        voucherItemRef.setValue(redeemPoints);
+                                        Long newTotalPoints = totalPoints - pointRequired;
+                                        userSnapshot.child("totalPoint").getRef().setValue(newTotalPoints);
+                                        Toast.makeText(context, "Voucher redeemed successfully!", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+                                } else {
+                                    Toast.makeText(context, "You don't have enough points to redeem this voucher", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                            } else {
+                                Toast.makeText(context, "You don't have enough points to redeem this voucher", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
                         }
-                    } else {
                         Toast.makeText(context, "You don't have enough points to redeem this voucher", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(context, "You don't have enough points to redeem this voucher", Toast.LENGTH_SHORT).show();
-                }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        // Handle possible errors.
+                    }
+                });
             }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("RedeemAdapter", "Error: " + error.getMessage());
+            private String getUserId() {
+                SharedPreferences sharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE);
+                return sharedPreferences.getString("user_id", "");
             }
         });
-    }
-
-    private String getUserId() {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE);
-        return sharedPreferences.getString("user_id", "");
     }
 
     @Override

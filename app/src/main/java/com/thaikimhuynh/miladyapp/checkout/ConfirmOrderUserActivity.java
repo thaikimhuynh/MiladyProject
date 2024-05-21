@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -22,13 +21,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.R;
-import com.thaikimhuynh.miladyapp.adapter.CheckoutAdapter;
-import com.thaikimhuynh.miladyapp.adapter.ProductAdapter;
 import com.thaikimhuynh.miladyapp.adapter.ProductOrderAdapter;
 import com.thaikimhuynh.miladyapp.model.Order;
 import com.thaikimhuynh.miladyapp.model.Product;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ConfirmOrderUserActivity extends AppCompatActivity {

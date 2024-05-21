@@ -19,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.admin.AdminAddProductActivity;
 import com.thaikimhuynh.miladyapp.admin.AdminListProductActivity;
+import com.thaikimhuynh.miladyapp.login.WelcomeActivity;
 
 public class ProductFragment extends Fragment {
     ImageView icListProduct;
@@ -26,6 +27,7 @@ public class ProductFragment extends Fragment {
     TextView edtHeels, edtSandals, edtSneakers, edtBoots, totalProduct;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Items");
     View view5;
+    ImageView imageView8;
 
     public ProductFragment() {
         // Required empty public constructor
@@ -39,7 +41,16 @@ public class ProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_product, container, false);
+        imageView8 = view.findViewById(R.id.imageView8);
 
+        imageView8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), WelcomeActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
         // Initialize ImageView and set OnClickListener for product list
         icListProduct = view.findViewById(R.id.ic_list);
         icListProduct.setOnClickListener(new View.OnClickListener() {

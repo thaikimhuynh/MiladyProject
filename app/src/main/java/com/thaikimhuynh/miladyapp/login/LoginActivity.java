@@ -127,52 +127,52 @@ public class LoginActivity extends AppCompatActivity {
         checkAdminDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    edtPhoneNumber.setError(null);
-                    String PasswordFromDB= snapshot.child(UserPhoneNumber).child("password").getValue(String.class);
-                    if (PasswordFromDB.equals(UserPassWord)){
-                        edtPhoneNumber.setError(null);
-                        Intent intent= new Intent(LoginActivity.this, NavigationAdminActivity.class);
-                        startActivity(intent);
-                    } else {
-                        edtPassword.setError("Wrong password or phone number!");
-                        edtPassword.requestFocus();
+                if (snapshot.exists()) {
+                    for (DataSnapshot adminSnapshot : snapshot.getChildren()) {
+                        String passwordFromDB = adminSnapshot.child("password").getValue(String.class);
+                        if (passwordFromDB.equals(UserPassWord)) {
+                            edtPhoneNumber.setError(null);
+                            Intent intent = new Intent(LoginActivity.this, NavigationAdminActivity.class);
+                            startActivity(intent);
+                        } else {
+                            edtPassword.setError("Wrong password or phone number!");
+                            edtPassword.requestFocus();
+                        }
                     }
                 }else {
-                   checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-                       @Override
-                       public void onDataChange(@NonNull DataSnapshot snapshot) {
-                           if(snapshot.exists()){
-                               Log.d("phonenumber", edtPhoneNumber.toString());
-                               Log.d("Userpassword", edtPassword.toString());
+                    checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.exists()){
+                                Log.d("phonenumber", edtPhoneNumber.toString());
+                                Log.d("Userpassword", edtPassword.toString());
 
-                               edtPhoneNumber.setError(null);
-                               String PasswordFromDB= snapshot.child(UserPhoneNumber).child("password").getValue(String.class);
-                               Log.d("DBpassword", PasswordFromDB);
+                                edtPhoneNumber.setError(null);
+                                String PasswordFromDB= snapshot.child(UserPhoneNumber).child("password").getValue(String.class);
+                                Log.d("DBpassword", PasswordFromDB);
 
-                               if (Objects.equals(PasswordFromDB,UserPassWord)){
-                                   edtPhoneNumber.setError(null);
-                                   userId = snapshot.child(UserPhoneNumber).child("id").getValue(String.class);
-                                   Toast.makeText(LoginActivity.this, "User ID: " + userId, Toast.LENGTH_SHORT).show();
+                                if (Objects.equals(PasswordFromDB,UserPassWord)){
+                                    edtPhoneNumber.setError(null);
+                                    userId = snapshot.child(UserPhoneNumber).child("id").getValue(String.class);
 
-                                   sharedPreferences();
-                                   Intent intent= new Intent(LoginActivity.this, MainActivity.class);
-                                   startActivity(intent);
-                               }else {
-                                   edtPassword.setError("Wrong password or phone number!");
-                                   edtPassword.requestFocus();
-                               }
-                           }else {
-                               edtPhoneNumber.setError("Unregistered Phone Number");
-                               edtPhoneNumber.requestFocus();
-                           }
-                       }
+                                    sharedPreferences();
+                                    Intent intent= new Intent(LoginActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                }else {
+                                    edtPassword.setError("Wrong password or phone number!");
+                                    edtPassword.requestFocus();
+                                }
+                            }else {
+                                edtPhoneNumber.setError("Unregistered Phone Number");
+                                edtPhoneNumber.requestFocus();
+                            }
+                        }
 
-                       @Override
-                       public void onCancelled(@NonNull DatabaseError error) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-                       }
-                   });
+                        }
+                    });
                 }
             }
 

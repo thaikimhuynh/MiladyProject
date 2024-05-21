@@ -1,3 +1,4 @@
+
 package com.thaikimhuynh.miladyapp.checkout;
 
 import androidx.annotation.NonNull;
@@ -31,7 +32,7 @@ public class PlaceOrderSuccessfullyActivity extends AppCompatActivity {
 
         addViews();
         addEvents();
-       Order order = (Order) getIntent().getSerializableExtra("order");
+        Order order = (Order) getIntent().getSerializableExtra("order");
 
         if (order != null) {
             loadOrderDetails(order);
@@ -60,7 +61,7 @@ public class PlaceOrderSuccessfullyActivity extends AppCompatActivity {
         txtAddress.setText(order.getAddress());
         txtTotal.setText(String.format("$%.2f", order.getFinalAmount()));
         txtPaymentMethod.setText(order.getPaymentMethod());
-                    }
+    }
 
 
 

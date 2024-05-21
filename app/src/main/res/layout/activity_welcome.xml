@@ -83,10 +83,10 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnStarted"
-        android:layout_width="356dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_pink_button_background"
@@ -103,7 +103,7 @@ android:textStyle="bold"
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnHadAccount"
-        android:layout_width="356dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="10dp"

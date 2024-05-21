@@ -146,7 +146,7 @@
                         android:paddingBottom="15dp"
                         android:text="Classic Boost"
                         android:textColor="#F9476B"
-                        android:textSize="25sp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
 
@@ -154,6 +154,7 @@
                         android:id="@+id/textView12"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/black"
                         android:layout_marginStart="32dp"
                         android:fontFamily="@font/noto_sans_font"
                         android:text="@string/product_details"
@@ -236,6 +237,7 @@
                             android:paddingTop="15dp"
                             android:paddingBottom="10dp"
                             android:text="@string/select_size"
+                            android:textColor="@color/pink_primary"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 

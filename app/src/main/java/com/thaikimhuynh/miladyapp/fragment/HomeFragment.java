@@ -1,5 +1,6 @@
 package com.thaikimhuynh.miladyapp.fragment;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,6 +71,8 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(productAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
         SearchView searchView = view.findViewById(R.id.searchView);
+        View searchPlate = searchView.findViewById(androidx.appcompat.R.id.search_plate);
+        searchPlate.setBackgroundColor(Color.TRANSPARENT);
         loadProducts();
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

@@ -1,6 +1,7 @@
 package com.thaikimhuynh.miladyapp.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -112,6 +113,8 @@ public class CategoryFragment extends Fragment {
         recyclerView.setAdapter(itemAdapter);
         itemAdapter.startListening();
         SearchView searchView = view.findViewById(R.id.category_searchView);
+        View searchPlate = searchView.findViewById(androidx.appcompat.R.id.search_plate);
+        searchPlate.setBackgroundColor(Color.TRANSPARENT);
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

@@ -3,7 +3,6 @@ package com.thaikimhuynh.miladyapp.fragment;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -23,7 +22,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.thaikimhuynh.miladyapp.Notification;
 import com.thaikimhuynh.miladyapp.R;
 import com.thaikimhuynh.miladyapp.adapter.RedeemAdapter;
 import com.thaikimhuynh.miladyapp.model.RedeemPoints;
@@ -37,19 +35,15 @@ import java.util.ArrayList;
  */
 public class RedeemPointsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     RecyclerView recyclerView;
-    DatabaseReference database,databse2;
+    DatabaseReference database;
     RedeemAdapter redeemAdapter;
     ArrayList<RedeemPoints> list;
     TextView textViewTotalPoints;
 
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -57,15 +51,6 @@ public class RedeemPointsFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RedeemPointsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static RedeemPointsFragment newInstance(String param1, String param2) {
         RedeemPointsFragment fragment = new RedeemPointsFragment();
         Bundle args = new Bundle();
@@ -88,14 +73,13 @@ public class RedeemPointsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_redeem_points, container, false);
         recyclerView = view.findViewById(R.id.redeem_recyclerview);
         textViewTotalPoints = view.findViewById(R.id.textViewTotalPoints);
         database = FirebaseDatabase.getInstance().getReference("Voucher");
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PointWallet");
         String userId = getUserId();
-
+        Query query = reference.orderByChild("userId").equalTo(userId);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -104,14 +88,24 @@ public class RedeemPointsFragment extends Fragment {
         recyclerView.setAdapter(redeemAdapter);
 
         // Add ValueEventListener to listen for changes in TotalPoints
-        reference.child(userId).child("TotalPoints").addValueEventListener(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    Long totalPoints = snapshot.getValue(Long.class);
-                    textViewTotalPoints.setText("Your total points \n" + String.valueOf(totalPoints));
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Object totalPointObj = dataSnapshot.child("totalPoint").getValue();
+                        if (totalPointObj instanceof Long) {
+                            Long totalPoints = (Long) totalPointObj;
+                            textViewTotalPoints.setText("Your total points \n" + totalPoints);
+                        } else if (totalPointObj instanceof String) {
+                            String totalPoints = (String) totalPointObj;
+                            textViewTotalPoints.setText("Your total points \n" + totalPoints);
+                        } else {
+                            textViewTotalPoints.setText("Your total points \n 0");
+                        }
+                    }
                 } else {
-                    textViewTotalPoints.setText("0");
+                    textViewTotalPoints.setText("Your total points \n 0");
                 }
             }
 

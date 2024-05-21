@@ -26,6 +26,9 @@
             android:name=".ViewProductFeedbackActivity"
             android:exported="false" />
         <activity
+            android:name=".AboutUsActivity"
+            android:exported="false"/>
+        <activity
             android:name=".checkout.PlaceOrderSuccessfullyActivity"
             android:exported="false" />
         <activity

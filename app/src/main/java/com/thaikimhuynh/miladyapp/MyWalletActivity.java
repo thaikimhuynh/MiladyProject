@@ -1,5 +1,6 @@
 package com.thaikimhuynh.miladyapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thaikimhuynh.miladyapp.adapter.ItemAdapter;
 import com.thaikimhuynh.miladyapp.adapter.ItemWithButtonAdapter;
+import com.thaikimhuynh.miladyapp.fragment.ProfileFragment;
 import com.thaikimhuynh.miladyapp.model.PaymentGroup;
 import com.thaikimhuynh.miladyapp.model.PaymentItem;
 
@@ -58,10 +60,21 @@ public class MyWalletActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent intent = new Intent(MyWalletActivity.this, MainActivity.class);
+                intent.putExtra("fragment", "ProfileFragment");
+                startActivity(intent);
+                finish();
+
+
+
+
             }
         });
     }
+
+
+
+
 
 
     private String getUserId() {
@@ -193,7 +206,7 @@ public class MyWalletActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rcv_mywallet);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        back = findViewById(R.id.img_btn_back);
+        back = findViewById(R.id.img_btn_back_mywallet);
     }
 
 
